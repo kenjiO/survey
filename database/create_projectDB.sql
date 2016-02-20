@@ -1,6 +1,81 @@
+USE [master]
+GO
+/****** Object:  Database [CS6232-G1]    Script Date: 2/20/2016 12:22:30 PM ******/
+CREATE DATABASE [CS6232-G1]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'Evaluations', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\Evaluations.mdf' , SIZE = 4096KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'Evaluations_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\Evaluations_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+ALTER DATABASE [CS6232-G1] SET COMPATIBILITY_LEVEL = 120
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [CS6232-G1].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [CS6232-G1] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [CS6232-G1] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [CS6232-G1] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [CS6232-G1] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [CS6232-G1] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET RECOVERY FULL 
+GO
+ALTER DATABASE [CS6232-G1] SET  MULTI_USER 
+GO
+ALTER DATABASE [CS6232-G1] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [CS6232-G1] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [CS6232-G1] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [CS6232-G1] SET TARGET_RECOVERY_TIME = 0 SECONDS 
+GO
+ALTER DATABASE [CS6232-G1] SET DELAYED_DURABILITY = DISABLED 
+GO
 USE [CS6232-G1]
 GO
-/****** Object:  Table [dbo].[answer]    Script Date: 2/20/2016 11:42:44 AM ******/
+/****** Object:  Table [dbo].[answer]    Script Date: 2/20/2016 12:22:30 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -17,7 +92,7 @@ CREATE TABLE [dbo].[answer](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[category]    Script Date: 2/20/2016 11:42:44 AM ******/
+/****** Object:  Table [dbo].[category]    Script Date: 2/20/2016 12:22:30 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -44,7 +119,7 @@ CREATE TABLE [dbo].[category](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[cohort]    Script Date: 2/20/2016 11:42:44 AM ******/
+/****** Object:  Table [dbo].[cohort]    Script Date: 2/20/2016 12:22:30 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -63,7 +138,7 @@ CREATE TABLE [dbo].[cohort](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[employee]    Script Date: 2/20/2016 11:42:44 AM ******/
+/****** Object:  Table [dbo].[employee]    Script Date: 2/20/2016 12:22:30 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -96,7 +171,7 @@ CREATE TABLE [dbo].[employee](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[evaluation_schedule]    Script Date: 2/20/2016 11:42:44 AM ******/
+/****** Object:  Table [dbo].[evaluation_schedule]    Script Date: 2/20/2016 12:22:30 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -116,7 +191,7 @@ CREATE TABLE [dbo].[evaluation_schedule](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[evaluations]    Script Date: 2/20/2016 11:42:44 AM ******/
+/****** Object:  Table [dbo].[evaluations]    Script Date: 2/20/2016 12:22:30 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -143,7 +218,7 @@ CREATE TABLE [dbo].[evaluations](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[question]    Script Date: 2/20/2016 11:42:44 AM ******/
+/****** Object:  Table [dbo].[question]    Script Date: 2/20/2016 12:22:30 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -170,7 +245,7 @@ CREATE TABLE [dbo].[question](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[role]    Script Date: 2/20/2016 11:42:44 AM ******/
+/****** Object:  Table [dbo].[role]    Script Date: 2/20/2016 12:22:30 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -189,7 +264,7 @@ CREATE TABLE [dbo].[role](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[stage]    Script Date: 2/20/2016 11:42:44 AM ******/
+/****** Object:  Table [dbo].[stage]    Script Date: 2/20/2016 12:22:30 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -208,7 +283,7 @@ CREATE TABLE [dbo].[stage](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[type]    Script Date: 2/20/2016 11:42:44 AM ******/
+/****** Object:  Table [dbo].[type]    Script Date: 2/20/2016 12:22:30 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -227,6 +302,12 @@ CREATE TABLE [dbo].[type](
 
 GO
 SET ANSI_PADDING OFF
+GO
+/****** Object:  Index [IX_answer]    Script Date: 2/20/2016 12:22:30 PM ******/
+CREATE NONCLUSTERED INDEX [IX_answer] ON [dbo].[answer]
+(
+	[evaluationId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
 ALTER TABLE [dbo].[answer]  WITH CHECK ADD  CONSTRAINT [FK_answer_evaluations] FOREIGN KEY([evaluationId])
 REFERENCES [dbo].[evaluations] ([evaluationId])
@@ -297,4 +378,8 @@ ALTER TABLE [dbo].[question]  WITH CHECK ADD  CONSTRAINT [FK_question_type] FORE
 REFERENCES [dbo].[type] ([typeId])
 GO
 ALTER TABLE [dbo].[question] CHECK CONSTRAINT [FK_question_type]
+GO
+USE [master]
+GO
+ALTER DATABASE [CS6232-G1] SET  READ_WRITE 
 GO
