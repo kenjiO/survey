@@ -1,0 +1,14 @@
+Initial Schema Proposal
+     cohort([cohortId(auto)], cohortDescription)
+     stage([stageId(auto)], stageName)
+     type([typeId(auto)], typeName, answerRange)
+     role([roleId(auto)], roleName)  (e.g. self, supervisor, co-worker)
+     employee([employeeId(auto))], firstname, lastname, emailAddress(unique), street, city, state, zip,
+          contactPhone, isAdministrator, password, cohortId(nullable,fk))
+     evaluation_schedule([cohortId(fk), typeId(fk), stageId(fk)], startDate, endDate)
+     evaluations([evaluationId(auto)], [employee(fk), type(fk), stage(fk), role(fk)], evaluator,
+          completionDate(nullable))
+     category([categoryId(auto)], [typeId(fk), categoryNo], categoryName, categoryDescription)
+     question([questionId(auto)], [typeId(fk), questionNo], categoryId(fk), question)
+     answer([evaluationdId(fk), questionId(fk)], answer(int))
+
