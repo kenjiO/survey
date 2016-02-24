@@ -1,6 +1,6 @@
 ﻿namespace CS6232_G1
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
