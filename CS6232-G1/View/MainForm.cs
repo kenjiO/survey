@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Evaluation.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,12 +13,23 @@ namespace CS6232_G1
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        IEvaluationController _controller;
+
+        /// <summary>
+        /// Main form constructor
+        /// </summary>
+        /// <param name="controller">View controller</param>
+        public MainForm(IEvaluationController controller)
         {
+            _controller = controller;
             InitializeComponent();
             // initialize these to both invisible until we know which to use, default menu will be visible
             menuStripAdmin.Visible = false;
             menuStripEmployee.Visible = false;
+            if (_controller == null)
+            {
+                throw new ArgumentNullException("Null controller on main form");
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

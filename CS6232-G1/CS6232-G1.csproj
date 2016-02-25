@@ -77,6 +77,20 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EvaluationController\EvaluationController.csproj">
+      <Project>{de5806e3-16f1-4557-80ad-bab120c7159e}</Project>
+      <Name>EvaluationController</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EvaluationDAL\EvaluationDAL.csproj">
+      <Project>{b2f917e0-a861-45d5-a5e7-7c79d67a3795}</Project>
+      <Name>EvaluationDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EvaluationModel\EvaluationModel.csproj">
+      <Project>{43c54c35-7f04-4420-afed-170169806f93}</Project>
+      <Name>EvaluationModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

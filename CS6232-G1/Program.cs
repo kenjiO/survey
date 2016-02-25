@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Evaluation.Controller;
+using Evaluation.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +18,8 @@ namespace CS6232_G1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            // for standard operation, provide normal EvaluationController initialzed with a normal EvaluationDAL
+            Application.Run(new MainForm(new EvaluationController(new EvaluationDAL())));
         }
     }
 }
