@@ -28,9 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(592, 417);
+            this.IsMdiContainer = true;
+            this.Name = "MainForm";
+            this.Text = "CS6232-G1 Evaluations";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
