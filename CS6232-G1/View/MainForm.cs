@@ -1,4 +1,5 @@
-﻿using Evaluation.Controller;
+﻿using CS6232_G1.View;
+using Evaluation.Controller;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,6 +47,14 @@ namespace CS6232_G1
             menuStripDefault.Visible = false;
             menuStripAdmin.Visible = on;
             menuStripEmployee.Visible = !on;
+        }
+
+        // TODO: Remove test link from default menu when done testing
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new UserReportForm(_controller);
+            form.MdiParent = this;
+            form.Show();
         }
 
     }
