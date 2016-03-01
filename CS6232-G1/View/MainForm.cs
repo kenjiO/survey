@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CS6232_G1
+namespace CS6232_G1.View
 {
     public partial class MainForm : Form
     {

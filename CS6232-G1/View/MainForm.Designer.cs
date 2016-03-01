@@ -1,4 +1,4 @@
-﻿namespace CS6232_G1
+﻿namespace CS6232_G1.View
 {
     partial class MainForm
     {

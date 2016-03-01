@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EvaluationModel
+namespace Evaluation.Model
 {
     public class UserReport
     {
