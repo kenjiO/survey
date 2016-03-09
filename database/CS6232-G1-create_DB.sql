@@ -158,6 +158,7 @@ CREATE TABLE [dbo].[employee](
 	[password] [varchar](50) NOT NULL,
 	[isAdmin] [bit] NOT NULL,
 	[cohortId] [int] NULL,
+	[supervisorId] [int] NULL,
  CONSTRAINT [PK_employee] PRIMARY KEY CLUSTERED 
 (
 	[employeeId] ASC
@@ -328,6 +329,11 @@ ALTER TABLE [dbo].[employee]  WITH CHECK ADD  CONSTRAINT [FK_employee_cohort] FO
 REFERENCES [dbo].[cohort] ([cohortId])
 GO
 ALTER TABLE [dbo].[employee] CHECK CONSTRAINT [FK_employee_cohort]
+GO
+ALTER TABLE [dbo].[employee]  WITH CHECK ADD  CONSTRAINT [FK_employee_employee] FOREIGN KEY([supervisorId])
+REFERENCES [dbo].[employee] ([employeeId])
+GO
+ALTER TABLE [dbo].[employee] CHECK CONSTRAINT [FK_employee_employee]
 GO
 ALTER TABLE [dbo].[evaluation_schedule]  WITH CHECK ADD  CONSTRAINT [FK_evaluation_shedule_cohort] FOREIGN KEY([cohortId])
 REFERENCES [dbo].[cohort] ([cohortId])
