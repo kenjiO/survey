@@ -18,5 +18,10 @@ namespace Evaluation.DAL
         /// <returns>Employee name list</returns>
         List<EmployeeName> getEmployeeNameList();
 
+        /// <summary>
+        /// Get employee matching given login and password
+        /// </summary>
+        /// <returns>Employee if valid login/password. Otherwise null</returns>
+        Employee getLogin(String username, String password);
     }
 }
