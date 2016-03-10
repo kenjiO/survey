@@ -58,5 +58,10 @@ namespace Test
             table.Rows.Add(row6);
             return table;
         }
+
+        public Employee login(string email, string password)
+        {
+            throw new NotSupportedException();
+        }
     }
 }

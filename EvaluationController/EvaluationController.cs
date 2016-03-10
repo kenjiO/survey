@@ -42,5 +42,10 @@ namespace Evaluation.Controller
             // TODO: Use DAL to acquire report details
             throw new NotSupportedException();
         }
+
+        public Employee login(string email, string password)
+        {
+            throw new NotSupportedException();
+        }
     }
 }
