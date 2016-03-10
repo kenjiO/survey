@@ -50,8 +50,26 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="SampleUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EvaluationController\EvaluationController.csproj">
+      <Project>{de5806e3-16f1-4557-80ad-bab120c7159e}</Project>
+      <Name>EvaluationController</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EvaluationDAL\EvaluationDAL.csproj">
+      <Project>{b2f917e0-a861-45d5-a5e7-7c79d67a3795}</Project>
+      <Name>EvaluationDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EvaluationModel\EvaluationModel.csproj">
+      <Project>{43c54c35-7f04-4420-afed-170169806f93}</Project>
+      <Name>EvaluationModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Test\Test.csproj">
+      <Project>{abdb92a9-277d-459c-9ecc-9b807c601ed7}</Project>
+      <Name>Test</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
