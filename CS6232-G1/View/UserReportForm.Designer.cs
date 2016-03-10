@@ -28,61 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmboStage = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmboType = new System.Windows.Forms.ComboBox();
-            this.buttonGenerate = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserReportForm));
             this.statusLabel = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.employeeTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.stageComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.typeComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.generateButton = new System.Windows.Forms.ToolStripButton();
             this.statusLabel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // cmboStage
-            // 
-            this.cmboStage.FormattingEnabled = true;
-            this.cmboStage.Location = new System.Drawing.Point(49, 10);
-            this.cmboStage.Name = "cmboStage";
-            this.cmboStage.Size = new System.Drawing.Size(121, 21);
-            this.cmboStage.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Stage:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(181, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Type:";
-            // 
-            // cmboType
-            // 
-            this.cmboType.FormattingEnabled = true;
-            this.cmboType.Location = new System.Drawing.Point(221, 10);
-            this.cmboType.Name = "cmboType";
-            this.cmboType.Size = new System.Drawing.Size(121, 21);
-            this.cmboType.TabIndex = 3;
-            // 
-            // buttonGenerate
-            // 
-            this.buttonGenerate.Location = new System.Drawing.Point(497, 8);
-            this.buttonGenerate.Name = "buttonGenerate";
-            this.buttonGenerate.Size = new System.Drawing.Size(75, 23);
-            this.buttonGenerate.TabIndex = 4;
-            this.buttonGenerate.Text = "Generate";
-            this.buttonGenerate.UseVisualStyleBackColor = true;
-            this.buttonGenerate.Click += new System.EventHandler(this.buttonGenerate_Click);
             // 
             // statusLabel
             // 
@@ -104,31 +65,102 @@
             this.dataGridView.AllowUserToAddRows = false;
             this.dataGridView.AllowUserToDeleteRows = false;
             this.dataGridView.AllowUserToOrderColumns = true;
+            this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView.Location = new System.Drawing.Point(0, 37);
+            this.dataGridView.Location = new System.Drawing.Point(0, 29);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(3, 30, 3, 3);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
-            this.dataGridView.Size = new System.Drawing.Size(582, 280);
+            this.dataGridView.Size = new System.Drawing.Size(582, 288);
             this.dataGridView.TabIndex = 6;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.employeeTextBox,
+            this.toolStripLabel2,
+            this.stageComboBox,
+            this.toolStripLabel3,
+            this.typeComboBox,
+            this.generateButton});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(582, 28);
+            this.toolStrip1.TabIndex = 7;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.AutoSize = false;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Padding = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this.toolStripLabel1.Size = new System.Drawing.Size(72, 25);
+            this.toolStripLabel1.Text = "EmployeeId:";
+            // 
+            // employeeTextBox
+            // 
+            this.employeeTextBox.MaxLength = 15;
+            this.employeeTextBox.Name = "employeeTextBox";
+            this.employeeTextBox.Size = new System.Drawing.Size(50, 25);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.toolStripLabel2.Size = new System.Drawing.Size(49, 22);
+            this.toolStripLabel2.Text = "Stage:";
+            // 
+            // stageComboBox
+            // 
+            this.stageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.stageComboBox.Name = "stageComboBox";
+            this.stageComboBox.Size = new System.Drawing.Size(100, 25);
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.toolStripLabel3.Size = new System.Drawing.Size(45, 22);
+            this.toolStripLabel3.Text = "Type:";
+            // 
+            // typeComboBox
+            // 
+            this.typeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.typeComboBox.Name = "typeComboBox";
+            this.typeComboBox.Size = new System.Drawing.Size(100, 25);
+            // 
+            // generateButton
+            // 
+            this.generateButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.generateButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.generateButton.Image = ((System.Drawing.Image)(resources.GetObject("generateButton.Image")));
+            this.generateButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.generateButton.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.generateButton.Name = "generateButton";
+            this.generateButton.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.generateButton.Size = new System.Drawing.Size(68, 25);
+            this.generateButton.Text = "Generate";
+            this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
             // 
             // UserReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(582, 339);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.statusLabel);
-            this.Controls.Add(this.buttonGenerate);
-            this.Controls.Add(this.cmboType);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.cmboStage);
             this.Name = "UserReportForm";
             this.Text = "User Report";
+            this.Load += new System.EventHandler(this.UserReportForm_Load);
+            this.Resize += new System.EventHandler(this.UserReportForm_Resize);
             this.statusLabel.ResumeLayout(false);
             this.statusLabel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,13 +168,16 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cmboStage;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmboType;
-        private System.Windows.Forms.Button buttonGenerate;
         private System.Windows.Forms.StatusStrip statusLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripTextBox employeeTextBox;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripComboBox stageComboBox;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
+        private System.Windows.Forms.ToolStripComboBox typeComboBox;
+        private System.Windows.Forms.ToolStripButton generateButton;
     }
 }

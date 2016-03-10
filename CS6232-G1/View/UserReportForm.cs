@@ -18,6 +18,8 @@ namespace CS6232_G1.View
         IEvaluationController _controller;
         private List<Stage> _stages;
         private List<EvalType> _types;
+        private int gridTop;
+        private int gridHeightDiff;
 
         public UserReportForm(IEvaluationController controller)
         {
@@ -27,19 +29,54 @@ namespace CS6232_G1.View
             {
                 return;
             }
-            cmboStage.DataSource = _stages;
-            cmboStage.DisplayMember = "name";
-            cmboStage.ValueMember = "id";
-            cmboStage.SelectedIndex = -1;
+            stageComboBox.ComboBox.DataSource = _stages;
+            stageComboBox.ComboBox.DisplayMember = "name";
+            stageComboBox.ComboBox.ValueMember = "id";
+            stageComboBox.ComboBox.SelectedIndex = -1;
 
             if ((_types = getTypeList()) == null)
             {
                 return;
             }
-            cmboType.DataSource = _types;
-            cmboType.DisplayMember = "name";
-            cmboType.ValueMember = "id";
-            cmboType.SelectedIndex = -1;
+            typeComboBox.ComboBox.DataSource = _types;
+            typeComboBox.ComboBox.DisplayMember = "name";
+            typeComboBox.ComboBox.ValueMember = "id";
+            typeComboBox.ComboBox.SelectedIndex = -1;
+
+        }
+
+        private void UserReportForm_Load(object sender, EventArgs e)
+        {
+            gridTop = dataGridView.Top;
+            gridHeightDiff = Height - dataGridView.Height;
+        }
+
+        private void UserReportForm_Resize(object sender, EventArgs e)
+        {
+            dataGridView.Top = gridTop;
+            int height = Height-gridHeightDiff;
+            if (height < 0) {
+                height = 0;
+            }
+            dataGridView.Height = height;
+        }
+
+        private void generateButton_Click(object sender, EventArgs e)
+        {
+            // TODO: Parse employee number
+            if (stageComboBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select evaluation stage and type", "Notice");
+                return;
+            }
+            if (typeComboBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an evaluation type", "Notice");
+                return;
+            }
+            int stage = (int)stageComboBox.ComboBox.SelectedValue;
+            int evaltype = (int)typeComboBox.ComboBox.SelectedValue;
+            generateUserReport(stage, evaltype);
         }
 
         private List<Stage> getStageList()
@@ -88,23 +125,6 @@ namespace CS6232_G1.View
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
             return list;
-        }
-
-        private void buttonGenerate_Click(object sender, EventArgs e)
-        {
-            if (cmboStage.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select evaluation stage and type", "Notice");
-                return;
-            }
-            if (cmboType.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select an evaluation type", "Notice");
-                return;
-            }
-            int stage = (int)cmboStage.SelectedValue;
-            int evaltype = (int)cmboType.SelectedValue;
-            generateUserReport(stage, evaltype);
         }
 
         /// <summary>
@@ -172,5 +192,6 @@ namespace CS6232_G1.View
             // TODO: either move stage/type prompt off this page and dock ALL, or find a way to keep top same distance from 
             //      form top on resize
         }
+
     }
 }
