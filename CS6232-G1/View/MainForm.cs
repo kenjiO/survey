@@ -107,5 +107,12 @@ namespace CS6232_G1.View
             }
         }
 
+        private void createNewCohortToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new AddCohortForm(_controller);
+            form.MdiParent = this;
+            form.Show();
+        }
+
     }
 }

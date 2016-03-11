@@ -49,6 +49,7 @@
             this.LoginButton = new System.Windows.Forms.Button();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
+            this.createNewCohortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripAdmin.SuspendLayout();
             this.menuStripEmployee.SuspendLayout();
             this.menuStripDefault.SuspendLayout();
@@ -85,6 +86,8 @@
             // 
             // testAdminOptionsToolStripMenuItem
             // 
+            this.testAdminOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createNewCohortToolStripMenuItem});
             this.testAdminOptionsToolStripMenuItem.Name = "testAdminOptionsToolStripMenuItem";
             this.testAdminOptionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.testAdminOptionsToolStripMenuItem.Text = "Cohorts";
@@ -237,6 +240,13 @@
             this.UsernameTextBox.TabIndex = 0;
             this.UsernameTextBox.Text = "admin1@westga.edu";
             // 
+            // createNewCohortToolStripMenuItem
+            // 
+            this.createNewCohortToolStripMenuItem.Name = "createNewCohortToolStripMenuItem";
+            this.createNewCohortToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.createNewCohortToolStripMenuItem.Text = "Create New Cohort";
+            this.createNewCohortToolStripMenuItem.Click += new System.EventHandler(this.createNewCohortToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -286,6 +296,7 @@
         private System.Windows.Forms.TextBox UsernameTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem createNewCohortToolStripMenuItem;
     }
 }
 
