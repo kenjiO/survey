@@ -37,9 +37,9 @@ namespace Evaluation.Controller
             throw new NotSupportedException();
         }
 
-        public DataTable getUserReport(int stage, int evalType)
+        public string getCohortName(int cohortId)
         {
-            // TODO: Use DAL to acquire report details
+            // TODO: Finish
             throw new NotSupportedException();
         }
 
@@ -47,5 +47,12 @@ namespace Evaluation.Controller
         {
             throw new NotSupportedException();
         }
+
+        public DataTable getUserReport(int stage, int evalType)
+        {
+            // TODO: Use DAL to acquire report details
+            throw new NotSupportedException();
+        }
+
     }
 }

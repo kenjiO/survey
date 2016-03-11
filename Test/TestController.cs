@@ -30,7 +30,23 @@ namespace Test
             results.Add(new EvalType(1, "Type 1", 5));
             results.Add(new EvalType(2, "Type 2", 10));
             return results;
+        }
 
+        public String getCohortName(int cohortId)
+        {
+            switch (cohortId) {
+                case 1:
+                    return "Cohort 1";
+                case 2:
+                    return "Cohort 2";
+                default:
+                    throw new KeyNotFoundException("Invalid cohort id, " + cohortId);
+            }
+        }
+
+        public Employee login(string email, string password)
+        {
+            throw new NotSupportedException();
         }
 
         /// <summary>
@@ -59,9 +75,5 @@ namespace Test
             return table;
         }
 
-        public Employee login(string email, string password)
-        {
-            throw new NotSupportedException();
-        }
     }
 }
