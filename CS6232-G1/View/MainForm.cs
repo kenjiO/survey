@@ -61,5 +61,43 @@ namespace CS6232_G1.View
             form.Show();
         }
 
+        private void LoginButton_Click(object sender, EventArgs e)
+        {
+            String username = UsernameTextBox.Text;
+            String password = PasswordTextBox.Text;
+            if (!Validate(username, password))
+                return;
+
+            if (_controller.login(username, password) == null)
+            {
+                ErrorMsgLabel.Text = "Invalid username/password";
+                return;
+            }
+
+            LoginPanel.Visible = false;
+
+            if (_controller.idAdminSession)
+            {
+                setAdminMode(true);
+            }
+            else
+            {
+                setAdminMode(false);
+            }
+        }
+
+        private Boolean Validate(String username, String password)
+        {
+            if (username != null && username != "" && password != null && password != "")
+            {
+                return true;
+            }
+            else
+            {
+                ErrorMsgLabel.Text = "Username and Password required";
+                return false;
+            }
+        }
+
     }
 }

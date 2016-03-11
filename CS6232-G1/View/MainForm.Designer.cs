@@ -32,6 +32,8 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testAdminOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripEmployee = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,11 +42,17 @@
             this.fileToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LoginPanel = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ErrorMsgLabel = new System.Windows.Forms.Label();
+            this.LoginButton = new System.Windows.Forms.Button();
+            this.PasswordTextBox = new System.Windows.Forms.TextBox();
+            this.UsernameTextBox = new System.Windows.Forms.TextBox();
             this.menuStripAdmin.SuspendLayout();
             this.menuStripEmployee.SuspendLayout();
             this.menuStripDefault.SuspendLayout();
+            this.LoginPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStripAdmin
@@ -80,6 +88,18 @@
             this.testAdminOptionsToolStripMenuItem.Name = "testAdminOptionsToolStripMenuItem";
             this.testAdminOptionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.testAdminOptionsToolStripMenuItem.Text = "Cohorts";
+            // 
+            // stagesToolStripMenuItem
+            // 
+            this.stagesToolStripMenuItem.Name = "stagesToolStripMenuItem";
+            this.stagesToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.stagesToolStripMenuItem.Text = "Stages";
+            // 
+            // reportsToolStripMenuItem
+            // 
+            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.reportsToolStripMenuItem.Text = "Reports";
             // 
             // menuStripEmployee
             // 
@@ -147,23 +167,82 @@
             this.testToolStripMenuItem.Visible = false;
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
-            // stagesToolStripMenuItem
+            // LoginPanel
             // 
-            this.stagesToolStripMenuItem.Name = "stagesToolStripMenuItem";
-            this.stagesToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.stagesToolStripMenuItem.Text = "Stages";
+            this.LoginPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LoginPanel.Controls.Add(this.label2);
+            this.LoginPanel.Controls.Add(this.label1);
+            this.LoginPanel.Controls.Add(this.ErrorMsgLabel);
+            this.LoginPanel.Controls.Add(this.LoginButton);
+            this.LoginPanel.Controls.Add(this.PasswordTextBox);
+            this.LoginPanel.Controls.Add(this.UsernameTextBox);
+            this.LoginPanel.Location = new System.Drawing.Point(148, 100);
+            this.LoginPanel.Name = "LoginPanel";
+            this.LoginPanel.Size = new System.Drawing.Size(340, 202);
+            this.LoginPanel.TabIndex = 5;
             // 
-            // reportsToolStripMenuItem
+            // label2
             // 
-            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.reportsToolStripMenuItem.Text = "Reports";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(28, 94);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Password";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(28, 55);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Username";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // ErrorMsgLabel
+            // 
+            this.ErrorMsgLabel.ForeColor = System.Drawing.Color.Red;
+            this.ErrorMsgLabel.Location = new System.Drawing.Point(12, 24);
+            this.ErrorMsgLabel.Name = "ErrorMsgLabel";
+            this.ErrorMsgLabel.Size = new System.Drawing.Size(310, 13);
+            this.ErrorMsgLabel.TabIndex = 3;
+            this.ErrorMsgLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LoginButton
+            // 
+            this.LoginButton.Location = new System.Drawing.Point(131, 136);
+            this.LoginButton.Name = "LoginButton";
+            this.LoginButton.Size = new System.Drawing.Size(75, 23);
+            this.LoginButton.TabIndex = 2;
+            this.LoginButton.Text = "Login";
+            this.LoginButton.UseVisualStyleBackColor = true;
+            this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click);
+            // 
+            // PasswordTextBox
+            // 
+            this.PasswordTextBox.Location = new System.Drawing.Point(102, 91);
+            this.PasswordTextBox.Name = "PasswordTextBox";
+            this.PasswordTextBox.Size = new System.Drawing.Size(209, 20);
+            this.PasswordTextBox.TabIndex = 1;
+            this.PasswordTextBox.Text = "admin1";
+            this.PasswordTextBox.UseSystemPasswordChar = true;
+            // 
+            // UsernameTextBox
+            // 
+            this.UsernameTextBox.Location = new System.Drawing.Point(102, 52);
+            this.UsernameTextBox.Name = "UsernameTextBox";
+            this.UsernameTextBox.Size = new System.Drawing.Size(209, 20);
+            this.UsernameTextBox.TabIndex = 0;
+            this.UsernameTextBox.Text = "admin1@westga.edu";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(636, 417);
+            this.Controls.Add(this.LoginPanel);
             this.Controls.Add(this.menuStripAdmin);
             this.Controls.Add(this.menuStripEmployee);
             this.Controls.Add(this.menuStripDefault);
@@ -177,6 +256,8 @@
             this.menuStripEmployee.PerformLayout();
             this.menuStripDefault.ResumeLayout(false);
             this.menuStripDefault.PerformLayout();
+            this.LoginPanel.ResumeLayout(false);
+            this.LoginPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,6 +279,13 @@
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
+        private System.Windows.Forms.Panel LoginPanel;
+        private System.Windows.Forms.Label ErrorMsgLabel;
+        private System.Windows.Forms.Button LoginButton;
+        private System.Windows.Forms.TextBox PasswordTextBox;
+        private System.Windows.Forms.TextBox UsernameTextBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 
