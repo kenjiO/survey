@@ -24,6 +24,10 @@ namespace CS6232_G1.View
         {
             _controller = controller;
             InitializeComponent();
+
+            // TODO: Remove - test code
+            //testToolStripMenuItem.Visible = true;
+
             // initialize these to both invisible until we know which to use, default menu will be visible
             menuStripAdmin.Visible = false;
             menuStripEmployee.Visible = false;
@@ -52,7 +56,7 @@ namespace CS6232_G1.View
         // TODO: Remove test link from default menu when done testing
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form form = new UserReportForm(_controller);
+            Form form = new AddCohortScheduleForm(_controller, 1, "");
             form.MdiParent = this;
             form.Show();
         }
