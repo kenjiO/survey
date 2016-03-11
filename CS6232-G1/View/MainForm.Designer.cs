@@ -40,6 +40,8 @@
             this.fileToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripAdmin.SuspendLayout();
             this.menuStripEmployee.SuspendLayout();
             this.menuStripDefault.SuspendLayout();
@@ -49,7 +51,9 @@
             // 
             this.menuStripAdmin.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.testAdminOptionsToolStripMenuItem});
+            this.testAdminOptionsToolStripMenuItem,
+            this.stagesToolStripMenuItem,
+            this.reportsToolStripMenuItem});
             this.menuStripAdmin.Location = new System.Drawing.Point(0, 48);
             this.menuStripAdmin.Name = "menuStripAdmin";
             this.menuStripAdmin.Size = new System.Drawing.Size(636, 24);
@@ -74,8 +78,8 @@
             // testAdminOptionsToolStripMenuItem
             // 
             this.testAdminOptionsToolStripMenuItem.Name = "testAdminOptionsToolStripMenuItem";
-            this.testAdminOptionsToolStripMenuItem.Size = new System.Drawing.Size(113, 20);
-            this.testAdminOptionsToolStripMenuItem.Text = "Test Admin Menu";
+            this.testAdminOptionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.testAdminOptionsToolStripMenuItem.Text = "Cohorts";
             // 
             // menuStripEmployee
             // 
@@ -106,8 +110,8 @@
             // testEmployeeMenuToolStripMenuItem
             // 
             this.testEmployeeMenuToolStripMenuItem.Name = "testEmployeeMenuToolStripMenuItem";
-            this.testEmployeeMenuToolStripMenuItem.Size = new System.Drawing.Size(129, 20);
-            this.testEmployeeMenuToolStripMenuItem.Text = "Test Employee Menu";
+            this.testEmployeeMenuToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+            this.testEmployeeMenuToolStripMenuItem.Text = "Evaluations";
             // 
             // menuStripDefault
             // 
@@ -140,7 +144,20 @@
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
             this.testToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.testToolStripMenuItem.Text = "Test";
+            this.testToolStripMenuItem.Visible = false;
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
+            // 
+            // stagesToolStripMenuItem
+            // 
+            this.stagesToolStripMenuItem.Name = "stagesToolStripMenuItem";
+            this.stagesToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.stagesToolStripMenuItem.Text = "Stages";
+            // 
+            // reportsToolStripMenuItem
+            // 
+            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.reportsToolStripMenuItem.Text = "Reports";
             // 
             // MainForm
             // 
@@ -179,6 +196,8 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stagesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
     }
 }
 

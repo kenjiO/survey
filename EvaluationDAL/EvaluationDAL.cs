@@ -11,7 +11,7 @@ namespace Evaluation.DAL
     /// <summary>
     /// Database Access Layer for evaluations database
     /// </summary>
-    public class EvaluationDAL : IEvaluationDAL
+    public partial class EvaluationDAL : IEvaluationDAL
     {
         /// <summary>
         /// Get a list of employee names and ids
