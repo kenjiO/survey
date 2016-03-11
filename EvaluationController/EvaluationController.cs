@@ -12,7 +12,7 @@ namespace Evaluation.Controller
     /// <summary>
     /// Evaluation view controller
     /// </summary>
-    public class EvaluationController : IEvaluationController
+    public partial class EvaluationController : IEvaluationController
     {
         IEvaluationDAL _dal;
 
@@ -40,11 +40,6 @@ namespace Evaluation.Controller
         public string getCohortName(int cohortId)
         {
             // TODO: Finish
-            throw new NotSupportedException();
-        }
-
-        public Employee login(string email, string password)
-        {
             throw new NotSupportedException();
         }
 

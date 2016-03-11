@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="EvaluationController.cs" />
     <Compile Include="IEvaluationController.cs" />
+    <Compile Include="LogonController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

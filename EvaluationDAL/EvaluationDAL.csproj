@@ -43,6 +43,7 @@
     <Compile Include="EvaluationDAL.cs" />
     <Compile Include="EvaluationDB.cs" />
     <Compile Include="IEvaluationDAL.cs" />
+    <Compile Include="LogonDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
