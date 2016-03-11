@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace CS6232_G1.View
 {
@@ -68,21 +69,28 @@ namespace CS6232_G1.View
             if (!Validate(username, password))
                 return;
 
-            if (_controller.login(username, password) == null)
+            try
             {
-                ErrorMsgLabel.Text = "Invalid username/password";
-                return;
-            }
+                if (_controller.login(username, password) == null)
+                {
+                    ErrorMsgLabel.Text = "Invalid username/password";
+                    return;
+                }
 
-            LoginPanel.Visible = false;
+                LoginPanel.Visible = false;
 
-            if (_controller.idAdminSession)
-            {
-                setAdminMode(true);
+                if (_controller.idAdminSession)
+                {
+                    setAdminMode(true);
+                }
+                else
+                {
+                    setAdminMode(false);
+                }
             }
-            else
+            catch (SqlException ex)
             {
-                setAdminMode(false);
+                MessageBox.Show("There was a database error tying to login:\n" + ex.Message);
             }
         }
 
