@@ -80,5 +80,10 @@ namespace Test
             return table;
         }
 
+        public Cohort addCohort(String name)
+        {
+            return null;
+        }
+
     }
 }

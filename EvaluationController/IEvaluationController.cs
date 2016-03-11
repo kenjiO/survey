@@ -40,8 +40,8 @@ namespace Evaluation.Controller
         /// <summary>
         /// Login with username and password
         /// </summary>
-        /// <param name="stage">Stage to report</param>
-        /// <param name="evalType">Type to report</param>
+        /// <param name="username">Username (email address)</param>
+        /// <param name="password">Password</param>
         /// <returns>Employee if successful login. Null for invalid username/password</returns>
         Employee login(String username, String password);
 
@@ -54,5 +54,10 @@ namespace Evaluation.Controller
         /// <returns>Report details as a DataTable</returns>
         DataTable getUserReport(int stageId, int typeId);
 
+        /// <summary>
+        /// Add a new cohort
+        /// </summary>
+        /// <returns>The newly created Cohort instance or null if it could not create a cohort</returns>
+        Cohort addCohort(String name);
     }
 }

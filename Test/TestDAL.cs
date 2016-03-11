@@ -34,5 +34,10 @@ namespace Test
         {
             throw new NotSupportedException();
         }
+
+        public Cohort addNewCohort(String name)
+        {
+            throw new NotSupportedException();
+        }
     }
 }

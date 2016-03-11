@@ -23,5 +23,11 @@ namespace Evaluation.DAL
         /// </summary>
         /// <returns>Employee if valid login/password. Otherwise null</returns>
         Employee getLogin(String username, String password);
+
+        /// <summary>
+        /// Create a new cohort with the given name
+        /// </summary>
+        /// <returns>The new cohort created. Null if it could not be created</returns>
+        Cohort addNewCohort(String name);
     }
 }

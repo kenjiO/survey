@@ -49,5 +49,14 @@ namespace Evaluation.Controller
             throw new NotSupportedException();
         }
 
+        public Cohort addCohort(String name)
+        {
+            if (name == null)
+            {
+                throw new ArgumentNullException("name is null");
+            }
+            return _dal.addNewCohort(name);
+        }
+
     }
 }
