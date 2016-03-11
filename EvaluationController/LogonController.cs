@@ -14,11 +14,19 @@ namespace Evaluation.Controller
     /// </summary>
     public partial class EvaluationController : IEvaluationController
     {
-
+        private Employee _currentUser;
+        private Boolean _isAdminSession;
+        public Employee currentUser { get { return _currentUser; } }
+        public Boolean idAdminSession { get { return _isAdminSession; } }
 
         public Employee login(string email, string password)
         {
-            throw new NotSupportedException();
+            _currentUser = _dal.getLogin(email, password);
+            if (_currentUser != null && _currentUser.isAdmin)
+                _isAdminSession = true;
+            else
+                _isAdminSession = false;
+            return _currentUser;
         }
     }
 }

@@ -11,6 +11,11 @@ namespace Test
 {
     public class TestController : IEvaluationController
     {
+        private Employee _currentUser;
+        private Boolean _isAdminSession;
+        public Employee currentUser { get { return _currentUser; } }
+        public Boolean idAdminSession { get { return _isAdminSession; } }
+
         public List<Stage> getStageList()
         {
             List<Stage> results = new List<Stage>();

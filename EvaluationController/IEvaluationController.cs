@@ -15,6 +15,9 @@ namespace Evaluation.Controller
     /// </summary>
     public interface IEvaluationController
     {
+        Employee currentUser { get; }
+        Boolean idAdminSession { get; }
+
         /// <summary>
         /// Get a list of stages and their ids
         /// </summary>
