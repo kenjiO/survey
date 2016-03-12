@@ -39,10 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmployeeController.cs" />
     <Compile Include="EvaluationController.cs" />
     <Compile Include="IEvaluationController.cs" />
     <Compile Include="LogonController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StageController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EvaluationDAL\EvaluationDAL.csproj">

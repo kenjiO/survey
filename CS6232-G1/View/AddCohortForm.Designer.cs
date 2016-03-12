@@ -30,10 +30,10 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.CohortNameTextBox = new System.Windows.Forms.TextBox();
-            this.CreateCohortButton = new System.Windows.Forms.Button();
-            this.CancelButton = new System.Windows.Forms.Button();
-            this.ErrorMsgLabel = new System.Windows.Forms.Label();
+            this.cohortNameTextBox = new System.Windows.Forms.TextBox();
+            this.createCohortButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.errorMsgLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -55,52 +55,52 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Cohort Name";
             // 
-            // CohortNameTextBox
+            // cohortNameTextBox
             // 
-            this.CohortNameTextBox.Location = new System.Drawing.Point(167, 69);
-            this.CohortNameTextBox.Name = "CohortNameTextBox";
-            this.CohortNameTextBox.Size = new System.Drawing.Size(160, 20);
-            this.CohortNameTextBox.TabIndex = 1;
+            this.cohortNameTextBox.Location = new System.Drawing.Point(167, 69);
+            this.cohortNameTextBox.Name = "CohortNameTextBox";
+            this.cohortNameTextBox.Size = new System.Drawing.Size(160, 20);
+            this.cohortNameTextBox.TabIndex = 1;
             // 
-            // CreateCohortButton
+            // createCohortButton
             // 
-            this.CreateCohortButton.Location = new System.Drawing.Point(73, 118);
-            this.CreateCohortButton.Name = "CreateCohortButton";
-            this.CreateCohortButton.Size = new System.Drawing.Size(96, 23);
-            this.CreateCohortButton.TabIndex = 2;
-            this.CreateCohortButton.Text = "Create Cohort";
-            this.CreateCohortButton.UseVisualStyleBackColor = true;
-            this.CreateCohortButton.Click += new System.EventHandler(this.CreateCohortButton_Click);
+            this.createCohortButton.Location = new System.Drawing.Point(73, 118);
+            this.createCohortButton.Name = "CreateCohortButton";
+            this.createCohortButton.Size = new System.Drawing.Size(96, 23);
+            this.createCohortButton.TabIndex = 2;
+            this.createCohortButton.Text = "Create Cohort";
+            this.createCohortButton.UseVisualStyleBackColor = true;
+            this.createCohortButton.Click += new System.EventHandler(this.CreateCohortButton_Click);
             // 
-            // CancelButton
+            // cancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(210, 118);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(93, 23);
-            this.CancelButton.TabIndex = 4;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            this.cancelButton.Location = new System.Drawing.Point(210, 118);
+            this.cancelButton.Name = "CancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(93, 23);
+            this.cancelButton.TabIndex = 4;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // ErrorMsgLabel
+            // errorMsgLabel
             // 
-            this.ErrorMsgLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrorMsgLabel.ForeColor = System.Drawing.Color.Red;
-            this.ErrorMsgLabel.Location = new System.Drawing.Point(18, 162);
-            this.ErrorMsgLabel.Name = "ErrorMsgLabel";
-            this.ErrorMsgLabel.Size = new System.Drawing.Size(342, 48);
-            this.ErrorMsgLabel.TabIndex = 5;
-            this.ErrorMsgLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.errorMsgLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorMsgLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorMsgLabel.Location = new System.Drawing.Point(18, 162);
+            this.errorMsgLabel.Name = "ErrorMsgLabel";
+            this.errorMsgLabel.Size = new System.Drawing.Size(342, 48);
+            this.errorMsgLabel.TabIndex = 5;
+            this.errorMsgLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // AddCohortForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 219);
-            this.Controls.Add(this.ErrorMsgLabel);
-            this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.CreateCohortButton);
-            this.Controls.Add(this.CohortNameTextBox);
+            this.Controls.Add(this.errorMsgLabel);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.createCohortButton);
+            this.Controls.Add(this.cohortNameTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "AddCohortForm";
@@ -114,9 +114,9 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox CohortNameTextBox;
-        private System.Windows.Forms.Button CreateCohortButton;
-        private System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.Label ErrorMsgLabel;
+        private System.Windows.Forms.TextBox cohortNameTextBox;
+        private System.Windows.Forms.Button createCohortButton;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Label errorMsgLabel;
     }
 }

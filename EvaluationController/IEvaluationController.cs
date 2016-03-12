@@ -18,6 +18,7 @@ namespace Evaluation.Controller
         Employee currentUser { get; }
         Boolean idAdminSession { get; }
 
+        #region Stages
         /// <summary>
         /// Get a list of stages and their ids
         /// </summary>
@@ -25,11 +26,22 @@ namespace Evaluation.Controller
         List<Stage> getStageList();
 
         /// <summary>
+        /// Look up the name for a stage
+        /// </summary>
+        /// <param name="stageId">Stage id to look up</param>
+        /// <returns>Stage name if found, else null</returns>
+        string stageName(int stageId);
+        #endregion 
+
+        #region Types
+        /// <summary>
         /// Get a list of types and their ids
         /// </summary>
         /// <returns>List of types</returns>
         List<EvalType> getTypeList();
+        #endregion
 
+        #region Cohorts
         /// <summary>
         /// Look up cohort name for a given cohort
         /// </summary>
@@ -38,14 +50,32 @@ namespace Evaluation.Controller
         string getCohortName(int cohortId);
 
         /// <summary>
+        /// Add a new cohort
+        /// </summary>
+        /// <returns>The newly created Cohort instance or null if it could not create a cohort</returns>
+        Cohort addCohort(String name);
+        #endregion
+
+        #region Employees
+        /// <summary>
+        /// Get a list of employee names and ids
+        /// </summary>
+        /// <returns>Employee name list</returns>
+        List<EmployeeName> getEmployeeNameList();
+        #endregion
+
+        #region Login
+        /// <summary>
         /// Login with username and password
         /// </summary>
         /// <param name="username">Username (email address)</param>
         /// <param name="password">Password</param>
         /// <returns>Employee if successful login. Null for invalid username/password</returns>
         Employee login(String username, String password);
+        #endregion
 
 
+        #region Admin Reports
         /// <summary>
         /// Return User Report data for a given stage and evaluation type
         /// </summary>
@@ -53,11 +83,7 @@ namespace Evaluation.Controller
         /// <param name="typeId"></param>
         /// <returns>Report details as a DataTable</returns>
         DataTable getUserReport(int stageId, int typeId);
+        #endregion
 
-        /// <summary>
-        /// Add a new cohort
-        /// </summary>
-        /// <returns>The newly created Cohort instance or null if it could not create a cohort</returns>
-        Cohort addCohort(String name);
     }
 }

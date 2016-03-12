@@ -13,9 +13,11 @@ namespace Test
     {
         private Employee _currentUser;
         private bool _isAdminSession;
+
         public Employee currentUser { get { return _currentUser; } }
         public bool idAdminSession { get { return _isAdminSession; } }
 
+        #region Stages
         public List<Stage> getStageList()
         {
             List<Stage> results = new List<Stage>();
@@ -28,6 +30,28 @@ namespace Test
             return results;
         }
 
+        public String stageName(int stageId)
+        {
+            switch (stageId)
+            {
+                case 1:
+                    return "Stage 1";
+                case 2:
+                    return "Stage 2";
+                case 3:
+                    return "Stage 3";
+                case 4:
+                    return "Stage 4";
+                case 5:
+                    return "Stage 5";
+                default:
+                    throw new KeyNotFoundException("Invalid stage, " + stageId);
+            }
+        }
+
+        #endregion
+
+        #region Types
         public List<EvalType> getTypeList()
         {
             List<EvalType> results = new List<EvalType>();
@@ -36,7 +60,9 @@ namespace Test
             results.Add(new EvalType(2, "Type 2", 10));
             return results;
         }
+        #endregion
 
+        #region Cohorts
         public String getCohortName(int cohortId)
         {
             switch (cohortId) {
@@ -49,6 +75,27 @@ namespace Test
             }
         }
 
+        public Cohort addCohort(String name)
+        {
+            return null;
+        }
+        #endregion
+
+        #region Employees
+        public List<EmployeeName> getEmployeeNameList()
+        {
+            List<EmployeeName> results = new List<EmployeeName>();
+
+            results.Add(new EmployeeName(1, "Ann Smith"));
+            results.Add(new EmployeeName(2, "Bob Jones"));
+            results.Add(new EmployeeName(3, "John Doe"));
+            results.Add(new EmployeeName(4, "Steve Anderson"));
+            results.Add(new EmployeeName(5, "Zoe Doe"));
+            return results;
+        }
+        #endregion
+
+        #region Login
         public Employee login(string email, string password)
         {
             _isAdminSession = false;
@@ -67,13 +114,9 @@ namespace Test
             }
             return _currentUser;
         }
+        #endregion
 
-        /// <summary>
-        /// Get details for a User Report (See IEvaluationController.UserReportColumns enum for column list)
-        /// </summary>
-        /// <param name="stage">Stage to report</param>
-        /// <param name="evalType">Type to report</param>
-        /// <returns></returns>
+        #region Admin Reports
         public DataTable getUserReport(int stage, int evalType)
         {
             DataTable table = UserReport.createDataTable();
@@ -93,11 +136,7 @@ namespace Test
             table.Rows.Add(row6);
             return table;
         }
-
-        public Cohort addCohort(String name)
-        {
-            return null;
-        }
+        #endregion
 
     }
 }

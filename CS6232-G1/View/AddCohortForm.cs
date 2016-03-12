@@ -27,10 +27,10 @@ namespace CS6232_G1.View
 
         private void CreateCohortButton_Click(object sender, EventArgs e)
         {
-            String name = CohortNameTextBox.Text;
+            String name = cohortNameTextBox.Text;
             if (name.Trim() == "")
             {
-                ErrorMsgLabel.Text = "Cohort name cannot be blank";
+                errorMsgLabel.Text = "Cohort name cannot be blank";
                 return;
             }
             MessageBox.Show("TODO: implement add cohort in controller");

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Evaluation.Controller
 {
     /// <summary>
-    /// Evaluation view controller
+    /// Evaluation View-Controller
     /// </summary>
     public partial class EvaluationController : IEvaluationController
     {
@@ -25,27 +25,18 @@ namespace Evaluation.Controller
             }
         }
 
-        public List<Stage> getStageList()
-        {
-            // TODO: Use DAL to acquire stage list
-            throw new NotSupportedException();
-        }
-
+        #region Types
         public List<EvalType> getTypeList()
         {
             // TODO: Use DAL to acquire type list
             throw new NotSupportedException();
         }
+        #endregion
 
+        #region Cohorts
         public string getCohortName(int cohortId)
         {
             // TODO: Finish
-            throw new NotSupportedException();
-        }
-
-        public DataTable getUserReport(int stage, int evalType)
-        {
-            // TODO: Use DAL to acquire report details
             throw new NotSupportedException();
         }
 
@@ -57,6 +48,15 @@ namespace Evaluation.Controller
             }
             return _dal.addNewCohort(name);
         }
+        #endregion
+
+        #region Admin Reports
+        public DataTable getUserReport(int stage, int evalType)
+        {
+            // TODO: Use DAL to acquire report details
+            throw new NotSupportedException();
+        }
+        #endregion
 
     }
 }

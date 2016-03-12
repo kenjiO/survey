@@ -45,5 +45,10 @@ namespace Evaluation.DAL
             return results;
         }
 
+        public List<Stage> getStageList()
+        {
+            // TODO: Finish
+            throw new NotSupportedException();
+        }
     }
 }
