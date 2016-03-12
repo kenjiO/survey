@@ -12,9 +12,9 @@ namespace Test
     public class TestController : IEvaluationController
     {
         private Employee _currentUser;
-        private Boolean _isAdminSession;
+        private bool _isAdminSession;
         public Employee currentUser { get { return _currentUser; } }
-        public Boolean idAdminSession { get { return _isAdminSession; } }
+        public bool idAdminSession { get { return _isAdminSession; } }
 
         public List<Stage> getStageList()
         {
@@ -51,6 +51,7 @@ namespace Test
 
         public Employee login(string email, string password)
         {
+            _isAdminSession = false;
             if (password == null || password.Length == 0)
             {
                 return null;
@@ -58,6 +59,7 @@ namespace Test
             if (email.IndexOf("admin") >= 0) 
             { 
                 _currentUser = new Employee(1, "Jane", "Admin", email, true);
+                _isAdminSession = true;
             }
             else
             {

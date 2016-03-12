@@ -15,9 +15,9 @@ namespace Evaluation.Controller
     public partial class EvaluationController : IEvaluationController
     {
         private Employee _currentUser;
-        private Boolean _isAdminSession;
+        private bool _isAdminSession;
         public Employee currentUser { get { return _currentUser; } }
-        public Boolean idAdminSession { get { return _isAdminSession; } }
+        public bool idAdminSession { get { return _isAdminSession; } }
 
         public Employee login(string email, string password)
         {
