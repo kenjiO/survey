@@ -32,6 +32,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testAdminOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createNewCohortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripEmployee = new System.Windows.Forms.MenuStrip();
@@ -49,7 +50,8 @@
             this.LoginButton = new System.Windows.Forms.Button();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
-            this.createNewCohortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.testToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripAdmin.SuspendLayout();
             this.menuStripEmployee.SuspendLayout();
             this.menuStripDefault.SuspendLayout();
@@ -62,7 +64,8 @@
             this.fileToolStripMenuItem,
             this.testAdminOptionsToolStripMenuItem,
             this.stagesToolStripMenuItem,
-            this.reportsToolStripMenuItem});
+            this.reportsToolStripMenuItem,
+            this.testToolStripMenuItem2});
             this.menuStripAdmin.Location = new System.Drawing.Point(0, 48);
             this.menuStripAdmin.Name = "menuStripAdmin";
             this.menuStripAdmin.Size = new System.Drawing.Size(636, 24);
@@ -92,6 +95,13 @@
             this.testAdminOptionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.testAdminOptionsToolStripMenuItem.Text = "Cohorts";
             // 
+            // createNewCohortToolStripMenuItem
+            // 
+            this.createNewCohortToolStripMenuItem.Name = "createNewCohortToolStripMenuItem";
+            this.createNewCohortToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.createNewCohortToolStripMenuItem.Text = "Create New Cohort";
+            this.createNewCohortToolStripMenuItem.Click += new System.EventHandler(this.createNewCohortToolStripMenuItem_Click);
+            // 
             // stagesToolStripMenuItem
             // 
             this.stagesToolStripMenuItem.Name = "stagesToolStripMenuItem";
@@ -108,7 +118,8 @@
             // 
             this.menuStripEmployee.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem1,
-            this.testEmployeeMenuToolStripMenuItem});
+            this.testEmployeeMenuToolStripMenuItem,
+            this.testToolStripMenuItem1});
             this.menuStripEmployee.Location = new System.Drawing.Point(0, 24);
             this.menuStripEmployee.Name = "menuStripEmployee";
             this.menuStripEmployee.Size = new System.Drawing.Size(636, 24);
@@ -240,12 +251,21 @@
             this.UsernameTextBox.TabIndex = 0;
             this.UsernameTextBox.Text = "admin1@westga.edu";
             // 
-            // createNewCohortToolStripMenuItem
+            // testToolStripMenuItem1
             // 
-            this.createNewCohortToolStripMenuItem.Name = "createNewCohortToolStripMenuItem";
-            this.createNewCohortToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.createNewCohortToolStripMenuItem.Text = "Create New Cohort";
-            this.createNewCohortToolStripMenuItem.Click += new System.EventHandler(this.createNewCohortToolStripMenuItem_Click);
+            this.testToolStripMenuItem1.Name = "testToolStripMenuItem1";
+            this.testToolStripMenuItem1.Size = new System.Drawing.Size(40, 20);
+            this.testToolStripMenuItem1.Text = "Test";
+            this.testToolStripMenuItem1.Visible = false;
+            this.testToolStripMenuItem1.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
+            // 
+            // testToolStripMenuItem2
+            // 
+            this.testToolStripMenuItem2.Name = "testToolStripMenuItem2";
+            this.testToolStripMenuItem2.Size = new System.Drawing.Size(40, 20);
+            this.testToolStripMenuItem2.Text = "Test";
+            this.testToolStripMenuItem2.Visible = false;
+            this.testToolStripMenuItem2.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -297,6 +317,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem createNewCohortToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem1;
     }
 }
 

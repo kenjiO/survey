@@ -28,6 +28,8 @@ namespace CS6232_G1.View
 
             // TODO: Remove - test code
             //testToolStripMenuItem.Visible = true;
+            //testAdminOptionsToolStripMenuItem.Visible = true;
+            //testEmployeeMenuToolStripMenuItem.Visible = true;
 
             // initialize these to both invisible until we know which to use, default menu will be visible
             menuStripAdmin.Visible = false;

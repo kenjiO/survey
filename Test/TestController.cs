@@ -51,7 +51,19 @@ namespace Test
 
         public Employee login(string email, string password)
         {
-            throw new NotSupportedException();
+            if (password == null || password.Length == 0)
+            {
+                return null;
+            }
+            if (email.IndexOf("admin") >= 0) 
+            { 
+                _currentUser = new Employee(1, "Jane", "Admin", email, true);
+            }
+            else
+            {
+                _currentUser = new Employee(1, "John", "Smith", email, false);
+            }
+            return _currentUser;
         }
 
         /// <summary>
