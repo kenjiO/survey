@@ -17,18 +17,20 @@ namespace Evaluation.DAL
         /// <summary>
         /// Get a list of evaluation schedules for a given cohort
         /// </summary>
+        /// /// <param name="cohortId">the cohortId</param>
         /// <returns>Evaluation Schedule list</returns>
-        public static List<EvaluationSchedule> getEvaluationScheduleList()
+        public static List<EvaluationSchedule> getEvaluationScheduleList(int cohortId)
         {
             List<EvaluationSchedule> results = new List<EvaluationSchedule>();
 
             string selectStatement =
-                "SELECT  e.cohortId, c.cohortName, e.typeid, t.typeName, e.stageId, s.stageName, " +
+                "SELECT  c.cohortName, e.typeid, t.typeName, e.stageId, s.stageName, " +
                 "e.startDate, e.endDate " +
                 "FROM evaluation_schedule e " +
                 "JOIN cohort c on e.cohortId = c.cohortId " +
                 "JOIN type t on e.typeId = t.typeId " +
-                "JOIN stage s on e.stageId = s.stageId";
+                "JOIN stage s on e.stageId = s.stageId " +
+                "WHERE cohortId = @cohortId";
 
             try
             {
@@ -38,9 +40,10 @@ namespace Evaluation.DAL
 
                     using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
                     {
+                        selectCommand.Parameters.AddWithValue("@cohortId", cohortId);
+
                         using (SqlDataReader reader = selectCommand.ExecuteReader())
                         {
-                            int cohortIDOrd = reader.GetOrdinal("cohortId");
                             int cohortNameOrd = reader.GetOrdinal("cohortName");
                             int typeIDOrd = reader.GetOrdinal("typeId");
                             int typeNameOrd = reader.GetOrdinal("typeName");
@@ -52,7 +55,7 @@ namespace Evaluation.DAL
                             while (reader.Read())
                             {
                                 EvaluationSchedule schedule = new EvaluationSchedule();
-                                schedule.cohortId = reader.GetInt32(cohortIDOrd);
+                                schedule.cohortId = cohortId;
                                 schedule.cohortName = reader.GetString(cohortNameOrd);
                                 schedule.typeId = reader.GetInt32(typeIDOrd);
                                 schedule.typeName = reader.GetString(typeNameOrd);
