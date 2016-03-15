@@ -1,4 +1,5 @@
 ﻿using Evaluation.Model;
+using EvaluationModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,13 @@ namespace Evaluation.DAL
         /// </summary>
         /// <returns>Employee if valid login/password. Otherwise null</returns>
         Employee getLogin(String username, String password);
+
+        /// <summary>
+        /// Get a list of evaluation schedules for a given cohort
+        /// </summary>
+        /// <param name="cohortId">cohort id of the specific cohort</param>
+        /// <returns>Evaluation schedule list</returns>
+        List<EvaluationSchedule> getEvaluationScheduleList(int cohortId);
 
     }
 
