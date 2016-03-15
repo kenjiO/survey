@@ -40,6 +40,13 @@ namespace Evaluation.Controller
         /// </summary>
         /// <returns>List of types</returns>
         List<EvalType> getTypeList();
+
+        /// <summary>
+        /// Get type name from typeId
+        /// </summary>
+        /// <param name="typeId">the id of the type</param>
+        /// <returns>the name of the type with the given id</returns>
+        string getTypeName(int typeId);
         #endregion
 
         #region Cohorts

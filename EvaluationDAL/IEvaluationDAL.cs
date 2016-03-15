@@ -47,6 +47,16 @@ namespace Evaluation.DAL
         /// </summary>
         /// <returns>Employee if valid login/password. Otherwise null</returns>
         Employee getLogin(String username, String password);
+
+        #region Types
+        /// <summary>
+        /// Get type name from typeId
+        /// </summary>
+        /// <param name="typeId">the id of the type</param>
+        /// <returns>the name of the type with the given id</returns>
+        string getTypeName(int typeId);
+
+        #endregion
     }
 
 }
