@@ -43,6 +43,7 @@
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeName.cs" />
     <Compile Include="EvalType.cs" />
+    <Compile Include="EvaluationSchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stage.cs" />
     <Compile Include="UserReport.cs" />
