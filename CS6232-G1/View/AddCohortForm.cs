@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Evaluation.Controller;
+using System.Data.SqlClient;
 
 namespace CS6232_G1.View
 {
@@ -33,7 +34,18 @@ namespace CS6232_G1.View
                 errorMsgLabel.Text = "Cohort name cannot be blank";
                 return;
             }
-            MessageBox.Show("TODO: implement add cohort in controller");
+            try
+            {
+                _controller.addCohort(name);
+                MessageBox.Show("Cohort " + name + " created.");
+                Close();
+            }
+            catch (SqlException ex) 
+            {
+                MessageBox.Show("Database error\n" + ex.Message);
+                return;
+            }
+
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

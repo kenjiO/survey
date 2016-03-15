@@ -29,7 +29,7 @@ namespace Evaluation.DAL
                 connection.Open();
                 insertCommand.ExecuteNonQuery();
                 string selectStatement =
-                    "SELECT IDENT_CURRENT('Incidents') FROM Incidents";
+                    "SELECT IDENT_CURRENT('Cohort') FROM Cohort";
                 SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
                 int cohortId = Convert.ToInt32(selectCommand.ExecuteScalar());
                 return new Cohort(cohortId, name);
