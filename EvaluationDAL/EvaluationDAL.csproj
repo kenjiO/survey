@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CohortDAL.cs" />
+    <Compile Include="EvaluationScheduleDAL.cs" />
     <Compile Include="EvaluationDAL.cs" />
     <Compile Include="EvaluationDB.cs" />
     <Compile Include="IEvaluationDAL.cs" />
