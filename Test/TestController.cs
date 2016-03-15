@@ -1,5 +1,6 @@
 ﻿using Evaluation.Controller;
 using Evaluation.Model;
+using EvaluationModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -60,6 +61,19 @@ namespace Test
             results.Add(new EvalType(2, "Type 2", 10));
             return results;
         }
+
+        public string getTypeName(int typeId)
+        {
+            switch (typeId)
+            {
+                case 1:
+                    return "Type 1";
+                case 2:
+                    return "Type 2";
+                default:
+                    throw new KeyNotFoundException("Invalid type, " + typeId);
+            }
+        }
         #endregion
 
         #region Cohorts
@@ -78,6 +92,15 @@ namespace Test
         public Cohort addCohort(String name)
         {
             return null;
+        }
+
+        public List<EvaluationSchedule> getEvaluationScheduleList(int cohortId)
+        {
+            List<EvaluationSchedule> results = new List<EvaluationSchedule>();
+
+            results.Add(new EvaluationSchedule(1, 1, 1, DateTime.Now, Convert.ToDateTime("31/10/2016")));
+            results.Add(new EvaluationSchedule(1, 2, 1, DateTime.Now, Convert.ToDateTime("31/10/2016")));
+            return results;
         }
         #endregion
 
