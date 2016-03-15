@@ -40,12 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CohortDAL.cs" />
-    <Compile Include="EvaluationScheduleDAL.cs" />
     <Compile Include="EvaluationDAL.cs" />
     <Compile Include="EvaluationDB.cs" />
     <Compile Include="IEvaluationDAL.cs" />
     <Compile Include="LogonDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypeDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EvaluationModel\EvaluationModel.csproj">

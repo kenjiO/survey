@@ -8,13 +8,24 @@ namespace EvaluationModel
 {
     public class EvaluationSchedule
     {
-        public int cohortId { get; set; }
-        public string cohortName { get; set; }
-        public int typeId { get; set; }
-        public string typeName { get; set; }
-        public int stageId { get; set; }
-        public string stageName { get; set; }
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
+        public int CohortId { get; set; }
+        //public string cohortName { get; set; }
+        public int TypeId { get; set; }
+        //public string typeName { get; set; }
+        public int StageId { get; set; }
+        //public string stageName { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+
+        public EvaluationSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate) 
+        {
+            CohortId = cohortId;
+            TypeId = typeId;
+            StageId = stageId;
+            StartDate = startDate;
+            EndDate = endDate;
+        }
     }
+
+    
 }

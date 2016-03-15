@@ -16,7 +16,7 @@ namespace Evaluation.Controller
         /// </summary>
         /// <param name="typeId">the id of the type</param>
         /// <returns>the name of the type with the given id</returns>
-        public string typeName(int typeId)
+        public string getTypeName(int typeId)
         {
             return _dal.getTypeName(typeId);
         }
