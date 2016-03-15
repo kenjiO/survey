@@ -27,6 +27,13 @@ namespace Evaluation.DAL
         /// </summary>
         /// <returns>The new cohort created. Null if it could not be created</returns>
         Cohort addNewCohort(String name);
+
+        /// <summary>
+        /// Get a list of evaluation schedules for a given cohort
+        /// </summary>
+        /// <param name="cohortId">cohort id of the specific cohort</param>
+        /// <returns>Evaluation schedule list</returns>
+        List<EvaluationSchedule> getEvaluationScheduleList(int cohortId);
         #endregion
 
         /// <summary>
@@ -40,14 +47,6 @@ namespace Evaluation.DAL
         /// </summary>
         /// <returns>Employee if valid login/password. Otherwise null</returns>
         Employee getLogin(String username, String password);
-
-        /// <summary>
-        /// Get a list of evaluation schedules for a given cohort
-        /// </summary>
-        /// <param name="cohortId">cohort id of the specific cohort</param>
-        /// <returns>Evaluation schedule list</returns>
-        List<EvaluationSchedule> getEvaluationScheduleList(int cohortId);
-
     }
 
 }

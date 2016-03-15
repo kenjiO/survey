@@ -1,5 +1,6 @@
 ﻿using Evaluation.DAL;
 using Evaluation.Model;
+using EvaluationModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -54,6 +55,13 @@ namespace Evaluation.Controller
         /// </summary>
         /// <returns>The newly created Cohort instance or null if it could not create a cohort</returns>
         Cohort addCohort(String name);
+
+        /// <summary>
+        /// Get a list of evaluation schedules for a given cohort
+        /// </summary>
+        /// <param name="cohortId">cohort id of the specific cohort</param>
+        /// <returns>Evaluation schedule list</returns>
+        List<EvaluationSchedule> getEvaluationScheduleList(int cohortId);
         #endregion
 
         #region Employees
