@@ -22,5 +22,11 @@ namespace Evaluation.Controller
             }
             return _dal.addNewCohort(name);
         }
+
+        public List<Employee> getMembersOfCohort(int cohortId)
+        {
+            //return _dal.getMembersOfCohort(cohortId);
+            return null;
+        }
     }
 }

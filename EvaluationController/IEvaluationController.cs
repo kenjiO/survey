@@ -63,6 +63,14 @@ namespace Evaluation.Controller
         /// <param name="cohortId">cohort id of the specific cohort</param>
         /// <returns>Evaluation schedule list</returns>
         List<EvaluationSchedule> getEvaluationScheduleList(int cohortId);
+
+        /// <summary>
+        /// Get a list of members for a given cohort
+        /// </summary>
+        /// <param name="_cohortId">cohort id of the specific cohort</param>
+        /// <returns>Member list</returns>
+        List<Employee> getMembersOfCohort(int cohortId);
+
         #endregion
 
         #region Employees
