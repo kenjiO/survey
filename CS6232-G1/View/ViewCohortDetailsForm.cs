@@ -146,5 +146,11 @@ namespace CS6232_G1.View
             AddCohortScheduleForm addCohortScheduleForm = new AddCohortScheduleForm(_controller, _cohortId, _cohortName);
             addCohortScheduleForm.Show();
         }
+
+        private void btnAddMember_Click(object sender, EventArgs e)
+        {
+            AddMembersToCohortForm form = new AddMembersToCohortForm(_controller, _cohortId);
+            form.Show();
+        }
     }
 }
