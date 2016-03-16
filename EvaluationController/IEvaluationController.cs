@@ -1,13 +1,7 @@
-﻿using Evaluation.DAL;
-using Evaluation.Model;
-using EvaluationModel;
+﻿using Evaluation.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Evaluation.Controller
 {

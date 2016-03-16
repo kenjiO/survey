@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using EvaluationModel;
+using Evaluation.Model;
 
 namespace Evaluation.Controller
 {
