@@ -82,8 +82,8 @@ namespace Evaluation.Controller
         /// </summary>
         /// <param name="_cohortId">id of cohort to add members to</param>
         /// <param name="empIdList">list of employee ids to be added to the cohort</param>
-        /// <returns>true if db update is successful, else false</returns>
-        bool addMembersToCohort(int _cohortId, List<int> empIdList);
+        /// <returns>list of employee ids that were not updated</returns>
+        List<int> addMembersToCohort(int _cohortId, List<int> empIdList);
 
         #endregion
 

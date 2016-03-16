@@ -135,9 +135,9 @@ namespace Test
             return results;
         }
 
-        public bool addMembersToCohort(int _cohortId, List<int> empIdList)
+        public List<int> addMembersToCohort(int _cohortId, List<int> empIdList)
         {
-            return true;
+            return new List<int>();
         }
 
         #endregion

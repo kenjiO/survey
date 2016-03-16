@@ -131,9 +131,18 @@ namespace CS6232_G1.View
                 }                     
             
                 // update cohortid of selected employees
-                bool updateSuccessful = _controller.addMembersToCohort(_cohortId, empIdList);
-                // MessageBox.Show("Members have been added to the Cohort.", "Operation Successful");
-                // this.Close();
+                List<int> notUpdated = _controller.addMembersToCohort(_cohortId, empIdList);
+                if (notUpdated.Count > 0)
+                {
+                    // TODO: get ids from list and show
+                    //MessageBox.Show("The following empIds were not added to the cohort.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    //MessageBox.Show("All selected employees have been added to the cohort!", "Operation Successful");
+                    loadEmployeeListView();
+                    // this.Close();
+                }  
             }
             catch (Exception ex)
             {

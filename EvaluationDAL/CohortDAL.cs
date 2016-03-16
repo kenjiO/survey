@@ -206,5 +206,63 @@ namespace Evaluation.DAL
             }
             return results;
         }
+
+        /// <summary>
+        /// Updates the cohortid of employees with specified ids
+        /// </summary>
+        /// <param name="_cohortId">id of cohort to add members to</param>
+        /// <param name="empIdList">list of employee ids to be added to the cohort</param>
+        /// <returns>list of employee ids that were not updated</returns>
+        public List<int> addMembersToCohort(int cohortId, List<int> empIdList)
+        {
+            List<int> failedIds = new List<int>();
+            int countOfMembersAdded = 0;
+            int countOfMembersNotAdded = 0;
+            string updateStatement =
+                "UPDATE employee " +
+                "SET cohortId = @cohortId " +
+                "WHERE employeeId = @employeeId AND cohortId is null";
+
+            try
+            {
+                using (SqlConnection connection = EvaluationDB.GetConnection())
+                {
+                    connection.Open();
+                    foreach (int id in empIdList)
+                    {
+                        try
+                        {
+                            using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
+                            {
+                                updateCommand.Parameters.AddWithValue("@cohortId", cohortId);
+                                updateCommand.Parameters.AddWithValue("@employeeId", id);
+                                int count = updateCommand.ExecuteNonQuery();
+                                if (count > 0)
+                                {
+                                    countOfMembersAdded++;
+                                }
+                                else
+                                {
+                                    countOfMembersNotAdded++;
+                                    failedIds.Add(id);
+                                }  
+                            }
+                        }
+                        catch {}
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                //exceptions are thrown to the controller, then to the view
+                //throw is used instead of throw ex because the former preserves the stack trace
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return failedIds;
+        }
     }
 }
