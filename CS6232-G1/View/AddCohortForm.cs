@@ -29,16 +29,16 @@ namespace CS6232_G1.View
         private void CreateCohortButton_Click(object sender, EventArgs e)
         {
             String name = cohortNameTextBox.Text;
-            if (name.Trim() == "")
-            {
-                errorMsgLabel.Text = "Cohort name cannot be blank";
-                return;
-            }
             try
             {
                 _controller.addCohort(name);
                 MessageBox.Show("Cohort " + name + " created.");
                 Close();
+            }
+            catch (ArgumentException ex)
+            {
+                errorMsgLabel.Text = ex.Message;
+                return;
             }
             catch (SqlException ex) 
             {
