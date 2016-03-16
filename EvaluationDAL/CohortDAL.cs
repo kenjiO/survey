@@ -7,27 +7,55 @@ namespace Evaluation.DAL
 {
     public partial class EvaluationDAL : IEvaluationDAL
     {
+
+        /// <summary>
+        /// Add a new cohort
+        /// Precondition: name != null and a cohort with that name does not exist alreay
+        /// </summary>
+        /// <param name="name">The name of the new cohort</param>
+        /// <returns>A Cohort object reflecting the cohort added to the DB</returns>
         public Cohort addNewCohort(String name) {
             if (name == null)
             {
                 throw new ArgumentNullException("name is null");
             }
+            if (name.Trim() == "")
+            {
+                throw new ArgumentException("Name cannot be blank");
+            }
 
             SqlConnection connection = EvaluationDB.GetConnection();
+
+            string selectStatement =
+                "SELECT CohortName " +
+                "FROM cohort " +
+                "WHERE CohortName = @CohortName" ;
             string insertStatement =
                 "INSERT INTO cohort " +
-                "(cohortName) " +
+                "(CohortName) " +
                 "VALUES (@CohortName)";
-            SqlCommand insertCommand = new SqlCommand(insertStatement, connection);
-            insertCommand.Parameters.AddWithValue("@CohortName", name);
+
+            SqlCommand command = new SqlCommand(selectStatement, connection);
+            command.Parameters.AddWithValue("@CohortName", name);
             try
             {
                 connection.Open();
-                insertCommand.ExecuteNonQuery();
-                string selectStatement =
-                    "SELECT IDENT_CURRENT('Cohort') FROM Cohort";
-                SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
-                int cohortId = Convert.ToInt32(selectCommand.ExecuteScalar());
+
+                // Check if cohort with that name exists
+                SqlDataReader reader =  command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    throw new ArgumentException("A cohort with that name exists");
+                }
+                reader.Close();
+
+                command.CommandText = insertStatement;
+                command.ExecuteNonQuery();
+
+                //Get the cohortID of the newly created cohort
+                command.CommandText =  "SELECT IDENT_CURRENT('Cohort') FROM Cohort";
+                int cohortId = Convert.ToInt32(command.ExecuteScalar());
+                
                 return new Cohort(cohortId, name);
             }
             finally
