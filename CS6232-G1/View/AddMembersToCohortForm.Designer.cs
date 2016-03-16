@@ -93,6 +93,7 @@
             this.btnAddMembers.TabIndex = 2;
             this.btnAddMembers.Text = "Add Members";
             this.btnAddMembers.UseVisualStyleBackColor = true;
+            this.btnAddMembers.Click += new System.EventHandler(this.btnAddMembers_Click);
             // 
             // btnCancel
             // 

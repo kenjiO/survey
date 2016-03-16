@@ -1,6 +1,7 @@
 ﻿using Evaluation.Controller;
 using Evaluation.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -116,6 +117,29 @@ namespace CS6232_G1.View
         private void lvEmployeeList_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             btnAddMembers.Enabled = lvEmployeeList.CheckedItems.Count > 0;
+        }
+
+        private void btnAddMembers_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // get selected employee ids
+                List<int> empIdList = new List<int>();
+                foreach (ListViewItem item in lvEmployeeList.CheckedItems)
+                {
+                    empIdList.Add(int.Parse(item.SubItems[0].Text));
+                }                     
+            
+                // update cohortid of selected employees
+                // bool updateSuccessful = _controller.addMembersToCohort(_cohortId, empIdList);
+                // MessageBox.Show("Members have been added to the Cohort.", "Operation Successful");
+                // this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+            
         }
     }
 }
