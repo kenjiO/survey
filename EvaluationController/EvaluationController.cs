@@ -3,9 +3,6 @@ using Evaluation.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Evaluation.Controller
 {
@@ -40,14 +37,6 @@ namespace Evaluation.Controller
             throw new NotSupportedException();
         }
 
-        public Cohort addCohort(String name)
-        {
-            if (name == null)
-            {
-                throw new ArgumentNullException("name is null");
-            }
-            return _dal.addNewCohort(name);
-        }
         #endregion
 
         #region Admin Reports

@@ -1,5 +1,5 @@
 ﻿using Evaluation.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
@@ -8,7 +8,34 @@ namespace Evaluation.DAL
     public partial class EvaluationDAL : IEvaluationDAL
     {
         public Cohort addNewCohort(String name) {
-            return null;
+            if (name == null)
+            {
+                throw new ArgumentNullException("name is null");
+            }
+
+            SqlConnection connection = EvaluationDB.GetConnection();
+            string insertStatement =
+                "INSERT INTO cohort " +
+                "(cohortName) " +
+                "VALUES (@CohortName)";
+            SqlCommand insertCommand = new SqlCommand(insertStatement, connection);
+            insertCommand.Parameters.AddWithValue("@CohortName", name);
+            try
+            {
+                connection.Open();
+                insertCommand.ExecuteNonQuery();
+                string selectStatement =
+                    "SELECT IDENT_CURRENT('Cohort') FROM Cohort";
+                SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+                int cohortId = Convert.ToInt32(selectCommand.ExecuteScalar());
+                return new Cohort(cohortId, name);
+            }
+            finally
+            {
+                if (connection != null)
+                    connection.Close();
+            }
+
         }
 
         /// <summary>
