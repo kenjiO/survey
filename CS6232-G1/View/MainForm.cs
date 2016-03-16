@@ -1,5 +1,6 @@
 ﻿using CS6232_G1.View;
 using Evaluation.Controller;
+using Evaluation.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -114,6 +115,20 @@ namespace CS6232_G1.View
             Form form = new AddCohortForm(_controller);
             form.MdiParent = this;
             form.Show();
+        }
+
+        private Cohort selectCohort()
+        {
+            SelectCohortForm selectForm = new SelectCohortForm(_controller);
+            selectForm.ShowDialog();
+            if (selectForm.DialogResult == DialogResult.OK)
+            {
+                return selectForm.selectedCohort;
+            }
+            else
+            {
+                return null;
+            }
         }
 
     }
