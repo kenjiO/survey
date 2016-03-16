@@ -117,6 +117,7 @@
             this.Controls.Add(this.lblAddMember);
             this.Name = "AddMembersToCohortForm";
             this.Text = "AddMembersToCohort";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddMembersToCohortForm_FormClosing);
             this.Load += new System.EventHandler(this.AddMembersToCohortForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

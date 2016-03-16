@@ -41,7 +41,7 @@ namespace CS6232_G1.View
             try
             {
                 _cohortName = _controller.getCohortName(_cohortId);
-
+                //_cohortName = "Cohort 1"; 
                 lblCohortName.Text = "Details for " + _cohortName;
                 
                 loadMemberListView();
@@ -57,7 +57,6 @@ namespace CS6232_G1.View
         private void loadMemberListView()
         {
             lvMembers.Items.Clear();
-            //lvMembers.CheckBoxes = true;
             setListViewColumnWidth(lvMembers);
             List<Employee> memberList;
             try
@@ -149,8 +148,16 @@ namespace CS6232_G1.View
 
         private void btnAddMember_Click(object sender, EventArgs e)
         {
-            AddMembersToCohortForm form = new AddMembersToCohortForm(_controller, _cohortId);
+            AddMembersToCohortForm form = new AddMembersToCohortForm(_controller, _cohortId, this);
             form.Show();
+        }
+
+        public void refreshListViews()
+        {
+            loadMemberListView();
+            lvMembers.Items[lvMembers.Items.Count - 1].EnsureVisible();
+            loadEvaluationScheduleListView();
+            lvEvaluationSchedule.Items[lvEvaluationSchedule.Items.Count - 1].EnsureVisible();
         }
     }
 }

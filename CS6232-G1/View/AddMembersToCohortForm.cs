@@ -12,17 +12,19 @@ namespace CS6232_G1.View
         private IEvaluationController _controller;
         private int _cohortId;
         private String _cohortName;
+        private ViewCohortDetailsForm _parentForm;
 
         /// <summary>
         /// Run Add Members to Cohort dialog
         /// </summary>
         /// <param name="controller">Controller to use</param>
         /// <param name="cohortId">Id of cohort to add members to</param>
-        public AddMembersToCohortForm(IEvaluationController controller, int cohortId)
+        public AddMembersToCohortForm(IEvaluationController controller, int cohortId, ViewCohortDetailsForm parentForm)
         {
             InitializeComponent();
             _controller = controller;
             _cohortId = cohortId;
+            _parentForm = parentForm;
         }
 
         private void AddMembersToCohortForm_Load(object sender, EventArgs e)
@@ -42,6 +44,7 @@ namespace CS6232_G1.View
             try
             {
                 _cohortName = _controller.getCohortName(_cohortId);
+                //_cohortName = "Cohort 1";
                 
                 lblAddMember.Text = "Add Members to " + _cohortName;
 
@@ -140,7 +143,7 @@ namespace CS6232_G1.View
                     {
                         failedIdList += id + ", ";
                     }
-                    failedIdList.Trim().TrimEnd(',');
+                    failedIdList = failedIdList.Trim().TrimEnd(',');
                     MessageBox.Show("The following empIds were not added to the cohort because they have been updated by another user.\n"
                         + failedIdList , "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -153,8 +156,15 @@ namespace CS6232_G1.View
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }            
+        }
+
+        private void AddMembersToCohortForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_parentForm != null)
+            {
+                _parentForm.refreshListViews();
             }
-            
         }
     }
 }
