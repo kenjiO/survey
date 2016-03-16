@@ -32,13 +32,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lvEvaluationSchedule = new System.Windows.Forms.ListView();
-            this.lblCohortName = new System.Windows.Forms.Label();
-            this.btnAddEvaluation = new System.Windows.Forms.Button();
-            this.btnAddMember = new System.Windows.Forms.Button();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblCohortName = new System.Windows.Forms.Label();
+            this.btnAddEvaluation = new System.Windows.Forms.Button();
+            this.btnAddMember = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // membersCheckedListBox
@@ -81,6 +81,23 @@
             this.lvEvaluationSchedule.UseCompatibleStateImageBehavior = false;
             this.lvEvaluationSchedule.View = System.Windows.Forms.View.Details;
             // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Type";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Stage";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Start Date";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "End Date";
+            this.columnHeader4.Width = 154;
+            // 
             // lblCohortName
             // 
             this.lblCohortName.AutoSize = true;
@@ -110,22 +127,6 @@
             this.btnAddMember.TabIndex = 6;
             this.btnAddMember.Text = "Add Member";
             this.btnAddMember.UseVisualStyleBackColor = true;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Type";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Stage";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Start Date";
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "EndDate";
             // 
             // ViewCohortDetailsForm
             // 
