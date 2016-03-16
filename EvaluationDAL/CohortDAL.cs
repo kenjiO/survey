@@ -152,5 +152,59 @@ namespace Evaluation.DAL
             }
             return results;
         }
+
+        /// <summary>
+        /// Get a list of members that are not assigned to any cohort
+        /// </summary>
+        /// <returns>Member list</returns>
+        public List<Employee> getMembersNotInCohort()
+        {
+            List<Employee> results = new List<Employee>();
+
+            string selectStatement =
+                "SELECT  employeeId, firstName, lastName, emailAddress " +
+                "FROM employee " +
+                "WHERE isAdmin = 0 AND cohortId is null";
+
+            try
+            {
+                using (SqlConnection connection = EvaluationDB.GetConnection())
+                {
+                    connection.Open();
+
+                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                    {
+                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        {
+                            int employeeIdOrd = reader.GetOrdinal("employeeId");
+                            int firstNameOrd = reader.GetOrdinal("firstName");
+                            int lastNameOrd = reader.GetOrdinal("lastName");
+                            int emailOrd = reader.GetOrdinal("emailAddress");
+
+                            while (reader.Read())
+                            {
+                                int employeeId = reader.GetInt32(employeeIdOrd);
+                                string firstName = reader.GetString(firstNameOrd);
+                                string lastName = reader.GetString(lastNameOrd);
+                                string email = reader.GetString(emailOrd);
+                                Employee member = new Employee(employeeId, firstName, lastName, email, false);
+                                results.Add(member);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                //exceptions are thrown to the controller, then to the view
+                //throw is used instead of throw ex because the former preserves the stack trace
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return results;
+        }
     }
 }

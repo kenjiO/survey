@@ -56,6 +56,12 @@
     <Compile Include="View\AddCohortScheduleForm.Designer.cs">
       <DependentUpon>AddCohortScheduleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\AddMembersToCohortForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddMembersToCohortForm.Designer.cs">
+      <DependentUpon>AddMembersToCohortForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     </Compile>
     <EmbeddedResource Include="View\AddCohortScheduleForm.resx">
       <DependentUpon>AddCohortScheduleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AddMembersToCohortForm.resx">
+      <DependentUpon>AddMembersToCohortForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

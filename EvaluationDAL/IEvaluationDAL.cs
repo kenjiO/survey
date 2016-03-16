@@ -38,6 +38,12 @@ namespace Evaluation.DAL
         /// <returns>Member list</returns>
         List<Employee> getMembersOfCohort(int cohortId);
 
+        /// <summary>
+        /// Get a list of members that are not assigned to any cohort
+        /// </summary>
+        /// <returns>Member list</returns>
+        List<Employee> getMembersNotInCohort();
+
         #endregion
 
         /// <summary>

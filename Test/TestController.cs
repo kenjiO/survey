@@ -126,6 +126,15 @@ namespace Test
             return results;
         }
 
+        public List<Employee> getMembersNotInCohort()
+        {
+            List<Employee> results = new List<Employee>();
+            results.Add(new Employee(4, "John", "Smith", "john_smith@gmail.com", false));
+            results.Add(new Employee(5, "Sam", "Black", "sam_black@gmail.com", false));
+            
+            return results;
+        }
+
         #endregion
 
         #region Employees
