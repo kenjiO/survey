@@ -135,6 +135,11 @@ namespace Test
             return results;
         }
 
+        public bool addMembersToCohort(int _cohortId, List<int> empIdList)
+        {
+            return true;
+        }
+
         #endregion
 
         #region Employees

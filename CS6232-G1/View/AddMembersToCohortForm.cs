@@ -131,7 +131,7 @@ namespace CS6232_G1.View
                 }                     
             
                 // update cohortid of selected employees
-                // bool updateSuccessful = _controller.addMembersToCohort(_cohortId, empIdList);
+                bool updateSuccessful = _controller.addMembersToCohort(_cohortId, empIdList);
                 // MessageBox.Show("Members have been added to the Cohort.", "Operation Successful");
                 // this.Close();
             }

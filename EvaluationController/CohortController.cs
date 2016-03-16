@@ -32,5 +32,10 @@ namespace Evaluation.Controller
         {
             return _dal.getMembersNotInCohort();
         }
+
+        public bool addMembersToCohort(int _cohortId, List<int> empIdList)
+        {
+            return true;
+        }
     }
 }

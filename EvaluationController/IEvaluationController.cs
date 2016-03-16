@@ -77,6 +77,14 @@ namespace Evaluation.Controller
         /// <returns>Member list</returns>
         List<Employee> getMembersNotInCohort();
 
+        /// <summary>
+        /// Updates the cohortid of employees with specified ids
+        /// </summary>
+        /// <param name="_cohortId">id of cohort to add members to</param>
+        /// <param name="empIdList">list of employee ids to be added to the cohort</param>
+        /// <returns>true if db update is successful, else false</returns>
+        bool addMembersToCohort(int _cohortId, List<int> empIdList);
+
         #endregion
 
         #region Employees
@@ -108,5 +116,7 @@ namespace Evaluation.Controller
         DataTable getUserReport(int stageId, int typeId);
         #endregion
 
+
+        
     }
 }
