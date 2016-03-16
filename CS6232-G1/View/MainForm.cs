@@ -117,6 +117,8 @@ namespace CS6232_G1.View
             form.Show();
         }
 
+        // This opens a dialog form that will prompt the user to select a cohort
+        // It will return the cohort selected or null if cancelled or an error occurs
         private Cohort selectCohort()
         {
             SelectCohortForm selectForm = new SelectCohortForm(_controller);
