@@ -25,8 +25,7 @@ namespace Evaluation.Controller
 
         public List<Employee> getMembersOfCohort(int cohortId)
         {
-            //return _dal.getMembersOfCohort(cohortId);
-            return null;
+            return _dal.getMembersOfCohort(cohortId);
         }
     }
 }

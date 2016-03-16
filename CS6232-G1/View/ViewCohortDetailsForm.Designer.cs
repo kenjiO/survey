@@ -105,11 +105,11 @@
             // 
             this.lblCohortName.AutoSize = true;
             this.lblCohortName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCohortName.Location = new System.Drawing.Point(432, 23);
+            this.lblCohortName.Location = new System.Drawing.Point(526, 26);
             this.lblCohortName.Name = "lblCohortName";
-            this.lblCohortName.Size = new System.Drawing.Size(179, 29);
+            this.lblCohortName.Size = new System.Drawing.Size(238, 29);
             this.lblCohortName.TabIndex = 4;
-            this.lblCohortName.Text = "Cohort Details";
+            this.lblCohortName.Text = "Details for Cohort #";
             // 
             // btnAddEvaluation
             // 

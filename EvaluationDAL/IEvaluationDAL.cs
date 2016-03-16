@@ -30,6 +30,14 @@ namespace Evaluation.DAL
         /// <param name="cohortId">cohort id of the specific cohort</param>
         /// <returns>Evaluation schedule list</returns>
         List<EvaluationSchedule> getEvaluationScheduleList(int cohortId);
+
+        /// <summary>
+        /// Get a list of members for a given cohort
+        /// </summary>
+        /// <param name="_cohortId">cohort id of the specific cohort</param>
+        /// <returns>Member list</returns>
+        List<Employee> getMembersOfCohort(int cohortId);
+
         #endregion
 
         /// <summary>
@@ -53,6 +61,7 @@ namespace Evaluation.DAL
         string getTypeName(int typeId);
 
         #endregion
+
     }
 
 }
