@@ -59,33 +59,62 @@ namespace CS6232_G1.View
             lvMembers.Items.Clear();
             //lvMembers.CheckBoxes = true;
             setListViewColumnWidth(lvMembers);
-            
+            List<Employee> memberList;
+            try
+            {
+                memberList = _controller.getMembersOfCohort(_cohortId);
+                if (memberList.Count > 0)
+                {
+                    foreach (Employee member in memberList)
+                    {
+                        ListViewItem item = lvMembers.Items.Add(member.employeeId.ToString());
+                        item.SubItems.Add(member.firstName);
+                        item.SubItems.Add(member.lastName);
+                        item.SubItems.Add(member.email);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No members have been added to this cohort.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
         }
 
         // Loads the listView with the evaluations for the given cohort
         private void loadEvaluationScheduleListView()
         {
-            List<EvaluationSchedule> scheduleList;
-            scheduleList = _controller.getEvaluationScheduleList(_cohortId);
-            lvEvaluationSchedule.Items.Clear();
-            //lvEvaluationSchedule.CheckBoxes = true;
-            setListViewColumnWidth(lvEvaluationSchedule);
-
-            if (scheduleList.Count > 0)
+            try
             {
-                foreach (EvaluationSchedule schedule in scheduleList)
+                List<EvaluationSchedule> scheduleList;
+                scheduleList = _controller.getEvaluationScheduleList(_cohortId);
+                lvEvaluationSchedule.Items.Clear();
+                //lvEvaluationSchedule.CheckBoxes = true;
+                setListViewColumnWidth(lvEvaluationSchedule);
+
+                if (scheduleList.Count > 0)
                 {
-                    String typeName = _controller.getTypeName(schedule.TypeId);
-                    ListViewItem item = lvEvaluationSchedule.Items.Add(typeName);
-                    String stageName = _controller.stageName(schedule.StageId);
-                    item.SubItems.Add(stageName);
-                    item.SubItems.Add(schedule.StartDate.ToShortDateString());
-                    item.SubItems.Add(schedule.EndDate.ToShortDateString());
+                    foreach (EvaluationSchedule schedule in scheduleList)
+                    {
+                        String typeName = _controller.getTypeName(schedule.TypeId);
+                        ListViewItem item = lvEvaluationSchedule.Items.Add(typeName);
+                        String stageName = _controller.stageName(schedule.StageId);
+                        item.SubItems.Add(stageName);
+                        item.SubItems.Add(schedule.StartDate.ToShortDateString());
+                        item.SubItems.Add(schedule.EndDate.ToShortDateString());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No evaluations have been set up for this cohort.");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No evaluations have been set up for this cohort.");
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
         }
 

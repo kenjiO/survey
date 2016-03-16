@@ -148,7 +148,7 @@
             // columnHeader5
             // 
             this.columnHeader5.Tag = "1";
-            this.columnHeader5.Text = "";
+            this.columnHeader5.Text = "Emp Id";
             // 
             // columnHeader6
             // 

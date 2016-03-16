@@ -107,6 +107,25 @@ namespace Test
             }
             return results;
         }
+
+        public List<Employee> getMembersOfCohort(int cohortId)
+        {
+            List<Employee> results = new List<Employee>();
+            switch (cohortId)
+            {
+                case 1:
+                    results.Add(new Employee(1, "John", "Smith", "johnsmith@gmail.com", false));
+                    results.Add(new Employee(2, "Sam", "Black", "samblack@gmail.com", false));
+                    break;
+                case 2:
+                    results.Add(new Employee(3, "Sandy", "William", "sandywilliam@gmail.com", false));
+                    break;
+                default:
+                    throw new KeyNotFoundException("Invalid cohort id, " + cohortId);
+            }
+            return results;
+        }
+
         #endregion
 
         #region Employees
