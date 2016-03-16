@@ -31,6 +31,7 @@
             this.SelectButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.CohortComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // SelectButton
@@ -63,17 +64,29 @@
             this.label1.Text = "Select Cohort";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // CohortComboBox
+            // 
+            this.CohortComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CohortComboBox.FormattingEnabled = true;
+            this.CohortComboBox.Location = new System.Drawing.Point(58, 87);
+            this.CohortComboBox.Name = "CohortComboBox";
+            this.CohortComboBox.Size = new System.Drawing.Size(157, 21);
+            this.CohortComboBox.TabIndex = 3;
+            this.CohortComboBox.SelectedIndexChanged += new System.EventHandler(this.CohortComboBox_SelectedIndexChanged);
+            // 
             // SelectCohortForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 221);
             this.ControlBox = false;
+            this.Controls.Add(this.CohortComboBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.SelectButton);
             this.Name = "SelectCohortForm";
             this.Text = "Select Cohort";
+            this.Load += new System.EventHandler(this.SelectCohortForm_Load);
             this.ResumeLayout(false);
 
         }
@@ -83,5 +96,6 @@
         private System.Windows.Forms.Button SelectButton;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox CohortComboBox;
     }
 }

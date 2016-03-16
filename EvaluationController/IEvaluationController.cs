@@ -85,6 +85,12 @@ namespace Evaluation.Controller
         /// <returns>list of employee ids that were not updated</returns>
         List<int> addMembersToCohort(int _cohortId, List<int> empIdList);
 
+        /// <summary>
+        /// Get a list of Cohorts
+        /// </summary>
+        /// <returns>A list of Corhort objects representing each cohort in the DB</returns>
+        List<Cohort> getCohorts();
+
         #endregion
 
         #region Employees

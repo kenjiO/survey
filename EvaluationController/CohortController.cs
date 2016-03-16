@@ -37,5 +37,15 @@ namespace Evaluation.Controller
         {
             return _dal.addMembersToCohort(cohortId, empIdList);
         }
+
+        public List<Cohort> getCohorts()
+        {
+            //TODO get real list from the DB
+
+            List<Cohort> cohorts = new List<Cohort>();
+            cohorts.Add(new Cohort(1, "cohort 1"));
+            cohorts.Add(new Cohort(2, "cohort 2"));
+            return cohorts;
+        }
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Evaluation.Controller;
 using Evaluation.Model;
+using System.Data.SqlClient;
 
 namespace CS6232_G1.View
 {
@@ -20,10 +21,11 @@ namespace CS6232_G1.View
         public SelectCohortForm(IEvaluationController controller)
         {
             InitializeComponent();
-            if (_controller == null)
+            if (controller == null)
             {
                 throw new ArgumentNullException("Null controller on Select Cohort Form");
             }
+            _controller = controller;
             _selectedCohort = null;
         }
 
@@ -38,6 +40,29 @@ namespace CS6232_G1.View
         {
             this.DialogResult = DialogResult.Cancel;
 
+        }
+
+        private void SelectCohortForm_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Cohort> cohortList = _controller.getCohorts();
+                CohortComboBox.DataSource = cohortList;
+                CohortComboBox.DisplayMember = "cohortName";
+                CohortComboBox.ValueMember = "cohortId";
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("A Database error occured fetching cohorts: " + ex.Message);
+                this.DialogResult = DialogResult.Cancel;
+                return;
+            }
+            CohortComboBox.SelectedIndex = -1;
+        }
+
+        private void CohortComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _selectedCohort = (Cohort) CohortComboBox.SelectedItem;
         }
 
     }

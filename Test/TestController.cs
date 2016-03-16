@@ -140,6 +140,14 @@ namespace Test
             return new List<int>();
         }
 
+        public List<Cohort> getCohorts()
+        {
+            List<Cohort> cohorts = new List<Cohort>();
+            cohorts.Add(new Cohort(1, "cohort 1"));
+            cohorts.Add(new Cohort(2, "cohort 2"));
+            return cohorts;
+        }
+
         #endregion
 
         #region Employees
