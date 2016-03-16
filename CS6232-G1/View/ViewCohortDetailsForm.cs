@@ -43,8 +43,9 @@ namespace CS6232_G1.View
                 _cohortName = _controller.getCohortName(_cohortId);
 
                 lblCohortName.Text = "Details for " + _cohortName;
-
-                loadListView();
+                
+                loadMemberListView();
+                loadEvaluationScheduleListView();
             }
             catch (Exception ex)
             {
@@ -52,12 +53,23 @@ namespace CS6232_G1.View
             }
         }
 
-        private void loadListView()
+        // Loads the Listbox with the members in the given cohort
+        private void loadMemberListView()
+        {
+            lvMembers.Items.Clear();
+            //lvMembers.CheckBoxes = true;
+            setListViewColumnWidth(lvMembers);
+            
+        }
+
+        // Loads the listView with the evaluations for the given cohort
+        private void loadEvaluationScheduleListView()
         {
             List<EvaluationSchedule> scheduleList;
             scheduleList = _controller.getEvaluationScheduleList(_cohortId);
             lvEvaluationSchedule.Items.Clear();
-            setListViewColumnWidth();
+            //lvEvaluationSchedule.CheckBoxes = true;
+            setListViewColumnWidth(lvEvaluationSchedule);
 
             if (scheduleList.Count > 0)
             {
@@ -77,11 +89,26 @@ namespace CS6232_G1.View
             }
         }
 
-        private void setListViewColumnWidth()
+        /// <summary>
+        /// Calculates the width of listView columns dynamically by getting fillWeight from Tag property of columns. 
+        /// To use this method, set fillWeight in the Tag property of each column.
+        /// </summary>
+        /// <param name="listView">the listview whose columns are to be sized</param>
+        private void setListViewColumnWidth(ListView listView)
         {
-            for (int i = 0; i < lvEvaluationSchedule.Columns.Count; i++)
+            float totalColumnWidth = 0;
+
+            // Get the sum of all column tags
+            for (int i = 0; i < listView.Columns.Count; i++)
+                totalColumnWidth += Convert.ToInt32(listView.Columns[i].Tag);
+
+            // Calculate the percentage of space each column should 
+            // occupy in reference to the other columns and then set the 
+            // width of the column to that percentage of the visible space.
+            for (int i = 0; i < listView.Columns.Count; i++)
             {
-                lvEvaluationSchedule.Columns[i].Width = (int)(0.25 * lvEvaluationSchedule.ClientRectangle.Width);
+                float colPercentage = (Convert.ToInt32(listView.Columns[i].Tag) / totalColumnWidth);
+                listView.Columns[i].Width = (int)(colPercentage * listView.ClientRectangle.Width);
             }
         }
 
