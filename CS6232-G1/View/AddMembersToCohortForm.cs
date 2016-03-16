@@ -42,7 +42,7 @@ namespace CS6232_G1.View
             try
             {
                 _cohortName = _controller.getCohortName(_cohortId);
-
+                
                 lblAddMember.Text = "Add Members to " + _cohortName;
 
                 loadEmployeeListView();
@@ -135,14 +135,20 @@ namespace CS6232_G1.View
                 if (notUpdated.Count > 0)
                 {
                     // TODO: get ids from list and show
-                    //MessageBox.Show("The following empIds were not added to the cohort.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    String failedIdList = "";
+                    foreach (int id in notUpdated)
+                    {
+                        failedIdList += id + ", ";
+                    }
+                    failedIdList.Trim().TrimEnd(',');
+                    MessageBox.Show("The following empIds were not added to the cohort because they have been updated by another user.\n"
+                        + failedIdList , "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    //MessageBox.Show("All selected employees have been added to the cohort!", "Operation Successful");
-                    loadEmployeeListView();
-                    // this.Close();
-                }  
+                    MessageBox.Show("All selected employees have been added to the cohort!", "Operation Successful");
+                }
+                loadEmployeeListView();
             }
             catch (Exception ex)
             {
