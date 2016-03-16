@@ -44,7 +44,8 @@ namespace CS6232_G1.View
 
                 lblAddMember.Text = "Add Members to " + _cohortName;
 
-                loadMemberListView();
+                loadEmployeeListView();
+                btnAddMembers.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -52,12 +53,13 @@ namespace CS6232_G1.View
             }
         }
 
-        // Loads the Listbox with the members in the given cohort
-        private void loadMemberListView()
+
+
+        // Loads the Listview with the employees that are not assigned to any cohort
+        private void loadEmployeeListView()
         {
-            lvMembers.Items.Clear();
-            lvMembers.CheckBoxes = true;
-            setListViewColumnWidth(lvMembers);
+            lvEmployeeList.Items.Clear();
+            setListViewColumnWidth(lvEmployeeList);
             try
             {
                 List<Employee> memberList;
@@ -66,7 +68,7 @@ namespace CS6232_G1.View
                 {
                     foreach (Employee member in memberList)
                     {
-                        ListViewItem item = lvMembers.Items.Add(member.employeeId.ToString());
+                        ListViewItem item = lvEmployeeList.Items.Add(member.employeeId.ToString());
                         item.SubItems.Add(member.firstName);
                         item.SubItems.Add(member.lastName);
                         item.SubItems.Add(member.email);
@@ -109,6 +111,11 @@ namespace CS6232_G1.View
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void lvEmployeeList_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            btnAddMembers.Enabled = lvEmployeeList.CheckedItems.Count > 0;
         }
     }
 }

@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.lblAddMember = new System.Windows.Forms.Label();
-            this.lvMembers = new System.Windows.Forms.ListView();
-            this.btnAddMembers = new System.Windows.Forms.Button();
+            this.lvEmployeeList = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnAddMembers = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -48,30 +48,21 @@
             this.lblAddMember.TabIndex = 0;
             this.lblAddMember.Text = "Add Members to Cohort #";
             // 
-            // lvMembers
+            // lvEmployeeList
             // 
-            this.lvMembers.CheckBoxes = true;
-            this.lvMembers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvEmployeeList.CheckBoxes = true;
+            this.lvEmployeeList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4});
-            this.lvMembers.Location = new System.Drawing.Point(56, 98);
-            this.lvMembers.Name = "lvMembers";
-            this.lvMembers.Size = new System.Drawing.Size(772, 402);
-            this.lvMembers.TabIndex = 1;
-            this.lvMembers.UseCompatibleStateImageBehavior = false;
-            this.lvMembers.View = System.Windows.Forms.View.Details;
-            // 
-            // btnAddMembers
-            // 
-            this.btnAddMembers.AutoSize = true;
-            this.btnAddMembers.Location = new System.Drawing.Point(56, 516);
-            this.btnAddMembers.Name = "btnAddMembers";
-            this.btnAddMembers.Size = new System.Drawing.Size(118, 30);
-            this.btnAddMembers.TabIndex = 2;
-            this.btnAddMembers.Text = "Add Members";
-            this.btnAddMembers.UseVisualStyleBackColor = true;
+            this.lvEmployeeList.Location = new System.Drawing.Point(56, 98);
+            this.lvEmployeeList.Name = "lvEmployeeList";
+            this.lvEmployeeList.Size = new System.Drawing.Size(772, 402);
+            this.lvEmployeeList.TabIndex = 1;
+            this.lvEmployeeList.UseCompatibleStateImageBehavior = false;
+            this.lvEmployeeList.View = System.Windows.Forms.View.Details;
+            this.lvEmployeeList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lvEmployeeList_ItemChecked);
             // 
             // columnHeader1
             // 
@@ -93,6 +84,16 @@
             this.columnHeader4.Tag = "3";
             this.columnHeader4.Text = "Email";
             // 
+            // btnAddMembers
+            // 
+            this.btnAddMembers.AutoSize = true;
+            this.btnAddMembers.Location = new System.Drawing.Point(56, 516);
+            this.btnAddMembers.Name = "btnAddMembers";
+            this.btnAddMembers.Size = new System.Drawing.Size(118, 30);
+            this.btnAddMembers.TabIndex = 2;
+            this.btnAddMembers.Text = "Add Members";
+            this.btnAddMembers.UseVisualStyleBackColor = true;
+            // 
             // btnCancel
             // 
             this.btnCancel.AutoSize = true;
@@ -111,7 +112,7 @@
             this.ClientSize = new System.Drawing.Size(899, 628);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAddMembers);
-            this.Controls.Add(this.lvMembers);
+            this.Controls.Add(this.lvEmployeeList);
             this.Controls.Add(this.lblAddMember);
             this.Name = "AddMembersToCohortForm";
             this.Text = "AddMembersToCohort";
@@ -124,7 +125,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblAddMember;
-        private System.Windows.Forms.ListView lvMembers;
+        private System.Windows.Forms.ListView lvEmployeeList;
         private System.Windows.Forms.Button btnAddMembers;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
