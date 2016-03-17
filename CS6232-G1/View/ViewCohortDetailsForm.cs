@@ -100,7 +100,7 @@ namespace CS6232_G1.View
                     {
                         String typeName = _controller.getTypeName(schedule.TypeId);
                         ListViewItem item = lvEvaluationSchedule.Items.Add(typeName);
-                        String stageName = _controller.stageName(schedule.StageId);
+                        String stageName = _controller.getStageName(schedule.StageId);
                         item.SubItems.Add(stageName);
                         item.SubItems.Add(schedule.StartDate.ToShortDateString());
                         item.SubItems.Add(schedule.EndDate.ToShortDateString());

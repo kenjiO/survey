@@ -23,32 +23,18 @@ namespace Evaluation.DAL
                 "SELECT typeName " +
                 "FROM type " +
                 "WHERE typeId = @typeId";
-
-            try
+            
+            using (SqlConnection connection = EvaluationDB.GetConnection())
             {
-                using (SqlConnection connection = EvaluationDB.GetConnection())
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
                 {
-                    connection.Open();
-
-                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
-                    {
-                        selectCommand.Parameters.AddWithValue("@typeId", typeId);
-                        typeName = selectCommand.ExecuteScalar().ToString();
-                        return typeName;
-                    }
+                    selectCommand.Parameters.AddWithValue("@typeId", typeId);
+                    typeName = selectCommand.ExecuteScalar().ToString();
+                    return typeName;
                 }
-
-            }
-            catch (SqlException)
-            {
-                //exceptions are thrown to the controller, then to the view
-                //throw is used instead of throw ex because the former preserves the stack trace
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            }            
         }
     }
 }

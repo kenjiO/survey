@@ -81,45 +81,32 @@ namespace Evaluation.DAL
                 "FROM evaluation_schedule " +
                 "WHERE cohortId = @cohortId";
 
-            try
+            using (SqlConnection connection = EvaluationDB.GetConnection())
             {
-                using (SqlConnection connection = EvaluationDB.GetConnection())
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
                 {
-                    connection.Open();
+                    selectCommand.Parameters.AddWithValue("@cohortId", cohortId);
 
-                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
-                        selectCommand.Parameters.AddWithValue("@cohortId", cohortId);
+                        int typeIDOrd = reader.GetOrdinal("typeId");
+                        int stageIDOrd = reader.GetOrdinal("stageId");
+                        int startDateOrd = reader.GetOrdinal("startDate");
+                        int endDateOrd = reader.GetOrdinal("endDate");
 
-                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        while (reader.Read())
                         {
-                            int typeIDOrd = reader.GetOrdinal("typeId");
-                            int stageIDOrd = reader.GetOrdinal("stageId");
-                            int startDateOrd = reader.GetOrdinal("startDate");
-                            int endDateOrd = reader.GetOrdinal("endDate");
-
-                            while (reader.Read())
-                            {
-                                int typeId = reader.GetInt32(typeIDOrd);
-                                int stageId = reader.GetInt32(stageIDOrd);
-                                DateTime startDate = reader.GetDateTime(startDateOrd);
-                                DateTime endDate = reader.GetDateTime(endDateOrd);
-                                EvaluationSchedule schedule = new EvaluationSchedule(cohortId, typeId, stageId, startDate, endDate);
-                                results.Add(schedule);
-                            }
+                            int typeId = reader.GetInt32(typeIDOrd);
+                            int stageId = reader.GetInt32(stageIDOrd);
+                            DateTime startDate = reader.GetDateTime(startDateOrd);
+                            DateTime endDate = reader.GetDateTime(endDateOrd);
+                            EvaluationSchedule schedule = new EvaluationSchedule(cohortId, typeId, stageId, startDate, endDate);
+                            results.Add(schedule);
                         }
                     }
                 }
-            }
-            catch (SqlException)
-            {
-                //exceptions are thrown to the controller, then to the view
-                //throw is used instead of throw ex because the former preserves the stack trace
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
             }
             return results;
         }
@@ -138,45 +125,32 @@ namespace Evaluation.DAL
                 "FROM employee " +
                 "WHERE isAdmin = 0 AND cohortId = @cohortId";
 
-            try
+            using (SqlConnection connection = EvaluationDB.GetConnection())
             {
-                using (SqlConnection connection = EvaluationDB.GetConnection())
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
                 {
-                    connection.Open();
+                    selectCommand.Parameters.AddWithValue("@cohortId", cohortId);
 
-                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
-                        selectCommand.Parameters.AddWithValue("@cohortId", cohortId);
+                        int employeeIdOrd = reader.GetOrdinal("employeeId");
+                        int firstNameOrd = reader.GetOrdinal("firstName");
+                        int lastNameOrd = reader.GetOrdinal("lastName");
+                        int emailOrd = reader.GetOrdinal("emailAddress");
 
-                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        while (reader.Read())
                         {
-                            int employeeIdOrd = reader.GetOrdinal("employeeId");
-                            int firstNameOrd = reader.GetOrdinal("firstName");
-                            int lastNameOrd = reader.GetOrdinal("lastName");
-                            int emailOrd = reader.GetOrdinal("emailAddress");
-
-                            while (reader.Read())
-                            {
-                                int employeeId = reader.GetInt32(employeeIdOrd);
-                                string firstName = reader.GetString(firstNameOrd);
-                                string lastName = reader.GetString(lastNameOrd);
-                                string email = reader.GetString(emailOrd);
-                                Employee member = new Employee(employeeId, firstName, lastName, email, false);
-                                results.Add(member);
-                            }
+                            int employeeId = reader.GetInt32(employeeIdOrd);
+                            string firstName = reader.GetString(firstNameOrd);
+                            string lastName = reader.GetString(lastNameOrd);
+                            string email = reader.GetString(emailOrd);
+                            Employee member = new Employee(employeeId, firstName, lastName, email, false);
+                            results.Add(member);
                         }
                     }
                 }
-            }
-            catch (SqlException)
-            {
-                //exceptions are thrown to the controller, then to the view
-                //throw is used instead of throw ex because the former preserves the stack trace
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
             }
             return results;
         }
@@ -194,43 +168,30 @@ namespace Evaluation.DAL
                 "FROM employee " +
                 "WHERE isAdmin = 0 AND cohortId is null";
 
-            try
+            using (SqlConnection connection = EvaluationDB.GetConnection())
             {
-                using (SqlConnection connection = EvaluationDB.GetConnection())
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
                 {
-                    connection.Open();
-
-                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
-                        using (SqlDataReader reader = selectCommand.ExecuteReader())
-                        {
-                            int employeeIdOrd = reader.GetOrdinal("employeeId");
-                            int firstNameOrd = reader.GetOrdinal("firstName");
-                            int lastNameOrd = reader.GetOrdinal("lastName");
-                            int emailOrd = reader.GetOrdinal("emailAddress");
+                        int employeeIdOrd = reader.GetOrdinal("employeeId");
+                        int firstNameOrd = reader.GetOrdinal("firstName");
+                        int lastNameOrd = reader.GetOrdinal("lastName");
+                        int emailOrd = reader.GetOrdinal("emailAddress");
 
-                            while (reader.Read())
-                            {
-                                int employeeId = reader.GetInt32(employeeIdOrd);
-                                string firstName = reader.GetString(firstNameOrd);
-                                string lastName = reader.GetString(lastNameOrd);
-                                string email = reader.GetString(emailOrd);
-                                Employee member = new Employee(employeeId, firstName, lastName, email, false);
-                                results.Add(member);
-                            }
+                        while (reader.Read())
+                        {
+                            int employeeId = reader.GetInt32(employeeIdOrd);
+                            string firstName = reader.GetString(firstNameOrd);
+                            string lastName = reader.GetString(lastNameOrd);
+                            string email = reader.GetString(emailOrd);
+                            Employee member = new Employee(employeeId, firstName, lastName, email, false);
+                            results.Add(member);
                         }
                     }
                 }
-            }
-            catch (SqlException)
-            {
-                //exceptions are thrown to the controller, then to the view
-                //throw is used instead of throw ex because the former preserves the stack trace
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
             }
             return results;
         }
@@ -249,39 +210,26 @@ namespace Evaluation.DAL
                 "SET cohortId = @cohortId " +
                 "WHERE employeeId = @employeeId AND cohortId is null";
 
-            try
+            using (SqlConnection connection = EvaluationDB.GetConnection())
             {
-                using (SqlConnection connection = EvaluationDB.GetConnection())
+                connection.Open();
+                foreach (int id in empIdList)
                 {
-                    connection.Open();
-                    foreach (int id in empIdList)
+                    try
                     {
-                        try
+                        using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
                         {
-                            using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
+                            updateCommand.Parameters.AddWithValue("@cohortId", cohortId);
+                            updateCommand.Parameters.AddWithValue("@employeeId", id);
+                            int count = updateCommand.ExecuteNonQuery();
+                            if (count < 1)
                             {
-                                updateCommand.Parameters.AddWithValue("@cohortId", cohortId);
-                                updateCommand.Parameters.AddWithValue("@employeeId", id);
-                                int count = updateCommand.ExecuteNonQuery();
-                                if (count < 1)
-                                {
-                                    failedIds.Add(id);
-                                }  
-                            }
+                                failedIds.Add(id);
+                            }  
                         }
-                        catch {}
                     }
+                    catch {}
                 }
-            }
-            catch (SqlException)
-            {
-                //exceptions are thrown to the controller, then to the view
-                //throw is used instead of throw ex because the former preserves the stack trace
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
             }
             return failedIds;
         }
