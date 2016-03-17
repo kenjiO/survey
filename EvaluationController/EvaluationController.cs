@@ -30,15 +30,6 @@ namespace Evaluation.Controller
         }
         #endregion
 
-        #region Cohorts
-        public string getCohortName(int cohortId)
-        {
-            // TODO: Finish
-            throw new NotSupportedException();
-        }
-
-        #endregion
-
         #region Admin Reports
         public DataTable getUserReport(int stage, int evalType)
         {

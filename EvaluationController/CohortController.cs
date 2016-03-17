@@ -9,11 +9,21 @@ namespace Evaluation.Controller
     /// </summary>
     public partial class EvaluationController : IEvaluationController
     {
-        public List<EvaluationSchedule> getEvaluationScheduleList(int cohortId)
+        public string getCohortName(int cohortId)
         {
-            return _dal.getEvaluationScheduleList(cohortId);
+            // TODO: Finish
+            throw new NotSupportedException();
         }
 
+        public List<Cohort> getCohorts()
+        {
+            //TODO get real list from the DB
+
+            List<Cohort> cohorts = new List<Cohort>();
+            cohorts.Add(new Cohort(1, "cohort 1"));
+            cohorts.Add(new Cohort(2, "cohort 2"));
+            return cohorts;
+        }
         public Cohort addCohort(String name)
         {
             if (name == null)
@@ -21,6 +31,11 @@ namespace Evaluation.Controller
                 throw new ArgumentNullException("name is null");
             }
             return _dal.addNewCohort(name);
+        }
+
+        public List<EvaluationSchedule> getEvaluationScheduleList(int cohortId)
+        {
+            return _dal.getEvaluationScheduleList(cohortId);
         }
 
         public List<Employee> getMembersOfCohort(int cohortId)
@@ -38,14 +53,5 @@ namespace Evaluation.Controller
             return _dal.addMembersToCohort(cohortId, empIdList);
         }
 
-        public List<Cohort> getCohorts()
-        {
-            //TODO get real list from the DB
-
-            List<Cohort> cohorts = new List<Cohort>();
-            cohorts.Add(new Cohort(1, "cohort 1"));
-            cohorts.Add(new Cohort(2, "cohort 2"));
-            return cohorts;
-        }
     }
 }
