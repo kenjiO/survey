@@ -30,7 +30,7 @@ namespace Evaluation.Controller
             return _stages.Exists(s => s.name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
-        public string stageName(int stageId)
+        public string getStageName(int stageId)
         {
             // assure stage list exists
             getStageList();

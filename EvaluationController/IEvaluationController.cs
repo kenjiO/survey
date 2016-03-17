@@ -25,7 +25,7 @@ namespace Evaluation.Controller
         /// </summary>
         /// <param name="stageId">Stage id to look up</param>
         /// <returns>Stage name if found, else null</returns>
-        string stageName(int stageId);
+        string getStageName(int stageId);
 
         /// <summary>
         /// See if a stage already exists
