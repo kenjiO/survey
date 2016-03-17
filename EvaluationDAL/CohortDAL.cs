@@ -9,6 +9,39 @@ namespace Evaluation.DAL
     {
 
         /// <summary>
+        /// Get a list of cohorts
+        /// </summary>
+        /// <returns>A list of Cohort objects corresponding to the cohorts in the DB</returns>
+        public List<Cohort> getCohorts()
+        {
+            List<Cohort> cohorts = new List<Cohort>();
+
+            string selectStatement =
+                "SELECT cohortId, cohortName " +
+                "FROM cohort " +
+                "ORDER BY cohortName";
+
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = (int) reader["cohortId"];
+                            String name = reader["cohortName"].ToString();
+                            cohorts.Add(new Cohort(id, name));
+                        }
+                    }
+                }
+            }
+            return cohorts;
+        }
+
+        /// <summary>
         /// Add a new cohort
         /// Precondition: name != null and a cohort with that name does not exist alreay
         /// </summary>
