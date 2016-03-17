@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Evaluation.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,12 @@ namespace Evaluation.Controller
     /// </summary>
     public partial class EvaluationController : IEvaluationController
     {
+        public List<EvalType> getTypeList()
+        {
+            // TODO: Use DAL to acquire type list
+            throw new NotSupportedException();
+        }
+
         /// <summary>
         /// Get type name from typeId
         /// </summary>

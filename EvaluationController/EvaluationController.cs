@@ -22,14 +22,6 @@ namespace Evaluation.Controller
             }
         }
 
-        #region Types
-        public List<EvalType> getTypeList()
-        {
-            // TODO: Use DAL to acquire type list
-            throw new NotSupportedException();
-        }
-        #endregion
-
         #region Admin Reports
         public DataTable getUserReport(int stage, int evalType)
         {
