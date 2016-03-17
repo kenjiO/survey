@@ -37,6 +37,7 @@ namespace Evaluation.Controller
             Stage result = _stages.Find(s => s.id == stageId);
             if (result == null || result.id != stageId)
             {
+                _stages = null;
                 throw new KeyNotFoundException("Stage Id " + stageId + " not found");
             }
             return result.name;
