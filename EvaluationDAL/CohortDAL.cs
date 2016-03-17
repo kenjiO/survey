@@ -111,13 +111,13 @@ namespace Evaluation.DAL
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 //exceptions are thrown to the controller, then to the view
                 //throw is used instead of throw ex because the former preserves the stack trace
                 throw;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -168,13 +168,13 @@ namespace Evaluation.DAL
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 //exceptions are thrown to the controller, then to the view
                 //throw is used instead of throw ex because the former preserves the stack trace
                 throw;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -222,13 +222,13 @@ namespace Evaluation.DAL
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 //exceptions are thrown to the controller, then to the view
                 //throw is used instead of throw ex because the former preserves the stack trace
                 throw;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -244,8 +244,6 @@ namespace Evaluation.DAL
         public List<int> addMembersToCohort(int cohortId, List<int> empIdList)
         {
             List<int> failedIds = new List<int>();
-            int countOfMembersAdded = 0;
-            int countOfMembersNotAdded = 0;
             string updateStatement =
                 "UPDATE employee " +
                 "SET cohortId = @cohortId " +
@@ -265,13 +263,8 @@ namespace Evaluation.DAL
                                 updateCommand.Parameters.AddWithValue("@cohortId", cohortId);
                                 updateCommand.Parameters.AddWithValue("@employeeId", id);
                                 int count = updateCommand.ExecuteNonQuery();
-                                if (count > 0)
+                                if (count < 1)
                                 {
-                                    countOfMembersAdded++;
-                                }
-                                else
-                                {
-                                    countOfMembersNotAdded++;
                                     failedIds.Add(id);
                                 }  
                             }
@@ -280,13 +273,13 @@ namespace Evaluation.DAL
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 //exceptions are thrown to the controller, then to the view
                 //throw is used instead of throw ex because the former preserves the stack trace
                 throw;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }

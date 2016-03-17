@@ -39,13 +39,13 @@ namespace Evaluation.DAL
                 }
 
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 //exceptions are thrown to the controller, then to the view
                 //throw is used instead of throw ex because the former preserves the stack trace
                 throw;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
