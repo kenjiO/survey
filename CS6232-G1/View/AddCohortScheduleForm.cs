@@ -1,4 +1,5 @@
 ﻿using Evaluation.Controller;
+using Evaluation.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,8 @@ namespace CS6232_G1.View
         private IEvaluationController _controller;
         private int _cohortId;
         private String _cohortName;
+        private List<Stage> _stages;
+        private List<CohortScheduleData> _typeList;
 
         /// <summary>
         /// Run Add Cohort Schedule dialog
@@ -46,21 +49,22 @@ namespace CS6232_G1.View
                 Close();
                 return;
             }
+            try
+            {
+                _stages = _controller.getStageList();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("A database error occurred looking up the cohort name.  Please" +
+                      " check your SQL configuration.\n\n" +
+                     "Details: " + ex.Message, "Notice");
+                Close();
+                return;
+            }
             if (_cohortName.Length <= 0) 
             {
-                try
-                {
-                    _cohortName = _controller.getCohortName(_cohortId);
-                }
-                catch (SqlException ex) 
-                {
-                    MessageBox.Show("A database error occurred looking up the cohort name.  Please" +
-                          " check your SQL configuration.\n\n" +
-                         "Details: " + ex.Message, "Notice");
-                    Close();
-                    return;
-                }
-                catch (KeyNotFoundException)
+                _cohortName = _controller.getCohortName(_cohortId);
+                if (_cohortName.Length == 0)
                 {
                     MessageBox.Show("Invalid cohort selected");
                     Close();
@@ -68,17 +72,47 @@ namespace CS6232_G1.View
                 }
             }
             lblCohortName.Text = _cohortName;
-            cboType.SelectedIndex = -1;
+            try
+            {
+                _typeList = _controller.getCohortAddScheduleInfo(_cohortId);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("A database error occurred looking up the cohort name.  Please" +
+                      " check your SQL configuration.\n\n" +
+                     "Details: " + ex.Message, "Notice");
+                Close();
+                return;
+            }
+            if (_typeList.Count == 0)
+            {
+                MessageBox.Show("No schedulable evaluation types for this cohort", "Notice");
+                Close();
+                return;
+            }
+            // setup stage list to list all stages
+            cboStage.DataSource = _stages;
+            cboStage.DisplayMember = "name";
+            cboStage.ValueMember = "id";
             cboStage.SelectedIndex = -1;
+
+            cboType.DataSource = _typeList;
+            cboType.DisplayMember = "typeName";
+            cboType.ValueMember = "typeId";
+            cboType.SelectedIndex = 0;
         }
 
         private void cboType_SelectedIndexChanged(object sender, EventArgs e)
         {
             // TODO: Setup for selected item
-            // set stage
-            // get min start date
+            // if nextStageId is not null,
+            //      set cboStage.SelectedValue to nextStageId
+            //      enable other controls and add button
+            // else
+            //      set cboStage.SelectedIndex = -1 and display message that no more stages are available for this stage
+            //      disable other controls and add button
+            // get min start date (use today if lastStageEndDate is null, else use lastStageEndDate + 1)
             // set start.mindate, startdate, and enddate to min start date
-            // enable btnAdd
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

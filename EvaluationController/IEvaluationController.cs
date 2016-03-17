@@ -106,6 +106,13 @@ namespace Evaluation.Controller
         /// <returns>A list of Corhort objects representing each cohort in the DB</returns>
         List<Cohort> getCohorts();
 
+        /// <summary>
+        /// Get a list of cohort scheduling info
+        /// </summary>
+        /// <param name="_cohortId">Cohort id to get list for</param>
+        /// <returns>List of cohort scheduling info</returns>
+        List<CohortScheduleData> getCohortAddScheduleInfo(int _cohortId);
+
         #endregion
 
         #region Employees
@@ -135,6 +142,7 @@ namespace Evaluation.Controller
         /// <returns>Report details as a DataTable</returns>
         DataTable getUserReport(int stageId, int typeId);
         #endregion
-        
+
+
     }
 }

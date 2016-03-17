@@ -16,29 +16,46 @@ namespace Evaluation.Controller
 
         public List<Stage> getStageList()
         {
-            if (_stages != null)
-            {
-                _stages = _dal.getStageList();
-            }
+            _stages = _dal.getStageList();
             return _stages;
+        }
+
+        private bool tryLoadStageList()
+        {
+            if (_stages == null)
+            {
+                try
+                {
+                    getStageList();
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public bool stageExists(string name)
         {
-            // assure stage list exists
-            getStageList();
+            if (!tryLoadStageList())
+            {
+                return false;
+            }
             return _stages.Exists(s => s.name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
         public string stageName(int stageId)
         {
-            // assure stage list exists
-            getStageList();
+            if (!tryLoadStageList())
+            {
+                return "";
+            }
             Stage result = _stages.Find(s => s.id == stageId);
             if (result == null || result.id != stageId)
             {
                 _stages = null;
-                throw new KeyNotFoundException("Stage Id " + stageId + " not found");
+                return "";
             }
             return result.name;
         }

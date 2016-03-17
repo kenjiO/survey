@@ -151,6 +151,16 @@ namespace Test
             return cohorts;
         }
 
+        public List<CohortScheduleData> getCohortAddScheduleInfo(int _cohortId)
+        {
+            List<CohortScheduleData> list = new List<CohortScheduleData>();
+
+            // TODO: Finish
+            //  need a constructor on this class to allow simple test data build
+            //  add a group of schedule info using real types and stages and each kind of expected results
+            throw new NotSupportedException();
+        }
+
         #endregion
 
         #region Employees

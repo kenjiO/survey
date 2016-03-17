@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EvaluationModel
+namespace Evaluation.Model
 {
     /// <summary>
     /// Data to guide adding a new cohort schedule
@@ -17,9 +17,9 @@ namespace EvaluationModel
         public int typeId { get; set; }
         public string typeName { get; set; }
         /// <summary>
-        /// Previous stage end date, if any, else null
+        /// End date for the last stage scheduled for this cohort+type, if any, else null
         /// </summary>
-        public DateTime previousStageEndDate { get; set; }
+        public DateTime lastStageEndDate { get; set; }
         /// <summary>
         /// Schedulable stage for this cohort+type (if null, no more stages exist)
         /// </summary>

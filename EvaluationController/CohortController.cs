@@ -53,5 +53,10 @@ namespace Evaluation.Controller
             return _dal.addMembersToCohort(cohortId, empIdList);
         }
 
+        public List<CohortScheduleData> getCohortAddScheduleInfo(int _cohortId)
+        {
+            // TODO Finish
+            throw new NotSupportedException();
+        }
     }
 }
