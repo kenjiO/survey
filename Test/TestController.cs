@@ -27,23 +27,26 @@ namespace Test
             return results;
         }
 
-        public String stageName(int stageId)
+        public bool stageExists(string name)
         {
-            switch (stageId)
+            List<Stage> _stages = getStageList();
+            return _stages.Exists(s => s.name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public string stageName(int stageId)
+        {
+            List<Stage> _stages = getStageList();
+            Stage result = _stages.Find(s => s.id == stageId);
+            if (result == null || result.id != stageId)
             {
-                case 1:
-                    return "Stage 1";
-                case 2:
-                    return "Stage 2";
-                case 3:
-                    return "Stage 3";
-                case 4:
-                    return "Stage 4";
-                case 5:
-                    return "Stage 5";
-                default:
-                    throw new KeyNotFoundException("Invalid stage, " + stageId);
+                throw new KeyNotFoundException("Stage Id " + stageId + " not found");
             }
+            return result.name;
+        }
+
+        public int addStage(string name)
+        {
+            return 5;
         }
 
         #endregion

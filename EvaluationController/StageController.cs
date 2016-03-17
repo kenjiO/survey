@@ -23,11 +23,33 @@ namespace Evaluation.Controller
             return _stages;
         }
 
+        public bool stageExists(string name)
+        {
+            // assure stage list exists
+            getStageList();
+            return _stages.Exists(s => s.name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
+
         public string stageName(int stageId)
         {
             // assure stage list exists
             getStageList();
-            // TODO: look up stage name in list
+            Stage result = _stages.Find(s => s.id == stageId);
+            if (result == null || result.id != stageId)
+            {
+                throw new KeyNotFoundException("Stage Id " + stageId + " not found");
+            }
+            return result.name;
+        }
+
+        public int addStage(string name)
+        {
+            // TODO: add stage, return identity column
+            //  - name should be non-null, non-empty string
+            //  - name should not already exist (can you have a WHERE statement in an INSERT command?)
+            //  - second query to get identity value
+            //  - set _stages = null;
+            //  - return ident
             throw new NotSupportedException();
         }
 

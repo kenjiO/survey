@@ -26,6 +26,21 @@ namespace Evaluation.Controller
         /// <param name="stageId">Stage id to look up</param>
         /// <returns>Stage name if found, else null</returns>
         string stageName(int stageId);
+
+        /// <summary>
+        /// See if a stage already exists
+        /// </summary>
+        /// <param name="name">Stage name to check</param>
+        /// <returns>True if the stage name already exists</returns>
+        bool stageExists(string name);
+
+        /// <summary>
+        /// Add a new stage
+        /// </summary>
+        /// <param name="name">Stage name to add</param>
+        /// <returns>Stage id of new stage</returns>
+        int addStage(string name);
+
         #endregion 
 
         #region Types
@@ -111,7 +126,6 @@ namespace Evaluation.Controller
         Employee login(String username, String password);
         #endregion
 
-
         #region Admin Reports
         /// <summary>
         /// Return User Report data for a given stage and evaluation type
@@ -121,8 +135,6 @@ namespace Evaluation.Controller
         /// <returns>Report details as a DataTable</returns>
         DataTable getUserReport(int stageId, int typeId);
         #endregion
-
-
         
     }
 }
