@@ -90,6 +90,7 @@ namespace CS6232_G1.View
                 Close();
                 return;
             }
+
             // setup stage list to list all stages
             cboStage.DataSource = _stages;
             cboStage.DisplayMember = "name";
