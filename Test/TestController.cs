@@ -151,14 +151,21 @@ namespace Test
             return cohorts;
         }
 
-        public List<CohortScheduleData> getCohortAddScheduleInfo(int _cohortId)
+        public List<CohortScheduleData> getCohortAddScheduleInfo(int cohortId)
         {
             List<CohortScheduleData> list = new List<CohortScheduleData>();
 
-            // TODO: Finish
-            //  need a constructor on this class to allow simple test data build
-            //  add a group of schedule info using real types and stages and each kind of expected results
-            throw new NotSupportedException();
+            if (cohortId == 1)
+            {
+                list.Add(new CohortScheduleData(1, "Type 1", null, 1)); // type 1 has no current schedules for this cohort
+                list.Add(new CohortScheduleData(2, "Type 2", DateTime.Parse("6/5/2016"), 3)); // type 2 has stages 1 and 2 for this cohort
+            }
+            else
+            {
+                list.Add(new CohortScheduleData(1, "Type 1", DateTime.Parse("4/15/2016"), 5)); // type 1 has stages 1-4 for this cohort
+                list.Add(new CohortScheduleData(2, "Type 2", DateTime.Parse("5/25/2016"), null)); // type 2 all 5 stages scheduled for this cohort
+            }
+            return list;
         }
 
         #endregion
