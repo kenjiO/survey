@@ -60,6 +60,8 @@ namespace Evaluation.DAL
 
         #endregion
 
+        #region Employees
+
         /// <summary>
         /// Get a list of employee names and ids
         /// </summary>
@@ -71,6 +73,8 @@ namespace Evaluation.DAL
         /// </summary>
         /// <returns>Employee if valid login/password. Otherwise null</returns>
         Employee getLogin(String username, String password);
+
+        #endregion
 
         #region Types
         /// <summary>
