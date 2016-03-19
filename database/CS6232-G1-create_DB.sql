@@ -334,14 +334,11 @@ ALTER TABLE [dbo].[employee]  WITH CHECK ADD  CONSTRAINT [FK_employee_cohort] FO
 REFERENCES [dbo].[cohort] ([cohortId])
 GO
 ALTER TABLE [dbo].[employee] CHECK CONSTRAINT [FK_employee_cohort]
---
--- Don't create this constraint until after test data is added
---
--- GO
--- ALTER TABLE [dbo].[employee]  WITH CHECK ADD  CONSTRAINT [FK_employee_supervisor] FOREIGN KEY([supervisorId])
--- REFERENCES [dbo].[employee] ([employeeId])
--- GO
--- ALTER TABLE [dbo].[employee] CHECK CONSTRAINT [FK_employee_supervisor]
+GO
+ALTER TABLE [dbo].[employee]  WITH CHECK ADD  CONSTRAINT [FK_employee_supervisor] FOREIGN KEY([supervisorId])
+REFERENCES [dbo].[employee] ([employeeId])
+GO
+ALTER TABLE [dbo].[employee] CHECK CONSTRAINT [FK_employee_supervisor]
 GO
 ALTER TABLE [dbo].[evaluation_schedule]  WITH CHECK ADD  CONSTRAINT [FK_evaluation_shedule_cohort] FOREIGN KEY([cohortId])
 REFERENCES [dbo].[cohort] ([cohortId])
