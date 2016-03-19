@@ -1,11 +1,11 @@
 USE [CS6232-G1]
 GO
-SET IDENTITY_INSERT [dbo].[type] ON 
+SET IDENTITY_INSERT [dbo].[type] ON
 
 INSERT [dbo].[type] ([typeId], [typeName], [answerRange]) VALUES (1, N'Type-1', 5)
 INSERT [dbo].[type] ([typeId], [typeName], [answerRange]) VALUES (2, N'Type-2', 10)
 SET IDENTITY_INSERT [dbo].[type] OFF
-SET IDENTITY_INSERT [dbo].[category] ON 
+SET IDENTITY_INSERT [dbo].[category] ON
 
 INSERT [dbo].[category] ([categoryId], [typeId], [categoryNo], [categoryName], [Description]) VALUES (1, 1, 1, N'T1 Category 1', N'Category #1 for Type 1 Eval')
 INSERT [dbo].[category] ([categoryId], [typeId], [categoryNo], [categoryName], [Description]) VALUES (2, 1, 2, N'T1 Category 2', N'Category #2 for Type 1 Eval')
@@ -20,7 +20,7 @@ INSERT [dbo].[category] ([categoryId], [typeId], [categoryNo], [categoryName], [
 INSERT [dbo].[category] ([categoryId], [typeId], [categoryNo], [categoryName], [Description]) VALUES (11, 2, 6, N'T2 Category 6', N'Category #6 for Type 2 Eval')
 INSERT [dbo].[category] ([categoryId], [typeId], [categoryNo], [categoryName], [Description]) VALUES (12, 2, 7, N'T2 Category 7', N'Category #7 for Type 2 Eval')
 SET IDENTITY_INSERT [dbo].[category] OFF
-SET IDENTITY_INSERT [dbo].[question] ON 
+SET IDENTITY_INSERT [dbo].[question] ON
 
 INSERT [dbo].[question] ([questionId], [typeId], [questionNo], [categoryId], [question]) VALUES (1, 1, 1, 1, N'What is your answer to T1C1Q1?')
 INSERT [dbo].[question] ([questionId], [typeId], [questionNo], [categoryId], [question]) VALUES (2, 1, 2, 1, N'What is your answer to T1C1Q2?')
@@ -66,17 +66,17 @@ INSERT [dbo].[question] ([questionId], [typeId], [questionNo], [categoryId], [qu
 INSERT [dbo].[question] ([questionId], [typeId], [questionNo], [categoryId], [question]) VALUES (42, 2, 27, 12, N'What is your answer to T2C7Q27?')
 INSERT [dbo].[question] ([questionId], [typeId], [questionNo], [categoryId], [question]) VALUES (43, 2, 28, 12, N'What is your answer to T2C7Q28?')
 SET IDENTITY_INSERT [dbo].[question] OFF
-SET IDENTITY_INSERT [dbo].[cohort] ON 
+SET IDENTITY_INSERT [dbo].[cohort] ON
 
 INSERT [dbo].[cohort] ([cohortId], [cohortName]) VALUES (1, N'cohort-1')
 INSERT [dbo].[cohort] ([cohortId], [cohortName]) VALUES (2, N'cohort-2')
 INSERT [dbo].[cohort] ([cohortId], [cohortName]) VALUES (3, N'cohort-3')
 SET IDENTITY_INSERT [dbo].[cohort] OFF
-SET IDENTITY_INSERT [dbo].[employee] ON 
+SET IDENTITY_INSERT [dbo].[employee] ON
 
-INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (1, N'Dawn', N'EMP-1', N'2383 Sit Road', N'Holywell', N'NY', N'E0Z 9B3', N'533-544-4004', N'emp1@westga.edu', N'emp1', 0, 1, 2)
-INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (2, N'Alexander', N'EMP-2', N'Ap #753-7773 Ut, Av.', N'Norfolk', N'PA', N'5424SL', N'758-270-8261', N'emp2@westga.edu', N'emp2', 0, 1, 3)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (3, N'Guinevere', N'EMP-3', N'Ap #291-9381 Integer Avenue', N'Bonnyville', N'NJ', N'5054', N'772-538-7386', N'emp3@westga.edu', N'emp3', 0, 1, NULL)
+INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (2, N'Alexander', N'EMP-2', N'Ap #753-7773 Ut, Av.', N'Norfolk', N'PA', N'5424SL', N'758-270-8261', N'emp2@westga.edu', N'emp2', 0, 1, 3)
+INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (1, N'Dawn', N'EMP-1', N'2383 Sit Road', N'Holywell', N'NY', N'E0Z 9B3', N'533-544-4004', N'emp1@westga.edu', N'emp1', 0, 1, 2)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (4, N'Jenna', N'EMP-4', N'810 Pede St.', N'Florida', N'PA', N'616578', N'501-481-4796', N'emp4@westga.edu', N'emp4', 0, 1, NULL)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (5, N'Debra', N'EMP-5', N'528-499 Tincidunt Av.', N'Onze-Lieve-Vrouw-Lombeek', N'PA', N'135248', N'624-955-4061', N'emp5@westga.edu', N'emp5', 0, 1, NULL)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (6, N'Yolanda', N'EMP-6', N'9614 Augue. St.', N'Beaumont', N'PA', N'878181', N'932-453-4363', N'emp6@westga.edu', N'emp6', 0, 1, NULL)
@@ -84,9 +84,9 @@ INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress],
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (8, N'Chancellor', N'EMP-8', N'4619 Vel Avenue', N'Hualane', N'NY', N'189376', N'429-326-8985', N'emp8@westga.edu', N'emp8', 0, 1, NULL)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (9, N'Richard', N'EMP-9', N'7208 Auctor Street', N'Zeveneken', N'NY', N'880517', N'461-251-9027', N'emp9@westga.edu', N'emp9', 0, 1, NULL)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (10, N'Lucius', N'EMP-10', N'P.O. Box 703, 1609 Mus. Rd.', N'Valleyview', N'NY', N'66615', N'945-305-0638', N'emp10@westga.edu', N'emp10', 0, 1, NULL)
-INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (11, N'Xyla', N'EMP-11', N'P.O. Box 627, 6888 Rutrum St.', N'Hampstead', N'NJ', N'V7W 6P0', N'846-313-4707', N'emp11@westga.edu', N'emp11', 0, 2, 12)
-INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (12, N'Olga', N'EMP-12', N'P.O. Box 864, 1647 Sollicitudin Rd.', N'Coalhurst', N'PA', N'6045', N'545-712-5011', N'emp12@westga.edu', N'emp12', 0, 2, 13)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (13, N'Denton', N'EMP-13', N'609-5789 Orci St.', N'Saint-Denis-Bovesse', N'PA', N'31066', N'115-885-4805', N'emp13@westga.edu', N'emp13', 0, 2, NULL)
+INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (12, N'Olga', N'EMP-12', N'P.O. Box 864, 1647 Sollicitudin Rd.', N'Coalhurst', N'PA', N'6045', N'545-712-5011', N'emp12@westga.edu', N'emp12', 0, 2, 13)
+INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (11, N'Xyla', N'EMP-11', N'P.O. Box 627, 6888 Rutrum St.', N'Hampstead', N'NJ', N'V7W 6P0', N'846-313-4707', N'emp11@westga.edu', N'emp11', 0, 2, 12)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (14, N'Elvis', N'EMP-14', N'4813 Quam, Ave', N'San Clemente', N'NJ', N'93695', N'551-152-2687', N'emp14@westga.edu', N'emp14', 0, 2, NULL)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (15, N'Dean', N'EMP-15', N'P.O. Box 611, 1339 Blandit St.', N'Bergen Mons', N'NJ', N'9511', N'322-249-5713', N'emp15@westga.edu', N'emp15', 0, 2, NULL)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (16, N'Caesar', N'EMP-16', N'283-3286 Sed, Avenue', N'Frankfort', N'VA', N'9498', N'462-182-6052', N'emp16@westga.edu', N'emp16', 0, 2, NULL)
@@ -117,26 +117,36 @@ INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress],
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (41, N'Doris', N'ADMIN-1', N'Ap #325-3791 Ultrices, Road', N'Castiglione del Lago', N'PA', N'Y1S 5V1', N'203-953-1171', N'admin1@westga.edu', N'admin1', 1, NULL, NULL)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (42, N'Phoebe', N'ADMIN-2', N'Ap #324-3230 Sit Street', N'Farrukhabad-cum-Fatehgarh', N'NY', N'39383', N'983-285-6186', N'admin2@westga.edu', N'admin2', 1, NULL, NULL)
 SET IDENTITY_INSERT [dbo].[employee] OFF
-SET IDENTITY_INSERT [dbo].[stage] ON 
+SET IDENTITY_INSERT [dbo].[stage] ON
+
+--
+-- Now add FK constraint for supervisor id
+--
+GO
+ALTER TABLE [dbo].[employee]  WITH CHECK ADD  CONSTRAINT [FK_employee_supervisor] FOREIGN KEY([supervisorId])
+REFERENCES [dbo].[employee] ([employeeId])
+GO
+ALTER TABLE [dbo].[employee] CHECK CONSTRAINT [FK_employee_supervisor]
+GO
 
 INSERT [dbo].[stage] ([stageId], [stageName]) VALUES (1, N'stage-1')
 INSERT [dbo].[stage] ([stageId], [stageName]) VALUES (2, N'stage-2')
 INSERT [dbo].[stage] ([stageId], [stageName]) VALUES (3, N'stage-3')
 SET IDENTITY_INSERT [dbo].[stage] OFF
-SET IDENTITY_INSERT [dbo].[evaluation_schedule] ON 
+SET IDENTITY_INSERT [dbo].[evaluation_schedule] ON
 
 INSERT [dbo].[evaluation_schedule] ([scheduleId], [cohortId], [typeId], [stageId], [startDate], [endDate]) VALUES (1, 1, 1, 1, CAST(N'2014-01-01' AS Date), CAST(N'2014-12-31' AS Date))
 INSERT [dbo].[evaluation_schedule] ([scheduleId], [cohortId], [typeId], [stageId], [startDate], [endDate]) VALUES (2, 1, 1, 2, CAST(N'2014-01-01' AS Date), CAST(N'2014-12-31' AS Date))
 INSERT [dbo].[evaluation_schedule] ([scheduleId], [cohortId], [typeId], [stageId], [startDate], [endDate]) VALUES (3, 1, 1, 3, CAST(N'2014-01-01' AS Date), CAST(N'2014-12-31' AS Date))
 INSERT [dbo].[evaluation_schedule] ([scheduleId], [cohortId], [typeId], [stageId], [startDate], [endDate]) VALUES (4, 1, 2, 3, CAST(N'2014-01-01' AS Date), CAST(N'2014-12-31' AS Date))
 SET IDENTITY_INSERT [dbo].[evaluation_schedule] OFF
-SET IDENTITY_INSERT [dbo].[role] ON 
+SET IDENTITY_INSERT [dbo].[role] ON
 
 INSERT [dbo].[role] ([roleId], [roleName]) VALUES (1, N'1:Self')
 INSERT [dbo].[role] ([roleId], [roleName]) VALUES (2, N'2:Supervisor')
 INSERT [dbo].[role] ([roleId], [roleName]) VALUES (3, N'3:Co-Worker')
 SET IDENTITY_INSERT [dbo].[role] OFF
-SET IDENTITY_INSERT [dbo].[evaluations] ON 
+SET IDENTITY_INSERT [dbo].[evaluations] ON
 
 INSERT [dbo].[evaluations] ([evaluationId], [employeeId], [typeId], [stageId], [evaluator], [roleId], [completionDate]) VALUES (1, 1, 1, 1, 1, 1, CAST(N'2014-02-28 00:00:00.000' AS DateTime))
 INSERT [dbo].[evaluations] ([evaluationId], [employeeId], [typeId], [stageId], [evaluator], [roleId], [completionDate]) VALUES (2, 1, 1, 1, 2, 2, CAST(N'2014-02-28 00:00:00.000' AS DateTime))
@@ -163,7 +173,7 @@ INSERT [dbo].[evaluations] ([evaluationId], [employeeId], [typeId], [stageId], [
 INSERT [dbo].[evaluations] ([evaluationId], [employeeId], [typeId], [stageId], [evaluator], [roleId], [completionDate]) VALUES (23, 12, 2, 1, 13, 2, NULL)
 INSERT [dbo].[evaluations] ([evaluationId], [employeeId], [typeId], [stageId], [evaluator], [roleId], [completionDate]) VALUES (24, 12, 2, 1, 14, 3, NULL)
 SET IDENTITY_INSERT [dbo].[evaluations] OFF
-SET IDENTITY_INSERT [dbo].[answer] ON 
+SET IDENTITY_INSERT [dbo].[answer] ON
 
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (1, 1, 1, 3)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (2, 1, 2, 1)
