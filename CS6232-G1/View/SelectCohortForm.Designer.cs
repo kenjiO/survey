@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.SelectButton = new System.Windows.Forms.Button();
-            this.CancelButton = new System.Windows.Forms.Button();
+            this.MyCancelButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.CohortComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
@@ -44,15 +44,16 @@
             this.SelectButton.UseVisualStyleBackColor = true;
             this.SelectButton.Click += new System.EventHandler(this.SelectButton_Click);
             // 
-            // CancelButton
+            // MyCancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(180, 160);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelButton.TabIndex = 1;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            this.MyCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.MyCancelButton.Location = new System.Drawing.Point(180, 160);
+            this.MyCancelButton.Name = "MyCancelButton";
+            this.MyCancelButton.Size = new System.Drawing.Size(75, 23);
+            this.MyCancelButton.TabIndex = 1;
+            this.MyCancelButton.Text = "Cancel";
+            this.MyCancelButton.UseVisualStyleBackColor = true;
+            this.MyCancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // label1
             // 
@@ -76,13 +77,15 @@
             // 
             // SelectCohortForm
             // 
+            this.AcceptButton = this.SelectButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.MyCancelButton;
             this.ClientSize = new System.Drawing.Size(284, 221);
             this.ControlBox = false;
             this.Controls.Add(this.CohortComboBox);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.MyCancelButton);
             this.Controls.Add(this.SelectButton);
             this.Name = "SelectCohortForm";
             this.Text = "Select Cohort";
@@ -94,7 +97,7 @@
         #endregion
 
         private System.Windows.Forms.Button SelectButton;
-        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Button MyCancelButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox CohortComboBox;
     }
