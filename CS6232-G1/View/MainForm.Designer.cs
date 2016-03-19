@@ -31,14 +31,16 @@
             this.menuStripAdmin = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testAdminOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cohortsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createNewCohortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripEmployee = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.testEmployeeMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testEmployeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripDefault = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,8 +52,6 @@
             this.LoginButton = new System.Windows.Forms.Button();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
-            this.testToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.testToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripAdmin.SuspendLayout();
             this.menuStripEmployee.SuspendLayout();
             this.menuStripDefault.SuspendLayout();
@@ -62,10 +62,10 @@
             // 
             this.menuStripAdmin.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.testAdminOptionsToolStripMenuItem,
+            this.cohortsToolStripMenuItem,
             this.stagesToolStripMenuItem,
             this.reportsToolStripMenuItem,
-            this.testToolStripMenuItem2});
+            this.testAdminToolStripMenuItem});
             this.menuStripAdmin.Location = new System.Drawing.Point(0, 48);
             this.menuStripAdmin.Name = "menuStripAdmin";
             this.menuStripAdmin.Size = new System.Drawing.Size(636, 24);
@@ -87,13 +87,13 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // testAdminOptionsToolStripMenuItem
+            // cohortsToolStripMenuItem
             // 
-            this.testAdminOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cohortsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createNewCohortToolStripMenuItem});
-            this.testAdminOptionsToolStripMenuItem.Name = "testAdminOptionsToolStripMenuItem";
-            this.testAdminOptionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.testAdminOptionsToolStripMenuItem.Text = "Cohorts";
+            this.cohortsToolStripMenuItem.Name = "cohortsToolStripMenuItem";
+            this.cohortsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.cohortsToolStripMenuItem.Text = "Cohorts";
             // 
             // createNewCohortToolStripMenuItem
             // 
@@ -114,12 +114,20 @@
             this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportsToolStripMenuItem.Text = "Reports";
             // 
+            // testAdminToolStripMenuItem
+            // 
+            this.testAdminToolStripMenuItem.Name = "testAdminToolStripMenuItem";
+            this.testAdminToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.testAdminToolStripMenuItem.Text = "Test";
+            this.testAdminToolStripMenuItem.Visible = false;
+            this.testAdminToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
+            // 
             // menuStripEmployee
             // 
             this.menuStripEmployee.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem1,
             this.testEmployeeMenuToolStripMenuItem,
-            this.testToolStripMenuItem1});
+            this.testEmployeeToolStripMenuItem});
             this.menuStripEmployee.Location = new System.Drawing.Point(0, 24);
             this.menuStripEmployee.Name = "menuStripEmployee";
             this.menuStripEmployee.Size = new System.Drawing.Size(636, 24);
@@ -146,6 +154,14 @@
             this.testEmployeeMenuToolStripMenuItem.Name = "testEmployeeMenuToolStripMenuItem";
             this.testEmployeeMenuToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.testEmployeeMenuToolStripMenuItem.Text = "Evaluations";
+            // 
+            // testEmployeeToolStripMenuItem
+            // 
+            this.testEmployeeToolStripMenuItem.Name = "testEmployeeToolStripMenuItem";
+            this.testEmployeeToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.testEmployeeToolStripMenuItem.Text = "Test";
+            this.testEmployeeToolStripMenuItem.Visible = false;
+            this.testEmployeeToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
             // menuStripDefault
             // 
@@ -251,22 +267,6 @@
             this.UsernameTextBox.TabIndex = 0;
             this.UsernameTextBox.Text = "admin1@westga.edu";
             // 
-            // testToolStripMenuItem1
-            // 
-            this.testToolStripMenuItem1.Name = "testToolStripMenuItem1";
-            this.testToolStripMenuItem1.Size = new System.Drawing.Size(40, 20);
-            this.testToolStripMenuItem1.Text = "Test";
-            this.testToolStripMenuItem1.Visible = false;
-            this.testToolStripMenuItem1.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
-            // 
-            // testToolStripMenuItem2
-            // 
-            this.testToolStripMenuItem2.Name = "testToolStripMenuItem2";
-            this.testToolStripMenuItem2.Size = new System.Drawing.Size(40, 20);
-            this.testToolStripMenuItem2.Text = "Test";
-            this.testToolStripMenuItem2.Visible = false;
-            this.testToolStripMenuItem2.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,7 +298,7 @@
         private System.Windows.Forms.MenuStrip menuStripAdmin;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem testAdminOptionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cohortsToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStripEmployee;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
@@ -317,8 +317,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem createNewCohortToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem testAdminToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem testEmployeeToolStripMenuItem;
     }
 }
 

@@ -28,9 +28,11 @@ namespace CS6232_G1.View
             InitializeComponent();
 
             // TODO: Remove - test code
+            // *********** Begin test code **************
             //testToolStripMenuItem.Visible = true;
-            //testAdminOptionsToolStripMenuItem.Visible = true;
+            //testAdminToolStripMenuItem.Visible = true;
             //testEmployeeMenuToolStripMenuItem.Visible = true;
+            // ************ End test code ***************
 
             // initialize these to both invisible until we know which to use, default menu will be visible
             menuStripAdmin.Visible = false;
@@ -39,6 +41,14 @@ namespace CS6232_G1.View
             {
                 throw new ArgumentNullException("Null controller on main form");
             }
+        }
+
+        // TODO: Remove test link from default menu when done testing
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new AddCohortScheduleForm(_controller, 1, "");
+            form.MdiParent = this;
+            form.Show();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -55,14 +65,6 @@ namespace CS6232_G1.View
             menuStripDefault.Visible = false;
             menuStripAdmin.Visible = on;
             menuStripEmployee.Visible = !on;
-        }
-
-        // TODO: Remove test link from default menu when done testing
-        private void testToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form form = new AddCohortScheduleForm(_controller, 1, "");
-            form.MdiParent = this;
-            form.Show();
         }
 
         private void LoginButton_Click(object sender, EventArgs e)

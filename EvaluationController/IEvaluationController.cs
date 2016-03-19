@@ -24,7 +24,7 @@ namespace Evaluation.Controller
         /// Look up the name for a stage
         /// </summary>
         /// <param name="stageId">Stage id to look up</param>
-        /// <returns>Stage name if found, else null</returns>
+        /// <returns>Stage name if found, else an empty string</returns>
         string getStageName(int stageId);
 
         /// <summary>
