@@ -2,6 +2,7 @@
 using Evaluation.Model;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace CS6232_G1.View
@@ -43,9 +44,30 @@ namespace CS6232_G1.View
                 _cohortName = _controller.getCohortName(_cohortId);
                 //_cohortName = "Cohort 1"; 
                 lblCohortName.Text = "Details for " + _cohortName;
-                btnDeleteEvaluation.Enabled = false;
                 loadMemberListView();
-                loadEvaluationScheduleListView();
+                //loadEvaluationScheduleListView();
+
+                // ***********************************
+                dgvEvaluationSchedule.CellBorderStyle = DataGridViewCellBorderStyle.None;
+                dgvEvaluationSchedule.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvEvaluationSchedule.BackgroundColor = Color.White;
+                                
+                //Get list of evaluation schedule objects and bind the datagrid to the list
+                List<EvaluationSchedule> scheduleList = _controller.getEvaluationScheduleList(_cohortId);
+                dgvEvaluationSchedule.DataSource = scheduleList;
+
+                // Display type name and stage name
+                foreach (DataGridViewRow row in dgvEvaluationSchedule.Rows)
+                {
+                    int typeId = (int)row.Cells["TypeId"].Value;
+                    row.Cells["TypeName"].Value = _controller.getTypeName(typeId);
+
+                    int stageId = (int)row.Cells["StageId"].Value;
+                    row.Cells["StageName"].Value = _controller.getStageName(stageId);
+                }
+                dgvEvaluationSchedule.AutoResizeColumns();
+                dgvEvaluationSchedule.ClearSelection();
+                // **********************************
             }
             catch (Exception ex)
             {
@@ -75,40 +97,6 @@ namespace CS6232_G1.View
                 else
                 {
                     MessageBox.Show("No members have been added to this cohort.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
-            }
-        }
-
-        // Loads the listView with the evaluations for the given cohort
-        private void loadEvaluationScheduleListView()
-        {
-            try
-            {
-                List<EvaluationSchedule> scheduleList;
-                scheduleList = _controller.getEvaluationScheduleList(_cohortId);
-                lvEvaluationSchedule.Items.Clear();
-                //lvEvaluationSchedule.CheckBoxes = true;
-                setListViewColumnWidth(lvEvaluationSchedule);
-
-                if (scheduleList.Count > 0)
-                {
-                    foreach (EvaluationSchedule schedule in scheduleList)
-                    {
-                        String typeName = _controller.getTypeName(schedule.TypeId);
-                        ListViewItem item = lvEvaluationSchedule.Items.Add(typeName);
-                        String stageName = _controller.getStageName(schedule.StageId);
-                        item.SubItems.Add(stageName);
-                        item.SubItems.Add(schedule.StartDate.ToShortDateString());
-                        item.SubItems.Add(schedule.EndDate.ToShortDateString());
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("No evaluations have been set up for this cohort.");
                 }
             }
             catch (Exception ex)
@@ -156,13 +144,9 @@ namespace CS6232_G1.View
         {
             loadMemberListView();
             lvMembers.Items[lvMembers.Items.Count - 1].EnsureVisible();
-            loadEvaluationScheduleListView();
-            lvEvaluationSchedule.Items[lvEvaluationSchedule.Items.Count - 1].EnsureVisible();
+            //loadEvaluationScheduleListView();
+            //lvEvaluationSchedule.Items[lvEvaluationSchedule.Items.Count - 1].EnsureVisible();
         }
 
-        private void lvEvaluationSchedule_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            btnDeleteEvaluation.Enabled = lvEvaluationSchedule.SelectedItems.Count > 0;        
-        }
     }
 }

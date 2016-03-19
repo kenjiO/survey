@@ -99,11 +99,11 @@ namespace Test
             switch (cohortId)
             {
                 case 1:
-                    results.Add(new EvaluationSchedule(1, 1, 1, DateTime.Now, DateTime.Parse("2016-06-10")));
-                    results.Add(new EvaluationSchedule(1, 2, 1, DateTime.Now, DateTime.Parse("2016-06-10")));
+                    results.Add(new EvaluationSchedule(1, 1, 1, 1, DateTime.Now, DateTime.Parse("2016-06-10")));
+                    results.Add(new EvaluationSchedule(2, 1, 2, 1, DateTime.Now, DateTime.Parse("2016-06-10")));
                     break;
                 case 2:
-                    results.Add(new EvaluationSchedule(2, 1, 1, DateTime.Now, DateTime.Parse("2016-06-10")));
+                    results.Add(new EvaluationSchedule(3, 2, 1, 1, DateTime.Now, DateTime.Parse("2016-06-10")));
                     break;
                 default:
                     throw new KeyNotFoundException("Invalid cohort id, " + cohortId);

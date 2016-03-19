@@ -109,7 +109,7 @@ namespace Evaluation.DAL
             List<EvaluationSchedule> results = new List<EvaluationSchedule>();
 
             string selectStatement =
-                "SELECT  typeid, stageId, " +
+                "SELECT  scheduleid, typeid, stageId, " +
                 "startDate, endDate " +
                 "FROM evaluation_schedule " +
                 "WHERE cohortId = @cohortId";
@@ -124,6 +124,7 @@ namespace Evaluation.DAL
 
                     using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
+                        int scheduleIDOrd = reader.GetOrdinal("scheduleId");
                         int typeIDOrd = reader.GetOrdinal("typeId");
                         int stageIDOrd = reader.GetOrdinal("stageId");
                         int startDateOrd = reader.GetOrdinal("startDate");
@@ -131,11 +132,12 @@ namespace Evaluation.DAL
 
                         while (reader.Read())
                         {
+                            int scheduleId = reader.GetInt32(scheduleIDOrd);
                             int typeId = reader.GetInt32(typeIDOrd);
                             int stageId = reader.GetInt32(stageIDOrd);
                             DateTime startDate = reader.GetDateTime(startDateOrd);
                             DateTime endDate = reader.GetDateTime(endDateOrd);
-                            EvaluationSchedule schedule = new EvaluationSchedule(cohortId, typeId, stageId, startDate, endDate);
+                            EvaluationSchedule schedule = new EvaluationSchedule(scheduleId, cohortId, typeId, stageId, startDate, endDate);
                             results.Add(schedule);
                         }
                     }
