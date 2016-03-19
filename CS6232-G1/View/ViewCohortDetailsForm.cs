@@ -43,7 +43,7 @@ namespace CS6232_G1.View
                 _cohortName = _controller.getCohortName(_cohortId);
                 //_cohortName = "Cohort 1"; 
                 lblCohortName.Text = "Details for " + _cohortName;
-                
+                btnDeleteEvaluation.Enabled = false;
                 loadMemberListView();
                 loadEvaluationScheduleListView();
             }
@@ -100,7 +100,7 @@ namespace CS6232_G1.View
                     {
                         String typeName = _controller.getTypeName(schedule.TypeId);
                         ListViewItem item = lvEvaluationSchedule.Items.Add(typeName);
-                        String stageName = _controller.stageName(schedule.StageId);
+                        String stageName = _controller.getStageName(schedule.StageId);
                         item.SubItems.Add(stageName);
                         item.SubItems.Add(schedule.StartDate.ToShortDateString());
                         item.SubItems.Add(schedule.EndDate.ToShortDateString());
@@ -158,6 +158,11 @@ namespace CS6232_G1.View
             lvMembers.Items[lvMembers.Items.Count - 1].EnsureVisible();
             loadEvaluationScheduleListView();
             lvEvaluationSchedule.Items[lvEvaluationSchedule.Items.Count - 1].EnsureVisible();
+        }
+
+        private void lvEvaluationSchedule_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnDeleteEvaluation.Enabled = lvEvaluationSchedule.SelectedItems.Count > 0;        
         }
     }
 }

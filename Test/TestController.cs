@@ -33,7 +33,7 @@ namespace Test
             return _stages.Exists(s => s.name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
-        public string stageName(int stageId)
+        public string getStageName(int stageId)
         {
             List<Stage> _stages = getStageList();
             Stage result = _stages.Find(s => s.id == stageId);

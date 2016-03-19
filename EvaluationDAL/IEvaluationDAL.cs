@@ -19,6 +19,12 @@ namespace Evaluation.DAL
 
         #region Cohorts
         /// <summary>
+        /// Get a list of cohorts
+        /// </summary>
+        /// <returns>A list of Cohort objects corresponding to the cohorts in the DB</returns>
+        List<Cohort> getCohorts();
+
+        /// <summary>
         /// Create a new cohort with the given name
         /// </summary>
         /// <returns>The new cohort created. Null if it could not be created</returns>

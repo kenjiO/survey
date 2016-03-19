@@ -17,13 +17,9 @@ namespace Evaluation.Controller
 
         public List<Cohort> getCohorts()
         {
-            //TODO get real list from the DB
-
-            List<Cohort> cohorts = new List<Cohort>();
-            cohorts.Add(new Cohort(1, "cohort 1"));
-            cohorts.Add(new Cohort(2, "cohort 2"));
-            return cohorts;
+            return _dal.getCohorts();
         }
+
         public Cohort addCohort(String name)
         {
             if (name == null)

@@ -43,6 +43,7 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnDeleteEvaluation = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -70,12 +71,15 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4});
+            this.lvEvaluationSchedule.FullRowSelect = true;
             this.lvEvaluationSchedule.Location = new System.Drawing.Point(700, 113);
+            this.lvEvaluationSchedule.MultiSelect = false;
             this.lvEvaluationSchedule.Name = "lvEvaluationSchedule";
             this.lvEvaluationSchedule.Size = new System.Drawing.Size(610, 277);
             this.lvEvaluationSchedule.TabIndex = 3;
             this.lvEvaluationSchedule.UseCompatibleStateImageBehavior = false;
             this.lvEvaluationSchedule.View = System.Windows.Forms.View.Details;
+            this.lvEvaluationSchedule.SelectedIndexChanged += new System.EventHandler(this.lvEvaluationSchedule_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -114,11 +118,11 @@
             // btnAddEvaluation
             // 
             this.btnAddEvaluation.AutoSize = true;
-            this.btnAddEvaluation.Location = new System.Drawing.Point(904, 396);
+            this.btnAddEvaluation.Location = new System.Drawing.Point(700, 396);
             this.btnAddEvaluation.Name = "btnAddEvaluation";
-            this.btnAddEvaluation.Size = new System.Drawing.Size(212, 36);
+            this.btnAddEvaluation.Size = new System.Drawing.Size(157, 36);
             this.btnAddEvaluation.TabIndex = 5;
-            this.btnAddEvaluation.Text = "Add Evaluaton to Schedule";
+            this.btnAddEvaluation.Text = "Add Evaluation";
             this.btnAddEvaluation.UseVisualStyleBackColor = true;
             this.btnAddEvaluation.Click += new System.EventHandler(this.btnAddEvaluation_Click);
             // 
@@ -166,11 +170,22 @@
             this.columnHeader8.Tag = "3";
             this.columnHeader8.Text = "Email";
             // 
+            // btnDeleteEvaluation
+            // 
+            this.btnDeleteEvaluation.AutoSize = true;
+            this.btnDeleteEvaluation.Location = new System.Drawing.Point(1098, 396);
+            this.btnDeleteEvaluation.Name = "btnDeleteEvaluation";
+            this.btnDeleteEvaluation.Size = new System.Drawing.Size(212, 36);
+            this.btnDeleteEvaluation.TabIndex = 8;
+            this.btnDeleteEvaluation.Text = "Remove Evaluation";
+            this.btnDeleteEvaluation.UseVisualStyleBackColor = true;
+            // 
             // ViewCohortDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1334, 504);
+            this.Controls.Add(this.btnDeleteEvaluation);
             this.Controls.Add(this.lvMembers);
             this.Controls.Add(this.btnAddMember);
             this.Controls.Add(this.btnAddEvaluation);
@@ -203,5 +218,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.Button btnDeleteEvaluation;
     }
 }

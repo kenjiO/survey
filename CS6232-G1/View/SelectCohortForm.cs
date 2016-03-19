@@ -34,12 +34,13 @@ namespace CS6232_G1.View
         private void SelectButton_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
-
+            Close();
         }
 
         private void SelectCohortForm_Load(object sender, EventArgs e)
@@ -47,6 +48,7 @@ namespace CS6232_G1.View
             try
             {
                 List<Cohort> cohortList = _controller.getCohorts();
+                closeFormIfNoCohorts(cohortList);
                 CohortComboBox.DataSource = cohortList;
                 CohortComboBox.DisplayMember = "cohortName";
                 CohortComboBox.ValueMember = "cohortId";
@@ -55,7 +57,7 @@ namespace CS6232_G1.View
             {
                 MessageBox.Show("A Database error occured fetching cohorts: " + ex.Message);
                 this.DialogResult = DialogResult.Cancel;
-                return;
+                Close();
             }
             CohortComboBox.SelectedIndex = -1;
         }
@@ -63,6 +65,15 @@ namespace CS6232_G1.View
         private void CohortComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _selectedCohort = (Cohort) CohortComboBox.SelectedItem;
+        }
+
+        private void closeFormIfNoCohorts(List<Cohort> cohorts) {
+            if (cohorts.Count < 1)
+            {
+                MessageBox.Show("There are no cohorts. Please add a cohort first");
+                this.DialogResult = DialogResult.Cancel;
+                Close();
+            }
         }
 
     }
