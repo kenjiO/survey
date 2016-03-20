@@ -34,5 +34,23 @@ namespace UnitTests
             Assert.AreEqual("", controller.getStageName(100));
         }
 
+        [TestMethod]
+        public void whenGetNextStageIdForIdNullShouldGetStage1()
+        {
+            Assert.AreEqual(1, controller.getNextStageId(null));
+        }
+
+        [TestMethod]
+        public void whenGetNextStageIdForId3ShouldGetStage4()
+        {
+            Assert.AreEqual(4, controller.getNextStageId(3));
+        }
+
+        [TestMethod]
+        public void whenGetNextStageIdForId5ShouldGetNull()
+        {
+            Assert.IsNull(controller.getNextStageId(5));
+        }
+
     }
 }

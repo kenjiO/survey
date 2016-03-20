@@ -44,6 +44,20 @@ namespace Test
             return result.name;
         }
 
+
+        public int? getNextStageId(int? stageId)
+        {
+            if (stageId == null)
+            {
+                return 1;
+            }
+            if (stageId < 5)
+            {
+                return stageId + 1;
+            }
+            return null;
+        }
+
         public int addStage(string name)
         {
             return 5;

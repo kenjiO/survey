@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StageControllerTest.cs" />
     <Compile Include="TypeControllerTest.cs" />
+    <Compile Include="CohortControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EvaluationController\EvaluationController.csproj">

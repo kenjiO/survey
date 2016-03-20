@@ -35,6 +35,13 @@ namespace Evaluation.Controller
         bool stageExists(string name);
 
         /// <summary>
+        /// Get stageId for the stage that comes after the one given
+        /// </summary>
+        /// <param name="stageId">Previous stage id, null if none</param>
+        /// <returns>Next stage id, null if none</returns>
+        int? getNextStageId(int? stageId);
+
+        /// <summary>
         /// Add a new stage
         /// </summary>
         /// <param name="name">Stage name to add</param>

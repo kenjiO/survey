@@ -64,15 +64,22 @@ namespace Test
         {
             DataTable table = EvaluationDAL.createCohortAddScheduleInfoDataTable();
 
-            Object[] row1 = { 1, null, null };
-            Object[] row2 = { 2, 2, DateTime.Parse("6/5/2016") };
-            Object[] row3 = { 1, 4, DateTime.Parse("4/15/2016") };
-            Object[] row4 = { 2, 5, DateTime.Parse("5/25/2016") };
+            if (cohortId == 1) 
+            {
+                Object[] row1 = { 1, null, null };
+                Object[] row2 = { 2, 2, DateTime.Parse("6/5/2016") };
 
-            table.Rows.Add(row1);
-            table.Rows.Add(row2);
-            table.Rows.Add(row3);
-            table.Rows.Add(row4);
+                table.Rows.Add(row1);
+                table.Rows.Add(row2);
+            }
+            else
+            {
+                Object[] row1 = { 1, 4, DateTime.Parse("4/15/2016") };
+                Object[] row2 = { 2, 5, DateTime.Parse("5/25/2016") };
+
+                table.Rows.Add(row1);
+                table.Rows.Add(row2);
+            }
             return table;
         }
 

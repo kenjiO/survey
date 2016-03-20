@@ -89,8 +89,16 @@ namespace Evaluation.Controller
             foreach (DataRow row in table.Rows)
             {
                 int typeId = (int)row["typeId"];
-                int? lastStageId = (int?)row["lastStageId"];
-                DateTime? lastStageEndDate = (DateTime?)row["lastStageEndDate"];
+                int? lastStageId = null;
+                if (!DBNull.Value.Equals(row["lastStageId"]))
+                {
+                    lastStageId = (int)row["lastStageId"];
+                }
+                DateTime? lastStageEndDate = null;
+                if (!DBNull.Value.Equals(row["lastStageEndDate"]))
+                {
+                    lastStageEndDate = (DateTime)row["lastStageEndDate"];
+                }
 
                 results.Add(new CohortScheduleData(typeId, getTypeName(typeId), lastStageEndDate, getNextStageId(lastStageId)));
             }
