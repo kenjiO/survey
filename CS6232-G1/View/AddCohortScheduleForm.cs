@@ -26,13 +26,12 @@ namespace CS6232_G1.View
         /// </summary>
         /// <param name="controller">Controller to use</param>
         /// <param name="cohortId">Id of cohort to add schedule for</param>
-        /// <param name="cohortName">Name of cohort (optional)</param>
-        public AddCohortScheduleForm(IEvaluationController controller, int cohortId, String cohortName)
+        public AddCohortScheduleForm(IEvaluationController controller, int cohortId)
         {
             InitializeComponent();
             _controller = controller;
             _cohortId = cohortId;
-            _cohortName = cohortName;
+            _cohortName = null;
         }
 
         private void AddCohortScheduleForm_Load(object sender, EventArgs e)
@@ -61,15 +60,12 @@ namespace CS6232_G1.View
                 Close();
                 return;
             }
-            if (_cohortName.Length <= 0) 
+            _cohortName = _controller.getCohortName(_cohortId);
+            if (_cohortName.Length == 0)
             {
-                _cohortName = _controller.getCohortName(_cohortId);
-                if (_cohortName.Length == 0)
-                {
-                    MessageBox.Show("Invalid cohort selected");
-                    Close();
-                    return;
-                }
+                MessageBox.Show("Invalid cohort selected");
+                Close();
+                return;
             }
             lblCohortName.Text = _cohortName;
             try
@@ -96,6 +92,7 @@ namespace CS6232_G1.View
             cboStage.DisplayMember = "name";
             cboStage.ValueMember = "id";
             cboStage.SelectedIndex = -1;
+            cboStage.Enabled = false;
 
             cboType.DataSource = _scheduleDataList;
             cboType.DisplayMember = "typeName";
@@ -117,6 +114,7 @@ namespace CS6232_G1.View
                 cboStage.SelectedIndex = -1;
                 setupControls(false, "All stages scheduled");
             }
+            
             DateTime minStartDate = data.lastStageEndDate ?? DateTime.Now;
             minStartDate = minStartDate.Date.AddDays(1);
             dateStart.MinDate = minStartDate;
@@ -135,7 +133,7 @@ namespace CS6232_G1.View
             btnAdd.Enabled = canAdd;
             dateStart.Enabled = canAdd;
             dateEnd.Enabled = canAdd;
-            // TODO: Set message
+            lblNotice.Text = msg;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -149,6 +147,22 @@ namespace CS6232_G1.View
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void dateStart_ValueChanged(object sender, EventArgs e)
+        {
+            if (dateEnd.Value < dateStart.Value)
+            {
+                dateEnd.Value = dateStart.Value;
+            }
+        }
+
+        private void dateEnd_ValueChanged(object sender, EventArgs e)
+        {
+            if (dateEnd.Value < dateStart.Value)
+            {
+                dateStart.Value = dateEnd.Value;
+            }
         }
 
 

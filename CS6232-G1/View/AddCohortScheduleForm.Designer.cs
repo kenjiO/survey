@@ -40,6 +40,7 @@
             this.dateEnd = new System.Windows.Forms.DateTimePicker();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.lblNotice = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -85,7 +86,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(13, 105);
+            this.label4.Location = new System.Drawing.Point(13, 121);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 16);
             this.label4.TabIndex = 4;
@@ -95,7 +96,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(13, 131);
+            this.label5.Location = new System.Drawing.Point(13, 147);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 16);
             this.label5.TabIndex = 5;
@@ -103,7 +104,9 @@
             // 
             // cboType
             // 
+            this.cboType.BackColor = System.Drawing.SystemColors.Control;
             this.cboType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboType.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboType.FormattingEnabled = true;
             this.cboType.Location = new System.Drawing.Point(89, 46);
             this.cboType.Name = "cboType";
@@ -113,6 +116,9 @@
             // 
             // cboStage
             // 
+            this.cboStage.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.cboStage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboStage.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboStage.FormattingEnabled = true;
             this.cboStage.Location = new System.Drawing.Point(89, 74);
             this.cboStage.Name = "cboStage";
@@ -122,23 +128,25 @@
             // dateStart
             // 
             this.dateStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateStart.Location = new System.Drawing.Point(89, 101);
+            this.dateStart.Location = new System.Drawing.Point(89, 117);
             this.dateStart.Name = "dateStart";
             this.dateStart.Size = new System.Drawing.Size(113, 20);
             this.dateStart.TabIndex = 8;
+            this.dateStart.ValueChanged += new System.EventHandler(this.dateStart_ValueChanged);
             // 
             // dateEnd
             // 
             this.dateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateEnd.Location = new System.Drawing.Point(89, 127);
+            this.dateEnd.Location = new System.Drawing.Point(89, 143);
             this.dateEnd.Name = "dateEnd";
             this.dateEnd.Size = new System.Drawing.Size(113, 20);
             this.dateEnd.TabIndex = 9;
+            this.dateEnd.ValueChanged += new System.EventHandler(this.dateEnd_ValueChanged);
             // 
             // btnAdd
             // 
             this.btnAdd.Enabled = false;
-            this.btnAdd.Location = new System.Drawing.Point(99, 164);
+            this.btnAdd.Location = new System.Drawing.Point(99, 180);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 10;
@@ -148,7 +156,8 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(180, 164);
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(180, 180);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 11;
@@ -156,13 +165,22 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // lblNotice
+            // 
+            this.lblNotice.ForeColor = System.Drawing.Color.Red;
+            this.lblNotice.Location = new System.Drawing.Point(93, 98);
+            this.lblNotice.Name = "lblNotice";
+            this.lblNotice.Size = new System.Drawing.Size(162, 16);
+            this.lblNotice.TabIndex = 12;
+            // 
             // AddCohortScheduleForm
             // 
             this.AcceptButton = this.btnAdd;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(270, 199);
+            this.ClientSize = new System.Drawing.Size(270, 215);
+            this.Controls.Add(this.lblNotice);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dateEnd);
@@ -197,5 +215,6 @@
         private System.Windows.Forms.DateTimePicker dateEnd;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label lblNotice;
     }
 }
