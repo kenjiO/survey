@@ -88,9 +88,9 @@ namespace Test
             throw new NotImplementedException();
         }
 
-        public void addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
+        public int addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
         {
-            return;
+            return 5;
         }
 
         #endregion

@@ -191,9 +191,13 @@ namespace Test
             return list;
         }
 
-        public void addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
+        public int addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
         {
-            return;
+            if (cohortId == 1)
+            {
+                return 5;
+            }
+            throw new ArgumentException("Invalid configuration (test)");
         }
 
         public void deleteCohort(int _cohortId)

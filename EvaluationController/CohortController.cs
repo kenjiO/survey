@@ -105,9 +105,9 @@ namespace Evaluation.Controller
             return results;
         }
 
-        public void addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
+        public int addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
         {
-            _dal.addCohortSchedule(cohortId, typeId, stageId, startDate, endDate);
+            return _dal.addCohortSchedule(cohortId, typeId, stageId, startDate, endDate);
         }
 
         public void deleteCohort(int _cohortId)

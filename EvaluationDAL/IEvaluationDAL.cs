@@ -82,8 +82,9 @@ namespace Evaluation.DAL
         /// <param name="stageId">Evaluation Stage</param>
         /// <param name="startDate">Start date</param>
         /// <param name="endDate">End date</param>
+        /// <returns>scheduleId for schedule item added</returns>
         /// <exception cref="ArgumentException">Parameters given were invalid</exception>
-        void addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate);
+        int addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate);
 
         #endregion
 

@@ -334,9 +334,33 @@ namespace Evaluation.DAL
             return table;
         }
 
-        public void addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
+        public int addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
         {
-            // TODO: Create new evaluation schedule
+            string insertStatement = "INSERT INTO evaluation_schedule " +
+                                     "(cohortId, typeId, stageId, startDate, endDate) " +
+                                     "VALUES (@cohortId, @typeId, @stageId, @startDate, @endDate)";
+
+            if (startDate > endDate)
+            {
+                throw new ArgumentException("End date must be on or after start date");
+            }
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(insertStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@cohortId", cohortId);
+                    command.Parameters.AddWithValue("@typeId", typeId);
+                    command.Parameters.AddWithValue("@stageId", stageId);
+                    command.Parameters.AddWithValue("@startDate", startDate);
+                    command.Parameters.AddWithValue("@endDate", endDate);
+                    command.ExecuteNonQuery();
+                }
+                using (SqlCommand command = new SqlCommand("SELECT IDENT_CURRENT('evaluation_schedule') AS scheduleId", connection))
+                {
+                    return Convert.ToInt32(command.ExecuteScalar());
+                }
+            }
         }
 
     }
