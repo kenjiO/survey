@@ -30,7 +30,7 @@ namespace CS6232_G1.View
             // TODO: Remove - test code
             // *********** Begin test code **************
             //testToolStripMenuItem.Visible = true;
-            testAdminToolStripMenuItem.Visible = true;
+            //testAdminToolStripMenuItem.Visible = true;
             //testEmployeeMenuToolStripMenuItem.Visible = true;
             // ************ End test code ***************
 
@@ -46,7 +46,12 @@ namespace CS6232_G1.View
         // TODO: Remove test link from default menu when done testing
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form form = new AddCohortScheduleForm(_controller, 1, "");
+            int cohortId = SelectCohortForm.Run(_controller);
+            if (cohortId == -1)
+            {
+                return;
+            }
+            Form form = new AddCohortScheduleForm(_controller, cohortId, "");
             form.MdiParent = this;
             form.Show();
         }

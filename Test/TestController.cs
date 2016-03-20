@@ -185,11 +185,11 @@ namespace Test
         {
             List<EmployeeName> results = new List<EmployeeName>();
 
-            results.Add(new EmployeeName( 54, "Anderson, Steve (54)"));
-            results.Add(new EmployeeName(  3, "Doe, John (3)"));
-            results.Add(new EmployeeName(105, "Doe, Zoe (105)"));
-            results.Add(new EmployeeName( 22, "Jones, Bob (22)"));
-            results.Add(new EmployeeName(141, "Smith, Ann (141)"));
+            results.Add(new EmployeeName( 54, "Steve", "Anderson"));
+            results.Add(new EmployeeName(  3, "John", "Doe"));
+            results.Add(new EmployeeName(105, "Zoe", "Doe"));
+            results.Add(new EmployeeName( 22, "Bob", "Jones"));
+            results.Add(new EmployeeName(141, "Ann", "Smith"));
             return results;
         }
         #endregion

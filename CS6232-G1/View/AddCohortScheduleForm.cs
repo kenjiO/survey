@@ -19,7 +19,7 @@ namespace CS6232_G1.View
         private int _cohortId;
         private String _cohortName;
         private List<Stage> _stages;
-        private List<CohortScheduleData> _typeList;
+        private List<CohortScheduleData> _scheduleDataList;
 
         /// <summary>
         /// Run Add Cohort Schedule dialog
@@ -74,7 +74,7 @@ namespace CS6232_G1.View
             lblCohortName.Text = _cohortName;
             try
             {
-                _typeList = _controller.getCohortAddScheduleInfo(_cohortId);
+                _scheduleDataList = _controller.getCohortAddScheduleInfo(_cohortId);
             }
             catch (SqlException ex)
             {
@@ -84,7 +84,7 @@ namespace CS6232_G1.View
                 Close();
                 return;
             }
-            if (_typeList.Count == 0)
+            if (_scheduleDataList.Count == 0)
             {
                 MessageBox.Show("No schedulable evaluation types for this cohort", "Notice");
                 Close();
@@ -97,7 +97,7 @@ namespace CS6232_G1.View
             cboStage.ValueMember = "id";
             cboStage.SelectedIndex = -1;
 
-            cboType.DataSource = _typeList;
+            cboType.DataSource = _scheduleDataList;
             cboType.DisplayMember = "typeName";
             cboType.ValueMember = "typeId";
             cboType.SelectedIndex = 0;
@@ -105,20 +105,43 @@ namespace CS6232_G1.View
 
         private void cboType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // TODO: Setup for selected item
-            // if nextStageId is not null,
-            //      set cboStage.SelectedValue to nextStageId
-            //      enable other controls and add button
-            // else
-            //      set cboStage.SelectedIndex = -1 and display message that no more stages are available for this stage
-            //      disable other controls and add button
-            // get min start date (use today if lastStageEndDate is null, else use lastStageEndDate + 1)
-            // set start.mindate, startdate, and enddate to min start date
+            CohortScheduleData data = _scheduleDataList[cboType.SelectedIndex];
+
+            if (data.nextStageId != null)
+            {
+                cboStage.SelectedValue = data.nextStageId;
+                setupControls(true, "");
+            }
+            else
+            {
+                cboStage.SelectedIndex = -1;
+                setupControls(false, "All stages scheduled");
+            }
+            DateTime minStartDate = data.lastStageEndDate ?? DateTime.Now;
+            minStartDate = minStartDate.Date.AddDays(1);
+            dateStart.MinDate = minStartDate;
+            dateStart.Value = minStartDate;
+            dateEnd.MinDate = minStartDate;
+            dateEnd.Value = minStartDate;
+        }
+
+        /// <summary>
+        /// Setup controls based on whether add can occur
+        /// </summary>
+        /// <param name="canAdd">User can add schedule item</param>
+        /// <param name="msg">Display message, if any</param>
+        private void setupControls(bool canAdd, string msg)
+        {
+            btnAdd.Enabled = canAdd;
+            dateStart.Enabled = canAdd;
+            dateEnd.Enabled = canAdd;
+            // TODO: Set message
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             // TODO: Finish
+            // fail if dateStart > dateEnd
             // if successful, close
             // calling form will need to refresh list
         }

@@ -11,6 +11,7 @@ namespace Evaluation.Model
         public int employeeId { get { return _id; } }
         public string firstName { get { return _firstName; } }
         public string lastName { get { return _lastName; } }
+        public string fullName { get { return EmployeeName.fullNameString(_id, _firstName, _lastName); } }
         public string email { get { return _email; } }
         public Boolean isAdmin { get { return _isAdmin; } }
         public int? cohortId { get; set; }
@@ -23,13 +24,6 @@ namespace Evaluation.Model
             _lastName = lastName;
             _email = email;
             _isAdmin = isAdmin;
-        }
-
-        public string fullName
-        {
-            get { 
-                return EmployeeName.fullNameString(_id, _firstName, _lastName);
-            }
         }
 
         private int _id;

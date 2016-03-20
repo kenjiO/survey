@@ -10,17 +10,12 @@ namespace Evaluation.Model
     {
         public int employeeId { get { return _id; } }
         public string name { get { return _name; } }
+        public string fullName { get { return _name; } }
 
         public EmployeeName(int id, string firstName, string lastName)
         {
             _id = id;
             _name = fullNameString(id, firstName, lastName);
-        }
-
-        public EmployeeName(int id, string name)
-        {
-            _id = id;
-            _name = name;
         }
 
         /// <summary>
