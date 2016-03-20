@@ -51,7 +51,7 @@ namespace CS6232_G1.View
             //{
             //    return;
             //}
-            Form form = new AddCohortScheduleForm(_controller, cohortId);
+            Form form = AddOrEditCohortScheduleForm.createAddForm(_controller, cohortId);
             form.MdiParent = this;
             form.Show();
         }

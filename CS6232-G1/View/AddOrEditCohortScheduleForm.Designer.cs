@@ -1,6 +1,6 @@
 ﻿namespace CS6232_G1.View
 {
-    partial class AddCohortScheduleForm
+    partial class AddOrEditCohortScheduleForm
     {
         /// <summary>
         /// Required designer variable.

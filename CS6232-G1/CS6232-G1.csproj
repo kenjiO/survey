@@ -50,11 +50,11 @@
     <Compile Include="View\AddCohortForm.Designer.cs">
       <DependentUpon>AddCohortForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\AddCohortScheduleForm.cs">
+    <Compile Include="View\AddOrEditCohortScheduleForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\AddCohortScheduleForm.Designer.cs">
-      <DependentUpon>AddCohortScheduleForm.cs</DependentUpon>
+    <Compile Include="View\AddOrEditCohortScheduleForm.Designer.cs">
+      <DependentUpon>AddOrEditCohortScheduleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\AddMembersToCohortForm.cs">
       <SubType>Form</SubType>
@@ -103,8 +103,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\AddCohortScheduleForm.resx">
-      <DependentUpon>AddCohortScheduleForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\AddOrEditCohortScheduleForm.resx">
+      <DependentUpon>AddOrEditCohortScheduleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\AddMembersToCohortForm.resx">
       <DependentUpon>AddMembersToCohortForm.cs</DependentUpon>

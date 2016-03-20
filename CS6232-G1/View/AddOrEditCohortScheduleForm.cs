@@ -13,25 +13,55 @@ using System.Windows.Forms;
 
 namespace CS6232_G1.View
 {
-    public partial class AddCohortScheduleForm : Form
+    public partial class AddOrEditCohortScheduleForm : Form
     {
         private IEvaluationController _controller;
         private int _cohortId;
+        private bool _editExisting;
         private String _cohortName;
         private List<Stage> _stages;
         private List<CohortScheduleData> _scheduleDataList;
+        private CohortScheduleData _schedule;
 
         /// <summary>
-        /// Run Add Cohort Schedule dialog
+        /// Create form for Add Cohort Schedule dialog
         /// </summary>
         /// <param name="controller">Controller to use</param>
         /// <param name="cohortId">Id of cohort to add schedule for</param>
-        public AddCohortScheduleForm(IEvaluationController controller, int cohortId)
+        public static AddOrEditCohortScheduleForm createAddForm(IEvaluationController controller, int cohortId)
+        {
+            return new AddOrEditCohortScheduleForm(controller, cohortId);
+        }
+
+        /// <summary>
+        /// Create form for Edit Cohort Schedule dialog
+        /// </summary>
+        /// <param name="controller">Controller to use</param>
+        /// <param name="cohortId">Id of cohort to add schedule for</param>
+        /// <param name="originalSchedule">Schedule to be edited</param>
+        public static AddOrEditCohortScheduleForm createEditForm(IEvaluationController controller, int cohortId, CohortScheduleData originalSchedule)
+        {
+            return new AddOrEditCohortScheduleForm(controller, cohortId, originalSchedule);
+        }
+
+        private AddOrEditCohortScheduleForm(IEvaluationController controller, int cohortId)
         {
             InitializeComponent();
             _controller = controller;
             _cohortId = cohortId;
             _cohortName = null;
+            _schedule = null;
+            _editExisting = false;
+        }
+
+        private AddOrEditCohortScheduleForm(IEvaluationController controller, int cohortId, CohortScheduleData originalSchedule)
+        {
+            InitializeComponent();
+            _controller = controller;
+            _cohortId = cohortId;
+            _cohortName = null;
+            _schedule = originalSchedule;
+            _editExisting = true;
         }
 
         private void AddCohortScheduleForm_Load(object sender, EventArgs e)
