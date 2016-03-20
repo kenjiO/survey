@@ -9,6 +9,14 @@ namespace Evaluation.DAL
     /// </summary>
     public interface IEvaluationDAL
     {
+        #region Types
+        /// <summary>
+        /// Get a list of all types
+        /// </summary>
+        /// <returns>Type list</returns>
+        List<EvalType> getTypeList();
+        #endregion
+
         #region Stages
         /// <summary>
         /// Get a list of stages and their ids
@@ -76,17 +84,6 @@ namespace Evaluation.DAL
 
         #endregion
 
-        #region Types
-        /// <summary>
-        /// Get type name from typeId
-        /// </summary>
-        /// <param name="typeId">the id of the type</param>
-        /// <returns>the name of the type with the given id</returns>
-        string getTypeName(int typeId);
-
-        #endregion
-
-        
     }
 
 }

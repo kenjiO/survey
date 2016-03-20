@@ -13,6 +13,14 @@ namespace Test
     {
         private IEvaluationController _controller = new TestController();
 
+        #region Types
+        public List<EvalType> getTypeList()
+        {
+            return _controller.getTypeList();
+        }
+
+        #endregion
+
         #region Stages
         public List<Stage> getStageList()
         {
@@ -55,21 +63,13 @@ namespace Test
 
         public List<EmployeeName> getEmployeeNameList()
         {
-            throw new NotSupportedException();
+            return _controller.getEmployeeNameList();
         }
 
         public Employee getLogin(String username, String password)
         {
             throw new NotSupportedException();
         }
-
-        #region Types
-        public string getTypeName(int typeId)
-        {
-            throw new NotSupportedException();
-        }
-
-        #endregion
 
         
     }

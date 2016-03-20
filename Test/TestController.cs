@@ -61,18 +61,28 @@ namespace Test
             return results;
         }
 
+        public bool typeExists(string name)
+        {
+            List<EvalType> _types = getTypeList();
+            return _types.Exists(s => s.name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
+
         public string getTypeName(int typeId)
         {
-            switch (typeId)
+            List<EvalType> _types = getTypeList();
+            EvalType result = _types.Find(s => s.id == typeId);
+            if (result == null || result.id != typeId)
             {
-                case 1:
-                    return "Type 1";
-                case 2:
-                    return "Type 2";
-                default:
-                    throw new KeyNotFoundException("Invalid type, " + typeId);
+                throw new KeyNotFoundException("Type Id " + typeId + " not found");
             }
+            return result.name;
         }
+
+        public int addType(string name)
+        {
+            return 3;
+        }
+
         #endregion
 
         #region Cohorts
@@ -175,11 +185,11 @@ namespace Test
         {
             List<EmployeeName> results = new List<EmployeeName>();
 
-            results.Add(new EmployeeName(1, "Ann Smith"));
-            results.Add(new EmployeeName(2, "Bob Jones"));
-            results.Add(new EmployeeName(3, "John Doe"));
-            results.Add(new EmployeeName(4, "Steve Anderson"));
-            results.Add(new EmployeeName(5, "Zoe Doe"));
+            results.Add(new EmployeeName( 54, "Anderson, Steve (54)"));
+            results.Add(new EmployeeName(  3, "Doe, John (3)"));
+            results.Add(new EmployeeName(105, "Doe, Zoe (105)"));
+            results.Add(new EmployeeName( 22, "Jones, Bob (22)"));
+            results.Add(new EmployeeName(141, "Smith, Ann (141)"));
             return results;
         }
         #endregion

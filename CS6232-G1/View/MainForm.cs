@@ -30,7 +30,7 @@ namespace CS6232_G1.View
             // TODO: Remove - test code
             // *********** Begin test code **************
             //testToolStripMenuItem.Visible = true;
-            //testAdminToolStripMenuItem.Visible = true;
+            testAdminToolStripMenuItem.Visible = true;
             //testEmployeeMenuToolStripMenuItem.Visible = true;
             // ************ End test code ***************
 

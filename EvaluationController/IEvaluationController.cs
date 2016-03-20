@@ -51,11 +51,26 @@ namespace Evaluation.Controller
         List<EvalType> getTypeList();
 
         /// <summary>
+        /// See whether a type exists by type name
+        /// </summary>
+        /// <param name="name">Type name to check</param>
+        /// <returns>True if type exists</returns>
+        bool typeExists(string name);
+
+        /// <summary>
         /// Get type name from typeId
         /// </summary>
         /// <param name="typeId">the id of the type</param>
         /// <returns>the name of the type with the given id</returns>
         string getTypeName(int typeId);
+
+        /// <summary>
+        /// Add a new type
+        /// </summary>
+        /// <param name="name">Type name to add</param>
+        /// <returns>Type id for new type</returns>
+        int addType(string name);
+
         #endregion
 
         #region Cohorts

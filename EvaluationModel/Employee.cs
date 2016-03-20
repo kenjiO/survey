@@ -25,6 +25,13 @@ namespace Evaluation.Model
             _isAdmin = isAdmin;
         }
 
+        public string fullName
+        {
+            get { 
+                return EmployeeName.fullNameString(_id, _firstName, _lastName);
+            }
+        }
+
         private int _id;
         private string _firstName;
         private string _lastName;

@@ -12,20 +12,64 @@ namespace Evaluation.Controller
     /// </summary>
     public partial class EvaluationController : IEvaluationController
     {
+        private List<EvalType> _types;
+
         public List<EvalType> getTypeList()
         {
-            // TODO: Use DAL to acquire type list
+            _types = _dal.getTypeList();
+            return _types;
+        }
+
+        private bool tryLoadTypeList()
+        {
+            if (_types == null)
+            {
+                try
+                {
+                    getTypeList();
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool typeExists(string name)
+        {
+            if (!tryLoadTypeList())
+            {
+                return false;
+            }
+            return _types.Exists(t => t.name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public string getTypeName(int typeId)
+        {
+            if (!tryLoadTypeList())
+            {
+                return "";
+            }
+            EvalType result = _types.Find(t => t.id == typeId);
+            if (result == null || result.id != typeId)
+            {
+                _types = null;
+                return "";
+            }
+            return result.name;
+        }
+
+        public int addType(string name)
+        {
+            // TODO: add type, return identity column
+            //  - name should be non-null, non-empty string
+            //  - name should not already exist (can you have a WHERE statement in an INSERT command?)
+            //  - second query to get identity value
+            //  - set _types = null;
+            //  - return ident
             throw new NotSupportedException();
         }
 
-        /// <summary>
-        /// Get type name from typeId
-        /// </summary>
-        /// <param name="typeId">the id of the type</param>
-        /// <returns>the name of the type with the given id</returns>
-        public string getTypeName(int typeId)
-        {
-            return _dal.getTypeName(typeId);
-        }
     }
 }

@@ -9,20 +9,12 @@ namespace Evaluation.Model
     public class EmployeeName
     {
         public int employeeId { get { return _id; } }
-        // name - first last
         public string name { get { return _name; } }
 
         public EmployeeName(int id, string firstName, string lastName)
         {
             _id = id;
-            if (firstName.Length > 0)
-            {
-                _name = firstName + " " + lastName;
-            }
-            else
-            {
-                _name = lastName;
-            }
+            _name = fullNameString(id, firstName, lastName);
         }
 
         public EmployeeName(int id, string name)
@@ -31,7 +23,36 @@ namespace Evaluation.Model
             _name = name;
         }
 
+        /// <summary>
+        /// Convert first and last name and employee id to full name string (e.g. "last, first (###)")
+        /// </summary>
+        /// <param name="id">Employee id</param>
+        /// <param name="first">First name</param>
+        /// <param name="last">Last name</param>
+        /// <returns>Full name string</returns>
+        public static string fullNameString(int id, string first, string last)
+        {
+            string result;
+
+            if (first == null)
+            {
+                first = "";
+            }
+            if (last == null)
+            {
+                last = "";
+            }
+            result = last;
+            if (result.Length > 0 && first.Length > 0)
+            {
+                result += ", ";
+            }
+            result += first + " (" + id + ")";
+            return result;
+        }
+
         private int _id;
         private string _name;
+
     }
 }
