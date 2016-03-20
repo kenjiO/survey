@@ -13,18 +13,14 @@ namespace Evaluation.DAL
     /// </summary>
     public partial class EvaluationDAL : IEvaluationDAL
     {
-        /// <summary>
-        /// Get a list of employee names and ids
-        /// </summary>
-        /// <returns>Employee name list</returns>
-        public List<EmployeeName> getEmployeeNameList()
+        public List<Stage> getStageList()
         {
-            List<EmployeeName> results = new List<EmployeeName>();
+            List<Stage> results = new List<Stage>();
 
             string selectStatement =
-                "SELECT  employeeID, firstName, lastName " +
-                "FROM employee " +
-                "ORDER BY firstName, lastName;";
+                "SELECT  stageId, stageName " +
+                "FROM stage " +
+                "ORDER BY stageId;";
 
             using (SqlConnection connection = EvaluationDB.GetConnection())
             {
@@ -36,14 +32,13 @@ namespace Evaluation.DAL
                     {
                         while (reader.Read())
                         {
-                            EmployeeName employee = new EmployeeName((int)reader["employeeId"], reader["firstName"].ToString(), reader["lastName"].ToString());
-                            results.Add(employee);
+                            Stage stage = new Stage((int)reader["stageId"], reader["stageName"].ToString());
+                            results.Add(stage);
                         }
                     }
                 }
             }
             return results;
         }
-
     }
 }

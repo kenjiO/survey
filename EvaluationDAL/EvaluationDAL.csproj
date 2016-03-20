@@ -46,6 +46,7 @@
     <Compile Include="IEvaluationDAL.cs" />
     <Compile Include="LogonDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StageDAL.cs" />
     <Compile Include="TypeDAL.cs" />
   </ItemGroup>
   <ItemGroup>

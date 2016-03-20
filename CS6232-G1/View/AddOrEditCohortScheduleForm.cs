@@ -1,5 +1,6 @@
 ﻿using Evaluation.Controller;
 using Evaluation.Model;
+using EvaluationModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,15 +23,16 @@ namespace CS6232_G1.View
         private List<Stage> _stages;
         private List<CohortScheduleData> _scheduleDataList;
         private CohortScheduleData _schedule;
+        private IRefreshable _parent;
 
         /// <summary>
         /// Create form for Add Cohort Schedule dialog
         /// </summary>
         /// <param name="controller">Controller to use</param>
         /// <param name="cohortId">Id of cohort to add schedule for</param>
-        public static AddOrEditCohortScheduleForm createAddForm(IEvaluationController controller, int cohortId)
+        public static AddOrEditCohortScheduleForm createAddForm(IEvaluationController controller, int cohortId, IRefreshable parent)
         {
-            return new AddOrEditCohortScheduleForm(controller, cohortId);
+            return new AddOrEditCohortScheduleForm(controller, cohortId, parent);
         }
 
         /// <summary>
@@ -39,25 +41,27 @@ namespace CS6232_G1.View
         /// <param name="controller">Controller to use</param>
         /// <param name="cohortId">Id of cohort to add schedule for</param>
         /// <param name="originalSchedule">Schedule to be edited</param>
-        public static AddOrEditCohortScheduleForm createEditForm(IEvaluationController controller, int cohortId, CohortScheduleData originalSchedule)
+        public static AddOrEditCohortScheduleForm createEditForm(IEvaluationController controller, int cohortId, CohortScheduleData originalSchedule, IRefreshable parent)
         {
-            return new AddOrEditCohortScheduleForm(controller, cohortId, originalSchedule);
+            return new AddOrEditCohortScheduleForm(controller, cohortId, originalSchedule, parent);
         }
 
-        private AddOrEditCohortScheduleForm(IEvaluationController controller, int cohortId)
+        private AddOrEditCohortScheduleForm(IEvaluationController controller, int cohortId, IRefreshable parent)
         {
             InitializeComponent();
             _controller = controller;
+            _parent = parent;
             _cohortId = cohortId;
             _cohortName = null;
             _schedule = null;
             _editExisting = false;
         }
 
-        private AddOrEditCohortScheduleForm(IEvaluationController controller, int cohortId, CohortScheduleData originalSchedule)
+        private AddOrEditCohortScheduleForm(IEvaluationController controller, int cohortId, CohortScheduleData originalSchedule, IRefreshable parent)
         {
             InitializeComponent();
             _controller = controller;
+            _parent = parent;
             _cohortId = cohortId;
             _cohortName = null;
             _schedule = originalSchedule;
@@ -183,6 +187,10 @@ namespace CS6232_G1.View
             {
                 _controller.addCohortSchedule(_cohortId, typeId, stageId, startDate, endDate);
                 this.DialogResult = DialogResult.OK;
+                if (_parent != null)
+                {
+                    _parent.refreshViews();
+                }
                 Close();
             }
             catch (ArgumentException ex)
