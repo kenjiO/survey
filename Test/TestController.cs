@@ -181,6 +181,12 @@ namespace Test
         {
             return;
         }
+
+        public void deleteCohort(int _cohortId)
+        {
+            throw new NotSupportedException();
+        }
+
         #endregion
 
         #region Employees

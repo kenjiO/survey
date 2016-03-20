@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblCohortName = new System.Windows.Forms.Label();
@@ -42,8 +42,6 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dgvEvaluationSchedule = new System.Windows.Forms.DataGridView();
-            this.evaluationScheduleBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.evaluationScheduleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ScheduleId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +51,9 @@
             this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EditButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DeleteButton = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.evaluationScheduleBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.evaluationScheduleBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.deleteCohortButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEvaluationSchedule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.evaluationScheduleBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.evaluationScheduleBindingSource)).BeginInit();
@@ -167,14 +168,6 @@
             this.dgvEvaluationSchedule.TabIndex = 9;
             this.dgvEvaluationSchedule.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEvaluationSchedule_CellContentClick);
             // 
-            // evaluationScheduleBindingSource1
-            // 
-            this.evaluationScheduleBindingSource1.DataSource = typeof(Evaluation.Model.EvaluationSchedule);
-            // 
-            // evaluationScheduleBindingSource
-            // 
-            this.evaluationScheduleBindingSource.DataSource = typeof(Evaluation.Model.EvaluationSchedule);
-            // 
             // ScheduleId
             // 
             this.ScheduleId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -183,7 +176,6 @@
             this.ScheduleId.Name = "ScheduleId";
             this.ScheduleId.ReadOnly = true;
             this.ScheduleId.Visible = false;
-            this.ScheduleId.Width = 130;
             // 
             // TypeId
             // 
@@ -216,8 +208,8 @@
             // StartDate
             // 
             this.StartDate.DataPropertyName = "StartDate";
-            dataGridViewCellStyle1.Format = "dd/MM/yyyy";
-            this.StartDate.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
+            this.StartDate.DefaultCellStyle = dataGridViewCellStyle3;
             this.StartDate.HeaderText = "Start Date";
             this.StartDate.Name = "StartDate";
             this.StartDate.ReadOnly = true;
@@ -225,8 +217,8 @@
             // EndDate
             // 
             this.EndDate.DataPropertyName = "EndDate";
-            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
-            this.EndDate.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
+            this.EndDate.DefaultCellStyle = dataGridViewCellStyle4;
             this.EndDate.HeaderText = "End Date";
             this.EndDate.Name = "EndDate";
             this.EndDate.ReadOnly = true;
@@ -247,6 +239,25 @@
             this.DeleteButton.Text = "Delete";
             this.DeleteButton.UseColumnTextForButtonValue = true;
             // 
+            // evaluationScheduleBindingSource1
+            // 
+            this.evaluationScheduleBindingSource1.DataSource = typeof(Evaluation.Model.EvaluationSchedule);
+            // 
+            // evaluationScheduleBindingSource
+            // 
+            this.evaluationScheduleBindingSource.DataSource = typeof(Evaluation.Model.EvaluationSchedule);
+            // 
+            // deleteCohortButton
+            // 
+            this.deleteCohortButton.AutoSize = true;
+            this.deleteCohortButton.Location = new System.Drawing.Point(784, 34);
+            this.deleteCohortButton.Name = "deleteCohortButton";
+            this.deleteCohortButton.Size = new System.Drawing.Size(118, 30);
+            this.deleteCohortButton.TabIndex = 10;
+            this.deleteCohortButton.Text = "Delete Cohort";
+            this.deleteCohortButton.UseVisualStyleBackColor = true;
+            this.deleteCohortButton.Click += new System.EventHandler(this.DeleteCohortButton_Click);
+            // 
             // ViewCohortDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -254,6 +265,7 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1331, 478);
+            this.Controls.Add(this.deleteCohortButton);
             this.Controls.Add(this.dgvEvaluationSchedule);
             this.Controls.Add(this.lvMembers);
             this.Controls.Add(this.btnAddMember);
@@ -296,5 +308,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn EndDate;
         private System.Windows.Forms.DataGridViewButtonColumn EditButton;
         private System.Windows.Forms.DataGridViewButtonColumn DeleteButton;
+        private System.Windows.Forms.Button deleteCohortButton;
     }
 }

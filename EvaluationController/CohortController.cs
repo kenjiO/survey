@@ -90,5 +90,10 @@ namespace Evaluation.Controller
             _dal.addCohortSchedule(cohortId, typeId, stageId, startDate, endDate);
         }
 
+        public void deleteCohort(int _cohortId)
+        {
+            throw new NotSupportedException();
+        }
+
     }
 }

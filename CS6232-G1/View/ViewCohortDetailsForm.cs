@@ -189,5 +189,10 @@ namespace CS6232_G1.View
             return selectedSchedule;
         }
 
+        private void DeleteCohortButton_Click(object sender, EventArgs e)
+        {
+            _controller.deleteCohort(_cohortId);
+        }
+
     }
 }

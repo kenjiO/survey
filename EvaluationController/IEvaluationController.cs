@@ -139,6 +139,12 @@ namespace Evaluation.Controller
         /// <exception cref="ArgumentException">Parameters given were invalid</exception>
         void addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate);
 
+        /// <summary>
+        /// Deletes the specified cohort
+        /// </summary>
+        /// <param name="_cohortId">id of cohort to delete</param>
+        void deleteCohort(int _cohortId);
+
         #endregion
 
         #region Employees
@@ -177,6 +183,5 @@ namespace Evaluation.Controller
         /// <returns>true if delete is successful, else false</returns>
         bool DeleteSchedule(EvaluationSchedule selectedSchedule);
         #endregion
-
     }
 }
