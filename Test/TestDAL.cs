@@ -71,6 +71,10 @@ namespace Test
             throw new NotSupportedException();
         }
 
+        public bool DeleteSchedule(EvaluationSchedule selectedSchedule)
+        {
+            throw new NotSupportedException();
+        }
         
     }
 }

@@ -12,6 +12,7 @@ namespace CS6232_G1.View
         private IEvaluationController _controller;
         private int _cohortId;
         private String _cohortName;
+        private EvaluationSchedule selectedSchedule;
 
         /// <summary>
         /// Run View Cohort Details dialog
@@ -148,6 +149,44 @@ namespace CS6232_G1.View
             lvMembers.Items[lvMembers.Items.Count - 1].EnsureVisible();
             loadEvaluationScheduleGridView();
             dgvEvaluationSchedule.FirstDisplayedScrollingRowIndex = dgvEvaluationSchedule.RowCount - 1;
+        }
+
+        private void dgvEvaluationSchedule_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (e.ColumnIndex == senderGrid.Columns["EditButton"].Index && e.RowIndex >= 0)
+            {
+                MessageBox.Show("Edit  Button,  scheduleid: " + senderGrid.SelectedRows[0].Cells["ScheduleId"].Value);
+                // TODO: open the Edit form with data for the selected schedule
+            }
+
+            if (e.ColumnIndex == senderGrid.Columns["DeleteButton"].Index && e.RowIndex >= 0)
+            {
+                MessageBox.Show("Delete button, scheduleid: " + senderGrid.SelectedRows[0].Cells["ScheduleId"].Value);
+                // Delete the selected schedule
+                selectedSchedule = this.PutDataInScheduleObject(senderGrid);
+                if (!_controller.DeleteSchedule(selectedSchedule))
+                {
+                    MessageBox.Show("Operation unsuccessful! Schedule has evaluations, or another user has deleted the schedule.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else 
+                {
+                    MessageBox.Show("Schedule has been deleted!", "Operation Successful");
+                }   
+            }
+            this.refreshViews();
+        }
+
+        private EvaluationSchedule PutDataInScheduleObject(DataGridView senderGrid)
+        {
+            int scheduleId = (int)senderGrid.SelectedRows[0].Cells["ScheduleId"].Value;
+            int typeId = (int)senderGrid.SelectedRows[0].Cells["TypeId"].Value;
+            int stageId = (int)senderGrid.SelectedRows[0].Cells["StageId"].Value;
+            DateTime startDate = (DateTime)senderGrid.SelectedRows[0].Cells["StartDate"].Value;
+            DateTime endDate = (DateTime)senderGrid.SelectedRows[0].Cells["EndDate"].Value;
+            selectedSchedule = new EvaluationSchedule(scheduleId, _cohortId, typeId, stageId, startDate, endDate);
+            return selectedSchedule;
         }
 
     }

@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ScheduleDAL.cs" />
     <Compile Include="CohortDAL.cs" />
     <Compile Include="EvaluationDAL.cs" />
     <Compile Include="EvaluationDB.cs" />

@@ -237,5 +237,12 @@ namespace Test
         }
         #endregion
 
+        #region Admin Reports
+        public bool DeleteSchedule(EvaluationSchedule selectedSchedule)
+        {
+            return true;
+        }
+        #endregion
+
     }
 }

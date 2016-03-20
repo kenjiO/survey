@@ -49,8 +49,8 @@
             this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StageId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StageName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.startDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.endDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EditButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DeleteButton = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEvaluationSchedule)).BeginInit();
@@ -154,8 +154,8 @@
             this.TypeName,
             this.StageId,
             this.StageName,
-            this.startDateDataGridViewTextBoxColumn,
-            this.endDateDataGridViewTextBoxColumn,
+            this.StartDate,
+            this.EndDate,
             this.EditButton,
             this.DeleteButton});
             this.dgvEvaluationSchedule.DataSource = this.evaluationScheduleBindingSource1;
@@ -165,6 +165,7 @@
             this.dgvEvaluationSchedule.RowTemplate.Height = 28;
             this.dgvEvaluationSchedule.Size = new System.Drawing.Size(618, 277);
             this.dgvEvaluationSchedule.TabIndex = 9;
+            this.dgvEvaluationSchedule.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEvaluationSchedule_CellContentClick);
             // 
             // evaluationScheduleBindingSource1
             // 
@@ -212,23 +213,23 @@
             this.StageName.Name = "StageName";
             this.StageName.ReadOnly = true;
             // 
-            // startDateDataGridViewTextBoxColumn
+            // StartDate
             // 
-            this.startDateDataGridViewTextBoxColumn.DataPropertyName = "StartDate";
+            this.StartDate.DataPropertyName = "StartDate";
             dataGridViewCellStyle1.Format = "dd/MM/yyyy";
-            this.startDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.startDateDataGridViewTextBoxColumn.HeaderText = "Start Date";
-            this.startDateDataGridViewTextBoxColumn.Name = "startDateDataGridViewTextBoxColumn";
-            this.startDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.StartDate.DefaultCellStyle = dataGridViewCellStyle1;
+            this.StartDate.HeaderText = "Start Date";
+            this.StartDate.Name = "StartDate";
+            this.StartDate.ReadOnly = true;
             // 
-            // endDateDataGridViewTextBoxColumn
+            // EndDate
             // 
-            this.endDateDataGridViewTextBoxColumn.DataPropertyName = "EndDate";
+            this.EndDate.DataPropertyName = "EndDate";
             dataGridViewCellStyle2.Format = "dd/MM/yyyy";
-            this.endDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.endDateDataGridViewTextBoxColumn.HeaderText = "End Date";
-            this.endDateDataGridViewTextBoxColumn.Name = "endDateDataGridViewTextBoxColumn";
-            this.endDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.EndDate.DefaultCellStyle = dataGridViewCellStyle2;
+            this.EndDate.HeaderText = "End Date";
+            this.EndDate.Name = "EndDate";
+            this.EndDate.ReadOnly = true;
             // 
             // EditButton
             // 
@@ -291,8 +292,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TypeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn StageId;
         private System.Windows.Forms.DataGridViewTextBoxColumn StageName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn startDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn endDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StartDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EndDate;
         private System.Windows.Forms.DataGridViewButtonColumn EditButton;
         private System.Windows.Forms.DataGridViewButtonColumn DeleteButton;
     }

@@ -159,5 +159,13 @@ namespace Evaluation.Controller
         #endregion
 
 
+        #region Admin Reports
+        /// <summary>
+        /// Deletes a schedule if it has no evaluations
+        /// </summary>
+        /// <param name="selectedSchedule"></param>
+        /// <returns>true if delete is successful, else false</returns>
+        bool DeleteSchedule(EvaluationSchedule selectedSchedule);
+        #endregion
     }
 }

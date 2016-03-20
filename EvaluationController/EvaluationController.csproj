@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ScheduleController.cs" />
     <Compile Include="EmployeeController.cs" />
     <Compile Include="CohortController.cs" />
     <Compile Include="EvaluationController.cs" />
