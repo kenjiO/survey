@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblCohortName = new System.Windows.Forms.Label();
@@ -40,6 +42,8 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dgvEvaluationSchedule = new System.Windows.Forms.DataGridView();
+            this.evaluationScheduleBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.evaluationScheduleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ScheduleId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,8 +53,6 @@
             this.endDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EditButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DeleteButton = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.evaluationScheduleBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.evaluationScheduleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEvaluationSchedule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.evaluationScheduleBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.evaluationScheduleBindingSource)).BeginInit();
@@ -78,7 +80,7 @@
             // 
             this.lblCohortName.AutoSize = true;
             this.lblCohortName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCohortName.Location = new System.Drawing.Point(390, 26);
+            this.lblCohortName.Location = new System.Drawing.Point(508, 34);
             this.lblCohortName.Name = "lblCohortName";
             this.lblCohortName.Size = new System.Drawing.Size(238, 29);
             this.lblCohortName.TabIndex = 4;
@@ -112,6 +114,7 @@
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader8});
+            this.lvMembers.FullRowSelect = true;
             this.lvMembers.Location = new System.Drawing.Point(12, 113);
             this.lvMembers.Name = "lvMembers";
             this.lvMembers.Size = new System.Drawing.Size(607, 277);
@@ -163,6 +166,14 @@
             this.dgvEvaluationSchedule.Size = new System.Drawing.Size(618, 277);
             this.dgvEvaluationSchedule.TabIndex = 9;
             // 
+            // evaluationScheduleBindingSource1
+            // 
+            this.evaluationScheduleBindingSource1.DataSource = typeof(Evaluation.Model.EvaluationSchedule);
+            // 
+            // evaluationScheduleBindingSource
+            // 
+            this.evaluationScheduleBindingSource.DataSource = typeof(Evaluation.Model.EvaluationSchedule);
+            // 
             // ScheduleId
             // 
             this.ScheduleId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -171,6 +182,7 @@
             this.ScheduleId.Name = "ScheduleId";
             this.ScheduleId.ReadOnly = true;
             this.ScheduleId.Visible = false;
+            this.ScheduleId.Width = 130;
             // 
             // TypeId
             // 
@@ -203,6 +215,8 @@
             // startDateDataGridViewTextBoxColumn
             // 
             this.startDateDataGridViewTextBoxColumn.DataPropertyName = "StartDate";
+            dataGridViewCellStyle1.Format = "dd/MM/yyyy";
+            this.startDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.startDateDataGridViewTextBoxColumn.HeaderText = "Start Date";
             this.startDateDataGridViewTextBoxColumn.Name = "startDateDataGridViewTextBoxColumn";
             this.startDateDataGridViewTextBoxColumn.ReadOnly = true;
@@ -210,6 +224,8 @@
             // endDateDataGridViewTextBoxColumn
             // 
             this.endDateDataGridViewTextBoxColumn.DataPropertyName = "EndDate";
+            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
+            this.endDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.endDateDataGridViewTextBoxColumn.HeaderText = "End Date";
             this.endDateDataGridViewTextBoxColumn.Name = "endDateDataGridViewTextBoxColumn";
             this.endDateDataGridViewTextBoxColumn.ReadOnly = true;
@@ -229,14 +245,6 @@
             this.DeleteButton.ReadOnly = true;
             this.DeleteButton.Text = "Delete";
             this.DeleteButton.UseColumnTextForButtonValue = true;
-            // 
-            // evaluationScheduleBindingSource1
-            // 
-            this.evaluationScheduleBindingSource1.DataSource = typeof(Evaluation.Model.EvaluationSchedule);
-            // 
-            // evaluationScheduleBindingSource
-            // 
-            this.evaluationScheduleBindingSource.DataSource = typeof(Evaluation.Model.EvaluationSchedule);
             // 
             // ViewCohortDetailsForm
             // 

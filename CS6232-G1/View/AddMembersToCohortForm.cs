@@ -163,7 +163,7 @@ namespace CS6232_G1.View
         {
             if (_parentForm != null)
             {
-                _parentForm.refreshListViews();
+                _parentForm.refreshViews();
             }
         }
     }

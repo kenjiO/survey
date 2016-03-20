@@ -44,35 +44,37 @@ namespace CS6232_G1.View
                 _cohortName = _controller.getCohortName(_cohortId);
                 //_cohortName = "Cohort 1"; 
                 lblCohortName.Text = "Details for " + _cohortName;
-                loadMemberListView();
-                //loadEvaluationScheduleListView();
 
-                // ***********************************
                 dgvEvaluationSchedule.CellBorderStyle = DataGridViewCellBorderStyle.None;
                 dgvEvaluationSchedule.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvEvaluationSchedule.BackgroundColor = Color.White;
-                                
-                //Get list of evaluation schedule objects and bind the datagrid to the list
-                List<EvaluationSchedule> scheduleList = _controller.getEvaluationScheduleList(_cohortId);
-                dgvEvaluationSchedule.DataSource = scheduleList;
 
-                // Display type name and stage name
-                foreach (DataGridViewRow row in dgvEvaluationSchedule.Rows)
-                {
-                    int typeId = (int)row.Cells["TypeId"].Value;
-                    row.Cells["TypeName"].Value = _controller.getTypeName(typeId);
-
-                    int stageId = (int)row.Cells["StageId"].Value;
-                    row.Cells["StageName"].Value = _controller.getStageName(stageId);
-                }
-                dgvEvaluationSchedule.AutoResizeColumns();
-                dgvEvaluationSchedule.ClearSelection();
-                // **********************************
+                loadMemberListView();
+                loadEvaluationScheduleGridView();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
+        }
+
+        private void loadEvaluationScheduleGridView()
+        {
+            //Get list of evaluation schedule objects and bind the datagrid to the list
+            List<EvaluationSchedule> scheduleList = _controller.getEvaluationScheduleList(_cohortId);
+            dgvEvaluationSchedule.DataSource = scheduleList;
+
+            // Display type name and stage name
+            foreach (DataGridViewRow row in dgvEvaluationSchedule.Rows)
+            {
+                int typeId = (int)row.Cells["TypeId"].Value;
+                row.Cells["TypeName"].Value = _controller.getTypeName(typeId);
+
+                int stageId = (int)row.Cells["StageId"].Value;
+                row.Cells["StageName"].Value = _controller.getStageName(stageId);
+            }
+            dgvEvaluationSchedule.AutoResizeColumns();
+            dgvEvaluationSchedule.ClearSelection();
         }
 
         // Loads the Listbox with the members in the given cohort
@@ -140,12 +142,12 @@ namespace CS6232_G1.View
             form.Show();
         }
 
-        public void refreshListViews()
+        public void refreshViews()
         {
             loadMemberListView();
             lvMembers.Items[lvMembers.Items.Count - 1].EnsureVisible();
-            //loadEvaluationScheduleListView();
-            //lvEvaluationSchedule.Items[lvEvaluationSchedule.Items.Count - 1].EnsureVisible();
+            loadEvaluationScheduleGridView();
+            dgvEvaluationSchedule.FirstDisplayedScrollingRowIndex = dgvEvaluationSchedule.RowCount - 1;
         }
 
     }
