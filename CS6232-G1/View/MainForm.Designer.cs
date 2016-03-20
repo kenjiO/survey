@@ -33,6 +33,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cohortsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createNewCohortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifyACohortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,7 +53,6 @@
             this.LoginButton = new System.Windows.Forms.Button();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
-            this.modifyACohortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripAdmin.SuspendLayout();
             this.menuStripEmployee.SuspendLayout();
             this.menuStripDefault.SuspendLayout();
@@ -70,7 +70,7 @@
             this.testAdminToolStripMenuItem});
             this.menuStripAdmin.Location = new System.Drawing.Point(0, 48);
             this.menuStripAdmin.Name = "menuStripAdmin";
-            this.menuStripAdmin.Size = new System.Drawing.Size(636, 24);
+            this.menuStripAdmin.Size = new System.Drawing.Size(940, 24);
             this.menuStripAdmin.TabIndex = 1;
             this.menuStripAdmin.Text = "menuStripAdmin";
             // 
@@ -105,6 +105,13 @@
             this.createNewCohortToolStripMenuItem.Text = "Create New Cohort";
             this.createNewCohortToolStripMenuItem.Click += new System.EventHandler(this.createNewCohortToolStripMenuItem_Click);
             // 
+            // modifyACohortToolStripMenuItem
+            // 
+            this.modifyACohortToolStripMenuItem.Name = "modifyACohortToolStripMenuItem";
+            this.modifyACohortToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.modifyACohortToolStripMenuItem.Text = "Modify a Cohort";
+            this.modifyACohortToolStripMenuItem.Click += new System.EventHandler(this.modifyACohortToolStripMenuItem_Click);
+            // 
             // stagesToolStripMenuItem
             // 
             this.stagesToolStripMenuItem.Name = "stagesToolStripMenuItem";
@@ -134,7 +141,7 @@
             this.testEmployeeToolStripMenuItem});
             this.menuStripEmployee.Location = new System.Drawing.Point(0, 24);
             this.menuStripEmployee.Name = "menuStripEmployee";
-            this.menuStripEmployee.Size = new System.Drawing.Size(636, 24);
+            this.menuStripEmployee.Size = new System.Drawing.Size(940, 24);
             this.menuStripEmployee.TabIndex = 2;
             this.menuStripEmployee.Text = "menuStripEmployee";
             // 
@@ -176,7 +183,7 @@
             this.testToolStripMenuItem});
             this.menuStripDefault.Location = new System.Drawing.Point(0, 0);
             this.menuStripDefault.Name = "menuStripDefault";
-            this.menuStripDefault.Size = new System.Drawing.Size(636, 24);
+            this.menuStripDefault.Size = new System.Drawing.Size(940, 24);
             this.menuStripDefault.TabIndex = 3;
             this.menuStripDefault.Text = "menuStrip1";
             // 
@@ -273,18 +280,11 @@
             this.UsernameTextBox.TabIndex = 0;
             this.UsernameTextBox.Text = "admin1@westga.edu";
             // 
-            // modifyACohortToolStripMenuItem
-            // 
-            this.modifyACohortToolStripMenuItem.Name = "modifyACohortToolStripMenuItem";
-            this.modifyACohortToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.modifyACohortToolStripMenuItem.Text = "Modify a Cohort";
-            this.modifyACohortToolStripMenuItem.Click += new System.EventHandler(this.modifyACohortToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(636, 417);
+            this.ClientSize = new System.Drawing.Size(940, 561);
             this.Controls.Add(this.LoginPanel);
             this.Controls.Add(this.menuStripAdmin);
             this.Controls.Add(this.menuStripEmployee);

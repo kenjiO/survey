@@ -124,9 +124,24 @@ namespace CS6232_G1.View
             {
                 return;
             }
+            viewCohortDetails(cohortId);
+        }
+
+        private void viewCohortDetails(int cohortId)
+        {
             Form form = new ViewCohortDetailsForm(_controller, cohortId);
             form.MdiParent = this;
             form.Show();
+        }
+
+        private void modifyACohortToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int cohortId = SelectCohortForm.Run(_controller);
+            if (cohortId <= 0)
+            {
+                return;
+            }
+            viewCohortDetails(cohortId);
         }
 
         // This opens a dialog form that will prompt the user to select a cohort
@@ -166,11 +181,6 @@ namespace CS6232_G1.View
         void viewEvaluationsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             frmViewEvaluations = null;
-        }
-
-        private void modifyACohortToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // TODO: Select a cohort and run cohort details
         }
 
     }
