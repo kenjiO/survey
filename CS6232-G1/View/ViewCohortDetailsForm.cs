@@ -133,7 +133,7 @@ namespace CS6232_G1.View
 
         private void btnAddEvaluation_Click(object sender, EventArgs e)
         {
-            AddOrEditCohortScheduleForm addCohortScheduleForm = AddOrEditCohortScheduleForm.createAddForm(_controller, _cohortId);
+            AddOrEditCohortScheduleForm addCohortScheduleForm = AddOrEditCohortScheduleForm.createAddForm(_controller, _cohortId, null);
             addCohortScheduleForm.Show();
         }
 

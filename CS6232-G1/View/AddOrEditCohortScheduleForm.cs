@@ -30,6 +30,7 @@ namespace CS6232_G1.View
         /// </summary>
         /// <param name="controller">Controller to use</param>
         /// <param name="cohortId">Id of cohort to add schedule for</param>
+        /// <param name="parent">Refreshable parent form</param>
         public static AddOrEditCohortScheduleForm createAddForm(IEvaluationController controller, int cohortId, IRefreshable parent)
         {
             return new AddOrEditCohortScheduleForm(controller, cohortId, parent);
@@ -41,6 +42,7 @@ namespace CS6232_G1.View
         /// <param name="controller">Controller to use</param>
         /// <param name="cohortId">Id of cohort to add schedule for</param>
         /// <param name="originalSchedule">Schedule to be edited</param>
+        /// <param name="parent">Refreshable parent form</param>
         public static AddOrEditCohortScheduleForm createEditForm(IEvaluationController controller, int cohortId, CohortScheduleData originalSchedule, IRefreshable parent)
         {
             return new AddOrEditCohortScheduleForm(controller, cohortId, originalSchedule, parent);
