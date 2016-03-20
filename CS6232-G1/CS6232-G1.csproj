@@ -88,6 +88,12 @@
     <Compile Include="View\ViewCohortDetailsForm.Designer.cs">
       <DependentUpon>ViewCohortDetailsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ViewEvaluationsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ViewEvaluationsForm.Designer.cs">
+      <DependentUpon>ViewEvaluationsForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\ViewCohortDetailsForm.resx">
       <DependentUpon>ViewCohortDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ViewEvaluationsForm.resx">
+      <DependentUpon>ViewEvaluationsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\Evaluation.Model.EvaluationSchedule.datasource" />
     <None Include="Properties\Settings.settings">

@@ -140,5 +140,28 @@ namespace CS6232_G1.View
             }
         }
 
+        ViewEvaluationsForm frmViewEvaluations;
+        private void testEmployeeMenuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //prevent duplicates
+            if (frmViewEvaluations != null)
+            {
+                frmViewEvaluations.Close();
+            }
+            //open ViewEvaluationDetailsForm
+            frmViewEvaluations = new ViewEvaluationsForm(_controller);            
+            frmViewEvaluations.MdiParent = this;
+            frmViewEvaluations.Show();
+            frmViewEvaluations.FormClosed += viewEvaluationsForm_FormClosed;
+            // The next 2 lines fix position of child form within the parent
+            frmViewEvaluations.StartPosition = FormStartPosition.Manual;
+            frmViewEvaluations.Location = new System.Drawing.Point(15, 15);
+        }
+
+        void viewEvaluationsForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmViewEvaluations = null;
+        }
+
     }
 }
