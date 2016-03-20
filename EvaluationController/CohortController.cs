@@ -9,16 +9,45 @@ namespace Evaluation.Controller
     /// </summary>
     public partial class EvaluationController : IEvaluationController
     {
-        public string getCohortName(int cohortId)
-        {
-            // TODO: Finish
-            throw new NotSupportedException();
-        }
+        private List<Cohort> _cohorts;
 
         public List<Cohort> getCohorts()
         {
-            return _dal.getCohorts();
+            _cohorts = _dal.getCohorts();
+            return _cohorts;
         }
+
+        private bool tryLoadCohortList()
+        {
+            if (_cohorts == null)
+            {
+                try
+                {
+                    getCohorts();
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public string getCohortName(int cohortId)
+        {
+            if (!tryLoadCohortList())
+            {
+                return "";
+            }
+            Cohort result = _cohorts.Find(c => c.cohortId == cohortId);
+            if (result == null || result.cohortId != cohortId)
+            {
+                _cohorts = null;
+                return "";
+            }
+            return result.cohortName;
+        }
+
 
         public Cohort addCohort(String name)
         {
@@ -26,7 +55,9 @@ namespace Evaluation.Controller
             {
                 throw new ArgumentNullException("name is null");
             }
-            return _dal.addNewCohort(name);
+            Cohort result = _dal.addNewCohort(name);
+            _cohorts = null;
+            return result;
         }
 
         public List<EvaluationSchedule> getEvaluationScheduleList(int cohortId)
@@ -49,10 +80,15 @@ namespace Evaluation.Controller
             return _dal.addMembersToCohort(cohortId, empIdList);
         }
 
-        public List<CohortScheduleData> getCohortAddScheduleInfo(int _cohortId)
+        public List<CohortScheduleData> getCohortAddScheduleInfo(int cohortId)
         {
-            // TODO Finish
-            throw new NotSupportedException();
+            return _dal.getCohortAddScheduleInfo(cohortId);
         }
+
+        public void addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
+        {
+            _dal.addCohortSchedule(cohortId, typeId, stageId, startDate, endDate);
+        }
+
     }
 }

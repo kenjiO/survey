@@ -82,6 +82,12 @@ namespace Evaluation.Controller
         string getCohortName(int cohortId);
 
         /// <summary>
+        /// Get a list of Cohorts
+        /// </summary>
+        /// <returns>A list of Corhort objects representing each cohort in the DB</returns>
+        List<Cohort> getCohorts();
+
+        /// <summary>
         /// Add a new cohort
         /// </summary>
         /// <returns>The newly created Cohort instance or null if it could not create a cohort</returns>
@@ -116,17 +122,22 @@ namespace Evaluation.Controller
         List<int> addMembersToCohort(int _cohortId, List<int> empIdList);
 
         /// <summary>
-        /// Get a list of Cohorts
-        /// </summary>
-        /// <returns>A list of Corhort objects representing each cohort in the DB</returns>
-        List<Cohort> getCohorts();
-
-        /// <summary>
         /// Get a list of cohort scheduling info
         /// </summary>
         /// <param name="_cohortId">Cohort id to get list for</param>
         /// <returns>List of cohort scheduling info</returns>
-        List<CohortScheduleData> getCohortAddScheduleInfo(int _cohortId);
+        List<CohortScheduleData> getCohortAddScheduleInfo(int cohortId);
+
+        /// <summary>
+        /// Attempt to add a new cohort evaluation schedule
+        /// </summary>
+        /// <param name="cohortId">Cohort to add schedule for</param>
+        /// <param name="typeId">Evaluation type</param>
+        /// <param name="stageId">Evaluation Stage</param>
+        /// <param name="startDate">Start date</param>
+        /// <param name="endDate">End date</param>
+        /// <exception cref="ArgumentException">Parameters given were invalid</exception>
+        void addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate);
 
         #endregion
 
@@ -157,7 +168,6 @@ namespace Evaluation.Controller
         /// <returns>Report details as a DataTable</returns>
         DataTable getUserReport(int stageId, int typeId);
         #endregion
-
 
     }
 }

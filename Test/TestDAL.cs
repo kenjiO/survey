@@ -31,7 +31,7 @@ namespace Test
         #region Cohorts
         public List<Cohort> getCohorts()
         {
-            throw new NotSupportedException();
+            return _controller.getCohorts();
         }
 
         public Cohort addNewCohort(String name)
@@ -57,6 +57,16 @@ namespace Test
         public List<int> addMembersToCohort(int cohortId, List<int> empIdList)
         {
             throw new NotSupportedException();
+        }
+
+        public List<CohortScheduleData> getCohortAddScheduleInfo(int cohortId)
+        {
+            return new List<CohortScheduleData>();
+        }
+
+        public void addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
+        {
+            return;
         }
 
         #endregion

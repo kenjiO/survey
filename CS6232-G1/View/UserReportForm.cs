@@ -93,8 +93,8 @@ namespace CS6232_G1.View
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("An error occurred acquiring data from database.  Please check your SQL configuration. (Details: "
-                                    + ex.Message + ")", "Notice");
+                MessageBox.Show("An error occurred acquiring data from database.  Please check your SQL configuration.\n\n" +
+                                "Details: " + ex.Message, "Notice");
             }
             catch (Exception ex)
             {
@@ -154,7 +154,7 @@ namespace CS6232_G1.View
         /// </summary>
         /// <param name="reportTable">Report table to display</param>
         private void setupUserReport(DataTable reportTable)
-        {            
+        {
             // reset table
             dataGridView.DataSource = null;
             dataGridView.Columns.Clear();
@@ -189,7 +189,7 @@ namespace CS6232_G1.View
                 dataGridView.Columns[column].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
 
-            // TODO: either move stage/type prompt off this page and dock ALL, or find a way to keep top same distance from 
+            // TODO: either move stage/type prompt off this page and dock ALL, or find a way to keep top same distance from
             //      form top on resize
         }
 

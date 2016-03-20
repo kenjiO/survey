@@ -138,10 +138,32 @@ namespace CS6232_G1.View
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // TODO: Finish
-            // fail if dateStart > dateEnd
-            // if successful, close
-            // calling form will need to refresh list
+            int typeId = (int)cboType.SelectedValue;
+            int stageId = (int)cboStage.SelectedValue;
+            DateTime startDate = dateStart.Value;
+            DateTime endDate = dateEnd.Value;
+
+            if (endDate < startDate)
+            {
+                MessageBox.Show("End Date must be on or after start date", "Notice");
+                return;
+            }
+
+            try
+            {
+                _controller.addCohortSchedule(_cohortId, typeId, stageId, startDate, endDate);
+                this.DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("An error occurred creating the evaluation schedule\n\n" +
+                                "Details: " + ex.Message, "Notice");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -159,14 +181,16 @@ namespace CS6232_G1.View
 
         private void dateEnd_ValueChanged(object sender, EventArgs e)
         {
+            /*
+             * When calendar is dropping down, value changes twice, first to the minDate, then to the current value.  So I can't
+             *    adjust start date based on end date changed unless a solution is found to this bug.
+             *            
             if (dateEnd.Value < dateStart.Value)
             {
                 dateStart.Value = dateEnd.Value;
             }
+             */ 
         }
-
-
-
-        
+       
     }
 }

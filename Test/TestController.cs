@@ -88,14 +88,21 @@ namespace Test
         #region Cohorts
         public String getCohortName(int cohortId)
         {
-            switch (cohortId) {
-                case 1:
-                    return "Cohort 1";
-                case 2:
-                    return "Cohort 2";
-                default:
-                    throw new KeyNotFoundException("Invalid cohort id, " + cohortId);
+            List<Cohort> _cohorts = getCohorts();
+            Cohort result = _cohorts.Find(c => c.cohortId == cohortId);
+            if (result == null || result.cohortId != cohortId)
+            {
+                throw new KeyNotFoundException("Cohort " + cohortId + " not found");
             }
+            return result.cohortName;
+        }
+
+        public List<Cohort> getCohorts()
+        {
+            List<Cohort> cohorts = new List<Cohort>();
+            cohorts.Add(new Cohort(1, "Cohort 1"));
+            cohorts.Add(new Cohort(2, "Cohort 2"));
+            return cohorts;
         }
 
         public Cohort addCohort(String name)
@@ -153,14 +160,6 @@ namespace Test
             return new List<int>();
         }
 
-        public List<Cohort> getCohorts()
-        {
-            List<Cohort> cohorts = new List<Cohort>();
-            cohorts.Add(new Cohort(1, "cohort 1"));
-            cohorts.Add(new Cohort(2, "cohort 2"));
-            return cohorts;
-        }
-
         public List<CohortScheduleData> getCohortAddScheduleInfo(int cohortId)
         {
             List<CohortScheduleData> list = new List<CohortScheduleData>();
@@ -178,6 +177,10 @@ namespace Test
             return list;
         }
 
+        public void addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
+        {
+            return;
+        }
         #endregion
 
         #region Employees
