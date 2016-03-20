@@ -268,5 +268,17 @@ namespace Evaluation.DAL
             }
             return failedIds;
         }
+
+        public List<CohortScheduleData> getCohortAddScheduleInfo(int cohortId)
+        {
+            // TODO: Query a list of evaluations that can be scheduled for a given cohort
+            return new List<CohortScheduleData>();
+        }
+
+        public void addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
+        {
+            // TODO: Create new evaluation schedule
+        }
+
     }
 }

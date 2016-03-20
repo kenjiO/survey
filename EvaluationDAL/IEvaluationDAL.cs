@@ -66,6 +66,24 @@ namespace Evaluation.DAL
         /// <returns>list of employee ids that were not updated</returns>
         List<int> addMembersToCohort(int cohortId, List<int> empIdList);
 
+        /// <summary>
+        /// Get a list of cohort scheduling info
+        /// </summary>
+        /// <param name="_cohortId">Cohort id to get list for</param>
+        /// <returns>List of cohort scheduling info</returns>
+        List<CohortScheduleData> getCohortAddScheduleInfo(int cohortId);
+
+        /// <summary>
+        /// Attempt to add a new cohort evaluation schedule
+        /// </summary>
+        /// <param name="cohortId">Cohort to add schedule for</param>
+        /// <param name="typeId">Evaluation type</param>
+        /// <param name="stageId">Evaluation Stage</param>
+        /// <param name="startDate">Start date</param>
+        /// <param name="endDate">End date</param>
+        /// <exception cref="ArgumentException">Parameters given were invalid</exception>
+        void addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate);
+
         #endregion
 
         #region Employees
