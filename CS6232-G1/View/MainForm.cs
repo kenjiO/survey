@@ -119,7 +119,12 @@ namespace CS6232_G1.View
 
         private void createNewCohortToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form form = new AddCohortForm(_controller);
+            int cohortId = AddCohortForm.Run(_controller);
+            if (cohortId <= 0)
+            {
+                return;
+            }
+            Form form = new ViewCohortDetailsForm(_controller, cohortId);
             form.MdiParent = this;
             form.Show();
         }
@@ -161,6 +166,11 @@ namespace CS6232_G1.View
         void viewEvaluationsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             frmViewEvaluations = null;
+        }
+
+        private void modifyACohortToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // TODO: Select a cohort and run cohort details
         }
 
     }
