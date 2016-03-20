@@ -1,7 +1,9 @@
 ﻿using Evaluation.Model;
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace Evaluation.DAL
 {
@@ -269,10 +271,67 @@ namespace Evaluation.DAL
             return failedIds;
         }
 
-        public List<CohortScheduleData> getCohortAddScheduleInfo(int cohortId)
+        /// <summary>
+        /// Create table for returning cohort schedule information
+        /// </summary>
+        /// <returns>Data Table with columns defined</returns>
+        public static DataTable createCohortAddScheduleInfoDataTable()
         {
-            // TODO: Query a list of evaluations that can be scheduled for a given cohort
-            return new List<CohortScheduleData>();
+            DataTable table = new DataTable();
+
+            table.Locale = CultureInfo.InvariantCulture;
+            table.Columns.Add("typeId", typeof(int));
+            table.Columns.Add("lastStageId", typeof(int));
+            table.Columns.Add("lastStageEndDate", typeof(DateTime));
+            return table;
+        }
+
+
+        public DataTable getCohortAddScheduleInfo(int cohortId)
+        {
+            DataTable table = createCohortAddScheduleInfoDataTable();
+
+            string selectStatement ="SELECT stageId, endDate " +
+                                      "FROM evaluation_schedule " +
+                                     "WHERE cohortId = @cohortId " +
+                                       "AND typeId = @typeId " +
+                                       "AND stageId = (SELECT MAX(stageId) " +
+                                                        "FROM evaluation_schedule " +
+                                                       "WHERE cohortId = @cohortId " +
+                                                         "AND typeId = @typeId)";
+
+            List<EvalType> typeList = getTypeList();
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+                foreach (EvalType type in typeList) 
+                {
+                    int typeId = type.id;
+                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                    {
+                        selectCommand.Parameters.AddWithValue("@cohortId", cohortId);
+                        selectCommand.Parameters.AddWithValue("@typeId", typeId);
+                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+
+                                int lastStageId = (int)reader["stageId"];
+                                DateTime lastStageEndDate = (DateTime)reader["endDate"];
+                                Object[] row = { typeId, lastStageId, lastStageEndDate };
+
+                                table.Rows.Add(row);
+                            }
+                            else
+                            {
+                                Object[] row = { typeId, null, null };
+                                table.Rows.Add(row);
+                            }
+                        }
+                    }
+                }
+            }
+            return table;
         }
 
         public void addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)

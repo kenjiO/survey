@@ -60,6 +60,26 @@ namespace Evaluation.Controller
             return result.name;
         }
 
+        public int? getNextStageId(int? stageId)
+        {
+            if (!tryLoadStageList())
+            {
+                return null;
+            }
+            if (stageId == null)
+            {
+                return _stages[0].id;
+            }
+            foreach (Stage stage in _stages)
+            {
+                if (stage.id > stageId)
+                {
+                    return stage.id;
+                }
+            }
+            return null;
+        }
+
         public int addStage(string name)
         {
             // TODO: add stage, return identity column

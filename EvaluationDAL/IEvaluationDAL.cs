@@ -1,6 +1,7 @@
 ﻿using Evaluation.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Evaluation.DAL
 {
@@ -71,7 +72,7 @@ namespace Evaluation.DAL
         /// </summary>
         /// <param name="_cohortId">Cohort id to get list for</param>
         /// <returns>List of cohort scheduling info</returns>
-        List<CohortScheduleData> getCohortAddScheduleInfo(int cohortId);
+        DataTable getCohortAddScheduleInfo(int cohortId);
 
         /// <summary>
         /// Attempt to add a new cohort evaluation schedule

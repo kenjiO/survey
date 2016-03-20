@@ -3,6 +3,7 @@ using Evaluation.DAL;
 using Evaluation.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,9 +60,25 @@ namespace Test
             throw new NotSupportedException();
         }
 
-        public List<CohortScheduleData> getCohortAddScheduleInfo(int cohortId)
+        public DataTable getCohortAddScheduleInfo(int cohortId)
         {
-            return new List<CohortScheduleData>();
+            DataTable table = EvaluationDAL.createCohortAddScheduleInfoDataTable();
+
+            Object[] row1 = { 1, null, null };
+            Object[] row2 = { 2, 2, DateTime.Parse("6/5/2016") };
+            Object[] row3 = { 1, 4, DateTime.Parse("4/15/2016") };
+            Object[] row4 = { 2, 5, DateTime.Parse("5/25/2016") };
+
+            table.Rows.Add(row1);
+            table.Rows.Add(row2);
+            table.Rows.Add(row3);
+            table.Rows.Add(row4);
+            return table;
+        }
+
+        private DataTable createCohortAddScheduleInfoDataTable()
+        {
+            throw new NotImplementedException();
         }
 
         public void addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)

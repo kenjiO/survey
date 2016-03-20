@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Evaluation.Model;
 using System;
+using System.Data;
 
 namespace Evaluation.Controller
 {
@@ -82,7 +83,18 @@ namespace Evaluation.Controller
 
         public List<CohortScheduleData> getCohortAddScheduleInfo(int cohortId)
         {
-            return _dal.getCohortAddScheduleInfo(cohortId);
+            List<CohortScheduleData> results = new List<CohortScheduleData>();
+            DataTable table = _dal.getCohortAddScheduleInfo(cohortId);
+            
+            foreach (DataRow row in table.Rows)
+            {
+                int typeId = (int)row["typeId"];
+                int? lastStageId = (int?)row["lastStageId"];
+                DateTime? lastStageEndDate = (DateTime?)row["lastStageEndDate"];
+
+                results.Add(new CohortScheduleData(typeId, getTypeName(typeId), lastStageEndDate, getNextStageId(lastStageId)));
+            }
+            return results;
         }
 
         public void addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)

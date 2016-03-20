@@ -155,6 +155,11 @@ namespace CS6232_G1.View
                 this.DialogResult = DialogResult.OK;
                 Close();
             }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show("An error occurred creating the evaluation schedule\n\n" +
+                                "Details: " + ex.Message, "Notice");
+            }
             catch (SqlException ex)
             {
                 MessageBox.Show("An error occurred creating the evaluation schedule\n\n" +
