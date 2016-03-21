@@ -12,8 +12,30 @@ namespace Evaluation.DAL
     {
         public List<EvalType> getTypeList()
         {
-            // TODO: Finish
-            throw new NotSupportedException();
+            List<EvalType> results = new List<EvalType>();
+
+            string selectStatement =
+                "SELECT  typeId, typeName, answerRange " +
+                "FROM type " +
+                "ORDER BY typeId;";
+
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            EvalType type = new EvalType((int)reader["typeId"], reader["typeName"].ToString(), (int)reader["answerRange"]);
+                            results.Add(type);
+                        }
+                    }
+                }
+            }
+            return results;
         }
                 
     }

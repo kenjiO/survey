@@ -21,8 +21,9 @@ namespace CS6232_G1.View
         private bool _editExisting;
         private String _cohortName;
         private List<Stage> _stages;
+        private List<EvalType> _types;
         private List<CohortScheduleData> _scheduleDataList;
-        private CohortScheduleData _schedule;
+        private EvaluationSchedule _schedule;
         private IRefreshable _parent;
 
         /// <summary>
@@ -43,7 +44,7 @@ namespace CS6232_G1.View
         /// <param name="cohortId">Id of cohort to add schedule for</param>
         /// <param name="originalSchedule">Schedule to be edited</param>
         /// <param name="parent">Refreshable parent form</param>
-        public static AddOrEditCohortScheduleForm createEditForm(IEvaluationController controller, int cohortId, CohortScheduleData originalSchedule, IRefreshable parent)
+        public static AddOrEditCohortScheduleForm createEditForm(IEvaluationController controller, int cohortId, EvaluationSchedule originalSchedule, IRefreshable parent)
         {
             return new AddOrEditCohortScheduleForm(controller, cohortId, originalSchedule, parent);
         }
@@ -59,7 +60,7 @@ namespace CS6232_G1.View
             _editExisting = false;
         }
 
-        private AddOrEditCohortScheduleForm(IEvaluationController controller, int cohortId, CohortScheduleData originalSchedule, IRefreshable parent)
+        private AddOrEditCohortScheduleForm(IEvaluationController controller, int cohortId, EvaluationSchedule originalSchedule, IRefreshable parent)
         {
             InitializeComponent();
             _controller = controller;
@@ -72,27 +73,39 @@ namespace CS6232_G1.View
 
         private void AddCohortScheduleForm_Load(object sender, EventArgs e)
         {
+            if (_editExisting)
+            {
+                lblAction.Text = "Edit";
+            }
+            else
+            {
+                lblAction.Text = "Add";
+            }
             if (_controller == null)
             {
                 MessageBox.Show("Invalid arguments to cohort scheduler");
+                this.DialogResult = DialogResult.Cancel;
                 Close();
                 return;
             }
             if (_cohortId <= 0)
             {
                 MessageBox.Show("Invalid cohort selected");
+                this.DialogResult = DialogResult.Cancel;
                 Close();
                 return;
             }
             try
             {
                 _stages = _controller.getStageList();
+                _types = _controller.getTypeList();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("A database error occurred looking up the cohort name.  Please" +
                       " check your SQL configuration.\n\n" +
                      "Details: " + ex.Message, "Notice");
+                this.DialogResult = DialogResult.Cancel;
                 Close();
                 return;
             }
@@ -100,29 +113,11 @@ namespace CS6232_G1.View
             if (_cohortName.Length == 0)
             {
                 MessageBox.Show("Invalid cohort selected");
+                this.DialogResult = DialogResult.Cancel;
                 Close();
                 return;
             }
             lblCohortName.Text = _cohortName;
-            try
-            {
-                _scheduleDataList = _controller.getCohortAddScheduleInfo(_cohortId);
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("A database error occurred looking up the cohort name.  Please" +
-                      " check your SQL configuration.\n\n" +
-                     "Details: " + ex.Message, "Notice");
-                Close();
-                return;
-            }
-            if (_scheduleDataList.Count == 0)
-            {
-                MessageBox.Show("No schedulable evaluation types for this cohort", "Notice");
-                Close();
-                return;
-            }
-
             // setup stage list to list all stages
             cboStage.DataSource = _stages;
             cboStage.DisplayMember = "name";
@@ -130,14 +125,68 @@ namespace CS6232_G1.View
             cboStage.SelectedIndex = -1;
             cboStage.Enabled = false;
 
-            cboType.DataSource = _scheduleDataList;
-            cboType.DisplayMember = "typeName";
-            cboType.ValueMember = "typeId";
-            cboType.SelectedIndex = 0;
+            if (_editExisting)
+            {
+                // initialize type list to list all types
+                cboType.DataSource = _types;
+                cboType.DisplayMember = "name";
+                cboType.ValueMember = "id";
+                cboType.SelectedIndex = -1;
+                cboType.Enabled = false;
+
+                if (_schedule == null)
+                {
+                    MessageBox.Show("Invalid schedule selected");
+                    this.DialogResult = DialogResult.Cancel;
+                    Close();
+                    return;
+                }
+                cboType.SelectedValue = _schedule.TypeId;
+                cboStage.SelectedValue = _schedule.StageId;
+                // TODO: Need min and max dates - prev stage end + 1 and next stage start - 1
+                //dateStart.MinDate = minStartDate;
+                //dateStart.Value = minStartDate;
+                //dateEnd.MinDate = minStartDate;
+                //dateEnd.Value = minStartDate;
+            }
+            else
+            {
+                try
+                {
+                    _scheduleDataList = _controller.getCohortAddScheduleInfo(_cohortId);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("A database error occurred looking up the cohort name.  Please" +
+                          " check your SQL configuration.\n\n" +
+                         "Details: " + ex.Message, "Notice");
+                    this.DialogResult = DialogResult.Cancel;
+                    Close();
+                    return;
+                }
+                if (_scheduleDataList.Count == 0)
+                {
+                    MessageBox.Show("No schedulable evaluation types for this cohort", "Notice");
+                    this.DialogResult = DialogResult.Cancel;
+                    Close();
+                    return;
+                }
+
+                // for add, change type list to show available types
+                cboType.DataSource = _scheduleDataList;
+                cboType.DisplayMember = "typeName";
+                cboType.ValueMember = "typeId";
+                cboType.SelectedIndex = 0;
+                cboType.Enabled = true;
+            }
         }
 
         private void cboType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (_editExisting || cboType.SelectedIndex < 0)
+            {
+                return;
+            }
             CohortScheduleData data = _scheduleDataList[cboType.SelectedIndex];
 
             if (data.nextStageId != null)
@@ -150,13 +199,21 @@ namespace CS6232_G1.View
                 cboStage.SelectedIndex = -1;
                 setupControls(false, "All stages scheduled");
             }
-            
-            DateTime minStartDate = data.lastStageEndDate ?? DateTime.Now;
-            minStartDate = minStartDate.Date.AddDays(1);
-            dateStart.MinDate = minStartDate;
-            dateStart.Value = minStartDate;
-            dateEnd.MinDate = minStartDate;
-            dateEnd.Value = minStartDate;
+
+            if (data.lastStageEndDate != null)
+            {
+                DateTime minStartDate = data.lastStageEndDate ?? DateTime.Now;
+                minStartDate = minStartDate.Date.AddDays(1);
+                dateStart.MinDate = minStartDate;
+                dateStart.Value = minStartDate;
+                dateEnd.MinDate = minStartDate;
+                dateEnd.Value = minStartDate;
+            }
+            else
+            {
+                dateStart.Value = DateTime.Now;
+                dateEnd.Value = DateTime.Now;
+            }
         }
 
         /// <summary>
@@ -213,6 +270,7 @@ namespace CS6232_G1.View
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             Close();
         }
 
