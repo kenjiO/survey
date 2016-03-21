@@ -1,5 +1,6 @@
 ﻿using Evaluation.Controller;
 using Evaluation.Model;
+using EvaluationModel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,14 +13,15 @@ namespace CS6232_G1.View
         private IEvaluationController _controller;
         private int _cohortId;
         private String _cohortName;
-        private ViewCohortDetailsForm _parentForm;
+        private IRefreshable _parentForm;
 
         /// <summary>
         /// Run Add Members to Cohort dialog
         /// </summary>
         /// <param name="controller">Controller to use</param>
         /// <param name="cohortId">Id of cohort to add members to</param>
-        public AddMembersToCohortForm(IEvaluationController controller, int cohortId, ViewCohortDetailsForm parentForm)
+        /// <param name="parentForm">the form that calls this form</param>
+        public AddMembersToCohortForm(IEvaluationController controller, int cohortId, IRefreshable parentForm)
         {
             InitializeComponent();
             _controller = controller;
@@ -44,8 +46,7 @@ namespace CS6232_G1.View
             try
             {
                 _cohortName = _controller.getCohortName(_cohortId);
-                //_cohortName = "Cohort 1";
-                
+                                
                 lblAddMember.Text = "Add Members to " + _cohortName;
 
                 loadEmployeeListView();

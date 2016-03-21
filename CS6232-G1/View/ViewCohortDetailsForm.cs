@@ -1,5 +1,6 @@
 ﻿using Evaluation.Controller;
 using Evaluation.Model;
+using EvaluationModel;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -7,7 +8,7 @@ using System.Windows.Forms;
 
 namespace CS6232_G1.View
 {
-    public partial class ViewCohortDetailsForm : Form
+    public partial class ViewCohortDetailsForm : Form, IRefreshable
     {
         private IEvaluationController _controller;
         private int _cohortId;
@@ -43,7 +44,6 @@ namespace CS6232_G1.View
             try
             {
                 _cohortName = _controller.getCohortName(_cohortId);
-                //_cohortName = "Cohort 1"; 
                 lblCohortName.Text = "Details for " + _cohortName;
 
                 dgvEvaluationSchedule.CellBorderStyle = DataGridViewCellBorderStyle.None;
@@ -133,7 +133,7 @@ namespace CS6232_G1.View
 
         private void btnAddEvaluation_Click(object sender, EventArgs e)
         {
-            AddOrEditCohortScheduleForm addCohortScheduleForm = AddOrEditCohortScheduleForm.createAddForm(_controller, _cohortId, null);
+            AddOrEditCohortScheduleForm addCohortScheduleForm = AddOrEditCohortScheduleForm.createAddForm(_controller, _cohortId, this);
             addCohortScheduleForm.Show();
         }
 
