@@ -146,9 +146,14 @@ namespace CS6232_G1.View
         public void refreshViews()
         {
             loadMemberListView();
-            lvMembers.Items[lvMembers.Items.Count - 1].EnsureVisible();
+            if (lvMembers.Items.Count != 0) { 
+                lvMembers.Items[lvMembers.Items.Count - 1].EnsureVisible();
+            }
             loadEvaluationScheduleGridView();
-            dgvEvaluationSchedule.FirstDisplayedScrollingRowIndex = dgvEvaluationSchedule.RowCount - 1;
+            if (dgvEvaluationSchedule.Rows.Count != 0)
+            {
+                dgvEvaluationSchedule.FirstDisplayedScrollingRowIndex = dgvEvaluationSchedule.RowCount - 1;
+            }
         }
 
         private void dgvEvaluationSchedule_CellContentClick(object sender, DataGridViewCellEventArgs e)
