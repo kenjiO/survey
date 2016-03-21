@@ -189,8 +189,6 @@ namespace CS6232_G1.View
                 dataGridView.Columns[column].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
 
-            // TODO: either move stage/type prompt off this page and dock ALL, or find a way to keep top same distance from
-            //      form top on resize
         }
 
     }
