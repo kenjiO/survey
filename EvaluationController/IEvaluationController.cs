@@ -95,6 +95,12 @@ namespace Evaluation.Controller
         List<Cohort> getCohorts();
 
         /// <summary>
+        /// Get a list of Cohorts with no members or schedules
+        /// </summary>
+        /// <returns>A list of Corhort that have no members or schedules</returns>
+        List<Cohort> getCohortsWithNoMembersOrEvals();
+
+        /// <summary>
         /// Add a new cohort
         /// </summary>
         /// <returns>The newly created Cohort instance or null if it could not create a cohort</returns>

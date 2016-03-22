@@ -34,6 +34,7 @@
             this.cohortsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createNewCohortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modifyACohortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteACohortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,7 +94,8 @@
             // 
             this.cohortsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createNewCohortToolStripMenuItem,
-            this.modifyACohortToolStripMenuItem});
+            this.modifyACohortToolStripMenuItem,
+            this.deleteACohortToolStripMenuItem});
             this.cohortsToolStripMenuItem.Name = "cohortsToolStripMenuItem";
             this.cohortsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.cohortsToolStripMenuItem.Text = "Cohorts";
@@ -111,6 +113,13 @@
             this.modifyACohortToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.modifyACohortToolStripMenuItem.Text = "Modify a Cohort";
             this.modifyACohortToolStripMenuItem.Click += new System.EventHandler(this.modifyACohortToolStripMenuItem_Click);
+            // 
+            // deleteACohortToolStripMenuItem
+            // 
+            this.deleteACohortToolStripMenuItem.Name = "deleteACohortToolStripMenuItem";
+            this.deleteACohortToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.deleteACohortToolStripMenuItem.Text = "Delete a Cohort";
+            this.deleteACohortToolStripMenuItem.Click += new System.EventHandler(this.deleteACohortToolStripMenuItem_Click);
             // 
             // stagesToolStripMenuItem
             // 
@@ -333,6 +342,7 @@
         private System.Windows.Forms.ToolStripMenuItem testAdminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testEmployeeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modifyACohortToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteACohortToolStripMenuItem;
     }
 }
 

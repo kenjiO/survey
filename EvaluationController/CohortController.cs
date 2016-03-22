@@ -112,7 +112,12 @@ namespace Evaluation.Controller
 
         public void deleteCohort(int _cohortId)
         {
-            throw new NotSupportedException();
+            throw new NotSupportedException("EvaluationController.deleteCohort not implemented");
+        }
+
+        public List<Cohort> getCohortsWithNoMembersOrEvals()
+        {
+            throw new NotSupportedException("EvaluationController.getCohortsWithNoMembersOrEvals not implemented");
         }
 
     }

@@ -183,5 +183,10 @@ namespace CS6232_G1.View
             frmViewEvaluations = null;
         }
 
+        private void deleteACohortToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteCohortForm.Run(_controller);
+        }
+
     }
 }

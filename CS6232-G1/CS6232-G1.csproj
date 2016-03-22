@@ -62,6 +62,12 @@
     <Compile Include="View\AddMembersToCohortForm.Designer.cs">
       <DependentUpon>AddMembersToCohortForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\DeleteCohortForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DeleteCohortForm.Designer.cs">
+      <DependentUpon>DeleteCohortForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\AddMembersToCohortForm.resx">
       <DependentUpon>AddMembersToCohortForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DeleteCohortForm.resx">
+      <DependentUpon>DeleteCohortForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

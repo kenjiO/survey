@@ -202,7 +202,15 @@ namespace Test
 
         public void deleteCohort(int _cohortId)
         {
-            throw new NotSupportedException();
+            return;
+        }
+
+        public List<Cohort> getCohortsWithNoMembersOrEvals()
+        {
+            List<Cohort> cohorts = new List<Cohort>();
+            cohorts.Add(new Cohort(1, "cohort1"));
+            cohorts.Add(new Cohort(2, "cohort2"));
+            return cohorts;
         }
 
         #endregion
