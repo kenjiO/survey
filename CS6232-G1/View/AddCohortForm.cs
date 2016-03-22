@@ -43,7 +43,6 @@ namespace CS6232_G1.View
             try
             {
                 _cohortId = _controller.addCohort(name).cohortId;
-                MessageBox.Show("Cohort " + name + " created.");
                 this.DialogResult = DialogResult.OK;
                 Close();
             }
