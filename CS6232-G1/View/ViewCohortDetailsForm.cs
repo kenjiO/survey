@@ -50,12 +50,32 @@ namespace CS6232_G1.View
                 dgvEvaluationSchedule.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvEvaluationSchedule.BackgroundColor = Color.White;
 
+                dgvEvaluationSchedule.CellFormatting += dgvEvaluationSchedule_CellFormatting;
+
                 loadMemberListView();
                 loadEvaluationScheduleGridView();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+        }
+
+        // show values of unbound columns on form load
+        void dgvEvaluationSchedule_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == dgvEvaluationSchedule.Columns["StageName"].Index)
+            {
+                e.FormattingApplied = true;
+                DataGridViewRow row = dgvEvaluationSchedule.Rows[e.RowIndex];
+                e.Value = _controller.getStageName((int)row.Cells["StageId"].Value);
+            }
+            if (e.ColumnIndex == dgvEvaluationSchedule.Columns["TypeName"].Index)
+            {
+                e.FormattingApplied = true;
+                DataGridViewRow row = dgvEvaluationSchedule.Rows[e.RowIndex];
+                e.Value = _controller.getTypeName((int)row.Cells["TypeId"].Value);
             }
         }
 
@@ -164,6 +184,9 @@ namespace CS6232_G1.View
             {
                 MessageBox.Show("Edit  Button,  scheduleid: " + senderGrid.SelectedRows[0].Cells["ScheduleId"].Value);
                 // TODO: open the Edit form with data for the selected schedule
+                selectedSchedule = this.PutDataInScheduleObject(senderGrid);
+                AddOrEditCohortScheduleForm editCohortScheduleForm = AddOrEditCohortScheduleForm.createEditForm(_controller, _cohortId, selectedSchedule, this);
+                editCohortScheduleForm.Show();
             }
 
             if (e.ColumnIndex == senderGrid.Columns["DeleteButton"].Index && e.RowIndex >= 0)
