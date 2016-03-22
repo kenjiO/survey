@@ -118,6 +118,7 @@ namespace CS6232_G1.View
                 return;
             }
             lblCohortName.Text = _cohortName;
+            resetMinAndMaxDates();
             // setup stage list to list all stages
             cboStage.DataSource = _stages;
             cboStage.DisplayMember = "name";
@@ -200,6 +201,7 @@ namespace CS6232_G1.View
                 setupControls(false, "All stages scheduled");
             }
 
+            resetMinAndMaxDates();
             if (data.lastStageEndDate != null)
             {
                 DateTime minStartDate = data.lastStageEndDate ?? DateTime.Now;
@@ -214,6 +216,14 @@ namespace CS6232_G1.View
                 dateStart.Value = DateTime.Now;
                 dateEnd.Value = DateTime.Now;
             }
+        }
+
+        private void resetMinAndMaxDates()
+        {
+            dateStart.MinDate = DateTime.Parse("1/1/2000");
+            dateStart.MaxDate = DateTime.Parse("12/31/2100");
+            dateEnd.MinDate = dateStart.MinDate;
+            dateEnd.MaxDate = dateStart.MaxDate;
         }
 
         /// <summary>
