@@ -24,9 +24,16 @@ namespace CS6232_G1.View
             InitializeComponent();
             _controller = controller;
             _cohortId = 0;
+        }
+
+        private void AddCohortForm_Load(object sender, EventArgs e)
+        {
             if (_controller == null)
             {
-                throw new ArgumentNullException("Null controller on Add Cohort form");
+                MessageBox.Show("Error: AddCohortFrom created with a null controller.");
+                this.DialogResult = DialogResult.Cancel;
+                Close();
+                return;
             }
         }
 

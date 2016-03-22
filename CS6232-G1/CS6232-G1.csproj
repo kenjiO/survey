@@ -103,6 +103,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\AddCohortForm.resx">
+      <DependentUpon>AddCohortForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\AddOrEditCohortScheduleForm.resx">
       <DependentUpon>AddOrEditCohortScheduleForm.cs</DependentUpon>
     </EmbeddedResource>

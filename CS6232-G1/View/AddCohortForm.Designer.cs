@@ -58,14 +58,14 @@
             // cohortNameTextBox
             // 
             this.cohortNameTextBox.Location = new System.Drawing.Point(167, 69);
-            this.cohortNameTextBox.Name = "CohortNameTextBox";
+            this.cohortNameTextBox.Name = "cohortNameTextBox";
             this.cohortNameTextBox.Size = new System.Drawing.Size(160, 20);
             this.cohortNameTextBox.TabIndex = 1;
             // 
             // createCohortButton
             // 
             this.createCohortButton.Location = new System.Drawing.Point(73, 118);
-            this.createCohortButton.Name = "CreateCohortButton";
+            this.createCohortButton.Name = "createCohortButton";
             this.createCohortButton.Size = new System.Drawing.Size(96, 23);
             this.createCohortButton.TabIndex = 2;
             this.createCohortButton.Text = "Create Cohort";
@@ -75,7 +75,7 @@
             // cancelButton
             // 
             this.cancelButton.Location = new System.Drawing.Point(210, 118);
-            this.cancelButton.Name = "CancelButton";
+            this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(93, 23);
             this.cancelButton.TabIndex = 4;
             this.cancelButton.Text = "Cancel";
@@ -87,13 +87,14 @@
             this.errorMsgLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorMsgLabel.ForeColor = System.Drawing.Color.Red;
             this.errorMsgLabel.Location = new System.Drawing.Point(18, 162);
-            this.errorMsgLabel.Name = "ErrorMsgLabel";
+            this.errorMsgLabel.Name = "errorMsgLabel";
             this.errorMsgLabel.Size = new System.Drawing.Size(342, 48);
             this.errorMsgLabel.TabIndex = 5;
             this.errorMsgLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // AddCohortForm
             // 
+            this.AcceptButton = this.createCohortButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 219);
@@ -105,6 +106,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AddCohortForm";
             this.Text = "Add New Cohort";
+            this.Load += new System.EventHandler(this.AddCohortForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
