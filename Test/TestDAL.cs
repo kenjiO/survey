@@ -35,6 +35,11 @@ namespace Test
             return _controller.getCohorts();
         }
 
+        public List<Cohort> getCohortsWithNoMembersOrEvals()
+        {
+            throw new NotSupportedException();
+        }
+
         public Cohort addNewCohort(String name)
         {
             throw new NotSupportedException();

@@ -44,9 +44,10 @@ namespace CS6232_G1.View
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("A Database error occured fetching cohorts: " + ex.Message);
+                MessageBox.Show("A Database error occured fetching cohorts\n" + ex.Message);
                 this.DialogResult = DialogResult.Cancel;
                 Close();
+                return;
             }
             if (deletableCohortList == null || deletableCohortList.Count < 1)
             {
@@ -68,6 +69,11 @@ namespace CS6232_G1.View
         private void deleteBtn_Click(object sender, EventArgs e)
         {
             Cohort selectedCohort = (Cohort) cohortsComboBox.SelectedItem;
+            if (selectedCohort == null)
+            {
+                MessageBox.Show("Please select a cohort first");
+                return;
+            }
 
             try
             {

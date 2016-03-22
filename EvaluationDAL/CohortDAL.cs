@@ -44,6 +44,41 @@ namespace Evaluation.DAL
         }
 
         /// <summary>
+        /// Get a list of cohorts that have no members or schedules
+        /// </summary>
+        /// <returns>A list of cohorts with no members or schedules</returns>
+        public List<Cohort> getCohortsWithNoMembersOrEvals()
+        {
+            List<Cohort> cohorts = new List<Cohort>();
+
+            string selectStatement =
+                "SELECT cohortId, cohortName " +
+                "FROM cohort " +
+                "WHERE NOT EXISTS(SELECT NULL FROM employee e WHERE cohort.cohortId = e.cohortId) " +
+                "  AND NOT EXISTS(SELECT NULL FROM evaluation_schedule s WHERE cohort.cohortId = s.cohortId) " +
+                "ORDER BY cohortName";
+
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = (int)reader["cohortId"];
+                            String name = reader["cohortName"].ToString();
+                            cohorts.Add(new Cohort(id, name));
+                        }
+                    }
+                }
+            }
+            return cohorts;
+        }
+
+        /// <summary>
         /// Add a new cohort
         /// Precondition: name != null and a cohort with that name does not exist alreay
         /// </summary>

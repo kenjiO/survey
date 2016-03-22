@@ -117,7 +117,7 @@ namespace Evaluation.Controller
 
         public List<Cohort> getCohortsWithNoMembersOrEvals()
         {
-            throw new NotSupportedException("EvaluationController.getCohortsWithNoMembersOrEvals not implemented");
+            return _dal.getCohortsWithNoMembersOrEvals();
         }
 
     }

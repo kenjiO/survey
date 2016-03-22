@@ -86,6 +86,11 @@ namespace Evaluation.DAL
         /// <exception cref="ArgumentException">Parameters given were invalid</exception>
         int addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate);
 
+        /// <summary>
+        /// Get a list of cohorts that have no members or schedules
+        /// </summary>
+        /// <returns>A list of cohorts with no members or schedules</returns>
+        List<Cohort> getCohortsWithNoMembersOrEvals();
         #endregion
 
         #region Employees
