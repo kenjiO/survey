@@ -74,20 +74,41 @@ namespace CS6232_G1.View
                 MessageBox.Show("Please select a cohort first");
                 return;
             }
-
+            bool result = false;
             try
             {
-                _controller.deleteCohort(selectedCohort.cohortId) ;
+                result = _controller.deleteCohort(selectedCohort.cohortId);
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("A Database error occured deleting the cohort\n" + ex.Message);
-                this.DialogResult = DialogResult.Cancel;
-                Close();
+                if (ex.Errors.Count > 0) // Assume the interesting stuff is in the first error
+                {
+                    int SQL_FOREIGN_KEY_EXCEPTION_CODE = 547;
+                    if (ex.Errors[0].Number == SQL_FOREIGN_KEY_EXCEPTION_CODE)
+                    {
+                        //Another process added a member or schedule to this cohort
+                        MessageBox.Show("The cohort was updated by another process and can no longer be deleted");
+                    }
+                    else {
+                        MessageBox.Show("A Database error occured deleting the cohort\n" + ex.Message);
+                    }
+                }
+                loadComboBoxItems();
+                return;
             }
-            MessageBox.Show("Cohort " + selectedCohort.cohortName + " deleted");
-            this.DialogResult = DialogResult.OK;
-            Close();
+
+            if (result) 
+            {
+                MessageBox.Show(selectedCohort.cohortName + " deleted");
+                this.DialogResult = DialogResult.OK;
+                Close();
+                return;
+            }
+            else
+            {
+                MessageBox.Show(selectedCohort.cohortName + " was unable to be deleted");
+            }
+            loadComboBoxItems();
         }
 
         public static void Run(IEvaluationController controller)

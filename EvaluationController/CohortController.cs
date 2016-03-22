@@ -110,9 +110,9 @@ namespace Evaluation.Controller
             return _dal.addCohortSchedule(cohortId, typeId, stageId, startDate, endDate);
         }
 
-        public void deleteCohort(int _cohortId)
+        public bool deleteCohort(int cohortId)
         {
-            throw new NotSupportedException("EvaluationController.deleteCohort not implemented");
+            return _dal.deleteCohort(cohortId);
         }
 
         public List<Cohort> getCohortsWithNoMembersOrEvals()

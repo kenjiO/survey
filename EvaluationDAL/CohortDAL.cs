@@ -137,6 +137,40 @@ namespace Evaluation.DAL
         }
 
         /// <summary>
+        /// Delete a cohort that has no members or schedules
+        /// Precondition: cohortId must refer to a cohort with no members or schedules. If not
+        ///               a sql foreign key contraint exception will be thrown
+        /// </summary>
+        /// <param name="cohortId">cohortId of the cohort to delete</param>
+        /// <returns>True if deleted. False if cohort doen't exist, has members or has schedules</returns>
+        public bool deleteCohort(int cohortId)
+        {
+            string deleteStatement =
+                "DELETE FROM cohort " +
+                "WHERE cohortId = @cohortId";
+
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand deleteCommand = new SqlCommand(deleteStatement, connection))
+                {
+                    deleteCommand.Parameters.AddWithValue("@cohortId", cohortId);
+
+                    int count = deleteCommand.ExecuteNonQuery();
+                    if (count < 1)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Get a list of evaluation schedules for a given cohort
         /// </summary>
         /// /// <param name="cohortId">the cohortId</param>

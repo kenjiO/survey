@@ -156,8 +156,9 @@ namespace Evaluation.Controller
         /// <summary>
         /// Deletes the specified cohort
         /// </summary>
-        /// <param name="_cohortId">id of cohort to delete</param>
-        void deleteCohort(int _cohortId);
+        /// <param name="cohortId">id of cohort to delete</param>
+        /// <returns>True if cohort deleted. False otherwise.</returns>
+        bool deleteCohort(int cohortId);
 
         #endregion
 

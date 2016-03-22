@@ -200,9 +200,9 @@ namespace Test
             throw new ArgumentException("Invalid configuration (test)");
         }
 
-        public void deleteCohort(int _cohortId)
+        public bool deleteCohort(int _cohortId)
         {
-            return;
+            return false ;
         }
 
         public List<Cohort> getCohortsWithNoMembersOrEvals()

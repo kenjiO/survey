@@ -98,6 +98,12 @@ namespace Test
             return 5;
         }
 
+        public bool deleteCohort(int cohortId)
+        {
+            throw new NotImplementedException();
+
+        }
+
         #endregion
 
         public List<EmployeeName> getEmployeeNameList()

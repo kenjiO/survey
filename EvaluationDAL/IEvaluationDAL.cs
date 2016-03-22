@@ -91,6 +91,13 @@ namespace Evaluation.DAL
         /// </summary>
         /// <returns>A list of cohorts with no members or schedules</returns>
         List<Cohort> getCohortsWithNoMembersOrEvals();
+
+        /// <summary>
+        /// Delete a cohort with the given Id.  Cohort must not have any members or schedules.
+        /// </summary>
+        /// <param name="cohortId">Id of the cohort to delete</param>
+        bool deleteCohort(int cohortId);
+        
         #endregion
 
         #region Employees
