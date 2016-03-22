@@ -161,6 +161,30 @@ namespace Evaluation.Controller
         /// </summary>
         /// <returns>Employee name list</returns>
         List<EmployeeName> getEmployeeNameList();
+
+        /// <summary>
+        /// Get a list of non-admin employees with possible exclusions
+        /// </summary>
+        /// <param name="exclude">List of employee Id's to exclude</param>
+        /// <returns>A list of non admin employees excluding given Id's</returns>
+        List<EmployeeName> getListOfNonAdminEmployees(int[] exclude);
+
+        /// <summary>
+        /// Check if the currentUser has selected a supervisor
+        /// </summary>
+        /// <returns>Whether or not a supervisor has been selected</returns>
+        bool isSupervisorSelectedForCurrentUser();
+
+        /// <summary>
+        /// Set a supervisor for the logged in employee
+        /// Precondition: isSupervisorSelectedForCurrentUser() is false
+        /// Precondition: supervisor is not the same as currentUser
+        /// Throws an exception if supervisor is already set
+        /// </summary>
+        /// <param name="supervisorId">Id to set as the supervisor</param>
+        /// <returns>True if supervisor was set successfully. False if the supervisor was already set</returns>
+        void setSupervisor(int supervisorId);
+
         #endregion
 
         #region Login
@@ -191,5 +215,32 @@ namespace Evaluation.Controller
         /// <returns>true if delete is successful, else false</returns>
         bool DeleteSchedule(EvaluationSchedule selectedSchedule);
         #endregion
+
+        #region Evaluation
+
+        /// <summary>
+        /// Check to see if the employee has started an evaluation for type and stage
+        /// </summary>
+        /// <param name="empId">The employee</param>
+        /// <param name="typeId">The typeID for the evaluation</param>
+        /// <param name="stageId">The stageId for the evaluation</param>
+        /// <returns>Whether or not a self-evaluation for this type and stage exists yet</returns>
+        bool isSelfEvaluationStarted(int empId, int typeId, int stageId);
+
+        /// <summary>
+        /// Creates a self-evaluation, supervisor evaluation and co-worker evaluation 
+        /// for currentUser for stage and type
+        /// Precondition: SupervisorId is set for currentEmployee
+        /// Precondition: co-worker is not the supervisor
+        /// Precondition: Evaluation for currentEmployee at given type and stage does not exist
+        /// Precondition: EvaluationSchedule is open for currentUser's cohort
+        /// </summary>
+        /// <param name="typeId">Evaluation type to create</param>
+        /// <param name="stageId">Evaluation stage to create</param>
+        /// <param name="coworkerId">Co-worker selected to evaluate this employee</param>
+        void initializeSelfEvaluation(int typeId, int stageId, int coworkerId);
+
+        #endregion
+
     }
 }

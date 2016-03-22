@@ -219,6 +219,25 @@ namespace Test
             results.Add(new EmployeeName(141, "Ann", "Smith"));
             return results;
         }
+
+        public List<EmployeeName> getListOfNonAdminEmployees(int[] exclude)
+        {
+            List<EmployeeName> names = new List<EmployeeName>();
+            names.Add(new EmployeeName(1, "Tom", "Ryser"));
+            names.Add(new EmployeeName(2, "Dora", "Ado"));
+            return names;
+        }
+
+        public bool isSupervisorSelectedForCurrentUser()
+        {
+            return _currentUser.supervisorId == null;
+        }
+
+        public void setSupervisor(int supervisorId)
+        {
+            _currentUser.supervisorId = supervisorId;
+        }
+
         #endregion
 
         #region Login
@@ -271,5 +290,18 @@ namespace Test
         }
         #endregion
 
+        #region Evaluation
+
+        public bool isSelfEvaluationStarted(int empId, int typeId, int stageId)
+        {
+            return false;
+        }
+
+        public void initializeSelfEvaluation(int typeId, int stageId, int coworkerId)
+        {
+            return;
+        }
+
+        #endregion
     }
 }

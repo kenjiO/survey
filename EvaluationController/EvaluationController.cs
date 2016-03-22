@@ -30,5 +30,35 @@ namespace Evaluation.Controller
         }
         #endregion
 
+        /// <summary>
+        /// Check to see if the employee has started an evaluation for type and stage
+        /// </summary>
+        /// <param name="empId">The employee</param>
+        /// <param name="typeId">The typeID for the evaluation</param>
+        /// <param name="stageId">The stageId for the evaluation</param>
+        /// <returns>Whether or not a self-evaluation for this type and stage exists yet</returns>
+        public bool isSelfEvaluationStarted(int empId, int typeId, int stageId)
+        {
+            //TODO Implement.
+            throw new NotSupportedException("EvaluationController.isSelfEvaluationStarted() not implemented");
+        }
+
+        /// <summary>
+        /// Creates a self-evaluation, supervisor evaluation and co-worker evaluation 
+        /// for currentUser for stage and type
+        /// Precondition: SupervisorId is set for currentEmployee
+        /// Precondition: co-worker is not the supervisor
+        /// Precondition: Evaluation for currentEmployee at given type and stage does not exist
+        /// Precondition: EvaluationSchedule is open for currentUser's cohort
+        /// </summary>
+        /// <param name="typeId">Evaluation type to create</param>
+        /// <param name="stageId">Evaluation stage to create</param>
+        /// <param name="coworkerId">Co-worker selected to evaluate this employee</param>
+        public void initializeSelfEvaluation(int typeId, int stageId, int coworkerId)
+        {
+            //TODO Implement.
+            throw new NotSupportedException("EvaluationController.initializeSelfEvaluation() not implemented");
+
+        }
     }
 }
