@@ -88,6 +88,7 @@
             this.Controls.Add(this.MyCancelButton);
             this.Controls.Add(this.SelectButton);
             this.Name = "SelectCohortForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Select Cohort";
             this.Load += new System.EventHandler(this.SelectCohortForm_Load);
             this.ResumeLayout(false);

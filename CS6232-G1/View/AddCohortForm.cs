@@ -68,7 +68,7 @@ namespace CS6232_G1.View
         public static int Run(IEvaluationController controller)
         {
             AddCohortForm form = new AddCohortForm(controller);
-            DialogResult result = form.ShowDialog();
+            DialogResult result = form.ShowDialog(Program.mainForm);
             if (result == DialogResult.OK)
             {
                 return form.newCohortId;
