@@ -13,6 +13,14 @@ namespace Test
 
         public Employee currentUser { get { return _currentUser; } }
         public bool idAdminSession { get { return _isAdminSession; } }
+        
+        #region Roles
+
+        public String getRoleName(int roleId)
+        {
+            return "Role Name";
+        }
+        #endregion
 
         #region Stages
         public List<Stage> getStageList()
@@ -246,6 +254,11 @@ namespace Test
             _currentUser.supervisorId = supervisorId;
         }
 
+        public String getEmployeeName(int employeeId)
+        {
+            return "Employee Name";
+        }
+
         #endregion
 
         #region Login
@@ -308,6 +321,36 @@ namespace Test
         public void initializeSelfEvaluation(int typeId, int stageId, int coworkerId)
         {
             return;
+        }
+
+        public List<Evaluations> getOpenSelfEvaluations(int employeeId)
+        {
+            List<Evaluations> selfEvaluations = new List<Evaluations>();
+            selfEvaluations.Add(new Evaluations(1, 1, 1, 1, 1, null));
+            selfEvaluations.Add(new Evaluations(1, 1, 1, 1, 1, null));
+            selfEvaluations.Add(new Evaluations(1, 1, 1, 1, 1, null));
+            selfEvaluations.Add(new Evaluations(1, 1, 1, 1, 1, null));
+            return selfEvaluations;
+        }
+
+        public List<Evaluations> getOpenOtherEvaluations(int employeeId)
+        {
+            List<Evaluations> otherEvaluations = new List<Evaluations>();
+
+            otherEvaluations.Add(new Evaluations(1, 1, 1, 1, 1, null));
+            otherEvaluations.Add(new Evaluations(1, 1, 1, 1, 1, null));
+            otherEvaluations.Add(new Evaluations(1, 1, 1, 1, 1, null));
+            otherEvaluations.Add(new Evaluations(1, 1, 1, 1, 1, null));
+            
+            return otherEvaluations;
+        }
+        #endregion
+
+        #region Evaluation
+
+        public DateTime getEndDateForSchedule(int typeId, int stageId, int? cohortId)
+        {
+            return DateTime.Parse("6/5/2016");
         }
 
         #endregion

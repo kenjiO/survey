@@ -46,8 +46,6 @@ namespace CS6232_G1.View
                 _cohortName = _controller.getCohortName(_cohortId);
                 lblCohortName.Text = "Details for " + _cohortName;
 
-                dgvEvaluationSchedule.CellBorderStyle = DataGridViewCellBorderStyle.None;
-                dgvEvaluationSchedule.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvEvaluationSchedule.BackgroundColor = Color.White;
 
                 dgvEvaluationSchedule.CellFormatting += dgvEvaluationSchedule_CellFormatting;
@@ -187,6 +185,7 @@ namespace CS6232_G1.View
                 selectedSchedule = this.PutDataInScheduleObject(senderGrid);
                 AddOrEditCohortScheduleForm editCohortScheduleForm = AddOrEditCohortScheduleForm.createEditForm(_controller, _cohortId, selectedSchedule, this);
                 editCohortScheduleForm.Show();
+                this.refreshViews();
             }
 
             if (e.ColumnIndex == senderGrid.Columns["DeleteButton"].Index && e.RowIndex >= 0)
@@ -201,9 +200,10 @@ namespace CS6232_G1.View
                 else 
                 {
                     MessageBox.Show("Schedule has been deleted!", "Operation Successful");
-                }   
+                }
+                this.refreshViews();
             }
-            this.refreshViews();
+            
         }
 
         private EvaluationSchedule PutDataInScheduleObject(DataGridView senderGrid)

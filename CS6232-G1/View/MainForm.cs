@@ -169,7 +169,7 @@ namespace CS6232_G1.View
                 frmViewEvaluations.Close();
             }
             //open ViewEvaluationDetailsForm
-            frmViewEvaluations = new ViewEvaluationsForm(_controller);            
+            frmViewEvaluations = new ViewEvaluationsForm(_controller, _controller.currentUser);            
             frmViewEvaluations.MdiParent = this;
             frmViewEvaluations.Show();
             frmViewEvaluations.FormClosed += viewEvaluationsForm_FormClosed;

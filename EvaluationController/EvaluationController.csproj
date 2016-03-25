@@ -46,6 +46,7 @@
     <Compile Include="IEvaluationController.cs" />
     <Compile Include="LogonController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleController.cs" />
     <Compile Include="StageController.cs" />
     <Compile Include="TypeController.cs" />
   </ItemGroup>

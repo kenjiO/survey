@@ -50,5 +50,16 @@ namespace Evaluation.Controller
             throw new NotSupportedException("EvaluationController.setSupervisor() not implemented");
         }
 
+        /// <summary>
+        /// Get employee name from id
+        /// </summary>
+        /// <param name="employeeId">employee id</param>
+        /// <returns>Employee name</returns>
+        public String getEmployeeName(int employeeId)
+        {
+            //TODO Implement.  
+            throw new NotSupportedException("EvaluationController.getEmployeeName not implemented");
+        }
+
     }
 }

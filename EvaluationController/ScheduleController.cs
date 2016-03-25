@@ -13,5 +13,20 @@ namespace Evaluation.Controller
         {
             return _dal.DeleteSchedule(selectedSchedule);
         }
+
+        public List<Evaluations> getOpenSelfEvaluations(int employeeId)
+        {
+            throw new NotSupportedException();
+        }
+
+        public List<Evaluations> getOpenOtherEvaluations(int employeeId)
+        {
+            throw new NotSupportedException();
+        }
+
+        public DateTime getEndDateForSchedule(int typeId, int stageId, int? cohortId)
+        {
+            throw new NotSupportedException();
+        }
     }
 }
