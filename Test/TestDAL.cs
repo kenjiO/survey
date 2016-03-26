@@ -130,6 +130,12 @@ namespace Test
         {
             throw new NotSupportedException();
         }
+
+        public bool setSupervisor(int employeeId, int supervisorId)
+        {
+            throw new NotSupportedException();
+        }
+
         
     }
 }

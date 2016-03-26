@@ -40,22 +40,28 @@ namespace Evaluation.Controller
         /// <returns>Whether or not a supervisor has been selected</returns>
         public bool isSupervisorSelectedForCurrentUser()
         {
-            //TODO Implement.
-            throw new NotSupportedException("EvaluationController.isSupervisorSelectedForCurrentUser() not implemented");
+            return (_currentUser.supervisorId != null);
         }
 
         /// <summary>
         /// Set a supervisor for the logged in employee
         /// Precondition: isSupervisorSelectedForCurrentUser() is false
         /// Precondition: supervisor is not the same as currentUser
-        /// Throws an exception if supervisor is already set
         /// </summary>
         /// <param name="supervisorId">Id to set as the supervisor</param>
-        /// <returns>True if supervisor was set successfully. False if the supervisor was already set</returns>
         public void setSupervisor(int supervisorId)
         {
-            //TODO Implement.  Remember to update currentUser!!
-            throw new NotSupportedException("EvaluationController.setSupervisor() not implemented");
+            if (supervisorId == _currentUser.employeeId) {
+                throw new ArgumentException("supervisorId cannot be the same as the current user");
+            }
+            if (this.isSupervisorSelectedForCurrentUser())
+            {
+                throw new InvalidOperationException("Supervisor is already set");
+            }
+            if (_dal.setSupervisor(_currentUser.employeeId, supervisorId))
+            {
+                _currentUser.supervisorId = supervisorId;
+            }
         }
 
         /// <summary>

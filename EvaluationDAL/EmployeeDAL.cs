@@ -41,5 +41,47 @@ namespace Evaluation.DAL
             }
             return results;
         }
+
+        /// <summary>
+        /// Set a supervisor for an employee
+        /// Precondition: employeeId != supervisorId
+        /// </summary>
+        /// <param name="employeeId">The Employee Id</param>
+        /// <param name="supervisorId">The SupervisorId to set for the employee</param>
+        /// <returns>True if successful, false if supervisor is already set to another supervisor</returns>
+        public bool setSupervisor(int employeeId, int supervisorId)
+        {
+            if (employeeId == supervisorId)
+            {
+                throw new ArgumentException("supervisorId cannot equal employeeId");
+            }
+            string updateStatement =
+                "UPDATE employee " +
+                "SET supervisorId = @supervisorId " +
+                "WHERE employeeId = @employeeId " +
+                "AND (supervisorId IS NULL OR supervisorId = @supervisorId)";
+
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
+                {
+                    updateCommand.Parameters.AddWithValue("@employeeId", employeeId);
+                    updateCommand.Parameters.AddWithValue("@supervisorId", supervisorId);
+
+                    int count = updateCommand.ExecuteNonQuery();
+                    if (count < 1)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }            
+        }
+
     }
 }

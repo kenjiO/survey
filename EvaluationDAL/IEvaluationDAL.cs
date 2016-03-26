@@ -119,9 +119,19 @@ namespace Evaluation.DAL
         /// </summary>
         /// <returns>List of non-admin employees</returns>
         List<EmployeeName> getListOfNonAdminEmployees();
+
+        /// <summary>
+        /// Set a supervisor for an employee
+        /// Precondition: employeeId != supervisorId
+        /// </summary>
+        /// <param name="employeeId">The Employee Id</param>
+        /// <param name="supervisorId">The SupervisorId to set for the employee</param>
+        /// <returns>True if successful, false if supervisor is already set to another supervisor</returns>
+        bool setSupervisor(int employeeId, int supervisorId);
+
         #endregion
 
-        #region Employees
+        #region Schedules
 
         /// <summary>
         /// Deletes a schedule if it has no evaluations
