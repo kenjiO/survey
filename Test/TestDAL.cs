@@ -106,6 +106,16 @@ namespace Test
 
         #endregion
 
+        #region Employees
+
+        public List<EmployeeName> getListOfNonAdminEmployees()
+        {
+            throw new NotSupportedException();
+        }
+
+        #endregion
+
+
         public List<EmployeeName> getEmployeeNameList()
         {
             return _controller.getEmployeeNameList();

@@ -22,8 +22,16 @@ namespace Evaluation.Controller
         /// <returns>A list of non admin employees excluding given Id's</returns>
         public List<EmployeeName> getListOfNonAdminEmployees(int[] exclude)
         {
-            //TODO Implement.
-            throw new NotSupportedException("EvaluationController.getListOfNonAdminEmployees() not implemented");
+            if (exclude == null)
+            {
+                throw new ArgumentNullException("exclude cannot be null");
+            }
+            List<EmployeeName> employees = _dal.getListOfNonAdminEmployees();
+            foreach (int id in exclude)
+            {
+                employees.RemoveAll(emp => emp.employeeId == id);
+            }
+            return employees;
         }
 
         /// <summary>

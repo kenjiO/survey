@@ -114,6 +114,11 @@ namespace Evaluation.DAL
         /// <returns>Employee if valid login/password. Otherwise null</returns>
         Employee getLogin(String username, String password);
 
+        /// <summary>
+        /// Get employees that are not admins
+        /// </summary>
+        /// <returns>List of non-admin employees</returns>
+        List<EmployeeName> getListOfNonAdminEmployees();
         #endregion
 
         #region Employees
