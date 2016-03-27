@@ -39,8 +39,7 @@ namespace Evaluation.Controller
         /// <returns>Whether or not a self-evaluation for this type and stage exists yet</returns>
         public bool isSelfEvaluationStarted(int empId, int typeId, int stageId)
         {
-            //TODO Implement.
-            throw new NotSupportedException("EvaluationController.isSelfEvaluationStarted() not implemented");
+            return _dal.isSelfEvaluationStarted(empId, typeId, stageId);
         }
 
         /// <summary>

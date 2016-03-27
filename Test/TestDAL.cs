@@ -131,6 +131,11 @@ namespace Test
             throw new NotSupportedException();
         }
 
+        public bool isSelfEvaluationStarted(int empId, int typeId, int stageId)
+        {
+            throw new NotSupportedException();
+        }
+
         public bool setSupervisor(int employeeId, int supervisorId)
         {
             throw new NotSupportedException();

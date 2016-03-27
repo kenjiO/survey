@@ -45,5 +45,35 @@ namespace Evaluation.DAL
             return results;
         }
 
+        /// <summary>
+        /// Check if a self-evaluation for an employee, type and stage has been started
+        /// </summary>
+        /// <param name="employeeId">employeeId for the self-evaluation</param>
+        /// <param name="typeId">The evaluation typeId</param>
+        /// <param name="stageId">The evaluation stageId</param>
+        public bool isSelfEvaluationStarted(int employeeId, int typeId, int stageId)
+        {
+            string selectStatement =
+                "SELECT evaluationId " +
+                "FROM evaluations " +
+                "WHERE typeId = @typeId " +
+                "  AND stageId = @stageId " +
+                "  AND employeeId = @employeeId " +
+                "  AND evaluator = @employeeId";
+
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@employeeId", employeeId);
+                    selectCommand.Parameters.AddWithValue("@typeId", typeId);
+                    selectCommand.Parameters.AddWithValue("@stageId", stageId);
+                    Object result = selectCommand.ExecuteScalar();
+                    return (selectCommand.ExecuteScalar() != null);
+                }
+            }
+        }
+
     }
 }

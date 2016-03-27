@@ -129,6 +129,14 @@ namespace Evaluation.DAL
         /// <returns>True if successful, false if supervisor is already set to another supervisor</returns>
         bool setSupervisor(int employeeId, int supervisorId);
 
+        /// <summary>
+        /// Check if a self-evaluation for an employee, type and stage has been started
+        /// </summary>
+        /// <param name="employeeId">employeeId for the self-evaluation</param>
+        /// <param name="typeId">The evaluation typeId</param>
+        /// <param name="stageId">The evaluation stageId</param>
+        bool isSelfEvaluationStarted(int employeeId, int typeId, int stageId);
+
         #endregion
 
         #region Schedules
