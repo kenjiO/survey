@@ -189,7 +189,22 @@ namespace Evaluation.DAL
 
         #endregion
 
+        #region Evaluations
 
+        /// <summary>
+        /// Create the self, supervisor and co-worker evaluations in the database
+        /// Precondition: Supervisor is set for employee
+        /// Precondition: Co-worker is not the supervisor
+        /// Precondition: Co-worker is different then employee
+        /// Precondition: Evaluations for type and stage are not created yet for this employee
+        /// </summary>
+        /// <param name="empId">Employee who the evaluations are for</param>
+        /// <param name="typeId">Type Id of evaluation to create</param>
+        /// <param name="stageId">StageId of evaluation to create</param>
+        /// <param name="coworkerId">Co-worker's employeeId</param>
+        void createEvaluations(int empId, int typeId, int stageId, int coworkerId);
+
+        #endregion
     }
 
 }

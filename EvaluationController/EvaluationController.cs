@@ -48,16 +48,19 @@ namespace Evaluation.Controller
         /// Precondition: SupervisorId is set for currentEmployee
         /// Precondition: co-worker is not the supervisor
         /// Precondition: Evaluation for currentEmployee at given type and stage does not exist
-        /// Precondition: EvaluationSchedule is open for currentUser's cohort
         /// </summary>
         /// <param name="typeId">Evaluation type to create</param>
         /// <param name="stageId">Evaluation stage to create</param>
         /// <param name="coworkerId">Co-worker selected to evaluate this employee</param>
         public void initializeSelfEvaluation(int typeId, int stageId, int coworkerId)
         {
-            //TODO Implement - initialize self-evaluation
-            throw new NotSupportedException("EvaluationController.initializeSelfEvaluation() not implemented");
-
+            if (_currentUser.supervisorId == null)
+                throw new Exception("Supervisor must be selected");
+            if (_currentUser.supervisorId == coworkerId) 
+                throw new Exception("Co-worker must not be the supervisor");
+            if (_currentUser.employeeId == coworkerId)
+                throw new Exception("Co-worker must be different than self");
+            _dal.createEvaluations(_currentUser.employeeId, typeId, stageId, coworkerId);
         }
 
         public List<Evaluations> getOpenSelfEvaluations(int employeeId)
