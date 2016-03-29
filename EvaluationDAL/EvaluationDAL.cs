@@ -13,6 +13,10 @@ namespace Evaluation.DAL
     /// </summary>
     public partial class EvaluationDAL : IEvaluationDAL
     {
+        const int SELF_EVALUATION_ROLE_ID = 1;
+        const int SUPERVISOR_ROLE_ID = 2;
+        const int COWORKER_ROLE_ID = 3;
+
         /// <summary>
         /// Check if a self-evaluation for an employee, type and stage has been started
         /// </summary>
@@ -87,6 +91,7 @@ namespace Evaluation.DAL
         /// Precondition: Co-worker is not the supervisor
         /// Precondition: Co-worker is different then employee
         /// Precondition: Evaluations for type and stage are not created yet for this employee
+        /// Precondition: Type and Stage are valid 
         /// </summary>
         /// <param name="empId">Employee who the evaluations are for</param>
         /// <param name="typeId">Type Id of evaluation to create</param>
@@ -94,6 +99,150 @@ namespace Evaluation.DAL
         /// <param name="coworkerId">Co-worker's employeeId</param>
         public void createEvaluations(int empId, int typeId, int stageId, int coworkerId)
         {
+            int supervisorId;
+            if (empId == coworkerId)
+                throw new ArgumentException("Co-worker must be different than employee");
+            SqlConnection connection = EvaluationDB.GetConnection();
+            connection.Open();
+
+            // Check employee is in DB and has a supervisor
+            string selectStatement =
+                "SELECT employeeId, supervisorId " +
+                "FROM employee " +
+                "WHERE EmployeeId = @employeeId";
+            SqlCommand command = new SqlCommand(selectStatement, connection);
+            command.Parameters.AddWithValue("@EmployeeId", empId);
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                if (DBNull.Value.Equals(reader["supervisorId"]))
+                    throw new Exception("Supervisor not set for employee");
+                else
+                    supervisorId = (int)reader["supervisorId"];
+            }
+            else
+            {
+                throw new Exception("EmployeeId not found in the database");
+            }
+            reader.Close();
+
+            //Check co-worker is not same as supervisor
+            if (coworkerId == supervisorId)
+            {
+                throw new Exception("Co-worker cannot be the supervisor");
+            }
+
+            //Check co-worker is a valid non-admin employee
+            selectStatement =
+                "SELECT employeeId, isAdmin " +
+                "FROM employee " +
+                "WHERE EmployeeId = @employeeId";
+            command = new SqlCommand(selectStatement, connection);
+            command.Parameters.AddWithValue("@EmployeeId", coworkerId);
+            reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                if ((bool)(reader["isAdmin"]))
+                    throw new Exception("Co-worker must no be an admin");
+            }
+            else
+            {
+                throw new Exception("Coworker Id not found in the database");
+            }
+            reader.Close();
+
+            // Check if any evals for type and stage already exist
+            selectStatement =
+                "SELECT evaluationId " +
+                "FROM evaluations " +
+                "WHERE EmployeeId = @employeeId AND typeId = @typeId AND stageId = @stageId";
+            command = new SqlCommand(selectStatement, connection);
+            command.Parameters.AddWithValue("@EmployeeId", empId);
+            command.Parameters.AddWithValue("@typeId", typeId);
+            command.Parameters.AddWithValue("@stageId", stageId);
+            reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                throw new Exception("An evaluation for this employee, type, stage already exists");
+            }
+            reader.Close();
+
+            // Use a transaction to add self, supervisor and co-worker evaluations
+            SqlTransaction transaction = connection.BeginTransaction();
+            try
+            {
+                string insertStatement1 =
+                    "INSERT INTO evaluations " +
+                    "(employeeId, stageId, typeId, evaluator, roleId) " +
+                    "VALUES (@employeeId, @stageId, @typeId, @evaluator, @roleId)";
+                SqlCommand command1 = new SqlCommand(insertStatement1, connection, transaction);
+                command1.Parameters.AddWithValue("@employeeId", empId);
+                command1.Parameters.AddWithValue("@typeId", typeId);
+                command1.Parameters.AddWithValue("@stageId", stageId);
+                command1.Parameters.AddWithValue("@evaluator", empId);
+                command1.Parameters.AddWithValue("@roleId", SELF_EVALUATION_ROLE_ID);
+                int result1 = command1.ExecuteNonQuery();
+                if (result1 < 1)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Problem adding self evaluation. No evaluations created");
+                }
+
+                string insertStatement2 =
+                    "INSERT INTO evaluations " +
+                    "(employeeId, stageId, typeId, evaluator, roleId) " +
+                    "VALUES (@employeeId, @stageId, @typeId, @evaluator, @roleId)";
+                SqlCommand command2 = new SqlCommand(insertStatement2, connection, transaction);
+                command2.Parameters.AddWithValue("@employeeId", empId);
+                command2.Parameters.AddWithValue("@typeId", typeId);
+                command2.Parameters.AddWithValue("@stageId", stageId);
+                command2.Parameters.AddWithValue("@evaluator", supervisorId);
+                command2.Parameters.AddWithValue("@roleId", SUPERVISOR_ROLE_ID);
+                int result2 = command2.ExecuteNonQuery();
+                if (result2 < 1)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Problem adding supervisor evaluation. No evaluations created");
+                }
+
+                string insertStatement3 =
+                    "INSERT INTO evaluations " +
+                    "(employeeId, stageId, typeId, evaluator, roleId) " +
+                    "VALUES (@employeeId, @stageId, @typeId, @evaluator, @roleId)";
+                SqlCommand command3 = new SqlCommand(insertStatement3, connection, transaction);
+                command3.Parameters.AddWithValue("@employeeId", empId);
+                command3.Parameters.AddWithValue("@typeId", typeId);
+                command3.Parameters.AddWithValue("@stageId", stageId);
+                command3.Parameters.AddWithValue("@evaluator", coworkerId);
+                command3.Parameters.AddWithValue("@roleId", COWORKER_ROLE_ID);
+                int result3 = command3.ExecuteNonQuery();
+                if (result3 < 1)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Problem adding co-worker evaluation. No evaluations created");
+                }
+
+                transaction.Commit();
+            }
+            catch (SqlException ex)
+            {
+                if (transaction != null)
+                    transaction.Rollback();
+
+                if (ex.Errors[0].Number == 547) // Assume the interesting stuff is in the first error
+                {
+                    //Error 547 is a foreign key violation. Since emp, supervisor and co-worker
+                    //have been checked they are not causing it so it must be stage or type.
+                    if (ex.Errors[0].Number == 547)
+                    {
+                        throw new Exception("Invalid type or stage");
+                    }
+                }
+                else
+                {
+                    throw ex;
+                }
+            }
         }
     }
 }
