@@ -41,7 +41,6 @@ namespace Evaluation.DAL
                     selectCommand.Parameters.AddWithValue("@employeeId", employeeId);
                     selectCommand.Parameters.AddWithValue("@typeId", typeId);
                     selectCommand.Parameters.AddWithValue("@stageId", stageId);
-                    Object result = selectCommand.ExecuteScalar();
                     return (selectCommand.ExecuteScalar() != null);
                 }
             }
