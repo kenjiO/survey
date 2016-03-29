@@ -45,9 +45,11 @@ namespace Evaluation.Controller
         /// <summary>
         /// Creates a self-evaluation, supervisor evaluation and co-worker evaluation 
         /// for currentUser for stage and type
+        /// THROWS custom exception CreateEvaluationsException for certain errors when creating the evaluations
         /// Precondition: SupervisorId is set for currentEmployee
-        /// Precondition: co-worker is not the supervisor
-        /// Precondition: Evaluation for currentEmployee at given type and stage does not exist
+        /// Precondition: coworkerId is in the DB and not the supervisor or admin
+        /// Precondition: Evaluations for currentEmployee at given type and stage does not exist
+        /// Precondition: TypeId and StageId exist in the DB
         /// </summary>
         /// <param name="typeId">Evaluation type to create</param>
         /// <param name="stageId">Evaluation stage to create</param>
@@ -55,11 +57,11 @@ namespace Evaluation.Controller
         public void initializeSelfEvaluation(int typeId, int stageId, int coworkerId)
         {
             if (_currentUser.supervisorId == null)
-                throw new Exception("Supervisor must be selected");
-            if (_currentUser.supervisorId == coworkerId) 
-                throw new Exception("Co-worker must not be the supervisor");
+                throw new CreateEvaluationException("Supervisor must be selected");
+            if (_currentUser.supervisorId == coworkerId)
+                throw new CreateEvaluationException("Co-worker must not be the supervisor");
             if (_currentUser.employeeId == coworkerId)
-                throw new Exception("Co-worker must be different than self");
+                throw new CreateEvaluationException("Co-worker must be different than self");
             _dal.createEvaluations(_currentUser.employeeId, typeId, stageId, coworkerId);
         }
 

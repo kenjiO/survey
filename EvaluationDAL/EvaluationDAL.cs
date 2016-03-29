@@ -116,20 +116,20 @@ namespace Evaluation.DAL
             if (reader.Read())
             {
                 if (DBNull.Value.Equals(reader["supervisorId"]))
-                    throw new Exception("Supervisor not set for employee");
+                    throw new CreateEvaluationException("Supervisor not set for employee");
                 else
                     supervisorId = (int)reader["supervisorId"];
             }
             else
             {
-                throw new Exception("EmployeeId not found in the database");
+                throw new CreateEvaluationException("EmployeeId not found in the database");
             }
             reader.Close();
 
             //Check co-worker is not same as supervisor
             if (coworkerId == supervisorId)
             {
-                throw new Exception("Co-worker cannot be the supervisor");
+                throw new CreateEvaluationException("Co-worker cannot be the supervisor");
             }
 
             //Check co-worker is a valid non-admin employee
@@ -143,11 +143,11 @@ namespace Evaluation.DAL
             if (reader.Read())
             {
                 if ((bool)(reader["isAdmin"]))
-                    throw new Exception("Co-worker must no be an admin");
+                    throw new CreateEvaluationException("Co-worker must not be an admin");
             }
             else
             {
-                throw new Exception("Coworker Id not found in the database");
+                throw new CreateEvaluationException("Coworker Id not found in the database");
             }
             reader.Close();
 
@@ -163,7 +163,7 @@ namespace Evaluation.DAL
             reader = command.ExecuteReader();
             if (reader.HasRows)
             {
-                throw new Exception("An evaluation for this employee, type, stage already exists");
+                throw new CreateEvaluationException("An evaluation for this employee, type, stage already exists");
             }
             reader.Close();
 
@@ -185,7 +185,7 @@ namespace Evaluation.DAL
                 if (result1 < 1)
                 {
                     transaction.Rollback();
-                    throw new Exception("Problem adding self evaluation. No evaluations created");
+                    throw new CreateEvaluationException("Problem creating self evaluation. No evaluations created");
                 }
 
                 // Reset paramaters to run again for supervisor evaluation
@@ -199,7 +199,7 @@ namespace Evaluation.DAL
                 if (result2 < 1)
                 {
                     transaction.Rollback();
-                    throw new Exception("Problem adding supervisor evaluation. No evaluations created");
+                    throw new CreateEvaluationException("Problem adding supervisor evaluation. No evaluations created");
                 }
 
                 // Reset paramaters to run again for co-worker evaluation
@@ -213,7 +213,7 @@ namespace Evaluation.DAL
                 if (result3 < 1)
                 {
                     transaction.Rollback();
-                    throw new Exception("Problem adding co-worker evaluation. No evaluations created");
+                    throw new CreateEvaluationException("Problem adding co-worker evaluation. No evaluations created");
                 }
 
                 transaction.Commit();
@@ -229,7 +229,7 @@ namespace Evaluation.DAL
                     //have been checked they are not causing it. So it must be stage or type.
                     if (ex.Errors[0].Number == 547)
                     {
-                        throw new Exception("Invalid type or stage");
+                        throw new CreateEvaluationException("Invalid type or stage");
                     }
                 }
                 else
@@ -238,5 +238,16 @@ namespace Evaluation.DAL
                 }
             }
         }
+
+    }
+
+    /// <summary>
+    /// Exception used for when errors occur in createEvaluations()
+    /// </summary>
+    [Serializable]
+    public class CreateEvaluationException : Exception
+    {
+        public CreateEvaluationException() { }
+        public CreateEvaluationException(string message) : base(message) { }
     }
 }
