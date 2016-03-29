@@ -56,7 +56,8 @@ namespace CS6232_G1.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
+                MessageBox.Show("An error occurred acquiring cohort details.  Please check your SQL configuration.\n\n" +
+                                "Details: " + ex.Message, "Notice");
             }
         }
 
@@ -82,16 +83,6 @@ namespace CS6232_G1.View
             //Get list of evaluation schedule objects and bind the datagrid to the list
             List<EvaluationSchedule> scheduleList = _controller.getEvaluationScheduleList(_cohortId);
             dgvEvaluationSchedule.DataSource = scheduleList;
-
-            // Display type name and stage name
-            foreach (DataGridViewRow row in dgvEvaluationSchedule.Rows)
-            {
-                int typeId = (int)row.Cells["TypeId"].Value;
-                row.Cells["TypeName"].Value = _controller.getTypeName(typeId);
-
-                int stageId = (int)row.Cells["StageId"].Value;
-                row.Cells["StageName"].Value = _controller.getStageName(stageId);
-            }
             dgvEvaluationSchedule.AutoResizeColumns();
             dgvEvaluationSchedule.ClearSelection();
         }

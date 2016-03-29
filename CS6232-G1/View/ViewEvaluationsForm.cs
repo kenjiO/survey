@@ -21,9 +21,15 @@ namespace CS6232_G1.View
 
         private void ViewEvaluationDetailsForm_Load(object sender, EventArgs e)
         {
+            if (_currentUser == null)
+            {
+                MessageBox.Show("Invalid arguments to view evaluations form");
+                Close();
+                return;
+            }
             if (_controller == null)
             {
-                MessageBox.Show("Invalid arguments to cohort scheduler");
+                MessageBox.Show("Invalid user.");
                 Close();
                 return;
             }
@@ -34,7 +40,8 @@ namespace CS6232_G1.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
+                MessageBox.Show("An error occurred acquiring data from database.  Please check your SQL configuration.\n\n" +
+                                "Details: " + ex.Message, "Notice");
             }
         }
 

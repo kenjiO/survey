@@ -54,7 +54,8 @@ namespace CS6232_G1.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
+                MessageBox.Show("An error occurred acquiring data from database.  Please check your SQL configuration.\n\n" +
+                                "Details: " + ex.Message, "Notice");
             }
         }
 
@@ -152,11 +153,13 @@ namespace CS6232_G1.View
                 {
                     MessageBox.Show("All selected employees have been added to the cohort!", "Operation Successful");
                 }
-                loadEmployeeListView();
+                //loadEmployeeListView();
+                Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
+                MessageBox.Show("An error occurred updating data in database. \n\n" +
+                                "Details: " + ex.Message, "Notice");
             }            
         }
 
