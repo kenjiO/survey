@@ -147,7 +147,9 @@ namespace Evaluation.DAL
         /// <param name="selectedSchedule"></param>
         /// <returns>true if delete is successful, else false</returns>
         bool DeleteSchedule(EvaluationSchedule selectedSchedule);
+        #endregion
 
+        #region Evaluations
         /// <summary>
         /// Returns list of all open self evaluations for given employee id
         /// </summary>
@@ -171,7 +173,22 @@ namespace Evaluation.DAL
         /// <returns>The end date of the schedule</returns>
         DateTime getEndDateForSchedule(int typeId, int stageId, int? cohortId);
 
+        /// <summary>
+        /// Returns list of all open self evaluations for given employee id
+        /// </summary>
+        /// <param name="employeeId">id of the given employee</param>
+        /// <returns>List of Open Self Evaluations</returns>
+        List<OpenEvaluation> getOpenSelfEvaluations_New(int employeeId);
+
+        /// <summary>
+        /// Returns list of all open evaluations to rate others, for given employee id
+        /// </summary>
+        /// <param name="employeeId">id of the given employee</param>
+        /// <returns>List of Open Evaluations that are not Self Evaluations</returns>
+        List<OpenEvaluation> getOpenOtherEvaluations_New(int employeeId);
+
         #endregion
+
 
     }
 

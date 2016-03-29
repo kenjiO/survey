@@ -13,6 +13,38 @@ namespace Evaluation.DAL
     /// </summary>
     public partial class EvaluationDAL : IEvaluationDAL
     {
+        /// <summary>
+        /// Get a list of employee names and ids
+        /// </summary>
+        /// <returns>Employee name list</returns>
+        public List<EmployeeName> getEmployeeNameList()
+        {
+            List<EmployeeName> results = new List<EmployeeName>();
+
+            string selectStatement =
+                "SELECT  employeeID, firstName, lastName " +
+                "FROM employee " +
+                "ORDER BY firstName, lastName;";
+
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            EmployeeName employee = new EmployeeName((int)reader["employeeId"], reader["firstName"].ToString(), reader["lastName"].ToString());
+                            results.Add(employee);
+                        }
+                    }
+                }
+            }
+            return results;
+        }
+
         public List<EmployeeName> getListOfNonAdminEmployees()
         {
             List<EmployeeName> results = new List<EmployeeName>();

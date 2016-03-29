@@ -14,38 +14,6 @@ namespace Evaluation.DAL
     public partial class EvaluationDAL : IEvaluationDAL
     {
         /// <summary>
-        /// Get a list of employee names and ids
-        /// </summary>
-        /// <returns>Employee name list</returns>
-        public List<EmployeeName> getEmployeeNameList()
-        {
-            List<EmployeeName> results = new List<EmployeeName>();
-
-            string selectStatement =
-                "SELECT  employeeID, firstName, lastName " +
-                "FROM employee " +
-                "ORDER BY firstName, lastName;";
-
-            using (SqlConnection connection = EvaluationDB.GetConnection())
-            {
-                connection.Open();
-
-                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
-                {
-                    using (SqlDataReader reader = selectCommand.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            EmployeeName employee = new EmployeeName((int)reader["employeeId"], reader["firstName"].ToString(), reader["lastName"].ToString());
-                            results.Add(employee);
-                        }
-                    }
-                }
-            }
-            return results;
-        }
-
-        /// <summary>
         /// Check if a self-evaluation for an employee, type and stage has been started
         /// </summary>
         /// <param name="employeeId">employeeId for the self-evaluation</param>
@@ -73,6 +41,44 @@ namespace Evaluation.DAL
                     return (selectCommand.ExecuteScalar() != null);
                 }
             }
+        }
+
+        public List<Evaluations> getOpenSelfEvaluations(int employeeId)
+        {
+            List<Evaluations> results = new List<Evaluations>();
+
+            // TODO: Finish
+            return results;
+        }
+
+        public List<Evaluations> getOpenOtherEvaluations(int employeeId)
+        {
+            List<Evaluations> results = new List<Evaluations>();
+
+            // TODO: Finish
+            return results;
+        }
+
+        public DateTime getEndDateForSchedule(int typeId, int stageId, int? cohortId)
+        {
+            // TODO: Finish
+            return DateTime.Now;
+        }
+
+        public List<OpenEvaluation> getOpenSelfEvaluations_New(int employeeId)
+        {
+            List<OpenEvaluation> results = new List<OpenEvaluation>();
+
+            // TODO: Finish
+            return results;
+        }
+
+        public List<OpenEvaluation> getOpenOtherEvaluations_New(int employeeId)
+        {
+            List<OpenEvaluation> results = new List<OpenEvaluation>();
+
+            // TODO: Finish
+            return results;
         }
 
     }

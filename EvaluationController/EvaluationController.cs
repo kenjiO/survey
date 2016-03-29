@@ -59,5 +59,31 @@ namespace Evaluation.Controller
             throw new NotSupportedException("EvaluationController.initializeSelfEvaluation() not implemented");
 
         }
+
+        public List<Evaluations> getOpenSelfEvaluations(int employeeId)
+        {
+            return _dal.getOpenSelfEvaluations(employeeId);
+        }
+
+        public List<Evaluations> getOpenOtherEvaluations(int employeeId)
+        {
+            return _dal.getOpenOtherEvaluations(employeeId);
+        }
+
+        public DateTime getEndDateForSchedule(int typeId, int stageId, int? cohortId)
+        {
+            return _dal.getEndDateForSchedule(typeId, stageId, cohortId);
+        }
+
+        public List<OpenEvaluation> getOpenSelfEvaluations_New(int employeeId)
+        {
+            return _dal.getOpenSelfEvaluations_New(employeeId);
+        }
+
+        public List<OpenEvaluation> getOpenOtherEvaluations_New(int employeeId)
+        {
+            return _dal.getOpenOtherEvaluations_New(employeeId);
+        }
+
     }
 }

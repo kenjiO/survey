@@ -132,29 +132,9 @@ namespace Test
             return true;
         }
 
-        public List<Evaluations> getOpenSelfEvaluations(int employeeId)
-        {
-            List<Evaluations> results = new List<Evaluations>();
-
-            // TODO: Finish
-            return results;
-        }
-
-        public List<Evaluations> getOpenOtherEvaluations(int employeeId)
-        {
-            List<Evaluations> results = new List<Evaluations>();
-
-            // TODO: Finish
-            return results;
-        }
-
-        public DateTime getEndDateForSchedule(int typeId, int stageId, int? cohortId)
-        {
-            // TODO: Finish
-            return DateTime.Now;
-        }
         #endregion
 
+        #region Evaluations
         public bool isSelfEvaluationStarted(int empId, int typeId, int stageId)
         {
             throw new NotSupportedException();
@@ -165,6 +145,31 @@ namespace Test
             throw new NotSupportedException();
         }
 
-        
+        public List<Evaluations> getOpenSelfEvaluations(int employeeId)
+        {
+            return _controller.getOpenSelfEvaluations(employeeId);
+        }
+
+        public List<Evaluations> getOpenOtherEvaluations(int employeeId)
+        {
+            return _controller.getOpenOtherEvaluations(employeeId);
+        }
+
+        public DateTime getEndDateForSchedule(int typeId, int stageId, int? cohortId)
+        {
+            return _controller.getEndDateForSchedule(typeId, stageId, cohortId);
+        }
+
+        public List<OpenEvaluation> getOpenSelfEvaluations_New(int employeeId)
+        {
+            return _controller.getOpenSelfEvaluations_New(employeeId);
+        }
+
+        public List<OpenEvaluation> getOpenOtherEvaluations_New(int employeeId)
+        {
+            return _controller.getOpenOtherEvaluations_New(employeeId);
+        }
+        #endregion
+
     }
 }
