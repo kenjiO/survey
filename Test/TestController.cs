@@ -326,34 +326,7 @@ namespace Test
             return;
         }
 
-        public List<Evaluations> getOpenSelfEvaluations(int employeeId)
-        {
-            List<Evaluations> selfEvaluations = new List<Evaluations>();
-            selfEvaluations.Add(new Evaluations(1, 1, 1, 1, 1, null));
-            selfEvaluations.Add(new Evaluations(1, 1, 1, 1, 1, null));
-            selfEvaluations.Add(new Evaluations(1, 1, 1, 1, 1, null));
-            selfEvaluations.Add(new Evaluations(1, 1, 1, 1, 1, null));
-            return selfEvaluations;
-        }
-
-        public List<Evaluations> getOpenOtherEvaluations(int employeeId)
-        {
-            List<Evaluations> otherEvaluations = new List<Evaluations>();
-
-            otherEvaluations.Add(new Evaluations(1, 1, 1, 1, 1, null));
-            otherEvaluations.Add(new Evaluations(1, 1, 1, 1, 1, null));
-            otherEvaluations.Add(new Evaluations(1, 1, 1, 1, 1, null));
-            otherEvaluations.Add(new Evaluations(1, 1, 1, 1, 1, null));
-            
-            return otherEvaluations;
-        }
-
-        public DateTime getEndDateForSchedule(int typeId, int stageId, int? cohortId)
-        {
-            return DateTime.Parse("6/5/2016");
-        }
-
-        public List<OpenEvaluation> getOpenSelfEvaluations_New(int employeeId)
+        public List<OpenEvaluation> getOpenSelfEvaluations(int employeeId)
         {
             List<OpenEvaluation> results = new List<OpenEvaluation>();
 
@@ -363,7 +336,7 @@ namespace Test
             return results;
         }
 
-        public List<OpenEvaluation> getOpenOtherEvaluations_New(int employeeId)
+        public List<OpenEvaluation> getOpenOtherEvaluations(int employeeId)
         {
             List<OpenEvaluation> results = new List<OpenEvaluation>();
 

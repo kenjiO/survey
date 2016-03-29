@@ -159,42 +159,20 @@ namespace Evaluation.DAL
         #endregion
 
         #region Evaluations
+        
         /// <summary>
         /// Returns list of all open self evaluations for given employee id
         /// </summary>
         /// <param name="employeeId">id of the given employee</param>
         /// <returns>List of Open Self Evaluations</returns>
-        List<Evaluations> getOpenSelfEvaluations(int employeeId);
+        List<OpenEvaluation> getOpenSelfEvaluations(int employeeId);
 
         /// <summary>
         /// Returns list of all open evaluations to rate others, for given employee id
         /// </summary>
         /// <param name="employeeId">id of the given employee</param>
         /// <returns>List of Open Evaluations that are not Self Evaluations</returns>
-        List<Evaluations> getOpenOtherEvaluations(int employeeId);
-
-        /// <summary>
-        /// Returns the endDate of the schedule
-        /// </summary>
-        /// <param name="typeId">id of the type of evaluation</param>
-        /// <param name="stageId">id of the stage of evaluation</param>
-        /// <param name="cohortId">id of the cohort (optional)</param>
-        /// <returns>The end date of the schedule</returns>
-        DateTime getEndDateForSchedule(int typeId, int stageId, int? cohortId);
-
-        /// <summary>
-        /// Returns list of all open self evaluations for given employee id
-        /// </summary>
-        /// <param name="employeeId">id of the given employee</param>
-        /// <returns>List of Open Self Evaluations</returns>
-        List<OpenEvaluation> getOpenSelfEvaluations_New(int employeeId);
-
-        /// <summary>
-        /// Returns list of all open evaluations to rate others, for given employee id
-        /// </summary>
-        /// <param name="employeeId">id of the given employee</param>
-        /// <returns>List of Open Evaluations that are not Self Evaluations</returns>
-        List<OpenEvaluation> getOpenOtherEvaluations_New(int employeeId);
+        List<OpenEvaluation> getOpenOtherEvaluations(int employeeId);
 
         #endregion
 

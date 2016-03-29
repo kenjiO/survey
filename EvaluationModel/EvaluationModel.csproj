@@ -44,7 +44,6 @@
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeName.cs" />
     <Compile Include="EvalType.cs" />
-    <Compile Include="Evaluations.cs" />
     <Compile Include="EvaluationSchedule.cs" />
     <Compile Include="IRefreshable.cs" />
     <Compile Include="OpenEvaluation.cs" />

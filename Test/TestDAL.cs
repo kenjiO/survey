@@ -150,29 +150,14 @@ namespace Test
             throw new NotSupportedException();
         }
 
-        public List<Evaluations> getOpenSelfEvaluations(int employeeId)
+        public List<OpenEvaluation> getOpenSelfEvaluations(int employeeId)
         {
             return _controller.getOpenSelfEvaluations(employeeId);
         }
 
-        public List<Evaluations> getOpenOtherEvaluations(int employeeId)
+        public List<OpenEvaluation> getOpenOtherEvaluations(int employeeId)
         {
             return _controller.getOpenOtherEvaluations(employeeId);
-        }
-
-        public DateTime getEndDateForSchedule(int typeId, int stageId, int? cohortId)
-        {
-            return _controller.getEndDateForSchedule(typeId, stageId, cohortId);
-        }
-
-        public List<OpenEvaluation> getOpenSelfEvaluations_New(int employeeId)
-        {
-            return _controller.getOpenSelfEvaluations_New(employeeId);
-        }
-
-        public List<OpenEvaluation> getOpenOtherEvaluations_New(int employeeId)
-        {
-            return _controller.getOpenOtherEvaluations_New(employeeId);
         }
         #endregion
 

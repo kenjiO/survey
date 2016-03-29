@@ -47,29 +47,7 @@ namespace Evaluation.DAL
             }
         }
 
-        public List<Evaluations> getOpenSelfEvaluations(int employeeId)
-        {
-            List<Evaluations> results = new List<Evaluations>();
-
-            // TODO: needed?
-            return results;
-        }
-
-        public List<Evaluations> getOpenOtherEvaluations(int employeeId)
-        {
-            List<Evaluations> results = new List<Evaluations>();
-
-            // TODO: needed?
-            return results;
-        }
-
-        public DateTime getEndDateForSchedule(int typeId, int stageId, int? cohortId)
-        {
-            // TODO: needed?
-            return DateTime.Now;
-        }
-
-        public List<OpenEvaluation> getOpenSelfEvaluations_New(int employeeId)
+        public List<OpenEvaluation> getOpenSelfEvaluations(int employeeId)
         {
             List<OpenEvaluation> results = new List<OpenEvaluation>();
 
@@ -77,7 +55,7 @@ namespace Evaluation.DAL
             return results;
         }
 
-        public List<OpenEvaluation> getOpenOtherEvaluations_New(int employeeId)
+        public List<OpenEvaluation> getOpenOtherEvaluations(int employeeId)
         {
             List<OpenEvaluation> results = new List<OpenEvaluation>();
 
