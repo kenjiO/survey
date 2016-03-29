@@ -219,7 +219,27 @@ namespace CS6232_G1.View
 
         private void DeleteCohortButton_Click(object sender, EventArgs e)
         {
-            _controller.deleteCohort(_cohortId);
+            bool result = false;
+            try
+            {
+                result = _controller.deleteCohort(_cohortId);
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                MessageBox.Show("A Database error occured deleting the cohort\n\n" + 
+                            "Details: " + ex.Message);
+            }
+ 
+            if (result)
+            {
+                MessageBox.Show("Cohort deleted");
+                Close();
+                return;
+            }
+            else
+            {
+                MessageBox.Show("Unable to delete cohort");
+            }
         }
 
     }
