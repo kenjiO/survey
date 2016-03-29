@@ -13,6 +13,8 @@ namespace Evaluation.Model
         /*
          * TODO: User Report Details 
          * 
+         * Note: Use Table Report and Object Model to do this report
+         * 
           by employeeid
           should show
                employee name

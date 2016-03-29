@@ -11,7 +11,7 @@ namespace Evaluation.Controller
     {
         public List<EmployeeName> getEmployeeNameList()
         {
-            // TODO: Finish
+            // TODO: get employee name list from database (all names?  We have non-admin below.  Is this function needed?)
             throw new NotSupportedException();
         }
 
@@ -71,7 +71,7 @@ namespace Evaluation.Controller
         /// <returns>Employee name</returns>
         public String getEmployeeName(int employeeId)
         {
-            //TODO Implement.  
+            // TODO Get employee name for employee id - needed? 
             throw new NotSupportedException("EvaluationController.getEmployeeName not implemented");
         }
 

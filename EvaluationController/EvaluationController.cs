@@ -55,7 +55,7 @@ namespace Evaluation.Controller
         /// <param name="coworkerId">Co-worker selected to evaluate this employee</param>
         public void initializeSelfEvaluation(int typeId, int stageId, int coworkerId)
         {
-            //TODO Implement.
+            //TODO Implement - initialize self-evaluation
             throw new NotSupportedException("EvaluationController.initializeSelfEvaluation() not implemented");
 
         }

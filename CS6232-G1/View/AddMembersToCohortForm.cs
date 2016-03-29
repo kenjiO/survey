@@ -138,7 +138,7 @@ namespace CS6232_G1.View
                 List<int> notUpdated = _controller.addMembersToCohort(_cohortId, empIdList);
                 if (notUpdated.Count > 0)
                 {
-                    // TODO: get ids from list and show
+                    // get ids from list and show
                     String failedIdList = "";
                     foreach (int id in notUpdated)
                     {

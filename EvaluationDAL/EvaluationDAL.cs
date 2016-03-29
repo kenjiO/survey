@@ -47,7 +47,7 @@ namespace Evaluation.DAL
         {
             List<Evaluations> results = new List<Evaluations>();
 
-            // TODO: Finish
+            // TODO: needed?
             return results;
         }
 
@@ -55,13 +55,13 @@ namespace Evaluation.DAL
         {
             List<Evaluations> results = new List<Evaluations>();
 
-            // TODO: Finish
+            // TODO: needed?
             return results;
         }
 
         public DateTime getEndDateForSchedule(int typeId, int stageId, int? cohortId)
         {
-            // TODO: Finish
+            // TODO: needed?
             return DateTime.Now;
         }
 
@@ -69,7 +69,7 @@ namespace Evaluation.DAL
         {
             List<OpenEvaluation> results = new List<OpenEvaluation>();
 
-            // TODO: Finish
+            // TODO: get scheduled evaluations that are complete or in progress and open
             return results;
         }
 
@@ -77,7 +77,7 @@ namespace Evaluation.DAL
         {
             List<OpenEvaluation> results = new List<OpenEvaluation>();
 
-            // TODO: Finish
+            // TODO: get evaluations we need to do for others that are still open
             return results;
         }
 
