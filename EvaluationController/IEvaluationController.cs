@@ -265,10 +265,11 @@ namespace Evaluation.Controller
         /// <summary>
         /// Creates a self-evaluation, supervisor evaluation and co-worker evaluation 
         /// for currentUser for stage and type
+        /// THROWS custom exception 'CreateEvaluationsException' for errors when preconditions not met
         /// Precondition: SupervisorId is set for currentEmployee
-        /// Precondition: co-worker is not the supervisor
-        /// Precondition: Evaluation for currentEmployee at given type and stage does not exist
-        /// Precondition: EvaluationSchedule is open for currentUser's cohort
+        /// Precondition: coworkerId is in the DB and not the supervisor or admin
+        /// Precondition: Evaluations for currentEmployee at given type and stage does not exist
+        /// Precondition: TypeId and StageId exist in the DB
         /// </summary>
         /// <param name="typeId">Evaluation type to create</param>
         /// <param name="stageId">Evaluation stage to create</param>

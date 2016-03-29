@@ -30,30 +30,12 @@ namespace Evaluation.Controller
         }
         #endregion
 
-        /// <summary>
-        /// Check to see if the employee has started an evaluation for type and stage
-        /// </summary>
-        /// <param name="empId">The employee</param>
-        /// <param name="typeId">The typeID for the evaluation</param>
-        /// <param name="stageId">The stageId for the evaluation</param>
-        /// <returns>Whether or not a self-evaluation for this type and stage exists yet</returns>
+
         public bool isSelfEvaluationStarted(int empId, int typeId, int stageId)
         {
             return _dal.isSelfEvaluationStarted(empId, typeId, stageId);
         }
 
-        /// <summary>
-        /// Creates a self-evaluation, supervisor evaluation and co-worker evaluation 
-        /// for currentUser for stage and type
-        /// THROWS custom exception CreateEvaluationsException for certain errors when creating the evaluations
-        /// Precondition: SupervisorId is set for currentEmployee
-        /// Precondition: coworkerId is in the DB and not the supervisor or admin
-        /// Precondition: Evaluations for currentEmployee at given type and stage does not exist
-        /// Precondition: TypeId and StageId exist in the DB
-        /// </summary>
-        /// <param name="typeId">Evaluation type to create</param>
-        /// <param name="stageId">Evaluation stage to create</param>
-        /// <param name="coworkerId">Co-worker selected to evaluate this employee</param>
         public void initializeSelfEvaluation(int typeId, int stageId, int coworkerId)
         {
             if (_currentUser.supervisorId == null)

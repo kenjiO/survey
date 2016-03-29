@@ -33,20 +33,17 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cohortsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createNewCohortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modifyACohortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.renameACohortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteACohortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modifyACohortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripEmployee = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.testEmployeeMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testEmployeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripDefault = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LoginPanel = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -54,7 +51,6 @@
             this.LoginButton = new System.Windows.Forms.Button();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
-            this.renameACohortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripAdmin.SuspendLayout();
             this.menuStripEmployee.SuspendLayout();
             this.menuStripDefault.SuspendLayout();
@@ -67,9 +63,7 @@
             this.menuStripAdmin.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.cohortsToolStripMenuItem,
-            this.stagesToolStripMenuItem,
-            this.reportsToolStripMenuItem,
-            this.testAdminToolStripMenuItem});
+            this.reportsToolStripMenuItem});
             this.menuStripAdmin.Location = new System.Drawing.Point(0, 48);
             this.menuStripAdmin.Name = "menuStripAdmin";
             this.menuStripAdmin.Size = new System.Drawing.Size(940, 24);
@@ -95,9 +89,9 @@
             // 
             this.cohortsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createNewCohortToolStripMenuItem,
-            this.modifyACohortToolStripMenuItem,
+            this.renameACohortToolStripMenuItem,
             this.deleteACohortToolStripMenuItem,
-            this.renameACohortToolStripMenuItem});
+            this.modifyACohortToolStripMenuItem});
             this.cohortsToolStripMenuItem.Name = "cohortsToolStripMenuItem";
             this.cohortsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.cohortsToolStripMenuItem.Text = "Cohorts";
@@ -105,29 +99,30 @@
             // createNewCohortToolStripMenuItem
             // 
             this.createNewCohortToolStripMenuItem.Name = "createNewCohortToolStripMenuItem";
-            this.createNewCohortToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.createNewCohortToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.createNewCohortToolStripMenuItem.Text = "Create New Cohort";
             this.createNewCohortToolStripMenuItem.Click += new System.EventHandler(this.createNewCohortToolStripMenuItem_Click);
             // 
-            // modifyACohortToolStripMenuItem
+            // renameACohortToolStripMenuItem
             // 
-            this.modifyACohortToolStripMenuItem.Name = "modifyACohortToolStripMenuItem";
-            this.modifyACohortToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.modifyACohortToolStripMenuItem.Text = "Modify a Cohort";
-            this.modifyACohortToolStripMenuItem.Click += new System.EventHandler(this.modifyACohortToolStripMenuItem_Click);
+            this.renameACohortToolStripMenuItem.Name = "renameACohortToolStripMenuItem";
+            this.renameACohortToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
+            this.renameACohortToolStripMenuItem.Text = "Rename a Cohort";
+            this.renameACohortToolStripMenuItem.Click += new System.EventHandler(this.renameACohortToolStripMenuItem_Click);
             // 
             // deleteACohortToolStripMenuItem
             // 
             this.deleteACohortToolStripMenuItem.Name = "deleteACohortToolStripMenuItem";
-            this.deleteACohortToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.deleteACohortToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.deleteACohortToolStripMenuItem.Text = "Delete a Cohort";
             this.deleteACohortToolStripMenuItem.Click += new System.EventHandler(this.deleteACohortToolStripMenuItem_Click);
             // 
-            // stagesToolStripMenuItem
+            // modifyACohortToolStripMenuItem
             // 
-            this.stagesToolStripMenuItem.Name = "stagesToolStripMenuItem";
-            this.stagesToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.stagesToolStripMenuItem.Text = "Stages";
+            this.modifyACohortToolStripMenuItem.Name = "modifyACohortToolStripMenuItem";
+            this.modifyACohortToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
+            this.modifyACohortToolStripMenuItem.Text = "Manage Members and Evaluations";
+            this.modifyACohortToolStripMenuItem.Click += new System.EventHandler(this.modifyACohortToolStripMenuItem_Click);
             // 
             // reportsToolStripMenuItem
             // 
@@ -135,21 +130,12 @@
             this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportsToolStripMenuItem.Text = "Reports";
             // 
-            // testAdminToolStripMenuItem
-            // 
-            this.testAdminToolStripMenuItem.Name = "testAdminToolStripMenuItem";
-            this.testAdminToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-            this.testAdminToolStripMenuItem.Text = "Test";
-            this.testAdminToolStripMenuItem.Visible = false;
-            this.testAdminToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
-            // 
             // menuStripEmployee
             // 
             this.menuStripEmployee.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStripEmployee.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem1,
-            this.testEmployeeMenuToolStripMenuItem,
-            this.testEmployeeToolStripMenuItem});
+            this.testEmployeeMenuToolStripMenuItem});
             this.menuStripEmployee.Location = new System.Drawing.Point(0, 24);
             this.menuStripEmployee.Name = "menuStripEmployee";
             this.menuStripEmployee.Size = new System.Drawing.Size(940, 24);
@@ -176,22 +162,13 @@
             this.testEmployeeMenuToolStripMenuItem.Name = "testEmployeeMenuToolStripMenuItem";
             this.testEmployeeMenuToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.testEmployeeMenuToolStripMenuItem.Text = "Evaluations";
-            this.testEmployeeMenuToolStripMenuItem.Click += new System.EventHandler(this.testEmployeeMenuToolStripMenuItem_Click);
-            // 
-            // testEmployeeToolStripMenuItem
-            // 
-            this.testEmployeeToolStripMenuItem.Name = "testEmployeeToolStripMenuItem";
-            this.testEmployeeToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-            this.testEmployeeToolStripMenuItem.Text = "Test";
-            this.testEmployeeToolStripMenuItem.Visible = false;
-            this.testEmployeeToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
+            this.testEmployeeMenuToolStripMenuItem.Click += new System.EventHandler(this.employeeMenuEvaluationsToolStripMenuItem_Click);
             // 
             // menuStripDefault
             // 
             this.menuStripDefault.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStripDefault.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem2,
-            this.testToolStripMenuItem});
+            this.fileToolStripMenuItem2});
             this.menuStripDefault.Location = new System.Drawing.Point(0, 0);
             this.menuStripDefault.Name = "menuStripDefault";
             this.menuStripDefault.Size = new System.Drawing.Size(940, 24);
@@ -212,14 +189,6 @@
             this.exitToolStripMenuItem2.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem2.Text = "Exit";
             this.exitToolStripMenuItem2.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // testToolStripMenuItem
-            // 
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-            this.testToolStripMenuItem.Text = "Test";
-            this.testToolStripMenuItem.Visible = false;
-            this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
             // LoginPanel
             // 
@@ -282,6 +251,7 @@
             this.PasswordTextBox.TabIndex = 1;
             this.PasswordTextBox.Text = "emp1";
             this.PasswordTextBox.UseSystemPasswordChar = true;
+            this.PasswordTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LoginTextBox_KeyUp);
             // 
             // UsernameTextBox
             // 
@@ -290,13 +260,7 @@
             this.UsernameTextBox.Size = new System.Drawing.Size(209, 20);
             this.UsernameTextBox.TabIndex = 0;
             this.UsernameTextBox.Text = "emp1@westga.edu";
-            // 
-            // renameACohortToolStripMenuItem
-            // 
-            this.renameACohortToolStripMenuItem.Name = "renameACohortToolStripMenuItem";
-            this.renameACohortToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.renameACohortToolStripMenuItem.Text = "Rename a Cohort";
-            this.renameACohortToolStripMenuItem.Click += new System.EventHandler(this.renameACohortToolStripMenuItem_Click);
+            this.UsernameTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LoginTextBox_KeyUp);
             // 
             // MainForm
             // 
@@ -338,8 +302,6 @@
         private System.Windows.Forms.MenuStrip menuStripDefault;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
         private System.Windows.Forms.Panel LoginPanel;
         private System.Windows.Forms.Label ErrorMsgLabel;
@@ -349,8 +311,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem createNewCohortToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem testAdminToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem testEmployeeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modifyACohortToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteACohortToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem renameACohortToolStripMenuItem;

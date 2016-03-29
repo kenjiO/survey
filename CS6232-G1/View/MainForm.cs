@@ -24,36 +24,24 @@ namespace CS6232_G1.View
         /// <param name="controller">View controller</param>
         public MainForm(IEvaluationController controller)
         {
-            _controller = controller;
-            InitializeComponent();
-
-            // TODO: Remove - test code
-            // *********** Begin test code **************
-            //testToolStripMenuItem.Visible = true;
-            //testAdminToolStripMenuItem.Visible = true;
-            //testEmployeeMenuToolStripMenuItem.Visible = true;
-            // ************ End test code ***************
-
-            // initialize these to both invisible until we know which to use, default menu will be visible
-            menuStripAdmin.Visible = false;
-            menuStripEmployee.Visible = false;
-            if (_controller == null)
+            if (controller == null)
             {
                 throw new ArgumentNullException("Null controller on main form");
             }
+            _controller = controller;
+            InitializeComponent();
+
+            menuStripAdmin.Visible = false;
+            menuStripEmployee.Visible = false;
+            showLoginPanel();
         }
 
-        // TODO: Remove test link from default menu when done testing
-        private void testToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            int cohortId = 2; // SelectCohortForm.Run(_controller);
-            //if (cohortId == -1)
-            //{
-            //    return;
-            //}
-            Form form = AddOrEditCohortScheduleForm.createAddForm(_controller, cohortId, null);
-            form.MdiParent = this;
-            form.Show();
+        private void showLoginPanel() {
+            LoginPanel.Visible = true;
+            LoginPanel.Location = new Point(
+                this.ClientSize.Width / 2 - LoginPanel.Size.Width / 2,
+                this.ClientSize.Height / 2 - LoginPanel.Size.Height / 2);
+            LoginPanel.Anchor = AnchorStyles.None;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -61,61 +49,7 @@ namespace CS6232_G1.View
             Close();
         }
 
-        /// <summary>
-        /// Enable/Disable admin mode
-        /// </summary>
-        /// <param name="on"></param>
-        public void setAdminMode(bool on)
-        {
-            menuStripDefault.Visible = false;
-            menuStripAdmin.Visible = on;
-            menuStripEmployee.Visible = !on;
-        }
-
-        private void LoginButton_Click(object sender, EventArgs e)
-        {
-            String username = UsernameTextBox.Text;
-            String password = PasswordTextBox.Text;
-            if (!Validate(username, password))
-                return;
-
-            try
-            {
-                if (_controller.login(username, password) == null)
-                {
-                    ErrorMsgLabel.Text = "Invalid username/password";
-                    return;
-                }
-
-                LoginPanel.Visible = false;
-
-                if (_controller.idAdminSession)
-                {
-                    setAdminMode(true);
-                }
-                else
-                {
-                    setAdminMode(false);
-                }
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("There was a database error tying to login:\n" + ex.Message);
-            }
-        }
-
-        private Boolean Validate(String username, String password)
-        {
-            if (username != null && username != "" && password != null && password != "")
-            {
-                return true;
-            }
-            else
-            {
-                ErrorMsgLabel.Text = "Username and Password required";
-                return false;
-            }
-        }
+        #region Admin Menu Item Handlers
 
         private void createNewCohortToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -127,11 +61,14 @@ namespace CS6232_G1.View
             viewCohortDetails(cohortId);
         }
 
-        private void viewCohortDetails(int cohortId)
+        private void deleteACohortToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form form = new ViewCohortDetailsForm(_controller, cohortId);
-            form.MdiParent = this;
-            form.Show();
+            DeleteCohortForm.Run(_controller);
+        }
+
+        private void renameACohortToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RenameCohortForm.Run(_controller);
         }
 
         private void modifyACohortToolStripMenuItem_Click(object sender, EventArgs e)
@@ -160,8 +97,20 @@ namespace CS6232_G1.View
             }
         }
 
+        private void viewCohortDetails(int cohortId)
+        {
+            Form form = new ViewCohortDetailsForm(_controller, cohortId);
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        #endregion
+
+        #region User Menu Item Handlers
+
         ViewEvaluationsForm frmViewEvaluations;
-        private void testEmployeeMenuToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void employeeMenuEvaluationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //prevent duplicates
             if (frmViewEvaluations != null)
@@ -169,7 +118,7 @@ namespace CS6232_G1.View
                 frmViewEvaluations.Close();
             }
             //open ViewEvaluationDetailsForm
-            frmViewEvaluations = new ViewEvaluationsForm(_controller, _controller.currentUser);            
+            frmViewEvaluations = new ViewEvaluationsForm(_controller, _controller.currentUser);
             frmViewEvaluations.MdiParent = this;
             frmViewEvaluations.Show();
             frmViewEvaluations.FormClosed += viewEvaluationsForm_FormClosed;
@@ -178,20 +127,78 @@ namespace CS6232_G1.View
             frmViewEvaluations.Location = new System.Drawing.Point(15, 15);
         }
 
+
         void viewEvaluationsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             frmViewEvaluations = null;
         }
 
-        private void deleteACohortToolStripMenuItem_Click(object sender, EventArgs e)
+        #endregion
+
+        #region Login
+
+        private void login()
         {
-            DeleteCohortForm.Run(_controller);
+            String username = UsernameTextBox.Text;
+            String password = PasswordTextBox.Text;
+            if (!Validate(username, password))
+            {
+                return;
+            }
+
+            try
+            {
+                if (_controller.login(username, password) == null)
+                {
+                    ErrorMsgLabel.Text = "Invalid username/password";
+                    return;
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("There was a database error tying to login:\n" + ex.Message);
+                return;
+            }
+
+            LoginPanel.Visible = false;
+            menuStripDefault.Visible = false;
+            menuStripAdmin.Visible = _controller.idAdminSession;
+            menuStripEmployee.Visible = !_controller.idAdminSession;
+            if (!_controller.idAdminSession)
+            {
+                // Open this on login for user sessions
+                employeeMenuEvaluationsToolStripMenuItem_Click(null, null);
+            }
         }
 
-        private void renameACohortToolStripMenuItem_Click(object sender, EventArgs e)
+        private Boolean Validate(String username, String password)
         {
-            RenameCohortForm.Run(_controller);
+            if (username != null && username != "" && password != null && password != "")
+            {
+                return true;
+            }
+            else
+            {
+                ErrorMsgLabel.Text = "Username and Password required";
+                return false;
+            }
         }
+
+        private void LoginButton_Click(object sender, EventArgs e)
+        {
+            login();
+        }
+        
+        //Login using enter key instead of clicking on the button
+        private void LoginTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                login();
+            }
+        }
+       
+        #endregion
 
     }
 }
