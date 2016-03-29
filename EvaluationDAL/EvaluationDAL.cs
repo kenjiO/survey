@@ -171,51 +171,45 @@ namespace Evaluation.DAL
             SqlTransaction transaction = connection.BeginTransaction();
             try
             {
-                string insertStatement1 =
+                string insertStatement =
                     "INSERT INTO evaluations " +
                     "(employeeId, stageId, typeId, evaluator, roleId) " +
                     "VALUES (@employeeId, @stageId, @typeId, @evaluator, @roleId)";
-                SqlCommand command1 = new SqlCommand(insertStatement1, connection, transaction);
-                command1.Parameters.AddWithValue("@employeeId", empId);
-                command1.Parameters.AddWithValue("@typeId", typeId);
-                command1.Parameters.AddWithValue("@stageId", stageId);
-                command1.Parameters.AddWithValue("@evaluator", empId);
-                command1.Parameters.AddWithValue("@roleId", SELF_EVALUATION_ROLE_ID);
-                int result1 = command1.ExecuteNonQuery();
+                command = new SqlCommand(insertStatement, connection, transaction);
+                command.Parameters.AddWithValue("@employeeId", empId);
+                command.Parameters.AddWithValue("@typeId", typeId);
+                command.Parameters.AddWithValue("@stageId", stageId);
+                command.Parameters.AddWithValue("@evaluator", empId);
+                command.Parameters.AddWithValue("@roleId", SELF_EVALUATION_ROLE_ID);
+                int result1 = command.ExecuteNonQuery();
                 if (result1 < 1)
                 {
                     transaction.Rollback();
                     throw new Exception("Problem adding self evaluation. No evaluations created");
                 }
 
-                string insertStatement2 =
-                    "INSERT INTO evaluations " +
-                    "(employeeId, stageId, typeId, evaluator, roleId) " +
-                    "VALUES (@employeeId, @stageId, @typeId, @evaluator, @roleId)";
-                SqlCommand command2 = new SqlCommand(insertStatement2, connection, transaction);
-                command2.Parameters.AddWithValue("@employeeId", empId);
-                command2.Parameters.AddWithValue("@typeId", typeId);
-                command2.Parameters.AddWithValue("@stageId", stageId);
-                command2.Parameters.AddWithValue("@evaluator", supervisorId);
-                command2.Parameters.AddWithValue("@roleId", SUPERVISOR_ROLE_ID);
-                int result2 = command2.ExecuteNonQuery();
+                // Reset paramaters to run again for supervisor evaluation
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@employeeId", empId);
+                command.Parameters.AddWithValue("@typeId", typeId);
+                command.Parameters.AddWithValue("@stageId", stageId);
+                command.Parameters.AddWithValue("@evaluator", supervisorId);
+                command.Parameters.AddWithValue("@roleId", SUPERVISOR_ROLE_ID);
+                int result2 = command.ExecuteNonQuery();
                 if (result2 < 1)
                 {
                     transaction.Rollback();
                     throw new Exception("Problem adding supervisor evaluation. No evaluations created");
                 }
 
-                string insertStatement3 =
-                    "INSERT INTO evaluations " +
-                    "(employeeId, stageId, typeId, evaluator, roleId) " +
-                    "VALUES (@employeeId, @stageId, @typeId, @evaluator, @roleId)";
-                SqlCommand command3 = new SqlCommand(insertStatement3, connection, transaction);
-                command3.Parameters.AddWithValue("@employeeId", empId);
-                command3.Parameters.AddWithValue("@typeId", typeId);
-                command3.Parameters.AddWithValue("@stageId", stageId);
-                command3.Parameters.AddWithValue("@evaluator", coworkerId);
-                command3.Parameters.AddWithValue("@roleId", COWORKER_ROLE_ID);
-                int result3 = command3.ExecuteNonQuery();
+                // Reset paramaters to run again for co-worker evaluation
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@employeeId", empId);
+                command.Parameters.AddWithValue("@typeId", typeId);
+                command.Parameters.AddWithValue("@stageId", stageId);
+                command.Parameters.AddWithValue("@evaluator", coworkerId);
+                command.Parameters.AddWithValue("@roleId", COWORKER_ROLE_ID);
+                int result3 = command.ExecuteNonQuery();
                 if (result3 < 1)
                 {
                     transaction.Rollback();
@@ -232,7 +226,7 @@ namespace Evaluation.DAL
                 if (ex.Errors[0].Number == 547) // Assume the interesting stuff is in the first error
                 {
                     //Error 547 is a foreign key violation. Since emp, supervisor and co-worker
-                    //have been checked they are not causing it so it must be stage or type.
+                    //have been checked they are not causing it. So it must be stage or type.
                     if (ex.Errors[0].Number == 547)
                     {
                         throw new Exception("Invalid type or stage");
