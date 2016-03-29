@@ -16,17 +16,17 @@ namespace Evaluation.Controller
 
         public List<Evaluations> getOpenSelfEvaluations(int employeeId)
         {
-            throw new NotSupportedException();
+            return _dal.getOpenSelfEvaluations(employeeId);
         }
 
         public List<Evaluations> getOpenOtherEvaluations(int employeeId)
         {
-            throw new NotSupportedException();
+            return _dal.getOpenOtherEvaluations(employeeId);
         }
 
         public DateTime getEndDateForSchedule(int typeId, int stageId, int? cohortId)
         {
-            throw new NotSupportedException();
+            return _dal.getEndDateForSchedule(typeId, stageId, cohortId);
         }
     }
 }

@@ -44,5 +44,28 @@ namespace Evaluation.DAL
                 }
             }            
         }
+
+        public List<Evaluations> getOpenSelfEvaluations(int employeeId)
+        {
+            List<Evaluations> results = new List<Evaluations>();
+
+            // TODO: Finish
+            return results;
+        }
+
+        public List<Evaluations> getOpenOtherEvaluations(int employeeId)
+        {
+            List<Evaluations> results = new List<Evaluations>();
+
+            // TODO: Finish
+            return results;
+        }
+
+        public DateTime getEndDateForSchedule(int typeId, int stageId, int? cohortId)
+        {
+            // TODO: Finish
+            return DateTime.Now;
+        }
+
     }
 }

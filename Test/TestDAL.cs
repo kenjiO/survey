@@ -126,10 +126,34 @@ namespace Test
             throw new NotSupportedException();
         }
 
+        #region Schedules
         public bool DeleteSchedule(EvaluationSchedule selectedSchedule)
         {
-            throw new NotSupportedException();
+            return true;
         }
+
+        public List<Evaluations> getOpenSelfEvaluations(int employeeId)
+        {
+            List<Evaluations> results = new List<Evaluations>();
+
+            // TODO: Finish
+            return results;
+        }
+
+        public List<Evaluations> getOpenOtherEvaluations(int employeeId)
+        {
+            List<Evaluations> results = new List<Evaluations>();
+
+            // TODO: Finish
+            return results;
+        }
+
+        public DateTime getEndDateForSchedule(int typeId, int stageId, int? cohortId)
+        {
+            // TODO: Finish
+            return DateTime.Now;
+        }
+        #endregion
 
         public bool isSelfEvaluationStarted(int empId, int typeId, int stageId)
         {
