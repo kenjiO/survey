@@ -213,6 +213,11 @@ namespace Test
             return false ;
         }
 
+        public bool renameCohort(int cohortId, string oldName, string newName)
+        {
+            return false;
+        }
+
         public List<Cohort> getCohortsWithNoMembersOrEvals()
         {
             List<Cohort> cohorts = new List<Cohort>();

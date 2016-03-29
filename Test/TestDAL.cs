@@ -104,6 +104,11 @@ namespace Test
 
         }
 
+        public bool renameCohort(int cohortId, string oldName, string newName)
+        {
+            throw new NotImplementedException("TestDal.renameCohort() not implemented");
+        }
+
         #endregion
 
         #region Employees

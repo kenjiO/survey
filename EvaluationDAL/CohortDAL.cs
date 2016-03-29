@@ -171,6 +171,44 @@ namespace Evaluation.DAL
         }
 
         /// <summary>
+        /// Rename a cohort if cohortId with oldName is in the database
+        /// </summary>
+        /// <param name="cohortId">cohortId to rename</param>
+        /// <param name="oldName">the old name of the cohort</param>
+        /// <param name="newName">the new name of the cohort</param>
+        /// <returns>True if rename successful. False otherwise</returns>
+        public bool renameCohort(int cohortId, string oldName, string newName)
+        {
+            string updateStatement =
+                "UPDATE cohort " +
+                "SET cohortName = @newName " +
+                "WHERE cohortId = @cohortId AND cohortName = @oldName " +
+                "   AND NOT EXISTS (SELECT cohortName FROM cohort WHERE cohortName = @newName)";
+
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
+                {
+                    updateCommand.Parameters.AddWithValue("@cohortId", cohortId);
+                    updateCommand.Parameters.AddWithValue("@oldName", oldName);
+                    updateCommand.Parameters.AddWithValue("@newName", newName);
+
+                    int count = updateCommand.ExecuteNonQuery();
+                    if (count < 1)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Get a list of evaluation schedules for a given cohort
         /// </summary>
         /// /// <param name="cohortId">the cohortId</param>

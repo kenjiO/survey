@@ -11,23 +11,24 @@ using Evaluation.Controller;
 using Evaluation.Model;
 using System.Data.SqlClient;
 
+
 namespace CS6232_G1.View
 {
-    public partial class DeleteCohortForm : Form
+    public partial class RenameCohortForm : Form
     {
         IEvaluationController _controller;
 
-        public DeleteCohortForm(IEvaluationController controller)
+        public RenameCohortForm(IEvaluationController controller)
         {
             InitializeComponent();
             _controller = controller;
         }
 
-        private void DeleteCohortForm_Load(object sender, EventArgs e)
+        private void RenameCohortForm_Load(object sender, EventArgs e)
         {
             if (_controller == null)
             {
-                MessageBox.Show("Error: DeleteCohortFrom created with a null controller.");
+                MessageBox.Show("Error: RenameCohortFrom created with a null controller.");
                 this.DialogResult = DialogResult.Cancel;
                 Close();
                 return;
@@ -37,26 +38,26 @@ namespace CS6232_G1.View
 
         private void loadComboBoxItems()
         {
-            List<Cohort> deletableCohortList = null;
+            List<Cohort> cohortList = null;
             try
             {
-                deletableCohortList = _controller.getCohortsWithNoMembersOrEvals();
+                cohortList = _controller.getCohorts();
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("A Database error occured fetching cohorts\n\n" +
+                MessageBox.Show("A Database error occured fetching cohorts\n\n" + 
                     "Details: " + ex.Message, "Notice");
                 this.DialogResult = DialogResult.Cancel;
                 Close();
                 return;
             }
-            if (deletableCohortList == null || deletableCohortList.Count < 1)
+            if (cohortList == null || cohortList.Count < 1)
             {
-                MessageBox.Show("There are no cohorts that can be deleted (Only empty cohorts can be deleted)");
+                MessageBox.Show("There are no cohorts");
                 this.DialogResult = DialogResult.Cancel;
                 Close();
             }
-            cohortsComboBox.DataSource = deletableCohortList;
+            cohortsComboBox.DataSource = cohortList;
             cohortsComboBox.DisplayMember = "cohortName";
             cohortsComboBox.ValueMember = "cohortId";
         }
@@ -67,7 +68,7 @@ namespace CS6232_G1.View
             Close();
         }
 
-        private void deleteBtn_Click(object sender, EventArgs e)
+        private void renameBtn_Click(object sender, EventArgs e)
         {
             Cohort selectedCohort = (Cohort) cohortsComboBox.SelectedItem;
             if (selectedCohort == null)
@@ -75,48 +76,48 @@ namespace CS6232_G1.View
                 MessageBox.Show("Please select a cohort first");
                 return;
             }
+            int cohortId = selectedCohort.cohortId;
+            string oldName = selectedCohort.cohortName;
+            string newName = newNameBox.Text.Trim();
+            if (newName == "")
+            {
+                MessageBox.Show("New name must not be blank");
+                return;
+            }
+            
             bool result = false;
             try
             {
-                result = _controller.deleteCohort(selectedCohort.cohortId);
+                result = _controller.renameCohort(cohortId, oldName, newName);
             }
             catch (SqlException ex)
             {
-                if (ex.Errors.Count > 0) // Assume the interesting stuff is in the first error
-                {
-                    int SQL_FOREIGN_KEY_EXCEPTION_CODE = 547;
-                    if (ex.Errors[0].Number == SQL_FOREIGN_KEY_EXCEPTION_CODE)
-                    {
-                        //Another process added a member or schedule to this cohort
-                        MessageBox.Show("The cohort was updated by another process and can no longer be deleted");
-                    }
-                    else {
-                        MessageBox.Show("A Database error occured deleting the cohort\n" + ex.Message);
-                    }
-                }
+                MessageBox.Show("A Database error occured deleting the cohort\n\n" + 
+                     "Details: " + ex.Message);
                 loadComboBoxItems();
                 return;
             }
 
-            if (result) 
+            if (result)
             {
-                MessageBox.Show(selectedCohort.cohortName + " deleted");
+                MessageBox.Show("Cohort " + oldName + " renamed to " + newName);
                 this.DialogResult = DialogResult.OK;
                 Close();
                 return;
             }
             else
             {
-                MessageBox.Show(selectedCohort.cohortName + " was unable to be deleted");
+                MessageBox.Show(selectedCohort.cohortName + " was unable to be renamed");
             }
             loadComboBoxItems();
         }
 
         public static void Run(IEvaluationController controller)
         {
-            DeleteCohortForm form = new DeleteCohortForm(controller);
+            RenameCohortForm form = new RenameCohortForm(controller);
             form.ShowDialog(Program.mainForm);
         }
+
 
     }
 }

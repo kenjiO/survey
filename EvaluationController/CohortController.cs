@@ -115,6 +115,11 @@ namespace Evaluation.Controller
             return _dal.deleteCohort(cohortId);
         }
 
+        public bool renameCohort(int cohortId, string oldName, string newName)
+        {
+            return _dal.renameCohort(cohortId, oldName, newName);
+        }
+
         public List<Cohort> getCohortsWithNoMembersOrEvals()
         {
             return _dal.getCohortsWithNoMembersOrEvals();

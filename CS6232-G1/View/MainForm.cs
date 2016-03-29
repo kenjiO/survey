@@ -188,5 +188,10 @@ namespace CS6232_G1.View
             DeleteCohortForm.Run(_controller);
         }
 
+        private void renameACohortToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RenameCohortForm.Run(_controller);
+        }
+
     }
 }

@@ -97,6 +97,15 @@ namespace Evaluation.DAL
         /// </summary>
         /// <param name="cohortId">Id of the cohort to delete</param>
         bool deleteCohort(int cohortId);
+
+        /// <summary>
+        /// Rename a cohort if cohortId with oldName is in the database
+        /// </summary>
+        /// <param name="cohortId">cohortId to rename</param>
+        /// <param name="oldName">the old name of the cohort</param>
+        /// <param name="newName">the new name of the cohort</param>
+        /// <returns>True if rename successful. False otherwise</returns>
+        bool renameCohort(int cohortId, string oldName, string newName);
         
         #endregion
 
