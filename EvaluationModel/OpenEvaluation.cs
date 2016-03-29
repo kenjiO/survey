@@ -14,8 +14,8 @@ namespace Evaluation.Model
         public String roleName { get { return _role; } }
         public String typeName { get { return _type; } }
         public String stageName { get { return _stage; } }
-        public DateTime openDate { get { return _openDate; } }
-        public DateTime closeDate { get { return _closeDate; } }
+        public DateTime startDate { get { return _startDate; } }
+        public DateTime endDate { get { return _endDate; } }
 
         public OpenEvaluation(int scheduleId, String employeeName, int roleId, String roleName, String typeName, 
                                     String stageName, DateTime openDate, DateTime closeDate)
@@ -26,8 +26,8 @@ namespace Evaluation.Model
             _role = roleName;
             _type = typeName;
             _stage = stageName;
-            _openDate = openDate;
-            _closeDate = closeDate;
+            _startDate = openDate;
+            _endDate = closeDate;
         }
 
         private int _scheduleId;
@@ -36,7 +36,7 @@ namespace Evaluation.Model
         private String _role;
         private String _type;
         private String _stage;
-        private DateTime _openDate;
-        private DateTime _closeDate;
+        private DateTime _startDate;
+        private DateTime _endDate;
     }
 }

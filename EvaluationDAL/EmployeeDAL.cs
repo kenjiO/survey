@@ -13,18 +13,11 @@ namespace Evaluation.DAL
     /// </summary>
     public partial class EvaluationDAL : IEvaluationDAL
     {
-        /// <summary>
-        /// Get a list of employee names and ids
-        /// </summary>
-        /// <returns>Employee name list</returns>
-        public List<EmployeeName> getEmployeeNameList()
+        public int getEmployeeCohortId(int employeeId)
         {
-            List<EmployeeName> results = new List<EmployeeName>();
-
-            string selectStatement =
-                "SELECT  employeeID, firstName, lastName " +
-                "FROM employee " +
-                "ORDER BY firstName, lastName;";
+            string selectStatement = "SELECT cohortId " +
+                                     "FROM employee " +
+                                     "WHERE employeeId = @employeeId ";
 
             using (SqlConnection connection = EvaluationDB.GetConnection())
             {
@@ -32,18 +25,17 @@ namespace Evaluation.DAL
 
                 using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
                 {
-                    using (SqlDataReader reader = selectCommand.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            EmployeeName employee = new EmployeeName((int)reader["employeeId"], reader["firstName"].ToString(), reader["lastName"].ToString());
-                            results.Add(employee);
-                        }
+                    selectCommand.Parameters.AddWithValue("@employeeId", employeeId);
+
+                    Object result = selectCommand.ExecuteScalar();
+                    if (result == null) {
+                        return 0;
                     }
+                    return (int)result; 
                 }
             }
-            return results;
         }
+
 
         public List<EmployeeName> getListOfNonAdminEmployees()
         {

@@ -112,16 +112,17 @@ namespace Evaluation.DAL
         #region Employees
 
         /// <summary>
-        /// Get a list of employee names and ids
-        /// </summary>
-        /// <returns>Employee name list</returns>
-        List<EmployeeName> getEmployeeNameList();
-
-        /// <summary>
         /// Get employee matching given login and password
         /// </summary>
         /// <returns>Employee if valid login/password. Otherwise null</returns>
         Employee getLogin(String username, String password);
+
+        /// <summary>
+        /// Look up employee cohort id
+        /// </summary>
+        /// <param name="employeeId">Employee to look up</param>
+        /// <returns>Cohort Id of employee (0 if none assigned)</returns>
+        int getEmployeeCohortId(int employeeId);
 
         /// <summary>
         /// Get employees that are not admins

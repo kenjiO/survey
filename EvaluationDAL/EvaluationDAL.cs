@@ -50,7 +50,21 @@ namespace Evaluation.DAL
         {
             List<OpenEvaluation> results = new List<OpenEvaluation>();
 
+            int cohortId = getEmployeeCohortId(employeeId);
+            // if no cohort, no self-evaluations
+            if (cohortId == 0)
+            {
+                return results;
+            }
+            //String selectStatment = "SELECT "
             // TODO: get scheduled evaluations that are complete or in progress and open
+            // query from evaluation_schedules where
+            //   cohort is employee cohort
+            //   startDate <= now
+            //   endDate >= now
+            //   NOT EXISTS(SELECT * FROM evaluations WHERE scheduleId = this.scheduleId
+            //                                          AND employeeId == this.employeeId
+            //                                          AND completionDate IS NOT NULL)
             return results;
         }
 

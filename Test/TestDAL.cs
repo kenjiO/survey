@@ -112,6 +112,15 @@ namespace Test
         #endregion
 
         #region Employees
+        public Employee getLogin(String username, String password)
+        {
+            throw new NotSupportedException();
+        }
+
+        public int getEmployeeCohortId(int employeeId)
+        {
+            return 1;
+        }
 
         public List<EmployeeName> getListOfNonAdminEmployees()
         {
@@ -119,17 +128,6 @@ namespace Test
         }
 
         #endregion
-
-
-        public List<EmployeeName> getEmployeeNameList()
-        {
-            return _controller.getEmployeeNameList();
-        }
-
-        public Employee getLogin(String username, String password)
-        {
-            throw new NotSupportedException();
-        }
 
         #region Schedules
         public bool DeleteSchedule(EvaluationSchedule selectedSchedule)
@@ -159,12 +157,13 @@ namespace Test
         {
             return _controller.getOpenOtherEvaluations(employeeId);
         }
-        #endregion
 
         public void createEvaluations(int empId, int typeId, int stageId, int coworkerId)
         {
             return;
         }
+
+        #endregion
 
     }
 }
