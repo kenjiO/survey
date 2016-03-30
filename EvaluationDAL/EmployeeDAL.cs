@@ -36,6 +36,31 @@ namespace Evaluation.DAL
             }
         }
 
+        public EmployeeName getEmployeeName(int employeeId)
+        {
+            string selectStatement = "SELECT firstName, lastName " +
+                                     "FROM employee " +
+                                     "WHERE employeeId = @employeeId ";
+
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@employeeId", employeeId);
+
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        if (!reader.Read())
+                        {
+                            throw new ArgumentException("Employee " + employeeId + " not found");
+                        }
+                        return new EmployeeName(employeeId, reader["firstName"].ToString(), reader["lastName"].ToString());
+                    }
+                }
+            }
+        }
 
         public List<EmployeeName> getListOfNonAdminEmployees()
         {

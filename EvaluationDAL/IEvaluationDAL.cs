@@ -26,6 +26,14 @@ namespace Evaluation.DAL
         List<Stage> getStageList();
         #endregion
 
+        #region Roles
+        /// <summary>
+        /// Get a list of Roles and their ids
+        /// </summary>
+        /// <returns>Role list</returns>
+        List<Role> getRoleList();
+        #endregion
+
         #region Cohorts
         /// <summary>
         /// Get a list of cohorts
@@ -125,6 +133,14 @@ namespace Evaluation.DAL
         int getEmployeeCohortId(int employeeId);
 
         /// <summary>
+        /// Look up employee name
+        /// </summary>
+        /// <param name="employeeId">Employee to look up</param>
+        /// <returns>EmployeeName record</returns>
+        /// <throws>ArgumentException if employeeId not found</throws>
+        EmployeeName getEmployeeName(int employeeId);
+
+        /// <summary>
         /// Get employees that are not admins
         /// </summary>
         /// <returns>List of non-admin employees</returns>
@@ -174,10 +190,6 @@ namespace Evaluation.DAL
         /// <param name="employeeId">id of the given employee</param>
         /// <returns>List of Open Evaluations that are not Self Evaluations</returns>
         List<OpenEvaluation> getOpenOtherEvaluations(int employeeId);
-
-        #endregion
-
-        #region Evaluations
 
         /// <summary>
         /// Create the self, supervisor and co-worker evaluations in the database

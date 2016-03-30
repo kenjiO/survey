@@ -14,14 +14,6 @@ namespace Test
         public Employee currentUser { get { return _currentUser; } }
         public bool idAdminSession { get { return _isAdminSession; } }
         
-        #region Roles
-
-        public String getRoleName(int roleId)
-        {
-            return "Role Name";
-        }
-        #endregion
-
         #region Stages
         public List<Stage> getStageList()
         {
@@ -104,6 +96,37 @@ namespace Test
         {
             return 3;
         }
+
+        #endregion
+
+        #region Roles
+        public List<Role> getRoleList()
+        {
+            List<Role> results = new List<Role>();
+
+            results.Add(new Role(1, "Self"));
+            results.Add(new Role(2, "Coworker"));
+            results.Add(new Role(3, "Supervisor"));
+            return results;
+        }
+
+        public bool roleExists(string name)
+        {
+            List<Role> _roles = getRoleList();
+            return _roles.Exists(r => r.name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public string getRoleName(int roleId)
+        {
+            List<Role> _roles = getRoleList();
+            Role result = _roles.Find(r => r.id == roleId);
+            if (result == null || result.id != roleId)
+            {
+                throw new KeyNotFoundException("Role Id " + roleId + " not found");
+            }
+            return result.name;
+        }
+
 
         #endregion
 

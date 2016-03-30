@@ -48,6 +48,7 @@
     <Compile Include="IRefreshable.cs" />
     <Compile Include="OpenEvaluation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role.cs" />
     <Compile Include="Stage.cs" />
     <Compile Include="UserReport.cs" />
   </ItemGroup>

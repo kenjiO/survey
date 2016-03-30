@@ -14,16 +14,6 @@ namespace Evaluation.Controller
         Boolean idAdminSession { get; }
 
 
-        #region Role
-        /// <summary>
-        /// Get Role name from role id
-        /// </summary>
-        /// <param name="roleId">role id</param>
-        /// <returns>Role name</returns>
-        String getRoleName(int roleId);
-
-        #endregion
-
         #region Stages
         /// <summary>
         /// Get a list of stages and their ids
@@ -89,6 +79,28 @@ namespace Evaluation.Controller
         /// <returns>Type id for new type</returns>
         int addType(string name);
 
+        #endregion
+
+        #region Roles
+        /// <summary>
+        /// Get a list of Roles and their ids
+        /// </summary>
+        /// <returns>Role list</returns>
+        List<Role> getRoleList();
+
+        /// <summary>
+        /// Look up the name for a role
+        /// </summary>
+        /// <param name="roleId">role id to look up</param>
+        /// <returns>role name if found, else an empty string</returns>
+        string getRoleName(int roleId);
+
+        /// <summary>
+        /// See if a role already exists
+        /// </summary>
+        /// <param name="name">role name to check</param>
+        /// <returns>True if the role name already exists</returns>
+        bool roleExists(string name);
         #endregion
 
         #region Cohorts

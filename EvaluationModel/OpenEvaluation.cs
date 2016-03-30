@@ -18,7 +18,7 @@ namespace Evaluation.Model
         public DateTime endDate { get { return _endDate; } }
 
         public OpenEvaluation(int scheduleId, String employeeName, int roleId, String roleName, String typeName, 
-                                    String stageName, DateTime openDate, DateTime closeDate)
+                                    String stageName, DateTime startDate, DateTime endDate)
         {
             _scheduleId = scheduleId;
             _name = employeeName;
@@ -26,8 +26,8 @@ namespace Evaluation.Model
             _role = roleName;
             _type = typeName;
             _stage = stageName;
-            _startDate = openDate;
-            _endDate = closeDate;
+            _startDate = startDate;
+            _endDate = endDate;
         }
 
         private int _scheduleId;

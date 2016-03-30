@@ -29,6 +29,13 @@ namespace Test
         }
         #endregion
 
+        #region Roles
+        public List<Role> getRoleList()
+        {
+            return _controller.getRoleList();
+        }
+        #endregion
+
         #region Cohorts
         public List<Cohort> getCohorts()
         {
@@ -120,6 +127,11 @@ namespace Test
         public int getEmployeeCohortId(int employeeId)
         {
             return 1;
+        }
+
+        public EmployeeName getEmployeeName(int employeeId)
+        {
+            return new EmployeeName(employeeId, "John", "Silver");
         }
 
         public List<EmployeeName> getListOfNonAdminEmployees()

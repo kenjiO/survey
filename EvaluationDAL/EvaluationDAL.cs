@@ -56,16 +56,41 @@ namespace Evaluation.DAL
             {
                 return results;
             }
-            //String selectStatment = "SELECT "
-            // TODO: get scheduled evaluations that are complete or in progress and open
-            // query from evaluation_schedules where
-            //   cohort is employee cohort
-            //   startDate <= now
-            //   endDate >= now
-            //   NOT EXISTS(SELECT * FROM evaluations WHERE scheduleId = this.scheduleId
-            //                                          AND employeeId == this.employeeId
-            //                                          AND completionDate IS NOT NULL)
+            String selectStatment =   "SELECT * FROM EvaluationScheduleView this " +
+                                      "WHERE startDate <= GETDATE() " +
+                                      "  AND endDate >= GETDATE() " +
+                                      "  AND cohortId = @cohortId " +
+                                      "  AND NOT EXISTS(SELECT * FROM evaluations " +
+                                                        "WHERE employeeId = @employeeId " +
+                                                        "  AND typeId = this.typeId " +
+                                                        "  AND stageId = this.stageId " +
+                                                        "  AND completionDate IS NOT NULL)";
+
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatment, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@cohortId", cohortId);
+                    selectCommand.Parameters.AddWithValue("@employeeId", employeeId);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            results.Add(createOpenEvaluation(reader, employeeId, SELF_EVALUATION_ROLE_ID));
+                        }
+                    }
+                }
+            }
             return results;
+        }
+
+        private OpenEvaluation createOpenEvaluation(SqlDataReader reader, int employeeId, int roleId)
+        {
+            return new OpenEvaluation( (int)reader["scheduleId"], getEmployeeName(employeeId).fullName, roleId, getRoleName(roleId),
+                            reader["typeName"].ToString(), reader["stageName"].ToString(), (DateTime)reader["startDate"], 
+                            (DateTime)reader["endDate"]);                                    
         }
 
         public List<OpenEvaluation> getOpenOtherEvaluations(int employeeId)
