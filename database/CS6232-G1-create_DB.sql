@@ -396,7 +396,8 @@ ALTER DATABASE [CS6232-G1] SET  READ_WRITE
 GO
 
 GO
-DROP VIEW dbo.EvaluationScheduleView
+IF OBJECT_ID('dbo.EvaluationScheduleView', 'V') IS NOT NULL
+    DROP VIEW dbo.EvaluationScheduleView;
 GO
 CREATE VIEW dbo.EvaluationScheduleView
 AS
