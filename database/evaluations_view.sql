@@ -1,5 +1,7 @@
+use [CS6232-G1];
 GO
-DROP VIEW dbo.EvaluationScheduleView
+IF OBJECT_ID('dbo.EvaluationScheduleView', 'V') IS NOT NULL
+    DROP VIEW dbo.EvaluationScheduleView;
 GO
 CREATE VIEW dbo.EvaluationScheduleView
 AS

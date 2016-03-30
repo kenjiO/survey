@@ -35,6 +35,7 @@ namespace CS6232_G1.View
             }
             try
             {
+                //dgvSelfEvaluations.CellFormatting += dgvSelfEvaluations_CellFormatting;
                 loadSelfEvaluations();
                 loadOtherEvaluations();                
             }
@@ -43,7 +44,7 @@ namespace CS6232_G1.View
                 MessageBox.Show("An error occurred acquiring data from database.  Please check your SQL configuration.\n\n" +
                                 "Details: " + ex.Message, "Notice");
             }
-        }
+        }        
 
         private void loadSelfEvaluations()
         {

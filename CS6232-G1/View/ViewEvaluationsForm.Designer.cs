@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvSelfEvaluations = new System.Windows.Forms.DataGridView();
             this.evaluationsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
@@ -39,7 +41,7 @@
             this.scheduleIdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StageName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CloseDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OpenButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.scheduleIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.employeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,7 +49,7 @@
             this.roleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeName1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stageName1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.closeDate1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.endDate1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OpenButton1 = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelfEvaluations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.evaluationsBindingSource)).BeginInit();
@@ -67,7 +69,7 @@
             this.scheduleIdDataGridViewTextBoxColumn1,
             this.TypeName,
             this.StageName,
-            this.CloseDate,
+            this.EndDate,
             this.OpenButton});
             this.dgvSelfEvaluations.DataSource = this.evaluationsBindingSource;
             this.dgvSelfEvaluations.Location = new System.Drawing.Point(75, 139);
@@ -125,7 +127,7 @@
             this.roleName,
             this.typeName1,
             this.stageName1,
-            this.closeDate1,
+            this.endDate1,
             this.OpenButton1});
             this.dgvOtherEvaluations.DataSource = this.evaluationsBindingSource;
             this.dgvOtherEvaluations.Location = new System.Drawing.Point(75, 511);
@@ -162,12 +164,14 @@
             this.StageName.Name = "StageName";
             this.StageName.ReadOnly = true;
             // 
-            // CloseDate
+            // EndDate
             // 
-            this.CloseDate.DataPropertyName = "closeDate";
-            this.CloseDate.HeaderText = "Close Date";
-            this.CloseDate.Name = "CloseDate";
-            this.CloseDate.ReadOnly = true;
+            this.EndDate.DataPropertyName = "endDate";
+            dataGridViewCellStyle1.Format = "MM/dd/yyyy";
+            this.EndDate.DefaultCellStyle = dataGridViewCellStyle1;
+            this.EndDate.HeaderText = "Close Date";
+            this.EndDate.Name = "EndDate";
+            this.EndDate.ReadOnly = true;
             // 
             // OpenButton
             // 
@@ -222,12 +226,14 @@
             this.stageName1.Name = "stageName1";
             this.stageName1.ReadOnly = true;
             // 
-            // closeDate1
+            // endDate1
             // 
-            this.closeDate1.DataPropertyName = "closeDate";
-            this.closeDate1.HeaderText = "Close Date";
-            this.closeDate1.Name = "closeDate1";
-            this.closeDate1.ReadOnly = true;
+            this.endDate1.DataPropertyName = "endDate";
+            dataGridViewCellStyle2.Format = "MM/dd/yyyy";
+            this.endDate1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.endDate1.HeaderText = "Close Date";
+            this.endDate1.Name = "endDate1";
+            this.endDate1.ReadOnly = true;
             // 
             // OpenButton1
             // 
@@ -268,17 +274,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.BindingSource evaluationScheduleBindingSource;
-        private System.Windows.Forms.DataGridView dgvOtherEvaluations;
-        private System.Windows.Forms.DataGridViewTextBoxColumn evaluationIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn typeId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stageId;
+        private System.Windows.Forms.DataGridView dgvOtherEvaluations;        
         private System.Windows.Forms.BindingSource evaluationsBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TypeId1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StageId1;
         private System.Windows.Forms.DataGridViewTextBoxColumn scheduleIdDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn TypeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn StageName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CloseDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EndDate;
         private System.Windows.Forms.DataGridViewButtonColumn OpenButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn scheduleIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn employeeName;
@@ -286,7 +287,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn roleName;
         private System.Windows.Forms.DataGridViewTextBoxColumn typeName1;
         private System.Windows.Forms.DataGridViewTextBoxColumn stageName1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn closeDate1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn endDate1;
         private System.Windows.Forms.DataGridViewButtonColumn OpenButton1;
     }
 }
