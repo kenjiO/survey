@@ -390,16 +390,10 @@ REFERENCES [dbo].[type] ([typeId])
 GO
 ALTER TABLE [dbo].[question] CHECK CONSTRAINT [FK_question_type]
 GO
-USE [master]
-GO
-ALTER DATABASE [CS6232-G1] SET  READ_WRITE
-GO
-
-GO
 IF OBJECT_ID('dbo.EvaluationScheduleView', 'V') IS NOT NULL
     DROP VIEW dbo.EvaluationScheduleView;
 GO
-CREATE VIEW dbo.EvaluationScheduleView
+CREATE VIEW [dbo].[EvaluationScheduleView]
 AS
 SELECT  es.scheduleId,
         es.cohortId,
@@ -414,4 +408,8 @@ SELECT  es.scheduleId,
   LEFT JOIN dbo.type ty ON (ty.typeId = es.typeId)
   LEFT JOIN dbo.stage st ON (st.stageId = es.stageId)
 
-
+GO
+USE [master]
+GO
+ALTER DATABASE [CS6232-G1] SET  READ_WRITE
+GO
