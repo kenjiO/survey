@@ -300,7 +300,7 @@ namespace Evaluation.Controller
         /// </summary>
         /// <param name="employeeId">id of the given employee</param>
         /// <returns>List of Open Evaluations that are not Self Evaluations</returns>
-        List<OpenEvaluation> getOpenOtherEvaluations(int employeeId);
+        List<OpenEvaluation> getOpenPeerEvaluations(int employeeId);
 
         #endregion
                

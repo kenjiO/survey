@@ -52,9 +52,9 @@ namespace Evaluation.Controller
             return _dal.getOpenSelfEvaluations(employeeId);
         }
 
-        public List<OpenEvaluation> getOpenOtherEvaluations(int employeeId)
+        public List<OpenEvaluation> getOpenPeerEvaluations(int employeeId)
         {
-            return _dal.getOpenOtherEvaluations(employeeId);
+            return _dal.getOpenPeerEvaluations(employeeId);
         }
 
     }

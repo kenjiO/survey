@@ -21,13 +21,13 @@ namespace CS6232_G1.View
 
         private void ViewEvaluationDetailsForm_Load(object sender, EventArgs e)
         {
-            if (_currentUser == null)
+            if (_controller == null)
             {
                 MessageBox.Show("Invalid arguments to view evaluations form");
                 Close();
                 return;
             }
-            if (_controller == null)
+            if (_currentUser == null)
             {
                 MessageBox.Show("Invalid user.");
                 Close();
@@ -35,9 +35,8 @@ namespace CS6232_G1.View
             }
             try
             {
-                //dgvSelfEvaluations.CellFormatting += dgvSelfEvaluations_CellFormatting;
                 loadSelfEvaluations();
-                loadOtherEvaluations();                
+                loadPeerEvaluations();               
             }
             catch (Exception ex)
             {
@@ -54,18 +53,34 @@ namespace CS6232_G1.View
             dgvSelfEvaluations.ClearSelection();
         }
 
-        private void loadOtherEvaluations()
+        private void loadPeerEvaluations()
         {
             //Get list of evaluation schedule objects and bind the datagrid to the list
-            List<OpenEvaluation> evaluationList = _controller.getOpenOtherEvaluations(_currentUser.employeeId);
-            dgvOtherEvaluations.DataSource = evaluationList;            
-            dgvOtherEvaluations.ClearSelection();
+            List<OpenEvaluation> evaluationList = _controller.getOpenPeerEvaluations(_currentUser.employeeId);
+            dgvPeerEvaluations.DataSource = evaluationList;            
+            dgvPeerEvaluations.ClearSelection();
         }
 
         public void refreshViews()
         {
             loadSelfEvaluations();
-            loadOtherEvaluations();
+            loadPeerEvaluations();
+        }
+
+        private void ViewEvaluationsForm_Shown(object sender, EventArgs e)
+        {
+            if (dgvSelfEvaluations.DisplayedRowCount(true) == 0 && dgvPeerEvaluations.DisplayedRowCount(true) == 0)
+            {
+                MessageBox.Show("There are no evaluations at this time.");
+            }
+            else if (dgvSelfEvaluations.DisplayedRowCount(true) == 0)
+            {
+                MessageBox.Show("There are no self evaluations at this time.");
+            }
+            else if (dgvPeerEvaluations.DisplayedRowCount(true) == 0)
+            {
+                MessageBox.Show("There are no peer evaluations at this time.");
+            } 
         }
                     
     }

@@ -93,7 +93,7 @@ namespace Evaluation.DAL
                             (DateTime)reader["endDate"]);                                    
         }
 
-        public List<OpenEvaluation> getOpenOtherEvaluations(int employeeId)
+        public List<OpenEvaluation> getOpenPeerEvaluations(int employeeId)
         {
             List<OpenEvaluation> results = new List<OpenEvaluation>();
 

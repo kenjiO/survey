@@ -165,9 +165,9 @@ namespace Test
             return _controller.getOpenSelfEvaluations(employeeId);
         }
 
-        public List<OpenEvaluation> getOpenOtherEvaluations(int employeeId)
+        public List<OpenEvaluation> getOpenPeerEvaluations(int employeeId)
         {
-            return _controller.getOpenOtherEvaluations(employeeId);
+            return _controller.getOpenPeerEvaluations(employeeId);
         }
 
         public void createEvaluations(int empId, int typeId, int stageId, int coworkerId)

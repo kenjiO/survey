@@ -29,20 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvSelfEvaluations = new System.Windows.Forms.DataGridView();
-            this.evaluationsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dgvOtherEvaluations = new System.Windows.Forms.DataGridView();
-            this.evaluationScheduleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.scheduleIdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StageName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OpenButton = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.evaluationsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblSelfEvaluations = new System.Windows.Forms.Label();
+            this.lblPeerEvaluations = new System.Windows.Forms.Label();
+            this.dgvPeerEvaluations = new System.Windows.Forms.DataGridView();
             this.scheduleIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.employeeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.roleId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,9 +50,10 @@
             this.stageName1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.endDate1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OpenButton1 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.evaluationScheduleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelfEvaluations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.evaluationsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOtherEvaluations)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPeerEvaluations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.evaluationScheduleBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,68 +80,6 @@
             this.dgvSelfEvaluations.Size = new System.Drawing.Size(930, 277);
             this.dgvSelfEvaluations.TabIndex = 10;
             // 
-            // evaluationsBindingSource
-            // 
-            this.evaluationsBindingSource.DataSource = typeof(Evaluation.Model.OpenEvaluation);
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(370, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(278, 39);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Your Evaluations";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(71, 103);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 20);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Self Evaluations";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(71, 476);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(123, 20);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "Evaluate Others";
-            // 
-            // dgvOtherEvaluations
-            // 
-            this.dgvOtherEvaluations.AllowUserToAddRows = false;
-            this.dgvOtherEvaluations.AllowUserToDeleteRows = false;
-            this.dgvOtherEvaluations.AutoGenerateColumns = false;
-            this.dgvOtherEvaluations.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvOtherEvaluations.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
-            this.dgvOtherEvaluations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOtherEvaluations.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.scheduleIdDataGridViewTextBoxColumn,
-            this.employeeName,
-            this.roleId,
-            this.roleName,
-            this.typeName1,
-            this.stageName1,
-            this.endDate1,
-            this.OpenButton1});
-            this.dgvOtherEvaluations.DataSource = this.evaluationsBindingSource;
-            this.dgvOtherEvaluations.Location = new System.Drawing.Point(75, 511);
-            this.dgvOtherEvaluations.Name = "dgvOtherEvaluations";
-            this.dgvOtherEvaluations.ReadOnly = true;
-            this.dgvOtherEvaluations.RowTemplate.Height = 28;
-            this.dgvOtherEvaluations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOtherEvaluations.Size = new System.Drawing.Size(930, 277);
-            this.dgvOtherEvaluations.TabIndex = 14;
-            // 
-            // evaluationScheduleBindingSource
-            // 
-            this.evaluationScheduleBindingSource.DataSource = typeof(Evaluation.Model.OpenEvaluation);
-            // 
             // scheduleIdDataGridViewTextBoxColumn1
             // 
             this.scheduleIdDataGridViewTextBoxColumn1.DataPropertyName = "scheduleId";
@@ -167,8 +105,8 @@
             // EndDate
             // 
             this.EndDate.DataPropertyName = "endDate";
-            dataGridViewCellStyle1.Format = "MM/dd/yyyy";
-            this.EndDate.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Format = "MM/dd/yyyy";
+            this.EndDate.DefaultCellStyle = dataGridViewCellStyle3;
             this.EndDate.HeaderText = "Close Date";
             this.EndDate.Name = "EndDate";
             this.EndDate.ReadOnly = true;
@@ -180,6 +118,64 @@
             this.OpenButton.ReadOnly = true;
             this.OpenButton.Text = "Open";
             this.OpenButton.UseColumnTextForButtonValue = true;
+            // 
+            // evaluationsBindingSource
+            // 
+            this.evaluationsBindingSource.DataSource = typeof(Evaluation.Model.OpenEvaluation);
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(370, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(278, 39);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Your Evaluations";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblSelfEvaluations
+            // 
+            this.lblSelfEvaluations.AutoSize = true;
+            this.lblSelfEvaluations.Location = new System.Drawing.Point(71, 103);
+            this.lblSelfEvaluations.Name = "lblSelfEvaluations";
+            this.lblSelfEvaluations.Size = new System.Drawing.Size(123, 20);
+            this.lblSelfEvaluations.TabIndex = 12;
+            this.lblSelfEvaluations.Text = "Self Evaluations";
+            // 
+            // lblPeerEvaluations
+            // 
+            this.lblPeerEvaluations.AutoSize = true;
+            this.lblPeerEvaluations.Location = new System.Drawing.Point(71, 476);
+            this.lblPeerEvaluations.Name = "lblPeerEvaluations";
+            this.lblPeerEvaluations.Size = new System.Drawing.Size(128, 20);
+            this.lblPeerEvaluations.TabIndex = 13;
+            this.lblPeerEvaluations.Text = "Peer Evaluations";
+            // 
+            // dgvOtherEvaluations
+            // 
+            this.dgvPeerEvaluations.AllowUserToAddRows = false;
+            this.dgvPeerEvaluations.AllowUserToDeleteRows = false;
+            this.dgvPeerEvaluations.AutoGenerateColumns = false;
+            this.dgvPeerEvaluations.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPeerEvaluations.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
+            this.dgvPeerEvaluations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPeerEvaluations.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.scheduleIdDataGridViewTextBoxColumn,
+            this.employeeName,
+            this.roleId,
+            this.roleName,
+            this.typeName1,
+            this.stageName1,
+            this.endDate1,
+            this.OpenButton1});
+            this.dgvPeerEvaluations.DataSource = this.evaluationsBindingSource;
+            this.dgvPeerEvaluations.Location = new System.Drawing.Point(75, 511);
+            this.dgvPeerEvaluations.Name = "dgvOtherEvaluations";
+            this.dgvPeerEvaluations.ReadOnly = true;
+            this.dgvPeerEvaluations.RowTemplate.Height = 28;
+            this.dgvPeerEvaluations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPeerEvaluations.Size = new System.Drawing.Size(930, 277);
+            this.dgvPeerEvaluations.TabIndex = 14;
             // 
             // scheduleIdDataGridViewTextBoxColumn
             // 
@@ -229,8 +225,8 @@
             // endDate1
             // 
             this.endDate1.DataPropertyName = "endDate";
-            dataGridViewCellStyle2.Format = "MM/dd/yyyy";
-            this.endDate1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Format = "MM/dd/yyyy";
+            this.endDate1.DefaultCellStyle = dataGridViewCellStyle4;
             this.endDate1.HeaderText = "Close Date";
             this.endDate1.Name = "endDate1";
             this.endDate1.ReadOnly = true;
@@ -243,6 +239,10 @@
             this.OpenButton1.Text = "Open";
             this.OpenButton1.UseColumnTextForButtonValue = true;
             // 
+            // evaluationScheduleBindingSource
+            // 
+            this.evaluationScheduleBindingSource.DataSource = typeof(Evaluation.Model.OpenEvaluation);
+            // 
             // ViewEvaluationsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -250,17 +250,18 @@
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.ClientSize = new System.Drawing.Size(1082, 840);
-            this.Controls.Add(this.dgvOtherEvaluations);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dgvPeerEvaluations);
+            this.Controls.Add(this.lblPeerEvaluations);
+            this.Controls.Add(this.lblSelfEvaluations);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvSelfEvaluations);
             this.Name = "ViewEvaluationsForm";
             this.Text = "ViewEvaluationDetailsForm";
             this.Load += new System.EventHandler(this.ViewEvaluationDetailsForm_Load);
+            this.Shown += new System.EventHandler(this.ViewEvaluationsForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelfEvaluations)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.evaluationsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOtherEvaluations)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPeerEvaluations)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.evaluationScheduleBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -271,10 +272,10 @@
 
         private System.Windows.Forms.DataGridView dgvSelfEvaluations;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblSelfEvaluations;
+        private System.Windows.Forms.Label lblPeerEvaluations;
         private System.Windows.Forms.BindingSource evaluationScheduleBindingSource;
-        private System.Windows.Forms.DataGridView dgvOtherEvaluations;        
+        private System.Windows.Forms.DataGridView dgvPeerEvaluations;        
         private System.Windows.Forms.BindingSource evaluationsBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn scheduleIdDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn TypeName;
