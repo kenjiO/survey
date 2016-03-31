@@ -211,8 +211,17 @@ namespace CS6232_G1.View
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
-                MessageBox.Show("A Database error occured deleting the cohort\n\n" + 
+                //Error 547 is a foreign key violation caused by existing members or schedules
+                if (ex.Errors[0].Number == 547)
+                {
+                    MessageBox.Show("Cannot delete a Cohort with existing members or schedules");
+                }
+                else
+                {
+                    MessageBox.Show("A Database error occured deleting the cohort\n\n" +
                             "Details: " + ex.Message);
+                }
+                return;
             }
  
             if (result)
@@ -223,6 +232,7 @@ namespace CS6232_G1.View
             }
             else
             {
+                //Cohort was not deleted even though no SqlException thrown
                 MessageBox.Show("Unable to delete cohort");
             }
         }
