@@ -8,18 +8,20 @@ namespace Evaluation.Model
 {
     public class OpenEvaluation
     {
-        public int ScheduleId { get { return _scheduleId; } }
-        public String EmployeeName { get { return _name; } }
-        public int RoleId { get { return _roleId; } }
-        public String RoleName { get { return _role; } }
-        public String TypeName { get { return _type; } }
-        public String StageName { get { return _stage; } }
-        public DateTime StartDate { get { return _startDate; } }
-        public DateTime EndDate { get { return _endDate; } }
+        public int? evaluationId { get { return _evaluationId; } }
+        public int scheduleId { get { return _scheduleId; } }
+        public String employeeName { get { return _name; } }
+        public int roleId { get { return _roleId; } }
+        public String roleName { get { return _role; } }
+        public String typeName { get { return _type; } }
+        public String stageName { get { return _stage; } }
+        public DateTime startDate { get { return _startDate; } }
+        public DateTime endDate { get { return _endDate; } }
 
-        public OpenEvaluation(int scheduleId, String employeeName, int roleId, String roleName, String typeName, 
+        public OpenEvaluation(int? evaluationId, int scheduleId, String employeeName, int roleId, String roleName, String typeName, 
                                     String stageName, DateTime startDate, DateTime endDate)
         {
+            _evaluationId = evaluationId;
             _scheduleId = scheduleId;
             _name = employeeName;
             _roleId = roleId;
@@ -30,6 +32,7 @@ namespace Evaluation.Model
             _endDate = endDate;
         }
 
+        private int? _evaluationId;
         private int _scheduleId;
         private String _name;
         private int _roleId;

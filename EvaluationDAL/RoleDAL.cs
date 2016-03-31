@@ -13,35 +13,22 @@ namespace Evaluation.DAL
     /// </summary>
     public partial class EvaluationDAL : IEvaluationDAL
     {
-        public String GetRoleName(int roleId)
+        List<Role> _roles;
+
+        public String getRoleName(int roleId)
         {
-            string selectStatement = "SELECT roleName " +
-                                     "FROM role " +
-                                     "WHERE roleId = @roleId ";
-
-            using (SqlConnection connection = EvaluationDB.GetConnection())
+            getRoleList();
+            Role result = _roles.Find(r => r.id == roleId);
+            if (result == null || result.id != roleId)
             {
-                connection.Open();
-
-                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
-                {
-                    selectCommand.Parameters.AddWithValue("@roleId", roleId);
-
-                    using (SqlDataReader reader = selectCommand.ExecuteReader())
-                    {
-                        if (!reader.Read())
-                        {
-                            throw new ArgumentException("Role " + roleId + " not found");
-                        }
-                        return reader["roleName"].ToString();
-                    }
-                }
+                return "";
             }
+            return result.name;
         }
 
         public List<Role> GetRoleList()
         {
-            List<Role> results = new List<Role>();
+            _roles = new List<Role>();
 
             string selectStatement =
                 "SELECT  RoleId, RoleName " +
@@ -59,12 +46,12 @@ namespace Evaluation.DAL
                         while (reader.Read())
                         {
                             Role Role = new Role((int)reader["RoleId"], reader["RoleName"].ToString());
-                            results.Add(Role);
+                            _roles.Add(Role);
                         }
                     }
                 }
             }
-            return results;
+            return _roles;
         }
 
     }

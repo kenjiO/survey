@@ -353,8 +353,8 @@ namespace Test
         {
             List<OpenEvaluation> results = new List<OpenEvaluation>();
 
-            results.Add(new OpenEvaluation(1, "Jones, Jim (1234)", 1, "Self", "Type 1", "Stage 1", DateTime.Parse("3/5/2016"), DateTime.Parse("6/5/2016")));
-            results.Add(new OpenEvaluation(2, "Jones, Jim (1234)", 1, "Self", "Type 2", "Stage 3", DateTime.Parse("2/5/2016"), DateTime.Parse("5/5/2016")));
+            results.Add(new OpenEvaluation(null, 1, "Jones, Jim (1234)", 1, "Self", "Type 1", "Stage 1", DateTime.Parse("3/5/2016"), DateTime.Parse("6/5/2016")));
+            results.Add(new OpenEvaluation(null, 2, "Jones, Jim (1234)", 1, "Self", "Type 2", "Stage 3", DateTime.Parse("2/5/2016"), DateTime.Parse("5/5/2016")));
 
             return results;
         }
@@ -363,9 +363,9 @@ namespace Test
         {
             List<OpenEvaluation> results = new List<OpenEvaluation>();
 
-            results.Add(new OpenEvaluation(1, "Duke, Daisy (5678)", 2, "Co-worker", "Type 1", "Stage 1", DateTime.Parse("3/5/2016"), DateTime.Parse("6/5/2016")));
-            results.Add(new OpenEvaluation(2, "Simpson, Bart (12)", 2, "Co-worker", "Type 2", "Stage 3", DateTime.Parse("2/5/2016"), DateTime.Parse("5/5/2016")));
-            results.Add(new OpenEvaluation(1, "Groot, Iam (0)", 3, "Supervisor", "Type 1", "Stage 1", DateTime.Parse("3/5/2016"), DateTime.Parse("6/5/2016")));
+            results.Add(new OpenEvaluation(1, 1, "Duke, Daisy (5678)", 2, "Co-worker", "Type 1", "Stage 1", DateTime.Parse("3/5/2016"), DateTime.Parse("6/5/2016")));
+            results.Add(new OpenEvaluation(2, 2, "Simpson, Bart (12)", 2, "Co-worker", "Type 2", "Stage 3", DateTime.Parse("2/5/2016"), DateTime.Parse("5/5/2016")));
+            results.Add(new OpenEvaluation(3, 1, "Groot, Iam (0)", 3, "Supervisor", "Type 1", "Stage 1", DateTime.Parse("3/5/2016"), DateTime.Parse("6/5/2016")));
 
             return results;
         }
