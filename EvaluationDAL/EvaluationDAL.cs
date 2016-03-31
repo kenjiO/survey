@@ -122,7 +122,7 @@ namespace Evaluation.DAL
                     {
                         while (reader.Read())
                         {
-                            results.Add(createOpenEvaluation(reader, (int)reader["employeeId"], (int)reader["roleId"]));
+                            results.Add(createOpenEvaluation(reader, (int)reader["evaluationId"], (int)reader["employeeId"], (int)reader["roleId"]));
                         }
                     }
                 }
@@ -137,9 +137,9 @@ namespace Evaluation.DAL
         /// <param name="employeeId">employee being evaluated</param>
         /// <param name="roleId">Role of evaluator</param>
         /// <returns>OpenEvaluation record</returns>
-        private OpenEvaluation createOpenEvaluation(SqlDataReader reader, int employeeId, int roleId)
+        private OpenEvaluation createOpenEvaluation(SqlDataReader reader, int? evaluationId, int employeeId, int roleId)
         {
-            return new OpenEvaluation((int)reader["evaluationId"], (int)reader["scheduleId"], getEmployeeName(employeeId).fullName, 
+            return new OpenEvaluation(evaluationId, (int)reader["scheduleId"], getEmployeeName(employeeId).fullName, 
                             roleId, getRoleName(roleId), reader["typeName"].ToString(), reader["stageName"].ToString(), 
                             (DateTime)reader["startDate"],  (DateTime)reader["endDate"]);                                    
         }
