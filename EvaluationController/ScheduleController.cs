@@ -13,5 +13,16 @@ namespace Evaluation.Controller
         {
             return _dal.DeleteSchedule(selectedSchedule);
         }
+
+        public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId)
+        {
+            return _dal.GetEvaluationScheduleList(cohortId);
+        }
+
+        public int AddEvaluationSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
+        {
+            return _dal.AddEvaluationSchedule(cohortId, typeId, stageId, startDate, endDate);
+        }
+
     }
 }

@@ -254,7 +254,7 @@ namespace CS6232_G1.View
 
             try
             {
-                _controller.AddCohortSchedule(_cohortId, typeId, stageId, startDate, endDate);
+                _controller.AddEvaluationSchedule(_cohortId, typeId, stageId, startDate, endDate);
                 this.DialogResult = DialogResult.OK;
                 if (_parent != null)
                 {

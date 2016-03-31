@@ -100,7 +100,7 @@ namespace Test
             throw new NotImplementedException();
         }
 
-        public int AddCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
+        public int AddEvaluationSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
         {
             return 5;
         }

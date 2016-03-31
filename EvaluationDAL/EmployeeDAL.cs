@@ -28,7 +28,7 @@ namespace Evaluation.DAL
                     selectCommand.Parameters.AddWithValue("@employeeId", employeeId);
 
                     Object result = selectCommand.ExecuteScalar();
-                    if (result == null) {
+                    if (result == DBNull.Value) {
                         return 0;
                     }
                     return (int)result; 

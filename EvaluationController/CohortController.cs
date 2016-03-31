@@ -62,11 +62,6 @@ namespace Evaluation.Controller
             return result;
         }
 
-        public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId)
-        {
-            return _dal.GetEvaluationScheduleList(cohortId);
-        }
-
         public List<Employee> GetMembersOfCohort(int cohortId)
         {
             return _dal.GetMembersOfCohort(cohortId);
@@ -104,11 +99,6 @@ namespace Evaluation.Controller
                 results.Add(new CohortScheduleData(typeId, GetTypeName(typeId), lastStageEndDate, GetNextStageId(lastStageId)));
             }
             return results;
-        }
-
-        public int AddCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
-        {
-            return _dal.AddCohortSchedule(cohortId, typeId, stageId, startDate, endDate);
         }
 
         public bool DeleteCohort(int cohortId)

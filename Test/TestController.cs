@@ -222,7 +222,7 @@ namespace Test
             return list;
         }
 
-        public int AddCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
+        public int AddEvaluationSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
         {
             if (cohortId == 1)
             {

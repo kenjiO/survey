@@ -48,13 +48,6 @@ namespace Evaluation.DAL
         Cohort AddNewCohort(String name);
 
         /// <summary>
-        /// Get a list of evaluation schedules for a given cohort
-        /// </summary>
-        /// <param name="cohortId">cohort id of the specific cohort</param>
-        /// <returns>Evaluation schedule list</returns>
-        List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId);
-
-        /// <summary>
         /// Get a list of members for a given cohort
         /// </summary>
         /// <param name="_cohortId">cohort id of the specific cohort</param>
@@ -81,18 +74,6 @@ namespace Evaluation.DAL
         /// <param name="_cohortId">Cohort id to get list for</param>
         /// <returns>List of cohort scheduling info</returns>
         DataTable GetCohortAddScheduleInfo(int cohortId);
-
-        /// <summary>
-        /// Attempt to add a new cohort evaluation schedule
-        /// </summary>
-        /// <param name="cohortId">Cohort to add schedule for</param>
-        /// <param name="typeId">Evaluation type</param>
-        /// <param name="stageId">Evaluation Stage</param>
-        /// <param name="startDate">Start date</param>
-        /// <param name="endDate">End date</param>
-        /// <returns>scheduleId for schedule item added</returns>
-        /// <exception cref="ArgumentException">Parameters given were invalid</exception>
-        int AddCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate);
 
         /// <summary>
         /// Get a list of cohorts that have no members or schedules
@@ -173,6 +154,26 @@ namespace Evaluation.DAL
         /// <param name="selectedSchedule"></param>
         /// <returns>true if delete is successful, else false</returns>
         bool DeleteSchedule(EvaluationSchedule selectedSchedule);
+
+        /// <summary>
+        /// Get a list of evaluation schedules for a given cohort
+        /// </summary>
+        /// <param name="cohortId">cohort id of the specific cohort</param>
+        /// <returns>Evaluation schedule list</returns>
+        List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId);
+
+        /// <summary>
+        /// Attempt to add a new cohort evaluation schedule
+        /// </summary>
+        /// <param name="cohortId">Cohort to add schedule for</param>
+        /// <param name="typeId">Evaluation type</param>
+        /// <param name="stageId">Evaluation Stage</param>
+        /// <param name="startDate">Start date</param>
+        /// <param name="endDate">End date</param>
+        /// <returns>scheduleId for schedule item added</returns>
+        /// <exception cref="ArgumentException">Parameters given were invalid</exception>
+        int AddEvaluationSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate);
+
         #endregion
 
         #region Evaluations
