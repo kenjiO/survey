@@ -79,19 +79,12 @@ namespace Evaluation.DAL
                     {
                         while (reader.Read())
                         {
-                            results.Add(CreateOpenEvaluation(reader, employeeId, SELF_EVALUATION_ROLE_ID));
+                            results.Add(CreateOpenEvaluation(reader, null, employeeId, SELF_EVALUATION_ROLE_ID));
                         }
                     }
                 }
             }
             return results;
-        }
-
-        private OpenEvaluation CreateOpenEvaluation(SqlDataReader reader, int employeeId, int roleId)
-        {
-            return new OpenEvaluation( (int)reader["scheduleId"], GetEmployeeName(employeeId).FullName, roleId, GetRoleName(roleId),
-                            reader["typeName"].ToString(), reader["stageName"].ToString(), (DateTime)reader["startDate"], 
-                            (DateTime)reader["endDate"]);                                    
         }
 
         public List<OpenEvaluation> GetOpenPeerEvaluations(int employeeId)
@@ -122,7 +115,7 @@ namespace Evaluation.DAL
                     {
                         while (reader.Read())
                         {
-                            results.Add(createOpenEvaluation(reader, (int)reader["evaluationId"], (int)reader["employeeId"], (int)reader["roleId"]));
+                            results.Add(CreateOpenEvaluation(reader, (int)reader["evaluationId"], (int)reader["employeeId"], (int)reader["roleId"]));
                         }
                     }
                 }
@@ -137,10 +130,10 @@ namespace Evaluation.DAL
         /// <param name="employeeId">employee being evaluated</param>
         /// <param name="roleId">Role of evaluator</param>
         /// <returns>OpenEvaluation record</returns>
-        private OpenEvaluation createOpenEvaluation(SqlDataReader reader, int? evaluationId, int employeeId, int roleId)
+        private OpenEvaluation CreateOpenEvaluation(SqlDataReader reader, int? evaluationId, int employeeId, int roleId)
         {
-            return new OpenEvaluation(evaluationId, (int)reader["scheduleId"], getEmployeeName(employeeId).fullName, 
-                            roleId, getRoleName(roleId), reader["typeName"].ToString(), reader["stageName"].ToString(), 
+            return new OpenEvaluation(evaluationId, (int)reader["scheduleId"], GetEmployeeName(employeeId).FullName, 
+                            roleId, GetRoleName(roleId), reader["typeName"].ToString(), reader["stageName"].ToString(), 
                             (DateTime)reader["startDate"],  (DateTime)reader["endDate"]);                                    
         }
 

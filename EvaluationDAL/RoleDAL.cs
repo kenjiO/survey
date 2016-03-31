@@ -15,15 +15,15 @@ namespace Evaluation.DAL
     {
         List<Role> _roles;
 
-        public String getRoleName(int roleId)
+        public String GetRoleName(int roleId)
         {
-            getRoleList();
-            Role result = _roles.Find(r => r.id == roleId);
-            if (result == null || result.id != roleId)
+            GetRoleList();
+            Role result = _roles.Find(r => r.Id == roleId);
+            if (result == null || result.Id != roleId)
             {
                 return "";
             }
-            return result.name;
+            return result.Name;
         }
 
         public List<Role> GetRoleList()
