@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblCohortName = new System.Windows.Forms.Label();
@@ -210,8 +210,8 @@
             // StartDate
             // 
             this.StartDate.DataPropertyName = "StartDate";
-            dataGridViewCellStyle3.Format = "MM/dd/yyyy";
-            this.StartDate.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Format = "MM/dd/yyyy";
+            this.StartDate.DefaultCellStyle = dataGridViewCellStyle1;
             this.StartDate.HeaderText = "Start Date";
             this.StartDate.Name = "StartDate";
             this.StartDate.ReadOnly = true;
@@ -219,8 +219,8 @@
             // EndDate
             // 
             this.EndDate.DataPropertyName = "EndDate";
-            dataGridViewCellStyle4.Format = "MM/dd/yyyy";
-            this.EndDate.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Format = "MM/dd/yyyy";
+            this.EndDate.DefaultCellStyle = dataGridViewCellStyle2;
             this.EndDate.HeaderText = "End Date";
             this.EndDate.Name = "EndDate";
             this.EndDate.ReadOnly = true;
@@ -278,6 +278,7 @@
             this.Name = "ViewCohortDetailsForm";
             this.Text = "Cohort Details";
             this.Load += new System.EventHandler(this.ViewCohortDetailsForm_Load);
+            this.Shown += new System.EventHandler(this.ViewCohortDetailsForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEvaluationSchedule)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.evaluationScheduleBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.evaluationScheduleBindingSource)).EndInit();

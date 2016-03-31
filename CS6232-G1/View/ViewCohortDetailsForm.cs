@@ -106,10 +106,6 @@ namespace CS6232_G1.View
                         item.SubItems.Add(member.email);
                     }
                 }
-                else
-                {
-                    MessageBox.Show("No members have been added to this cohort.");
-                }
             }
             catch (Exception ex)
             {
@@ -171,8 +167,7 @@ namespace CS6232_G1.View
 
             if (e.ColumnIndex == senderGrid.Columns["EditButton"].Index && e.RowIndex >= 0)
             {
-                MessageBox.Show("Edit  Button,  scheduleid: " + senderGrid.SelectedRows[0].Cells["ScheduleId"].Value);
-                // TODO: open the Edit form with data for the selected schedule
+                // Edit the selected schedule
                 selectedSchedule = this.PutDataInScheduleObject(senderGrid);
                 AddOrEditCohortScheduleForm editCohortScheduleForm = AddOrEditCohortScheduleForm.createEditForm(_controller, _cohortId, selectedSchedule, this);
                 editCohortScheduleForm.Show();
@@ -181,7 +176,6 @@ namespace CS6232_G1.View
 
             if (e.ColumnIndex == senderGrid.Columns["DeleteButton"].Index && e.RowIndex >= 0)
             {
-                MessageBox.Show("Delete button, scheduleid: " + senderGrid.SelectedRows[0].Cells["ScheduleId"].Value);
                 // Delete the selected schedule
                 selectedSchedule = this.PutDataInScheduleObject(senderGrid);
                 if (!_controller.DeleteSchedule(selectedSchedule))
@@ -233,5 +227,12 @@ namespace CS6232_G1.View
             }
         }
 
+        private void ViewCohortDetailsForm_Shown(object sender, EventArgs e)
+        {
+            if (lvMembers.Items.Count == 0)
+            {
+                MessageBox.Show("No members have been added to this cohort.");
+            }
+        }
     }
 }
