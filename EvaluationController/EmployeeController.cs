@@ -29,7 +29,7 @@ namespace Evaluation.Controller
             List<EmployeeName> employees = _dal.getListOfNonAdminEmployees();
             foreach (int id in exclude)
             {
-                employees.RemoveAll(emp => emp.employeeId == id);
+                employees.RemoveAll(emp => emp.EmployeeId == id);
             }
             return employees;
         }
@@ -40,7 +40,7 @@ namespace Evaluation.Controller
         /// <returns>Whether or not a supervisor has been selected</returns>
         public bool isSupervisorSelectedForCurrentUser()
         {
-            return (_currentUser.supervisorId != null);
+            return (_currentUser.SupervisorId != null);
         }
 
         /// <summary>
@@ -51,16 +51,16 @@ namespace Evaluation.Controller
         /// <param name="supervisorId">Id to set as the supervisor</param>
         public void setSupervisor(int supervisorId)
         {
-            if (supervisorId == _currentUser.employeeId) {
+            if (supervisorId == _currentUser.EmployeeId) {
                 throw new ArgumentException("supervisorId cannot be the same as the current user");
             }
             if (this.isSupervisorSelectedForCurrentUser())
             {
                 throw new InvalidOperationException("Supervisor is already set");
             }
-            if (_dal.setSupervisor(_currentUser.employeeId, supervisorId))
+            if (_dal.setSupervisor(_currentUser.EmployeeId, supervisorId))
             {
-                _currentUser.supervisorId = supervisorId;
+                _currentUser.SupervisorId = supervisorId;
             }
         }
 

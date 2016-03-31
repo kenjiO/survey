@@ -8,8 +8,8 @@ namespace Evaluation.Model
 {
     public class Cohort
     {
-        public int cohortId { get { return _id; } }
-        public string cohortName { get { return _cohortName; } }
+        public int CohortId { get { return _id; } }
+        public string CohortName { get { return _cohortName; } }
 
         public Cohort(int id, string name)
         {

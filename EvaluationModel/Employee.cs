@@ -8,14 +8,14 @@ namespace Evaluation.Model
 {
     public class Employee
     {
-        public int employeeId { get { return _id; } }
-        public string firstName { get { return _firstName; } }
-        public string lastName { get { return _lastName; } }
-        public string fullName { get { return EmployeeName.fullNameString(_id, _firstName, _lastName); } }
-        public string email { get { return _email; } }
-        public Boolean isAdmin { get { return _isAdmin; } }
-        public int? cohortId { get; set; }
-        public int? supervisorId { get; set; }
+        public int EmployeeId { get { return _id; } }
+        public string FirstName { get { return _firstName; } }
+        public string LastName { get { return _lastName; } }
+        public string FullName { get { return EmployeeName.fullNameString(_id, _firstName, _lastName); } }
+        public string Email { get { return _email; } }
+        public Boolean IsAdmin { get { return _isAdmin; } }
+        public int? CohortId { get; set; }
+        public int? SupervisorId { get; set; }
 
         public Employee(int id, string firstName, string lastName, string email, Boolean isAdmin)
         {

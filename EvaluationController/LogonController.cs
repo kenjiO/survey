@@ -16,7 +16,7 @@ namespace Evaluation.Controller
     {
         private Employee _currentUser;
         public Employee currentUser { get { return _currentUser; } }
-        public bool idAdminSession { get { return _currentUser.isAdmin; } }
+        public bool idAdminSession { get { return _currentUser.IsAdmin; } }
 
         public Employee login(string email, string password)
         {

@@ -48,7 +48,7 @@ namespace CS6232_G1.View
         private void loadSelfEvaluations()
         {
             //Get list of evaluation schedule objects and bind the datagrid to the list
-            List<OpenEvaluation> evaluationList = _controller.getOpenSelfEvaluations(_currentUser.employeeId);
+            List<OpenEvaluation> evaluationList = _controller.getOpenSelfEvaluations(_currentUser.EmployeeId);
             dgvSelfEvaluations.DataSource = evaluationList;            
             dgvSelfEvaluations.ClearSelection();
         }
@@ -56,7 +56,7 @@ namespace CS6232_G1.View
         private void loadPeerEvaluations()
         {
             //Get list of evaluation schedule objects and bind the datagrid to the list
-            List<OpenEvaluation> evaluationList = _controller.getOpenPeerEvaluations(_currentUser.employeeId);
+            List<OpenEvaluation> evaluationList = _controller.getOpenPeerEvaluations(_currentUser.EmployeeId);
             dgvPeerEvaluations.DataSource = evaluationList;            
             dgvPeerEvaluations.ClearSelection();
         }

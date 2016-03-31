@@ -42,7 +42,7 @@ namespace Evaluation.Controller
             {
                 return false;
             }
-            return _stages.Exists(s => s.name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return _stages.Exists(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
         public string getStageName(int stageId)
@@ -51,13 +51,13 @@ namespace Evaluation.Controller
             {
                 return "";
             }
-            Stage result = _stages.Find(s => s.id == stageId);
-            if (result == null || result.id != stageId)
+            Stage result = _stages.Find(s => s.Id == stageId);
+            if (result == null || result.Id != stageId)
             {
                 _stages = null;
                 return "";
             }
-            return result.name;
+            return result.Name;
         }
 
         public int? getNextStageId(int? stageId)
@@ -68,13 +68,13 @@ namespace Evaluation.Controller
             }
             if (stageId == null)
             {
-                return _stages[0].id;
+                return _stages[0].Id;
             }
             foreach (Stage stage in _stages)
             {
-                if (stage.id > stageId)
+                if (stage.Id > stageId)
                 {
-                    return stage.id;
+                    return stage.Id;
                 }
             }
             return null;

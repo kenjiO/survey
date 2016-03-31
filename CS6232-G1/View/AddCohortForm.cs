@@ -42,7 +42,7 @@ namespace CS6232_G1.View
             String name = cohortNameTextBox.Text;
             try
             {
-                _cohortId = _controller.addCohort(name).cohortId;
+                _cohortId = _controller.addCohort(name).CohortId;
                 this.DialogResult = DialogResult.OK;
                 Close();
             }

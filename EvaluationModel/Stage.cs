@@ -8,8 +8,8 @@ namespace Evaluation.Model
 {
     public class Stage
     {
-        public int id { get { return _id; } }
-        public string name { get { return _name; } }
+        public int Id { get { return _id; } }
+        public string Name { get { return _name; } }
 
         public Stage(int id, string name)
         {

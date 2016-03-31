@@ -78,7 +78,7 @@ namespace CS6232_G1.View
             bool result = false;
             try
             {
-                result = _controller.deleteCohort(selectedCohort.cohortId);
+                result = _controller.deleteCohort(selectedCohort.CohortId);
             }
             catch (SqlException ex)
             {
@@ -100,14 +100,14 @@ namespace CS6232_G1.View
 
             if (result) 
             {
-                MessageBox.Show(selectedCohort.cohortName + " deleted");
+                MessageBox.Show(selectedCohort.CohortName + " deleted");
                 this.DialogResult = DialogResult.OK;
                 Close();
                 return;
             }
             else
             {
-                MessageBox.Show(selectedCohort.cohortName + " was unable to be deleted");
+                MessageBox.Show(selectedCohort.CohortName + " was unable to be deleted");
             }
             loadComboBoxItems();
         }

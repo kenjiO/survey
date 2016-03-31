@@ -14,23 +14,23 @@ namespace Evaluation.Model
         /// <summary>
         /// Schedulable type for selected cohort
         /// </summary>
-        public int typeId { get; set; }
-        public string typeName { get; set; }
+        public int TypeId { get; set; }
+        public string TypeName { get; set; }
         /// <summary>
         /// End date for the last stage scheduled for this cohort+type, if any, else null
         /// </summary>
-        public DateTime? lastStageEndDate { get; set; }
+        public DateTime? LastStageEndDate { get; set; }
         /// <summary>
         /// Schedulable stage for this cohort+type (if null, no more stages exist)
         /// </summary>
-        public int? nextStageId { get; set; }
+        public int? NextStageId { get; set; }
 
         public CohortScheduleData(int type, string name, DateTime? lastEnd, int? nextStage)
         {
-            typeId = type;
-            typeName = name;
-            lastStageEndDate = lastEnd;
-            nextStageId = nextStage;
+            TypeId = type;
+            TypeName = name;
+            LastStageEndDate = lastEnd;
+            NextStageId = nextStage;
         }
     }
 }

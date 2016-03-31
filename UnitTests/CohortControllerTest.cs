@@ -18,13 +18,13 @@ namespace UnitTests
             List<CohortScheduleData> list = controller.getCohortAddScheduleInfo(1);
             Assert.AreEqual(2, list.Count);
             CohortScheduleData info = list[0];
-            Assert.AreEqual(1, info.typeId);
-            Assert.IsNull(info.lastStageEndDate);
-            Assert.AreEqual(1, info.nextStageId);
+            Assert.AreEqual(1, info.TypeId);
+            Assert.IsNull(info.LastStageEndDate);
+            Assert.AreEqual(1, info.NextStageId);
             info = list[1];
-            Assert.AreEqual(2, info.typeId);
-            Assert.AreEqual(info.lastStageEndDate, DateTime.Parse("6/5/2016"));
-            Assert.AreEqual(3, info.nextStageId);
+            Assert.AreEqual(2, info.TypeId);
+            Assert.AreEqual(info.LastStageEndDate, DateTime.Parse("6/5/2016"));
+            Assert.AreEqual(3, info.NextStageId);
         }
 
         [TestMethod]
@@ -33,13 +33,13 @@ namespace UnitTests
             List<CohortScheduleData> list = controller.getCohortAddScheduleInfo(2);
             Assert.AreEqual(2, list.Count);
             CohortScheduleData info = list[0];
-            Assert.AreEqual(1, info.typeId);
-            Assert.AreEqual(info.lastStageEndDate, DateTime.Parse("4/15/2016"));
-            Assert.AreEqual(5, info.nextStageId);
+            Assert.AreEqual(1, info.TypeId);
+            Assert.AreEqual(info.LastStageEndDate, DateTime.Parse("4/15/2016"));
+            Assert.AreEqual(5, info.NextStageId);
             info = list[1];
-            Assert.AreEqual(2, info.typeId);
-            Assert.AreEqual(info.lastStageEndDate, DateTime.Parse("5/25/2016"));
-            Assert.IsNull(info.nextStageId);
+            Assert.AreEqual(2, info.TypeId);
+            Assert.AreEqual(info.LastStageEndDate, DateTime.Parse("5/25/2016"));
+            Assert.IsNull(info.NextStageId);
         }
 
     }

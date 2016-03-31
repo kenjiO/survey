@@ -40,13 +40,13 @@ namespace Evaluation.Controller
             {
                 return "";
             }
-            Cohort result = _cohorts.Find(c => c.cohortId == cohortId);
-            if (result == null || result.cohortId != cohortId)
+            Cohort result = _cohorts.Find(c => c.CohortId == cohortId);
+            if (result == null || result.CohortId != cohortId)
             {
                 _cohorts = null;
                 return "";
             }
-            return result.cohortName;
+            return result.CohortName;
         }
 
 

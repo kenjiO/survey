@@ -30,18 +30,18 @@ namespace Test
         public bool stageExists(string name)
         {
             List<Stage> _stages = getStageList();
-            return _stages.Exists(s => s.name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return _stages.Exists(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
         public string getStageName(int stageId)
         {
             List<Stage> _stages = getStageList();
-            Stage result = _stages.Find(s => s.id == stageId);
-            if (result == null || result.id != stageId)
+            Stage result = _stages.Find(s => s.Id == stageId);
+            if (result == null || result.Id != stageId)
             {
                 throw new KeyNotFoundException("Stage Id " + stageId + " not found");
             }
-            return result.name;
+            return result.Name;
         }
 
 
@@ -78,18 +78,18 @@ namespace Test
         public bool typeExists(string name)
         {
             List<EvalType> _types = getTypeList();
-            return _types.Exists(s => s.name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return _types.Exists(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
         public string getTypeName(int typeId)
         {
             List<EvalType> _types = getTypeList();
-            EvalType result = _types.Find(s => s.id == typeId);
-            if (result == null || result.id != typeId)
+            EvalType result = _types.Find(s => s.Id == typeId);
+            if (result == null || result.Id != typeId)
             {
                 throw new KeyNotFoundException("Type Id " + typeId + " not found");
             }
-            return result.name;
+            return result.Name;
         }
 
         public int addType(string name)
@@ -113,18 +113,18 @@ namespace Test
         public bool roleExists(string name)
         {
             List<Role> _roles = getRoleList();
-            return _roles.Exists(r => r.name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return _roles.Exists(r => r.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
         public string getRoleName(int roleId)
         {
             List<Role> _roles = getRoleList();
-            Role result = _roles.Find(r => r.id == roleId);
-            if (result == null || result.id != roleId)
+            Role result = _roles.Find(r => r.Id == roleId);
+            if (result == null || result.Id != roleId)
             {
                 throw new KeyNotFoundException("Role Id " + roleId + " not found");
             }
-            return result.name;
+            return result.Name;
         }
 
 
@@ -134,12 +134,12 @@ namespace Test
         public String getCohortName(int cohortId)
         {
             List<Cohort> _cohorts = getCohorts();
-            Cohort result = _cohorts.Find(c => c.cohortId == cohortId);
-            if (result == null || result.cohortId != cohortId)
+            Cohort result = _cohorts.Find(c => c.CohortId == cohortId);
+            if (result == null || result.CohortId != cohortId)
             {
                 throw new KeyNotFoundException("Cohort " + cohortId + " not found");
             }
-            return result.cohortName;
+            return result.CohortName;
         }
 
         public List<Cohort> getCohorts()
@@ -274,12 +274,12 @@ namespace Test
 
         public bool isSupervisorSelectedForCurrentUser()
         {
-            return _currentUser.supervisorId == null;
+            return _currentUser.SupervisorId == null;
         }
 
         public void setSupervisor(int supervisorId)
         {
-            _currentUser.supervisorId = supervisorId;
+            _currentUser.SupervisorId = supervisorId;
         }
 
         public String getEmployeeName(int employeeId)

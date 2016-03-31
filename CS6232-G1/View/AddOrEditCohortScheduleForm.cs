@@ -190,9 +190,9 @@ namespace CS6232_G1.View
             }
             CohortScheduleData data = _scheduleDataList[cboType.SelectedIndex];
 
-            if (data.nextStageId != null)
+            if (data.NextStageId != null)
             {
-                cboStage.SelectedValue = data.nextStageId;
+                cboStage.SelectedValue = data.NextStageId;
                 setupControls(true, "");
             }
             else
@@ -202,9 +202,9 @@ namespace CS6232_G1.View
             }
 
             resetMinAndMaxDates();
-            if (data.lastStageEndDate != null)
+            if (data.LastStageEndDate != null)
             {
-                DateTime minStartDate = data.lastStageEndDate ?? DateTime.Now;
+                DateTime minStartDate = data.LastStageEndDate ?? DateTime.Now;
                 minStartDate = minStartDate.Date.AddDays(1);
                 dateStart.MinDate = minStartDate;
                 dateStart.Value = minStartDate;

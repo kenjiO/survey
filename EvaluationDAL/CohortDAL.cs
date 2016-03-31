@@ -394,7 +394,7 @@ namespace Evaluation.DAL
                 connection.Open();
                 foreach (EvalType type in typeList) 
                 {
-                    int typeId = type.id;
+                    int typeId = type.Id;
                     using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
                     {
                         selectCommand.Parameters.AddWithValue("@cohortId", cohortId);

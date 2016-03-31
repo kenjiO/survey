@@ -76,8 +76,8 @@ namespace CS6232_G1.View
                 MessageBox.Show("Please select a cohort first");
                 return;
             }
-            int cohortId = selectedCohort.cohortId;
-            string oldName = selectedCohort.cohortName;
+            int cohortId = selectedCohort.CohortId;
+            string oldName = selectedCohort.CohortName;
             string newName = newNameBox.Text.Trim();
             if (newName == "")
             {
@@ -107,7 +107,7 @@ namespace CS6232_G1.View
             }
             else
             {
-                MessageBox.Show(selectedCohort.cohortName + " was unable to be renamed");
+                MessageBox.Show(selectedCohort.CohortName + " was unable to be renamed");
             }
             loadComboBoxItems();
         }

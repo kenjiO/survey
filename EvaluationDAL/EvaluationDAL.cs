@@ -88,7 +88,7 @@ namespace Evaluation.DAL
 
         private OpenEvaluation createOpenEvaluation(SqlDataReader reader, int employeeId, int roleId)
         {
-            return new OpenEvaluation( (int)reader["scheduleId"], getEmployeeName(employeeId).fullName, roleId, getRoleName(roleId),
+            return new OpenEvaluation( (int)reader["scheduleId"], getEmployeeName(employeeId).FullName, roleId, getRoleName(roleId),
                             reader["typeName"].ToString(), reader["stageName"].ToString(), (DateTime)reader["startDate"], 
                             (DateTime)reader["endDate"]);                                    
         }

@@ -88,7 +88,7 @@ namespace CS6232_G1.View
             DialogResult result = form.ShowDialog(Program.mainForm);
             if (result == DialogResult.OK && form.selectedCohort != null)
             {
-                return form.selectedCohort.cohortId;
+                return form.selectedCohort.CohortId;
             }
             return -1;
         }

@@ -8,9 +8,9 @@ namespace Evaluation.Model
 {
     public class EmployeeName
     {
-        public int employeeId { get { return _id; } }
-        public string name { get { return _name; } }
-        public string fullName { get { return _name; } }
+        public int EmployeeId { get { return _id; } }
+        public string Name { get { return _name; } }
+        public string FullName { get { return _name; } }
 
         public EmployeeName(int id, string firstName, string lastName)
         {

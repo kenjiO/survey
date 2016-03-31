@@ -42,7 +42,7 @@ namespace Evaluation.Controller
             {
                 return false;
             }
-            return _types.Exists(t => t.name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return _types.Exists(t => t.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
         public string getTypeName(int typeId)
@@ -51,13 +51,13 @@ namespace Evaluation.Controller
             {
                 return "";
             }
-            EvalType result = _types.Find(t => t.id == typeId);
-            if (result == null || result.id != typeId)
+            EvalType result = _types.Find(t => t.Id == typeId);
+            if (result == null || result.Id != typeId)
             {
                 _types = null;
                 return "";
             }
-            return result.name;
+            return result.Name;
         }
 
         public int addType(string name)

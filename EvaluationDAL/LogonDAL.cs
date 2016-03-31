@@ -48,14 +48,14 @@ namespace Evaluation.DAL
                             employee = new Employee(employeeId, firstName, lastName, email, isAdmin);
 
                             if (!DBNull.Value.Equals(reader["cohortId"]))
-                                employee.cohortId = (int) reader["cohortId"];
+                                employee.CohortId = (int) reader["cohortId"];
                             else
-                                employee.cohortId = null;
+                                employee.CohortId = null;
 
                             if (!DBNull.Value.Equals(reader["supervisorId"]))
-                                employee.supervisorId = (int) reader["supervisorId"];
+                                employee.SupervisorId = (int) reader["supervisorId"];
                             else
-                                employee.supervisorId = null;
+                                employee.SupervisorId = null;
                         }
                     }
                 }

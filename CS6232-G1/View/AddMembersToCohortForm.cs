@@ -74,10 +74,10 @@ namespace CS6232_G1.View
                 {
                     foreach (Employee member in memberList)
                     {
-                        ListViewItem item = lvEmployeeList.Items.Add(member.employeeId.ToString());
-                        item.SubItems.Add(member.firstName);
-                        item.SubItems.Add(member.lastName);
-                        item.SubItems.Add(member.email);
+                        ListViewItem item = lvEmployeeList.Items.Add(member.EmployeeId.ToString());
+                        item.SubItems.Add(member.FirstName);
+                        item.SubItems.Add(member.LastName);
+                        item.SubItems.Add(member.Email);
                     }
                 }
                 else

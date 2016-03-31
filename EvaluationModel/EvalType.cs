@@ -8,9 +8,9 @@ namespace Evaluation.Model
 {
     public class EvalType
     {
-        public int id { get { return _id; } }
-        public string name { get { return _name; } }
-        public int answerRange { get { return _answerRange; } }
+        public int Id { get { return _id; } }
+        public string Name { get { return _name; } }
+        public int AnswerRange { get { return _answerRange; } }
 
         public EvalType(int id, string name, int answerRange)
         {

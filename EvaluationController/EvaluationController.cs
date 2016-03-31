@@ -38,13 +38,13 @@ namespace Evaluation.Controller
 
         public void initializeSelfEvaluation(int typeId, int stageId, int coworkerId)
         {
-            if (_currentUser.supervisorId == null)
+            if (_currentUser.SupervisorId == null)
                 throw new CreateEvaluationException("Supervisor must be selected");
-            if (_currentUser.supervisorId == coworkerId)
+            if (_currentUser.SupervisorId == coworkerId)
                 throw new CreateEvaluationException("Co-worker must not be the supervisor");
-            if (_currentUser.employeeId == coworkerId)
+            if (_currentUser.EmployeeId == coworkerId)
                 throw new CreateEvaluationException("Co-worker must be different than self");
-            _dal.createEvaluations(_currentUser.employeeId, typeId, stageId, coworkerId);
+            _dal.createEvaluations(_currentUser.EmployeeId, typeId, stageId, coworkerId);
         }
 
         public List<OpenEvaluation> getOpenSelfEvaluations(int employeeId)

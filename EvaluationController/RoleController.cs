@@ -43,13 +43,13 @@ namespace Evaluation.Controller
             {
                 return "";
             }
-            Role result = _roles.Find(r => r.id == roleId);
-            if (result == null || result.id != roleId)
+            Role result = _roles.Find(r => r.Id == roleId);
+            if (result == null || result.Id != roleId)
             {
                 _roles = null;
                 return "";
             }
-            return result.name;
+            return result.Name;
         }
 
         public bool roleExists(string name)
@@ -58,7 +58,7 @@ namespace Evaluation.Controller
             {
                 return false;
             }
-            return _roles.Exists(r => r.name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return _roles.Exists(r => r.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
     }
