@@ -36,6 +36,7 @@
             // 
             // SelectButton
             // 
+            this.SelectButton.Enabled = false;
             this.SelectButton.Location = new System.Drawing.Point(46, 160);
             this.SelectButton.Name = "SelectButton";
             this.SelectButton.Size = new System.Drawing.Size(75, 23);

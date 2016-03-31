@@ -33,6 +33,11 @@ namespace CS6232_G1.View
 
         private void SelectButton_Click(object sender, EventArgs e)
         {
+            if (_selectedCohort == null)
+            {
+                MessageBox.Show("No Cohort Selected");
+                return;
+            }
             this.DialogResult = DialogResult.OK;
             Close();
         }
@@ -65,6 +70,7 @@ namespace CS6232_G1.View
         private void CohortComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _selectedCohort = (Cohort) CohortComboBox.SelectedItem;
+            SelectButton.Enabled = (_selectedCohort != null);
         }
 
         private void closeFormIfNoCohorts(List<Cohort> cohorts) {
@@ -80,7 +86,7 @@ namespace CS6232_G1.View
         {
             SelectCohortForm form = new SelectCohortForm(controller);
             DialogResult result = form.ShowDialog(Program.mainForm);
-            if (result == DialogResult.OK)
+            if (result == DialogResult.OK && form.selectedCohort != null)
             {
                 return form.selectedCohort.cohortId;
             }
