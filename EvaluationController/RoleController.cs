@@ -14,19 +14,19 @@ namespace Evaluation.Controller
     {
         private List<Role> _roles;
 
-        public List<Role> getRoleList()
+        public List<Role> GetRoleList()
         {
-            _roles = _dal.getRoleList();
+            _roles = _dal.GetRoleList();
             return _roles;
         }
 
-        private bool tryLoadRoleList()
+        private bool TryLoadRoleList()
         {
             if (_roles == null)
             {
                 try
                 {
-                    getRoleList();
+                    GetRoleList();
                 }
                 catch (Exception)
                 {
@@ -37,9 +37,9 @@ namespace Evaluation.Controller
         }
 
 
-        public string getRoleName(int roleId)
+        public string GetRoleName(int roleId)
         {
-            if (!tryLoadRoleList())
+            if (!TryLoadRoleList())
             {
                 return "";
             }
@@ -52,9 +52,9 @@ namespace Evaluation.Controller
             return result.Name;
         }
 
-        public bool roleExists(string name)
+        public bool RoleExists(string name)
         {
-            if (!tryLoadRoleList())
+            if (!TryLoadRoleList())
             {
                 return false;
             }

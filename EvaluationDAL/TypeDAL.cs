@@ -10,7 +10,7 @@ namespace Evaluation.DAL
 {
     public partial class EvaluationDAL
     {
-        public List<EvalType> getTypeList()
+        public List<EvalType> GetTypeList()
         {
             List<EvalType> results = new List<EvalType>();
 

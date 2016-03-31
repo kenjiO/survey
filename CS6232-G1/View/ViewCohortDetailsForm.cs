@@ -43,15 +43,15 @@ namespace CS6232_G1.View
             }
             try
             {
-                _cohortName = _controller.getCohortName(_cohortId);
+                _cohortName = _controller.GetCohortName(_cohortId);
                 lblCohortName.Text = "Details for " + _cohortName;
 
                 dgvEvaluationSchedule.BackgroundColor = Color.White;
 
                 dgvEvaluationSchedule.CellFormatting += dgvEvaluationSchedule_CellFormatting;
 
-                loadMemberListView();
-                loadEvaluationScheduleGridView();
+                LoadMemberListView();
+                LoadEvaluationScheduleGridView();
 
             }
             catch (Exception ex)
@@ -68,34 +68,34 @@ namespace CS6232_G1.View
             {
                 e.FormattingApplied = true;
                 DataGridViewRow row = dgvEvaluationSchedule.Rows[e.RowIndex];
-                e.Value = _controller.getStageName((int)row.Cells["StageId"].Value);
+                e.Value = _controller.GetStageName((int)row.Cells["StageId"].Value);
             }
             if (e.ColumnIndex == dgvEvaluationSchedule.Columns["TypeName"].Index)
             {
                 e.FormattingApplied = true;
                 DataGridViewRow row = dgvEvaluationSchedule.Rows[e.RowIndex];
-                e.Value = _controller.getTypeName((int)row.Cells["TypeId"].Value);
+                e.Value = _controller.GetTypeName((int)row.Cells["TypeId"].Value);
             }
         }
 
-        private void loadEvaluationScheduleGridView()
+        private void LoadEvaluationScheduleGridView()
         {
             //Get list of evaluation schedule objects and bind the datagrid to the list
-            List<EvaluationSchedule> scheduleList = _controller.getEvaluationScheduleList(_cohortId);
+            List<EvaluationSchedule> scheduleList = _controller.GetEvaluationScheduleList(_cohortId);
             dgvEvaluationSchedule.DataSource = scheduleList;
             dgvEvaluationSchedule.AutoResizeColumns();
             dgvEvaluationSchedule.ClearSelection();
         }
 
         // Loads the Listbox with the members in the given cohort
-        private void loadMemberListView()
+        private void LoadMemberListView()
         {
             lvMembers.Items.Clear();
-            setListViewColumnWidth(lvMembers);
+            SetListViewColumnWidth(lvMembers);
             List<Employee> memberList;
             try
             {
-                memberList = _controller.getMembersOfCohort(_cohortId);
+                memberList = _controller.GetMembersOfCohort(_cohortId);
                 if (memberList.Count > 0)
                 {
                     foreach (Employee member in memberList)
@@ -118,7 +118,7 @@ namespace CS6232_G1.View
         /// To use this method, set fillWeight in the Tag property of each column.
         /// </summary>
         /// <param name="listView">the listview whose columns are to be sized</param>
-        private void setListViewColumnWidth(ListView listView)
+        private void SetListViewColumnWidth(ListView listView)
         {
             float totalColumnWidth = 0;
 
@@ -148,13 +148,13 @@ namespace CS6232_G1.View
             form.Show();
         }
 
-        public void refreshViews()
+        public void RefreshViews()
         {
-            loadMemberListView();
+            LoadMemberListView();
             if (lvMembers.Items.Count != 0) { 
                 lvMembers.Items[lvMembers.Items.Count - 1].EnsureVisible();
             }
-            loadEvaluationScheduleGridView();
+            LoadEvaluationScheduleGridView();
             if (dgvEvaluationSchedule.Rows.Count != 0)
             {
                 dgvEvaluationSchedule.FirstDisplayedScrollingRowIndex = dgvEvaluationSchedule.RowCount - 1;
@@ -169,9 +169,9 @@ namespace CS6232_G1.View
             {
                 // Edit the selected schedule
                 selectedSchedule = this.PutDataInScheduleObject(senderGrid);
-                AddOrEditCohortScheduleForm editCohortScheduleForm = AddOrEditCohortScheduleForm.createEditForm(_controller, _cohortId, selectedSchedule, this);
+                AddOrEditCohortScheduleForm editCohortScheduleForm = AddOrEditCohortScheduleForm.CreateEditForm(_controller, _cohortId, selectedSchedule, this);
                 editCohortScheduleForm.Show();
-                this.refreshViews();
+                this.RefreshViews();
             }
 
             if (e.ColumnIndex == senderGrid.Columns["DeleteButton"].Index && e.RowIndex >= 0)
@@ -186,7 +186,7 @@ namespace CS6232_G1.View
                 {
                     MessageBox.Show("Schedule has been deleted!", "Operation Successful");
                 }
-                this.refreshViews();
+                this.RefreshViews();
             }
             
         }
@@ -207,7 +207,7 @@ namespace CS6232_G1.View
             bool result = false;
             try
             {
-                result = _controller.deleteCohort(_cohortId);
+                result = _controller.DeleteCohort(_cohortId);
             }
             catch (System.Data.SqlClient.SqlException ex)
             {

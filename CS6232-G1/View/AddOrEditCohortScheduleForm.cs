@@ -44,7 +44,7 @@ namespace CS6232_G1.View
         /// <param name="cohortId">Id of cohort to add schedule for</param>
         /// <param name="originalSchedule">Schedule to be edited</param>
         /// <param name="parent">Refreshable parent form</param>
-        public static AddOrEditCohortScheduleForm createEditForm(IEvaluationController controller, int cohortId, EvaluationSchedule originalSchedule, IRefreshable parent)
+        public static AddOrEditCohortScheduleForm CreateEditForm(IEvaluationController controller, int cohortId, EvaluationSchedule originalSchedule, IRefreshable parent)
         {
             return new AddOrEditCohortScheduleForm(controller, cohortId, originalSchedule, parent);
         }
@@ -97,8 +97,8 @@ namespace CS6232_G1.View
             }
             try
             {
-                _stages = _controller.getStageList();
-                _types = _controller.getTypeList();
+                _stages = _controller.GetStageList();
+                _types = _controller.GetTypeList();
             }
             catch (SqlException ex)
             {
@@ -109,7 +109,7 @@ namespace CS6232_G1.View
                 Close();
                 return;
             }
-            _cohortName = _controller.getCohortName(_cohortId);
+            _cohortName = _controller.GetCohortName(_cohortId);
             if (_cohortName.Length == 0)
             {
                 MessageBox.Show("Invalid cohort selected");
@@ -118,7 +118,7 @@ namespace CS6232_G1.View
                 return;
             }
             lblCohortName.Text = _cohortName;
-            resetMinAndMaxDates();
+            ResetMinAndMaxDates();
             // setup stage list to list all stages
             cboStage.DataSource = _stages;
             cboStage.DisplayMember = "name";
@@ -154,7 +154,7 @@ namespace CS6232_G1.View
             {
                 try
                 {
-                    _scheduleDataList = _controller.getCohortAddScheduleInfo(_cohortId);
+                    _scheduleDataList = _controller.GetCohortAddScheduleInfo(_cohortId);
                 }
                 catch (SqlException ex)
                 {
@@ -193,15 +193,15 @@ namespace CS6232_G1.View
             if (data.NextStageId != null)
             {
                 cboStage.SelectedValue = data.NextStageId;
-                setupControls(true, "");
+                SetupControls(true, "");
             }
             else
             {
                 cboStage.SelectedIndex = -1;
-                setupControls(false, "All stages scheduled");
+                SetupControls(false, "All stages scheduled");
             }
 
-            resetMinAndMaxDates();
+            ResetMinAndMaxDates();
             if (data.LastStageEndDate != null)
             {
                 DateTime minStartDate = data.LastStageEndDate ?? DateTime.Now;
@@ -218,7 +218,7 @@ namespace CS6232_G1.View
             }
         }
 
-        private void resetMinAndMaxDates()
+        private void ResetMinAndMaxDates()
         {
             dateStart.MinDate = DateTime.Parse("1/1/2000");
             dateStart.MaxDate = DateTime.Parse("12/31/2100");
@@ -231,7 +231,7 @@ namespace CS6232_G1.View
         /// </summary>
         /// <param name="canAdd">User can add schedule item</param>
         /// <param name="msg">Display message, if any</param>
-        private void setupControls(bool canAdd, string msg)
+        private void SetupControls(bool canAdd, string msg)
         {
             btnAdd.Enabled = canAdd;
             dateStart.Enabled = canAdd;
@@ -254,11 +254,11 @@ namespace CS6232_G1.View
 
             try
             {
-                _controller.addCohortSchedule(_cohortId, typeId, stageId, startDate, endDate);
+                _controller.AddCohortSchedule(_cohortId, typeId, stageId, startDate, endDate);
                 this.DialogResult = DialogResult.OK;
                 if (_parent != null)
                 {
-                    _parent.refreshViews();
+                    _parent.RefreshViews();
                 }
                 Close();
             }

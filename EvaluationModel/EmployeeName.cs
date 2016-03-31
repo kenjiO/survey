@@ -15,7 +15,7 @@ namespace Evaluation.Model
         public EmployeeName(int id, string firstName, string lastName)
         {
             _id = id;
-            _name = fullNameString(id, firstName, lastName);
+            _name = FullNameString(id, firstName, lastName);
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Evaluation.Model
         /// <param name="first">First name</param>
         /// <param name="last">Last name</param>
         /// <returns>Full name string</returns>
-        public static string fullNameString(int id, string first, string last)
+        public static string FullNameString(int id, string first, string last)
         {
             string result;
 

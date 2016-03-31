@@ -15,7 +15,7 @@ namespace UnitTests
         [TestMethod]
         public void whenGetCohortAddScheduleInfo1ShouldReturn2Responses()
         {
-            List<CohortScheduleData> list = controller.getCohortAddScheduleInfo(1);
+            List<CohortScheduleData> list = controller.GetCohortAddScheduleInfo(1);
             Assert.AreEqual(2, list.Count);
             CohortScheduleData info = list[0];
             Assert.AreEqual(1, info.TypeId);
@@ -30,7 +30,7 @@ namespace UnitTests
         [TestMethod]
         public void whenGetCohortAddScheduleInfo2ShouldReturn2Responses()
         {
-            List<CohortScheduleData> list = controller.getCohortAddScheduleInfo(2);
+            List<CohortScheduleData> list = controller.GetCohortAddScheduleInfo(2);
             Assert.AreEqual(2, list.Count);
             CohortScheduleData info = list[0];
             Assert.AreEqual(1, info.TypeId);

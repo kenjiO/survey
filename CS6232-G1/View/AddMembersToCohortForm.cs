@@ -45,11 +45,11 @@ namespace CS6232_G1.View
             }
             try
             {
-                _cohortName = _controller.getCohortName(_cohortId);
+                _cohortName = _controller.GetCohortName(_cohortId);
                                 
                 lblAddMember.Text = "Add Members to " + _cohortName;
 
-                loadEmployeeListView();
+                LoadEmployeeListView();
                 btnAddMembers.Enabled = false;
             }
             catch (Exception ex)
@@ -62,14 +62,14 @@ namespace CS6232_G1.View
 
 
         // Loads the Listview with the employees that are not assigned to any cohort
-        private void loadEmployeeListView()
+        private void LoadEmployeeListView()
         {
             lvEmployeeList.Items.Clear();
-            setListViewColumnWidth(lvEmployeeList);
+            SetListViewColumnWidth(lvEmployeeList);
             try
             {
                 List<Employee> memberList;
-                memberList = _controller.getMembersNotInCohort();
+                memberList = _controller.GetMembersNotInCohort();
                 if (memberList.Count > 0)
                 {
                     foreach (Employee member in memberList)
@@ -96,7 +96,7 @@ namespace CS6232_G1.View
         /// To use this method, set fillWeight in the Tag property of each column.
         /// </summary>
         /// <param name="listView">the listview whose columns are to be sized</param>
-        private void setListViewColumnWidth(ListView listView)
+        private void SetListViewColumnWidth(ListView listView)
         {
             float totalColumnWidth = 0;
 
@@ -136,7 +136,7 @@ namespace CS6232_G1.View
                 }                     
             
                 // update cohortid of selected employees
-                List<int> notUpdated = _controller.addMembersToCohort(_cohortId, empIdList);
+                List<int> notUpdated = _controller.AddMembersToCohort(_cohortId, empIdList);
                 if (notUpdated.Count > 0)
                 {
                     // get ids from list and show
@@ -167,7 +167,7 @@ namespace CS6232_G1.View
         {
             if (_parentForm != null)
             {
-                _parentForm.refreshViews();
+                _parentForm.RefreshViews();
             }
         }
     }

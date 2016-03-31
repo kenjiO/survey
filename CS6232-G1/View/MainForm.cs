@@ -58,7 +58,7 @@ namespace CS6232_G1.View
             {
                 return;
             }
-            viewCohortDetails(cohortId);
+            ViewCohortDetails(cohortId);
         }
 
         private void deleteACohortToolStripMenuItem_Click(object sender, EventArgs e)
@@ -78,18 +78,18 @@ namespace CS6232_G1.View
             {
                 return;
             }
-            viewCohortDetails(cohortId);
+            ViewCohortDetails(cohortId);
         }
 
         // This opens a dialog form that will prompt the user to select a cohort
         // It will return the cohort selected or null if cancelled or an error occurs
-        private Cohort selectCohort()
+        private Cohort SelectCohort()
         {
             SelectCohortForm selectForm = new SelectCohortForm(_controller);
             selectForm.ShowDialog();
             if (selectForm.DialogResult == DialogResult.OK)
             {
-                return selectForm.selectedCohort;
+                return selectForm.SelectedCohort;
             }
             else
             {
@@ -97,7 +97,7 @@ namespace CS6232_G1.View
             }
         }
 
-        private void viewCohortDetails(int cohortId)
+        private void ViewCohortDetails(int cohortId)
         {
             Form form = new ViewCohortDetailsForm(_controller, cohortId);
             form.MdiParent = this;
@@ -118,7 +118,7 @@ namespace CS6232_G1.View
                 frmViewEvaluations.Close();
             }
             //open ViewEvaluationDetailsForm
-            frmViewEvaluations = new ViewEvaluationsForm(_controller, _controller.currentUser);
+            frmViewEvaluations = new ViewEvaluationsForm(_controller, _controller.CurrentUser);
             frmViewEvaluations.MdiParent = this;
             frmViewEvaluations.Show();
             frmViewEvaluations.FormClosed += viewEvaluationsForm_FormClosed;
@@ -148,7 +148,7 @@ namespace CS6232_G1.View
 
             try
             {
-                if (_controller.login(username, password) == null)
+                if (_controller.Login(username, password) == null)
                 {
                     ErrorMsgLabel.Text = "Invalid username/password";
                     return;
@@ -162,9 +162,9 @@ namespace CS6232_G1.View
 
             LoginPanel.Visible = false;
             menuStripDefault.Visible = false;
-            menuStripAdmin.Visible = _controller.idAdminSession;
-            menuStripEmployee.Visible = !_controller.idAdminSession;
-            if (!_controller.idAdminSession)
+            menuStripAdmin.Visible = _controller.IsAdminSession;
+            menuStripEmployee.Visible = !_controller.IsAdminSession;
+            if (!_controller.IsAdminSession)
             {
                 // Open this on login for user sessions
                 employeeMenuEvaluationsToolStripMenuItem_Click(null, null);

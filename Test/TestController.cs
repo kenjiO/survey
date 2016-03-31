@@ -11,11 +11,11 @@ namespace Test
         private Employee _currentUser;
         private bool _isAdminSession;
 
-        public Employee currentUser { get { return _currentUser; } }
-        public bool idAdminSession { get { return _isAdminSession; } }
+        public Employee CurrentUser { get { return _currentUser; } }
+        public bool IsAdminSession { get { return _isAdminSession; } }
         
         #region Stages
-        public List<Stage> getStageList()
+        public List<Stage> GetStageList()
         {
             List<Stage> results = new List<Stage>();
 
@@ -27,15 +27,15 @@ namespace Test
             return results;
         }
 
-        public bool stageExists(string name)
+        public bool StageExists(string name)
         {
-            List<Stage> _stages = getStageList();
+            List<Stage> _stages = GetStageList();
             return _stages.Exists(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
-        public string getStageName(int stageId)
+        public string GetStageName(int stageId)
         {
-            List<Stage> _stages = getStageList();
+            List<Stage> _stages = GetStageList();
             Stage result = _stages.Find(s => s.Id == stageId);
             if (result == null || result.Id != stageId)
             {
@@ -45,7 +45,7 @@ namespace Test
         }
 
 
-        public int? getNextStageId(int? stageId)
+        public int? GetNextStageId(int? stageId)
         {
             if (stageId == null)
             {
@@ -58,7 +58,7 @@ namespace Test
             return null;
         }
 
-        public int addStage(string name)
+        public int AddStage(string name)
         {
             return 5;
         }
@@ -66,7 +66,7 @@ namespace Test
         #endregion
 
         #region Types
-        public List<EvalType> getTypeList()
+        public List<EvalType> GetTypeList()
         {
             List<EvalType> results = new List<EvalType>();
 
@@ -75,15 +75,15 @@ namespace Test
             return results;
         }
 
-        public bool typeExists(string name)
+        public bool TypeExists(string name)
         {
-            List<EvalType> _types = getTypeList();
+            List<EvalType> _types = GetTypeList();
             return _types.Exists(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
-        public string getTypeName(int typeId)
+        public string GetTypeName(int typeId)
         {
-            List<EvalType> _types = getTypeList();
+            List<EvalType> _types = GetTypeList();
             EvalType result = _types.Find(s => s.Id == typeId);
             if (result == null || result.Id != typeId)
             {
@@ -92,7 +92,7 @@ namespace Test
             return result.Name;
         }
 
-        public int addType(string name)
+        public int AddType(string name)
         {
             return 3;
         }
@@ -100,7 +100,7 @@ namespace Test
         #endregion
 
         #region Roles
-        public List<Role> getRoleList()
+        public List<Role> GetRoleList()
         {
             List<Role> results = new List<Role>();
 
@@ -110,15 +110,15 @@ namespace Test
             return results;
         }
 
-        public bool roleExists(string name)
+        public bool RoleExists(string name)
         {
-            List<Role> _roles = getRoleList();
+            List<Role> _roles = GetRoleList();
             return _roles.Exists(r => r.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
-        public string getRoleName(int roleId)
+        public string GetRoleName(int roleId)
         {
-            List<Role> _roles = getRoleList();
+            List<Role> _roles = GetRoleList();
             Role result = _roles.Find(r => r.Id == roleId);
             if (result == null || result.Id != roleId)
             {
@@ -131,9 +131,9 @@ namespace Test
         #endregion
 
         #region Cohorts
-        public String getCohortName(int cohortId)
+        public String GetCohortName(int cohortId)
         {
-            List<Cohort> _cohorts = getCohorts();
+            List<Cohort> _cohorts = GetCohorts();
             Cohort result = _cohorts.Find(c => c.CohortId == cohortId);
             if (result == null || result.CohortId != cohortId)
             {
@@ -142,7 +142,7 @@ namespace Test
             return result.CohortName;
         }
 
-        public List<Cohort> getCohorts()
+        public List<Cohort> GetCohorts()
         {
             List<Cohort> cohorts = new List<Cohort>();
             cohorts.Add(new Cohort(1, "Cohort 1"));
@@ -150,12 +150,12 @@ namespace Test
             return cohorts;
         }
 
-        public Cohort addCohort(String name)
+        public Cohort AddCohort(String name)
         {
             return null;
         }
 
-        public List<EvaluationSchedule> getEvaluationScheduleList(int cohortId)
+        public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId)
         {
             List<EvaluationSchedule> results = new List<EvaluationSchedule>();
             switch (cohortId)
@@ -173,7 +173,7 @@ namespace Test
             return results;
         }
 
-        public List<Employee> getMembersOfCohort(int cohortId)
+        public List<Employee> GetMembersOfCohort(int cohortId)
         {
             List<Employee> results = new List<Employee>();
             switch (cohortId)
@@ -191,7 +191,7 @@ namespace Test
             return results;
         }
 
-        public List<Employee> getMembersNotInCohort()
+        public List<Employee> GetMembersNotInCohort()
         {
             List<Employee> results = new List<Employee>();
             results.Add(new Employee(4, "John", "Smith", "john_smith@gmail.com", false));
@@ -200,12 +200,12 @@ namespace Test
             return results;
         }
 
-        public List<int> addMembersToCohort(int _cohortId, List<int> empIdList)
+        public List<int> AddMembersToCohort(int _cohortId, List<int> empIdList)
         {
             return new List<int>();
         }
 
-        public List<CohortScheduleData> getCohortAddScheduleInfo(int cohortId)
+        public List<CohortScheduleData> GetCohortAddScheduleInfo(int cohortId)
         {
             List<CohortScheduleData> list = new List<CohortScheduleData>();
 
@@ -222,7 +222,7 @@ namespace Test
             return list;
         }
 
-        public int addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
+        public int AddCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
         {
             if (cohortId == 1)
             {
@@ -231,17 +231,17 @@ namespace Test
             throw new ArgumentException("Invalid configuration (test)");
         }
 
-        public bool deleteCohort(int _cohortId)
+        public bool DeleteCohort(int _cohortId)
         {
             return false ;
         }
 
-        public bool renameCohort(int cohortId, string oldName, string newName)
+        public bool RenameCohort(int cohortId, string oldName, string newName)
         {
             return false;
         }
 
-        public List<Cohort> getCohortsWithNoMembersOrEvals()
+        public List<Cohort> GetCohortsWithNoMembersOrEvals()
         {
             List<Cohort> cohorts = new List<Cohort>();
             cohorts.Add(new Cohort(1, "cohort1"));
@@ -252,7 +252,7 @@ namespace Test
         #endregion
 
         #region Employees
-        public List<EmployeeName> getEmployeeNameList()
+        public List<EmployeeName> GetEmployeeNameList()
         {
             List<EmployeeName> results = new List<EmployeeName>();
 
@@ -264,7 +264,7 @@ namespace Test
             return results;
         }
 
-        public List<EmployeeName> getListOfNonAdminEmployees(int[] exclude)
+        public List<EmployeeName> GetListOfNonAdminEmployees(int[] exclude)
         {
             List<EmployeeName> names = new List<EmployeeName>();
             names.Add(new EmployeeName(1, "Tom", "Ryser"));
@@ -272,17 +272,17 @@ namespace Test
             return names;
         }
 
-        public bool isSupervisorSelectedForCurrentUser()
+        public bool IsSupervisorSelectedForCurrentUser()
         {
             return _currentUser.SupervisorId == null;
         }
 
-        public void setSupervisor(int supervisorId)
+        public void SetSupervisor(int supervisorId)
         {
             _currentUser.SupervisorId = supervisorId;
         }
 
-        public String getEmployeeName(int employeeId)
+        public String GetEmployeeName(int employeeId)
         {
             return "Employee Name";
         }
@@ -290,7 +290,7 @@ namespace Test
         #endregion
 
         #region Login
-        public Employee login(string email, string password)
+        public Employee Login(string email, string password)
         {
             _isAdminSession = false;
             if (password == null || password.Length == 0)
@@ -311,7 +311,7 @@ namespace Test
         #endregion
 
         #region Admin Reports
-        public DataTable getUserReport(int stage, int evalType)
+        public DataTable GetUserReport(int stage, int evalType)
         {
             DataTable table = UserReport.createDataTable();
             // EmployeeId, Stage, Type, Category, Question, Self, Coworker, Supervisor, Average
@@ -339,17 +339,17 @@ namespace Test
 
         #region Evaluation
 
-        public bool isSelfEvaluationStarted(int empId, int typeId, int stageId)
+        public bool IsSelfEvaluationStarted(int empId, int typeId, int stageId)
         {
             return false;
         }
 
-        public void initializeSelfEvaluation(int typeId, int stageId, int coworkerId)
+        public void InitializeSelfEvaluation(int typeId, int stageId, int coworkerId)
         {
             return;
         }
 
-        public List<OpenEvaluation> getOpenSelfEvaluations(int employeeId)
+        public List<OpenEvaluation> GetOpenSelfEvaluations(int employeeId)
         {
             List<OpenEvaluation> results = new List<OpenEvaluation>();
 
@@ -359,7 +359,7 @@ namespace Test
             return results;
         }
 
-        public List<OpenEvaluation> getOpenPeerEvaluations(int employeeId)
+        public List<OpenEvaluation> GetOpenPeerEvaluations(int employeeId)
         {
             List<OpenEvaluation> results = new List<OpenEvaluation>();
 

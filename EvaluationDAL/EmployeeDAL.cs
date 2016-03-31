@@ -13,7 +13,7 @@ namespace Evaluation.DAL
     /// </summary>
     public partial class EvaluationDAL : IEvaluationDAL
     {
-        public int getEmployeeCohortId(int employeeId)
+        public int GetEmployeeCohortId(int employeeId)
         {
             string selectStatement = "SELECT cohortId " +
                                      "FROM employee " +
@@ -36,7 +36,7 @@ namespace Evaluation.DAL
             }
         }
 
-        public EmployeeName getEmployeeName(int employeeId)
+        public EmployeeName GetEmployeeName(int employeeId)
         {
             string selectStatement = "SELECT firstName, lastName " +
                                      "FROM employee " +
@@ -62,7 +62,7 @@ namespace Evaluation.DAL
             }
         }
 
-        public List<EmployeeName> getListOfNonAdminEmployees()
+        public List<EmployeeName> GetListOfNonAdminEmployees()
         {
             List<EmployeeName> results = new List<EmployeeName>();
 
@@ -98,7 +98,7 @@ namespace Evaluation.DAL
         /// <param name="employeeId">The Employee Id</param>
         /// <param name="supervisorId">The SupervisorId to set for the employee</param>
         /// <returns>True if successful, false if supervisor is already set to another supervisor</returns>
-        public bool setSupervisor(int employeeId, int supervisorId)
+        public bool SetSupervisor(int employeeId, int supervisorId)
         {
             if (employeeId == supervisorId)
             {

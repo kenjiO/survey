@@ -35,8 +35,8 @@ namespace CS6232_G1.View
             }
             try
             {
-                loadSelfEvaluations();
-                loadPeerEvaluations();               
+                LoadSelfEvaluations();
+                LoadPeerEvaluations();               
             }
             catch (Exception ex)
             {
@@ -45,26 +45,26 @@ namespace CS6232_G1.View
             }
         }        
 
-        private void loadSelfEvaluations()
+        private void LoadSelfEvaluations()
         {
             //Get list of evaluation schedule objects and bind the datagrid to the list
-            List<OpenEvaluation> evaluationList = _controller.getOpenSelfEvaluations(_currentUser.EmployeeId);
+            List<OpenEvaluation> evaluationList = _controller.GetOpenSelfEvaluations(_currentUser.EmployeeId);
             dgvSelfEvaluations.DataSource = evaluationList;            
             dgvSelfEvaluations.ClearSelection();
         }
 
-        private void loadPeerEvaluations()
+        private void LoadPeerEvaluations()
         {
             //Get list of evaluation schedule objects and bind the datagrid to the list
-            List<OpenEvaluation> evaluationList = _controller.getOpenPeerEvaluations(_currentUser.EmployeeId);
+            List<OpenEvaluation> evaluationList = _controller.GetOpenPeerEvaluations(_currentUser.EmployeeId);
             dgvPeerEvaluations.DataSource = evaluationList;            
             dgvPeerEvaluations.ClearSelection();
         }
 
-        public void refreshViews()
+        public void RefreshViews()
         {
-            loadSelfEvaluations();
-            loadPeerEvaluations();
+            LoadSelfEvaluations();
+            LoadPeerEvaluations();
         }
 
         private void ViewEvaluationsForm_Shown(object sender, EventArgs e)

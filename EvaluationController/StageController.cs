@@ -14,19 +14,19 @@ namespace Evaluation.Controller
     {
         private List<Stage> _stages;
 
-        public List<Stage> getStageList()
+        public List<Stage> GetStageList()
         {
-            _stages = _dal.getStageList();
+            _stages = _dal.GetStageList();
             return _stages;
         }
 
-        private bool tryLoadStageList()
+        private bool TryLoadStageList()
         {
             if (_stages == null)
             {
                 try
                 {
-                    getStageList();
+                    GetStageList();
                 }
                 catch (Exception)
                 {
@@ -36,18 +36,18 @@ namespace Evaluation.Controller
             return true;
         }
 
-        public bool stageExists(string name)
+        public bool StageExists(string name)
         {
-            if (!tryLoadStageList())
+            if (!TryLoadStageList())
             {
                 return false;
             }
             return _stages.Exists(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
-        public string getStageName(int stageId)
+        public string GetStageName(int stageId)
         {
-            if (!tryLoadStageList())
+            if (!TryLoadStageList())
             {
                 return "";
             }
@@ -60,9 +60,9 @@ namespace Evaluation.Controller
             return result.Name;
         }
 
-        public int? getNextStageId(int? stageId)
+        public int? GetNextStageId(int? stageId)
         {
-            if (!tryLoadStageList())
+            if (!TryLoadStageList())
             {
                 return null;
             }
@@ -80,7 +80,7 @@ namespace Evaluation.Controller
             return null;
         }
 
-        public int addStage(string name)
+        public int AddStage(string name)
         {
             // TODO: add stage, return identity column
             //  - name should be non-null, non-empty string

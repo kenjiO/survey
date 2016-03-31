@@ -13,7 +13,7 @@ namespace Evaluation.DAL
     /// </summary>
     public partial class EvaluationDAL : IEvaluationDAL
     {
-        public String getRoleName(int roleId)
+        public String GetRoleName(int roleId)
         {
             string selectStatement = "SELECT roleName " +
                                      "FROM role " +
@@ -39,7 +39,7 @@ namespace Evaluation.DAL
             }
         }
 
-        public List<Role> getRoleList()
+        public List<Role> GetRoleList()
         {
             List<Role> results = new List<Role>();
 

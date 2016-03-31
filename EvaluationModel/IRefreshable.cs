@@ -11,6 +11,6 @@ namespace EvaluationModel
     /// </summary>
     public interface IRefreshable
     {
-        void refreshViews();
+        void RefreshViews();
     }
 }

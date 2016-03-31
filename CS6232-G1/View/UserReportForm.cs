@@ -25,7 +25,7 @@ namespace CS6232_G1.View
         {
             _controller = controller;
             InitializeComponent();
-            if ((_stages = getStageList()) == null)
+            if ((_stages = GetStageList()) == null)
             {
                 return;
             }
@@ -34,7 +34,7 @@ namespace CS6232_G1.View
             stageComboBox.ComboBox.ValueMember = "id";
             stageComboBox.ComboBox.SelectedIndex = -1;
 
-            if ((_types = getTypeList()) == null)
+            if ((_types = GetTypeList()) == null)
             {
                 return;
             }
@@ -76,16 +76,16 @@ namespace CS6232_G1.View
             }
             int stage = (int)stageComboBox.ComboBox.SelectedValue;
             int evaltype = (int)typeComboBox.ComboBox.SelectedValue;
-            generateUserReport(stage, evaltype);
+            GenerateUserReport(stage, evaltype);
         }
 
-        private List<Stage> getStageList()
+        private List<Stage> GetStageList()
         {
             List<Stage> list = null;
 
             try
             {
-                list = _controller.getStageList();
+                list = _controller.GetStageList();
                 if (list.Count == 0)
                 {
                     MessageBox.Show("No stages available", "Notice");
@@ -103,13 +103,13 @@ namespace CS6232_G1.View
             return list;
         }
 
-        private List<EvalType> getTypeList()
+        private List<EvalType> GetTypeList()
         {
             List<EvalType> list = null;
 
             try
             {
-                list = _controller.getTypeList();
+                list = _controller.GetTypeList();
                 if (list.Count == 0)
                 {
                     MessageBox.Show("No Evaluation Types available", "Notice");
@@ -132,15 +132,15 @@ namespace CS6232_G1.View
         /// </summary>
         /// <param name="stage">Stage selected</param>
         /// <param name="evalType">Evaluation Type selected</param>
-        private void generateUserReport(int stage, int evalType)
+        private void GenerateUserReport(int stage, int evalType)
         {
             try
             {
                 statusLabel.Text = "Generating Report...";
                 Application.UseWaitCursor = true;
                 Application.DoEvents();
-                DataTable reportTable = _controller.getUserReport(stage, evalType);
-                setupUserReport(reportTable);
+                DataTable reportTable = _controller.GetUserReport(stage, evalType);
+                SetupUserReport(reportTable);
             }
             finally
             {
@@ -153,7 +153,7 @@ namespace CS6232_G1.View
         /// Display user report for a given dataset
         /// </summary>
         /// <param name="reportTable">Report table to display</param>
-        private void setupUserReport(DataTable reportTable)
+        private void SetupUserReport(DataTable reportTable)
         {
             // reset table
             dataGridView.DataSource = null;

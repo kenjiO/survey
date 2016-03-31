@@ -13,7 +13,7 @@ namespace Evaluation.DAL
     /// </summary>
     public partial class EvaluationDAL : IEvaluationDAL
     {
-        public List<Stage> getStageList()
+        public List<Stage> GetStageList()
         {
             List<Stage> results = new List<Stage>();
 

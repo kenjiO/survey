@@ -13,43 +13,43 @@ namespace UnitTests
         [TestMethod]
         public void whenStageExistsStage1ShouldReturnTrue()
         {
-            Assert.IsTrue(controller.stageExists("Stage 1"));
+            Assert.IsTrue(controller.StageExists("Stage 1"));
         }
 
         [TestMethod]
         public void whenStageExistsStage100ShouldReturnFalse()
         {
-            Assert.IsFalse(controller.stageExists("Stage 100"));
+            Assert.IsFalse(controller.StageExists("Stage 100"));
         }
 
         [TestMethod]
         public void whenGetStageNameForId1ShouldGetStage1()
         {
-            Assert.AreEqual("Stage 1", controller.getStageName(1));
+            Assert.AreEqual("Stage 1", controller.GetStageName(1));
         }
 
         [TestMethod]
         public void whenGetStageNameForId100ShouldGetEmptyString()
         {
-            Assert.AreEqual("", controller.getStageName(100));
+            Assert.AreEqual("", controller.GetStageName(100));
         }
 
         [TestMethod]
         public void whenGetNextStageIdForIdNullShouldGetStage1()
         {
-            Assert.AreEqual(1, controller.getNextStageId(null));
+            Assert.AreEqual(1, controller.GetNextStageId(null));
         }
 
         [TestMethod]
         public void whenGetNextStageIdForId3ShouldGetStage4()
         {
-            Assert.AreEqual(4, controller.getNextStageId(3));
+            Assert.AreEqual(4, controller.GetNextStageId(3));
         }
 
         [TestMethod]
         public void whenGetNextStageIdForId5ShouldGetNull()
         {
-            Assert.IsNull(controller.getNextStageId(5));
+            Assert.IsNull(controller.GetNextStageId(5));
         }
 
     }

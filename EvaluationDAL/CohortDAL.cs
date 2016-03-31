@@ -14,7 +14,7 @@ namespace Evaluation.DAL
         /// Get a list of cohorts
         /// </summary>
         /// <returns>A list of Cohort objects corresponding to the cohorts in the DB</returns>
-        public List<Cohort> getCohorts()
+        public List<Cohort> GetCohorts()
         {
             List<Cohort> cohorts = new List<Cohort>();
 
@@ -47,7 +47,7 @@ namespace Evaluation.DAL
         /// Get a list of cohorts that have no members or schedules
         /// </summary>
         /// <returns>A list of cohorts with no members or schedules</returns>
-        public List<Cohort> getCohortsWithNoMembersOrEvals()
+        public List<Cohort> GetCohortsWithNoMembersOrEvals()
         {
             List<Cohort> cohorts = new List<Cohort>();
 
@@ -84,7 +84,7 @@ namespace Evaluation.DAL
         /// </summary>
         /// <param name="name">The name of the new cohort</param>
         /// <returns>A Cohort object reflecting the cohort added to the DB</returns>
-        public Cohort addNewCohort(String name) {
+        public Cohort AddNewCohort(String name) {
             if (name == null)
             {
                 throw new ArgumentNullException("name is null");
@@ -124,7 +124,7 @@ namespace Evaluation.DAL
         /// </summary>
         /// <param name="cohortId">cohortId of the cohort to delete</param>
         /// <returns>True if deleted. False if cohort doen't exist, has members or has schedules</returns>
-        public bool deleteCohort(int cohortId)
+        public bool DeleteCohort(int cohortId)
         {
             string deleteStatement =
                 "DELETE FROM cohort " +
@@ -158,7 +158,7 @@ namespace Evaluation.DAL
         /// <param name="oldName">the old name of the cohort</param>
         /// <param name="newName">the new name of the cohort</param>
         /// <returns>True if rename successful. False otherwise</returns>
-        public bool renameCohort(int cohortId, string oldName, string newName)
+        public bool RenameCohort(int cohortId, string oldName, string newName)
         {
             string updateStatement =
                 "UPDATE cohort " +
@@ -194,7 +194,7 @@ namespace Evaluation.DAL
         /// </summary>
         /// /// <param name="cohortId">the cohortId</param>
         /// <returns>Evaluation Schedule list</returns>
-        public List<EvaluationSchedule> getEvaluationScheduleList(int cohortId)
+        public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId)
         {
             List<EvaluationSchedule> results = new List<EvaluationSchedule>();
 
@@ -241,7 +241,7 @@ namespace Evaluation.DAL
         /// </summary>
         /// <param name="_cohortId">cohort id of the specific cohort</param>
         /// <returns>Member list</returns>
-        public List<Employee> getMembersOfCohort(int cohortId)
+        public List<Employee> GetMembersOfCohort(int cohortId)
         {
             List<Employee> results = new List<Employee>();
 
@@ -284,7 +284,7 @@ namespace Evaluation.DAL
         /// Get a list of members that are not assigned to any cohort
         /// </summary>
         /// <returns>Member list</returns>
-        public List<Employee> getMembersNotInCohort()
+        public List<Employee> GetMembersNotInCohort()
         {
             List<Employee> results = new List<Employee>();
 
@@ -327,7 +327,7 @@ namespace Evaluation.DAL
         /// <param name="_cohortId">id of cohort to add members to</param>
         /// <param name="empIdList">list of employee ids to be added to the cohort</param>
         /// <returns>list of employee ids that were not updated</returns>
-        public List<int> addMembersToCohort(int cohortId, List<int> empIdList)
+        public List<int> AddMembersToCohort(int cohortId, List<int> empIdList)
         {
             List<int> failedIds = new List<int>();
             string updateStatement =
@@ -363,7 +363,7 @@ namespace Evaluation.DAL
         /// Create table for returning cohort schedule information
         /// </summary>
         /// <returns>Data Table with columns defined</returns>
-        public static DataTable createCohortAddScheduleInfoDataTable()
+        public static DataTable CreateCohortAddScheduleInfoDataTable()
         {
             DataTable table = new DataTable();
 
@@ -375,9 +375,9 @@ namespace Evaluation.DAL
         }
 
 
-        public DataTable getCohortAddScheduleInfo(int cohortId)
+        public DataTable GetCohortAddScheduleInfo(int cohortId)
         {
-            DataTable table = createCohortAddScheduleInfoDataTable();
+            DataTable table = CreateCohortAddScheduleInfoDataTable();
 
             string selectStatement ="SELECT stageId, endDate " +
                                       "FROM evaluation_schedule " +
@@ -388,7 +388,7 @@ namespace Evaluation.DAL
                                                        "WHERE cohortId = @cohortId " +
                                                          "AND typeId = @typeId)";
 
-            List<EvalType> typeList = getTypeList();
+            List<EvalType> typeList = GetTypeList();
             using (SqlConnection connection = EvaluationDB.GetConnection())
             {
                 connection.Open();
@@ -422,7 +422,7 @@ namespace Evaluation.DAL
             return table;
         }
 
-        public int addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
+        public int AddCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
         {
             string insertStatement = "INSERT INTO evaluation_schedule " +
                                      "(cohortId, typeId, stageId, startDate, endDate) " +

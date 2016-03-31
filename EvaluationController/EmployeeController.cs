@@ -9,7 +9,7 @@ namespace Evaluation.Controller
 {
     public partial class EvaluationController : IEvaluationController
     {
-        public List<EmployeeName> getEmployeeNameList()
+        public List<EmployeeName> GetEmployeeNameList()
         {
             // TODO: get employee name list from database (all names?  We have non-admin below.  Is this function needed?)
             throw new NotSupportedException();
@@ -20,13 +20,13 @@ namespace Evaluation.Controller
         /// </summary>
         /// <param name="exclude">List of employee Id's to exclude</param>
         /// <returns>A list of non admin employees excluding given Id's</returns>
-        public List<EmployeeName> getListOfNonAdminEmployees(int[] exclude)
+        public List<EmployeeName> GetListOfNonAdminEmployees(int[] exclude)
         {
             if (exclude == null)
             {
                 throw new ArgumentNullException("exclude cannot be null");
             }
-            List<EmployeeName> employees = _dal.getListOfNonAdminEmployees();
+            List<EmployeeName> employees = _dal.GetListOfNonAdminEmployees();
             foreach (int id in exclude)
             {
                 employees.RemoveAll(emp => emp.EmployeeId == id);
@@ -38,7 +38,7 @@ namespace Evaluation.Controller
         /// Check if the currentUser has selected a supervisor
         /// </summary>
         /// <returns>Whether or not a supervisor has been selected</returns>
-        public bool isSupervisorSelectedForCurrentUser()
+        public bool IsSupervisorSelectedForCurrentUser()
         {
             return (_currentUser.SupervisorId != null);
         }
@@ -49,16 +49,16 @@ namespace Evaluation.Controller
         /// Precondition: supervisor is not the same as currentUser
         /// </summary>
         /// <param name="supervisorId">Id to set as the supervisor</param>
-        public void setSupervisor(int supervisorId)
+        public void SetSupervisor(int supervisorId)
         {
             if (supervisorId == _currentUser.EmployeeId) {
                 throw new ArgumentException("supervisorId cannot be the same as the current user");
             }
-            if (this.isSupervisorSelectedForCurrentUser())
+            if (this.IsSupervisorSelectedForCurrentUser())
             {
                 throw new InvalidOperationException("Supervisor is already set");
             }
-            if (_dal.setSupervisor(_currentUser.EmployeeId, supervisorId))
+            if (_dal.SetSupervisor(_currentUser.EmployeeId, supervisorId))
             {
                 _currentUser.SupervisorId = supervisorId;
             }
@@ -69,7 +69,7 @@ namespace Evaluation.Controller
         /// </summary>
         /// <param name="employeeId">employee id</param>
         /// <returns>Employee name</returns>
-        public String getEmployeeName(int employeeId)
+        public String GetEmployeeName(int employeeId)
         {
             // TODO Get employee name for employee id - needed? 
             throw new NotSupportedException("EvaluationController.getEmployeeName not implemented");

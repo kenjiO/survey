@@ -23,7 +23,7 @@ namespace Evaluation.Controller
         }
 
         #region Admin Reports
-        public DataTable getUserReport(int stage, int evalType)
+        public DataTable GetUserReport(int stage, int evalType)
         {
             // TODO: Use DAL to acquire report details
             throw new NotSupportedException();
@@ -31,12 +31,12 @@ namespace Evaluation.Controller
         #endregion
 
 
-        public bool isSelfEvaluationStarted(int empId, int typeId, int stageId)
+        public bool IsSelfEvaluationStarted(int empId, int typeId, int stageId)
         {
-            return _dal.isSelfEvaluationStarted(empId, typeId, stageId);
+            return _dal.IsSelfEvaluationStarted(empId, typeId, stageId);
         }
 
-        public void initializeSelfEvaluation(int typeId, int stageId, int coworkerId)
+        public void InitializeSelfEvaluation(int typeId, int stageId, int coworkerId)
         {
             if (_currentUser.SupervisorId == null)
                 throw new CreateEvaluationException("Supervisor must be selected");
@@ -44,17 +44,17 @@ namespace Evaluation.Controller
                 throw new CreateEvaluationException("Co-worker must not be the supervisor");
             if (_currentUser.EmployeeId == coworkerId)
                 throw new CreateEvaluationException("Co-worker must be different than self");
-            _dal.createEvaluations(_currentUser.EmployeeId, typeId, stageId, coworkerId);
+            _dal.CreateEvaluations(_currentUser.EmployeeId, typeId, stageId, coworkerId);
         }
 
-        public List<OpenEvaluation> getOpenSelfEvaluations(int employeeId)
+        public List<OpenEvaluation> GetOpenSelfEvaluations(int employeeId)
         {
-            return _dal.getOpenSelfEvaluations(employeeId);
+            return _dal.GetOpenSelfEvaluations(employeeId);
         }
 
-        public List<OpenEvaluation> getOpenPeerEvaluations(int employeeId)
+        public List<OpenEvaluation> GetOpenPeerEvaluations(int employeeId)
         {
-            return _dal.getOpenPeerEvaluations(employeeId);
+            return _dal.GetOpenPeerEvaluations(employeeId);
         }
 
     }

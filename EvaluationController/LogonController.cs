@@ -15,12 +15,12 @@ namespace Evaluation.Controller
     public partial class EvaluationController : IEvaluationController
     {
         private Employee _currentUser;
-        public Employee currentUser { get { return _currentUser; } }
-        public bool idAdminSession { get { return _currentUser.IsAdmin; } }
+        public Employee CurrentUser { get { return _currentUser; } }
+        public bool IsAdminSession { get { return _currentUser.IsAdmin; } }
 
-        public Employee login(string email, string password)
+        public Employee Login(string email, string password)
         {
-            _currentUser = _dal.getLogin(email, password);
+            _currentUser = _dal.GetLogin(email, password);
             return _currentUser;
         }
     }

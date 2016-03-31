@@ -33,15 +33,15 @@ namespace CS6232_G1.View
                 Close();
                 return;
             }
-            loadComboBoxItems();
+            LoadComboBoxItems();
         }
 
-        private void loadComboBoxItems()
+        private void LoadComboBoxItems()
         {
             List<Cohort> cohortList = null;
             try
             {
-                cohortList = _controller.getCohorts();
+                cohortList = _controller.GetCohorts();
             }
             catch (SqlException ex)
             {
@@ -88,13 +88,13 @@ namespace CS6232_G1.View
             bool result = false;
             try
             {
-                result = _controller.renameCohort(cohortId, oldName, newName);
+                result = _controller.RenameCohort(cohortId, oldName, newName);
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("A Database error occured deleting the cohort\n\n" + 
                      "Details: " + ex.Message);
-                loadComboBoxItems();
+                LoadComboBoxItems();
                 return;
             }
 
@@ -109,7 +109,7 @@ namespace CS6232_G1.View
             {
                 MessageBox.Show(selectedCohort.CohortName + " was unable to be renamed");
             }
-            loadComboBoxItems();
+            LoadComboBoxItems();
         }
 
         public static void Run(IEvaluationController controller)

@@ -15,66 +15,66 @@ namespace Test
         private IEvaluationController _controller = new TestController();
 
         #region Types
-        public List<EvalType> getTypeList()
+        public List<EvalType> GetTypeList()
         {
-            return _controller.getTypeList();
+            return _controller.GetTypeList();
         }
 
         #endregion
 
         #region Stages
-        public List<Stage> getStageList()
+        public List<Stage> GetStageList()
         {
-            return _controller.getStageList();
+            return _controller.GetStageList();
         }
         #endregion
 
         #region Roles
-        public List<Role> getRoleList()
+        public List<Role> GetRoleList()
         {
-            return _controller.getRoleList();
+            return _controller.GetRoleList();
         }
         #endregion
 
         #region Cohorts
-        public List<Cohort> getCohorts()
+        public List<Cohort> GetCohorts()
         {
-            return _controller.getCohorts();
+            return _controller.GetCohorts();
         }
 
-        public List<Cohort> getCohortsWithNoMembersOrEvals()
+        public List<Cohort> GetCohortsWithNoMembersOrEvals()
         {
             throw new NotSupportedException();
         }
 
-        public Cohort addNewCohort(String name)
+        public Cohort AddNewCohort(String name)
         {
             throw new NotSupportedException();
         }
 
-        public List<EvaluationSchedule> getEvaluationScheduleList(int cohortId)
+        public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId)
         {
             throw new NotSupportedException();
         }
 
-        public List<Employee> getMembersOfCohort(int cohortId)
+        public List<Employee> GetMembersOfCohort(int cohortId)
         {
             throw new NotSupportedException();
         }
 
-        public List<Employee> getMembersNotInCohort()
+        public List<Employee> GetMembersNotInCohort()
         {
             throw new NotSupportedException();
         }
 
-        public List<int> addMembersToCohort(int cohortId, List<int> empIdList)
+        public List<int> AddMembersToCohort(int cohortId, List<int> empIdList)
         {
             throw new NotSupportedException();
         }
 
-        public DataTable getCohortAddScheduleInfo(int cohortId)
+        public DataTable GetCohortAddScheduleInfo(int cohortId)
         {
-            DataTable table = EvaluationDAL.createCohortAddScheduleInfoDataTable();
+            DataTable table = EvaluationDAL.CreateCohortAddScheduleInfoDataTable();
 
             if (cohortId == 1) 
             {
@@ -100,18 +100,18 @@ namespace Test
             throw new NotImplementedException();
         }
 
-        public int addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
+        public int AddCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
         {
             return 5;
         }
 
-        public bool deleteCohort(int cohortId)
+        public bool DeleteCohort(int cohortId)
         {
             throw new NotImplementedException();
 
         }
 
-        public bool renameCohort(int cohortId, string oldName, string newName)
+        public bool RenameCohort(int cohortId, string oldName, string newName)
         {
             throw new NotImplementedException("TestDal.renameCohort() not implemented");
         }
@@ -119,22 +119,22 @@ namespace Test
         #endregion
 
         #region Employees
-        public Employee getLogin(String username, String password)
+        public Employee GetLogin(String username, String password)
         {
             throw new NotSupportedException();
         }
 
-        public int getEmployeeCohortId(int employeeId)
+        public int GetEmployeeCohortId(int employeeId)
         {
             return 1;
         }
 
-        public EmployeeName getEmployeeName(int employeeId)
+        public EmployeeName GetEmployeeName(int employeeId)
         {
             return new EmployeeName(employeeId, "John", "Silver");
         }
 
-        public List<EmployeeName> getListOfNonAdminEmployees()
+        public List<EmployeeName> GetListOfNonAdminEmployees()
         {
             throw new NotSupportedException();
         }
@@ -150,27 +150,27 @@ namespace Test
         #endregion
 
         #region Evaluations
-        public bool isSelfEvaluationStarted(int empId, int typeId, int stageId)
+        public bool IsSelfEvaluationStarted(int empId, int typeId, int stageId)
         {
             throw new NotSupportedException();
         }
 
-        public bool setSupervisor(int employeeId, int supervisorId)
+        public bool SetSupervisor(int employeeId, int supervisorId)
         {
             throw new NotSupportedException();
         }
 
-        public List<OpenEvaluation> getOpenSelfEvaluations(int employeeId)
+        public List<OpenEvaluation> GetOpenSelfEvaluations(int employeeId)
         {
-            return _controller.getOpenSelfEvaluations(employeeId);
+            return _controller.GetOpenSelfEvaluations(employeeId);
         }
 
-        public List<OpenEvaluation> getOpenPeerEvaluations(int employeeId)
+        public List<OpenEvaluation> GetOpenPeerEvaluations(int employeeId)
         {
-            return _controller.getOpenPeerEvaluations(employeeId);
+            return _controller.GetOpenPeerEvaluations(employeeId);
         }
 
-        public void createEvaluations(int empId, int typeId, int stageId, int coworkerId)
+        public void CreateEvaluations(int empId, int typeId, int stageId, int coworkerId)
         {
             return;
         }

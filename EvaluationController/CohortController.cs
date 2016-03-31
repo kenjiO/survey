@@ -12,19 +12,19 @@ namespace Evaluation.Controller
     {
         private List<Cohort> _cohorts;
 
-        public List<Cohort> getCohorts()
+        public List<Cohort> GetCohorts()
         {
-            _cohorts = _dal.getCohorts();
+            _cohorts = _dal.GetCohorts();
             return _cohorts;
         }
 
-        private bool tryLoadCohortList()
+        private bool TryLoadCohortList()
         {
             if (_cohorts == null)
             {
                 try
                 {
-                    getCohorts();
+                    GetCohorts();
                 }
                 catch (Exception)
                 {
@@ -34,9 +34,9 @@ namespace Evaluation.Controller
             return true;
         }
 
-        public string getCohortName(int cohortId)
+        public string GetCohortName(int cohortId)
         {
-            if (!tryLoadCohortList())
+            if (!TryLoadCohortList())
             {
                 return "";
             }
@@ -50,41 +50,41 @@ namespace Evaluation.Controller
         }
 
 
-        public Cohort addCohort(String name)
+        public Cohort AddCohort(String name)
         {
             if (name == null)
             {
                 throw new ArgumentNullException("name is null");
             }
-            Cohort result = _dal.addNewCohort(name);
+            Cohort result = _dal.AddNewCohort(name);
             _cohorts = null;
             return result;
         }
 
-        public List<EvaluationSchedule> getEvaluationScheduleList(int cohortId)
+        public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId)
         {
-            return _dal.getEvaluationScheduleList(cohortId);
+            return _dal.GetEvaluationScheduleList(cohortId);
         }
 
-        public List<Employee> getMembersOfCohort(int cohortId)
+        public List<Employee> GetMembersOfCohort(int cohortId)
         {
-            return _dal.getMembersOfCohort(cohortId);
+            return _dal.GetMembersOfCohort(cohortId);
         }
 
-        public List<Employee> getMembersNotInCohort()
+        public List<Employee> GetMembersNotInCohort()
         {
-            return _dal.getMembersNotInCohort();
+            return _dal.GetMembersNotInCohort();
         }
 
-        public List<int> addMembersToCohort(int cohortId, List<int> empIdList)
+        public List<int> AddMembersToCohort(int cohortId, List<int> empIdList)
         {
-            return _dal.addMembersToCohort(cohortId, empIdList);
+            return _dal.AddMembersToCohort(cohortId, empIdList);
         }
 
-        public List<CohortScheduleData> getCohortAddScheduleInfo(int cohortId)
+        public List<CohortScheduleData> GetCohortAddScheduleInfo(int cohortId)
         {
             List<CohortScheduleData> results = new List<CohortScheduleData>();
-            DataTable table = _dal.getCohortAddScheduleInfo(cohortId);
+            DataTable table = _dal.GetCohortAddScheduleInfo(cohortId);
             
             foreach (DataRow row in table.Rows)
             {
@@ -100,29 +100,29 @@ namespace Evaluation.Controller
                     lastStageEndDate = (DateTime)row["lastStageEndDate"];
                 }
 
-                results.Add(new CohortScheduleData(typeId, getTypeName(typeId), lastStageEndDate, getNextStageId(lastStageId)));
+                results.Add(new CohortScheduleData(typeId, GetTypeName(typeId), lastStageEndDate, GetNextStageId(lastStageId)));
             }
             return results;
         }
 
-        public int addCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
+        public int AddCohortSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
         {
-            return _dal.addCohortSchedule(cohortId, typeId, stageId, startDate, endDate);
+            return _dal.AddCohortSchedule(cohortId, typeId, stageId, startDate, endDate);
         }
 
-        public bool deleteCohort(int cohortId)
+        public bool DeleteCohort(int cohortId)
         {
-            return _dal.deleteCohort(cohortId);
+            return _dal.DeleteCohort(cohortId);
         }
 
-        public bool renameCohort(int cohortId, string oldName, string newName)
+        public bool RenameCohort(int cohortId, string oldName, string newName)
         {
-            return _dal.renameCohort(cohortId, oldName, newName);
+            return _dal.RenameCohort(cohortId, oldName, newName);
         }
 
-        public List<Cohort> getCohortsWithNoMembersOrEvals()
+        public List<Cohort> GetCohortsWithNoMembersOrEvals()
         {
-            return _dal.getCohortsWithNoMembersOrEvals();
+            return _dal.GetCohortsWithNoMembersOrEvals();
         }
 
     }

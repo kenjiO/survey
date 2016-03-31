@@ -32,15 +32,15 @@ namespace CS6232_G1.View
                 Close();
                 return;
             }
-            loadComboBoxItems();
+            LoadComboBoxItems();
         }
 
-        private void loadComboBoxItems()
+        private void LoadComboBoxItems()
         {
             List<Cohort> deletableCohortList = null;
             try
             {
-                deletableCohortList = _controller.getCohortsWithNoMembersOrEvals();
+                deletableCohortList = _controller.GetCohortsWithNoMembersOrEvals();
             }
             catch (SqlException ex)
             {
@@ -78,7 +78,7 @@ namespace CS6232_G1.View
             bool result = false;
             try
             {
-                result = _controller.deleteCohort(selectedCohort.CohortId);
+                result = _controller.DeleteCohort(selectedCohort.CohortId);
             }
             catch (SqlException ex)
             {
@@ -94,7 +94,7 @@ namespace CS6232_G1.View
                         MessageBox.Show("A Database error occured deleting the cohort\n" + ex.Message);
                     }
                 }
-                loadComboBoxItems();
+                LoadComboBoxItems();
                 return;
             }
 
@@ -109,7 +109,7 @@ namespace CS6232_G1.View
             {
                 MessageBox.Show(selectedCohort.CohortName + " was unable to be deleted");
             }
-            loadComboBoxItems();
+            LoadComboBoxItems();
         }
 
         public static void Run(IEvaluationController controller)

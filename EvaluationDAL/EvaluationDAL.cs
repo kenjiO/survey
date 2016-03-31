@@ -23,7 +23,7 @@ namespace Evaluation.DAL
         /// <param name="employeeId">employeeId for the self-evaluation</param>
         /// <param name="typeId">The evaluation typeId</param>
         /// <param name="stageId">The evaluation stageId</param>
-        public bool isSelfEvaluationStarted(int employeeId, int typeId, int stageId)
+        public bool IsSelfEvaluationStarted(int employeeId, int typeId, int stageId)
         {
             string selectStatement =
                 "SELECT evaluationId " +
@@ -46,11 +46,11 @@ namespace Evaluation.DAL
             }
         }
 
-        public List<OpenEvaluation> getOpenSelfEvaluations(int employeeId)
+        public List<OpenEvaluation> GetOpenSelfEvaluations(int employeeId)
         {
             List<OpenEvaluation> results = new List<OpenEvaluation>();
 
-            int cohortId = getEmployeeCohortId(employeeId);
+            int cohortId = GetEmployeeCohortId(employeeId);
             // if no cohort, no self-evaluations
             if (cohortId == 0)
             {
@@ -78,7 +78,7 @@ namespace Evaluation.DAL
                     {
                         while (reader.Read())
                         {
-                            results.Add(createOpenEvaluation(reader, employeeId, SELF_EVALUATION_ROLE_ID));
+                            results.Add(CreateOpenEvaluation(reader, employeeId, SELF_EVALUATION_ROLE_ID));
                         }
                     }
                 }
@@ -86,14 +86,14 @@ namespace Evaluation.DAL
             return results;
         }
 
-        private OpenEvaluation createOpenEvaluation(SqlDataReader reader, int employeeId, int roleId)
+        private OpenEvaluation CreateOpenEvaluation(SqlDataReader reader, int employeeId, int roleId)
         {
-            return new OpenEvaluation( (int)reader["scheduleId"], getEmployeeName(employeeId).FullName, roleId, getRoleName(roleId),
+            return new OpenEvaluation( (int)reader["scheduleId"], GetEmployeeName(employeeId).FullName, roleId, GetRoleName(roleId),
                             reader["typeName"].ToString(), reader["stageName"].ToString(), (DateTime)reader["startDate"], 
                             (DateTime)reader["endDate"]);                                    
         }
 
-        public List<OpenEvaluation> getOpenPeerEvaluations(int employeeId)
+        public List<OpenEvaluation> GetOpenPeerEvaluations(int employeeId)
         {
             List<OpenEvaluation> results = new List<OpenEvaluation>();
 
@@ -113,7 +113,7 @@ namespace Evaluation.DAL
         /// <param name="typeId">Type Id of evaluation to create</param>
         /// <param name="stageId">StageId of evaluation to create</param>
         /// <param name="coworkerId">Co-worker's employeeId</param>
-        public void createEvaluations(int empId, int typeId, int stageId, int coworkerId)
+        public void CreateEvaluations(int empId, int typeId, int stageId, int coworkerId)
         {
             int supervisorId;
             if (empId == coworkerId)

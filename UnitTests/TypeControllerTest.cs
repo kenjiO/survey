@@ -13,25 +13,25 @@ namespace UnitTests
         [TestMethod]
         public void whenTypeExistsType1ShouldReturnTrue()
         {
-            Assert.IsTrue(controller.typeExists("Type 1"));
+            Assert.IsTrue(controller.TypeExists("Type 1"));
         }
 
         [TestMethod]
         public void whenTypeExistsType10ShouldReturnFalse()
         {
-            Assert.IsFalse(controller.typeExists("Type 10"));
+            Assert.IsFalse(controller.TypeExists("Type 10"));
         }
 
         [TestMethod]
         public void whenGetTypeNameForId1ShouldGetType1()
         {
-            Assert.AreEqual("Type 1", controller.getTypeName(1));
+            Assert.AreEqual("Type 1", controller.GetTypeName(1));
         }
 
         [TestMethod]
         public void whenGetTypeNameForId10ShouldGetEmptyString()
         {
-            Assert.AreEqual("", controller.getTypeName(10));
+            Assert.AreEqual("", controller.GetTypeName(10));
         }
 
     }

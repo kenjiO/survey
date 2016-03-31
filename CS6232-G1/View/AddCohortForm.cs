@@ -17,7 +17,7 @@ namespace CS6232_G1.View
         IEvaluationController _controller;
         private int _cohortId;
 
-        public int newCohortId { get { return _cohortId; } }
+        public int NewCohortId { get { return _cohortId; } }
 
         public AddCohortForm(IEvaluationController controller)
         {
@@ -42,7 +42,7 @@ namespace CS6232_G1.View
             String name = cohortNameTextBox.Text;
             try
             {
-                _cohortId = _controller.addCohort(name).CohortId;
+                _cohortId = _controller.AddCohort(name).CohortId;
                 this.DialogResult = DialogResult.OK;
                 Close();
             }
@@ -70,7 +70,7 @@ namespace CS6232_G1.View
             DialogResult result = form.ShowDialog(Program.mainForm);
             if (result == DialogResult.OK)
             {
-                return form.newCohortId;
+                return form.NewCohortId;
             }
             return -1;
         }

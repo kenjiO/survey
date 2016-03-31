@@ -14,19 +14,19 @@ namespace Evaluation.Controller
     {
         private List<EvalType> _types;
 
-        public List<EvalType> getTypeList()
+        public List<EvalType> GetTypeList()
         {
-            _types = _dal.getTypeList();
+            _types = _dal.GetTypeList();
             return _types;
         }
 
-        private bool tryLoadTypeList()
+        private bool TryLoadTypeList()
         {
             if (_types == null)
             {
                 try
                 {
-                    getTypeList();
+                    GetTypeList();
                 }
                 catch (Exception)
                 {
@@ -36,18 +36,18 @@ namespace Evaluation.Controller
             return true;
         }
 
-        public bool typeExists(string name)
+        public bool TypeExists(string name)
         {
-            if (!tryLoadTypeList())
+            if (!TryLoadTypeList())
             {
                 return false;
             }
             return _types.Exists(t => t.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
-        public string getTypeName(int typeId)
+        public string GetTypeName(int typeId)
         {
-            if (!tryLoadTypeList())
+            if (!TryLoadTypeList())
             {
                 return "";
             }
@@ -60,7 +60,7 @@ namespace Evaluation.Controller
             return result.Name;
         }
 
-        public int addType(string name)
+        public int AddType(string name)
         {
             // TODO: add type, return identity column
             //  - name should be non-null, non-empty string

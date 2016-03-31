@@ -17,7 +17,7 @@ namespace Evaluation.DAL
         /// Get employee matching given email address and password
         /// </summary>
         /// <returns>Employee if valid email/password combination. Otherwise null</returns>
-        public Employee getLogin(String emailAddress, String password)
+        public Employee GetLogin(String emailAddress, String password)
         {
             if (emailAddress == null || password == null)
             {

@@ -29,7 +29,7 @@ namespace CS6232_G1.View
             _selectedCohort = null;
         }
 
-        public Cohort selectedCohort { get { return _selectedCohort; } }
+        public Cohort SelectedCohort { get { return _selectedCohort; } }
 
         private void SelectButton_Click(object sender, EventArgs e)
         {
@@ -52,8 +52,8 @@ namespace CS6232_G1.View
         {
             try
             {
-                List<Cohort> cohortList = _controller.getCohorts();
-                closeFormIfNoCohorts(cohortList);
+                List<Cohort> cohortList = _controller.GetCohorts();
+                CloseFormIfNoCohorts(cohortList);
                 CohortComboBox.DataSource = cohortList;
                 CohortComboBox.DisplayMember = "cohortName";
                 CohortComboBox.ValueMember = "cohortId";
@@ -73,7 +73,7 @@ namespace CS6232_G1.View
             SelectButton.Enabled = (_selectedCohort != null);
         }
 
-        private void closeFormIfNoCohorts(List<Cohort> cohorts) {
+        private void CloseFormIfNoCohorts(List<Cohort> cohorts) {
             if (cohorts.Count < 1)
             {
                 MessageBox.Show("There are no cohorts. Please add a cohort first");
@@ -86,9 +86,9 @@ namespace CS6232_G1.View
         {
             SelectCohortForm form = new SelectCohortForm(controller);
             DialogResult result = form.ShowDialog(Program.mainForm);
-            if (result == DialogResult.OK && form.selectedCohort != null)
+            if (result == DialogResult.OK && form.SelectedCohort != null)
             {
-                return form.selectedCohort.CohortId;
+                return form.SelectedCohort.CohortId;
             }
             return -1;
         }
