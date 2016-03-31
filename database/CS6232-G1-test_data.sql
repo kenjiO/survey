@@ -75,8 +75,8 @@ SET IDENTITY_INSERT [dbo].[cohort] OFF
 SET IDENTITY_INSERT [dbo].[employee] ON 
 
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (1, N'Dawn', N'EMP-1', N'2383 Sit Road', N'Holywell', N'NY', N'E0Z 9B3', N'533-544-4004', N'emp1@westga.edu', N'emp1', 0, 1, NULL)
-INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (2, N'Alexander', N'EMP-2', N'Ap #753-7773 Ut, Av.', N'Norfolk', N'PA', N'5424SL', N'758-270-8261', N'emp2@westga.edu', N'emp2', 0, 1, 1)
-INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (3, N'Guinevere', N'EMP-3', N'Ap #291-9381 Integer Avenue', N'Bonnyville', N'NJ', N'5054', N'772-538-7386', N'emp3@westga.edu', N'emp3', 0, 1, 2)
+INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (2, N'Alexander', N'EMP-2', N'Ap #753-7773 Ut, Av.', N'Norfolk', N'PA', N'5424SL', N'758-270-8261', N'emp2@westga.edu', N'emp2', 0, 1, NULL)
+INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (3, N'Guinevere', N'EMP-3', N'Ap #291-9381 Integer Avenue', N'Bonnyville', N'NJ', N'5054', N'772-538-7386', N'emp3@westga.edu', N'emp3', 0, 1, NULL)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (4, N'Jenna', N'EMP-4', N'810 Pede St.', N'Florida', N'PA', N'616578', N'501-481-4796', N'emp4@westga.edu', N'emp4', 0, 1, NULL)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (5, N'Debra', N'EMP-5', N'528-499 Tincidunt Av.', N'Onze-Lieve-Vrouw-Lombeek', N'PA', N'135248', N'624-955-4061', N'emp5@westga.edu', N'emp5', 0, 1, NULL)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (6, N'Yolanda', N'EMP-6', N'9614 Augue. St.', N'Beaumont', N'PA', N'878181', N'932-453-4363', N'emp6@westga.edu', N'emp6', 0, 1, NULL)
@@ -85,8 +85,8 @@ INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress],
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (9, N'Richard', N'EMP-9', N'7208 Auctor Street', N'Zeveneken', N'NY', N'880517', N'461-251-9027', N'emp9@westga.edu', N'emp9', 0, 1, NULL)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (10, N'Lucius', N'EMP-10', N'P.O. Box 703, 1609 Mus. Rd.', N'Valleyview', N'NY', N'66615', N'945-305-0638', N'emp10@westga.edu', N'emp10', 0, 1, NULL)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (11, N'Xyla', N'EMP-11', N'P.O. Box 627, 6888 Rutrum St.', N'Hampstead', N'NJ', N'V7W 6P0', N'846-313-4707', N'emp11@westga.edu', N'emp11', 0, 2, NULL)
-INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (12, N'Olga', N'EMP-12', N'P.O. Box 864, 1647 Sollicitudin Rd.', N'Coalhurst', N'PA', N'6045', N'545-712-5011', N'emp12@westga.edu', N'emp12', 0, 2, 11)
-INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (13, N'Denton', N'EMP-13', N'609-5789 Orci St.', N'Saint-Denis-Bovesse', N'PA', N'31066', N'115-885-4805', N'emp13@westga.edu', N'emp13', 0, 2, 12)
+INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (12, N'Olga', N'EMP-12', N'P.O. Box 864, 1647 Sollicitudin Rd.', N'Coalhurst', N'PA', N'6045', N'545-712-5011', N'emp12@westga.edu', N'emp12', 0, 2, NULL)
+INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (13, N'Denton', N'EMP-13', N'609-5789 Orci St.', N'Saint-Denis-Bovesse', N'PA', N'31066', N'115-885-4805', N'emp13@westga.edu', N'emp13', 0, 2, NULL)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (14, N'Elvis', N'EMP-14', N'4813 Quam, Ave', N'San Clemente', N'NJ', N'93695', N'551-152-2687', N'emp14@westga.edu', N'emp14', 0, 2, NULL)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (15, N'Dean', N'EMP-15', N'P.O. Box 611, 1339 Blandit St.', N'Bergen Mons', N'NJ', N'9511', N'322-249-5713', N'emp15@westga.edu', N'emp15', 0, 2, NULL)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (16, N'Caesar', N'EMP-16', N'283-3286 Sed, Avenue', N'Frankfort', N'VA', N'9498', N'462-182-6052', N'emp16@westga.edu', N'emp16', 0, 2, NULL)
@@ -116,6 +116,12 @@ INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress],
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (40, N'Desirae', N'EMP-40', N'5180 Facilisis Rd.', N'Sherborne', N'NY', N'20229', N'775-613-5678', N'emp40@westga.edu', N'emp40', 0, NULL, NULL)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (41, N'Doris', N'ADMIN-1', N'Ap #325-3791 Ultrices, Road', N'Castiglione del Lago', N'PA', N'Y1S 5V1', N'203-953-1171', N'admin1@westga.edu', N'admin1', 1, NULL, NULL)
 INSERT [dbo].[employee] ([employeeId], [firstName], [lastName], [streetAddress], [city], [state], [zipcode], [contactPhone], [emailAddress], [password], [isAdmin], [cohortId], [supervisorId]) VALUES (42, N'Phoebe', N'ADMIN-2', N'Ap #324-3230 Sit Street', N'Farrukhabad-cum-Fatehgarh', N'NY', N'39383', N'983-285-6186', N'admin2@westga.edu', N'admin2', 1, NULL, NULL)
+UPDATE [dbo].[employee] SET [supervisorId] = 2 WHERE [employeeId] = 1
+UPDATE [dbo].[employee] SET [supervisorId] = 3 WHERE [employeeId] = 2
+UPDATE [dbo].[employee] SET [supervisorId] = 4 WHERE [employeeId] = 3
+UPDATE [dbo].[employee] SET [supervisorId] = 12 WHERE [employeeId] = 11
+UPDATE [dbo].[employee] SET [supervisorId] = 13 WHERE [employeeId] = 12
+UPDATE [dbo].[employee] SET [supervisorId] = 14 WHERE [employeeId] = 13
 SET IDENTITY_INSERT [dbo].[employee] OFF
 SET IDENTITY_INSERT [dbo].[stage] ON 
 
@@ -126,9 +132,10 @@ SET IDENTITY_INSERT [dbo].[stage] OFF
 SET IDENTITY_INSERT [dbo].[evaluation_schedule] ON 
 
 INSERT [dbo].[evaluation_schedule] ([scheduleId], [cohortId], [typeId], [stageId], [startDate], [endDate]) VALUES (1, 1, 1, 1, CAST(N'2014-01-01' AS Date), CAST(N'2014-12-31' AS Date))
-INSERT [dbo].[evaluation_schedule] ([scheduleId], [cohortId], [typeId], [stageId], [startDate], [endDate]) VALUES (2, 1, 1, 2, CAST(N'2014-01-01' AS Date), CAST(N'2014-12-31' AS Date))
-INSERT [dbo].[evaluation_schedule] ([scheduleId], [cohortId], [typeId], [stageId], [startDate], [endDate]) VALUES (3, 1, 1, 3, CAST(N'2014-01-01' AS Date), CAST(N'2014-12-31' AS Date))
-INSERT [dbo].[evaluation_schedule] ([scheduleId], [cohortId], [typeId], [stageId], [startDate], [endDate]) VALUES (4, 1, 2, 3, CAST(N'2014-01-01' AS Date), CAST(N'2014-12-31' AS Date))
+INSERT [dbo].[evaluation_schedule] ([scheduleId], [cohortId], [typeId], [stageId], [startDate], [endDate]) VALUES (2, 1, 1, 2, CAST(N'2015-01-01' AS Date), CAST(N'2015-12-31' AS Date))
+INSERT [dbo].[evaluation_schedule] ([scheduleId], [cohortId], [typeId], [stageId], [startDate], [endDate]) VALUES (3, 1, 1, 3, CAST(N'2016-01-01' AS Date), CAST(N'2016-12-31' AS Date))
+INSERT [dbo].[evaluation_schedule] ([scheduleId], [cohortId], [typeId], [stageId], [startDate], [endDate]) VALUES (4, 2, 2, 1, CAST(N'2016-02-01' AS Date), CAST(N'2016-11-30' AS Date))
+INSERT [dbo].[evaluation_schedule] ([scheduleId], [cohortId], [typeId], [stageId], [startDate], [endDate]) VALUES (5, 1, 2, 1, CAST(N'2016-03-01' AS Date), CAST(N'2016-10-31' AS Date))
 SET IDENTITY_INSERT [dbo].[evaluation_schedule] OFF
 SET IDENTITY_INSERT [dbo].[role] ON 
 
