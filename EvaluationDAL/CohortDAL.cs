@@ -93,47 +93,28 @@ namespace Evaluation.DAL
             {
                 throw new ArgumentException("Name cannot be blank");
             }
-
-            SqlConnection connection = EvaluationDB.GetConnection();
-
-            string selectStatement =
-                "SELECT CohortName " +
-                "FROM cohort " +
-                "WHERE CohortName = @CohortName" ;
             string insertStatement =
-                "INSERT INTO cohort " +
-                "(CohortName) " +
+                "IF NOT EXISTS (Select 1 From cohort WHERE cohortName = @CohortName)" +
+                "INSERT INTO cohort (CohortName) " +
                 "VALUES (@CohortName)";
-
-            SqlCommand command = new SqlCommand(selectStatement, connection);
-            command.Parameters.AddWithValue("@CohortName", name);
-            try
+            using (SqlConnection connection = EvaluationDB.GetConnection())
             {
                 connection.Open();
-
-                // Check if cohort with that name exists
-                SqlDataReader reader =  command.ExecuteReader();
-                if (reader.HasRows)
+                using (SqlCommand command = new SqlCommand(insertStatement, connection))
                 {
-                    throw new ArgumentException("A cohort with that name exists");
-                }
-                reader.Close();
-
-                command.CommandText = insertStatement;
-                command.ExecuteNonQuery();
-
-                //Get the cohortID of the newly created cohort
-                command.CommandText =  "SELECT IDENT_CURRENT('Cohort') FROM Cohort";
-                int cohortId = Convert.ToInt32(command.ExecuteScalar());
+                    command.Parameters.AddWithValue("@CohortName", name);
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected < 1)
+                    {
+                        throw new ArgumentException("A cohort with that name exists");
+                    }
+                    //Get the cohortID of the newly created cohort
+                    command.CommandText =  "SELECT IDENT_CURRENT('Cohort') FROM Cohort";
+                    int cohortId = Convert.ToInt32(command.ExecuteScalar());
                 
-                return new Cohort(cohortId, name);
+                    return new Cohort(cohortId, name);
+                }
             }
-            finally
-            {
-                if (connection != null)
-                    connection.Close();
-            }
-
         }
 
         /// <summary>
