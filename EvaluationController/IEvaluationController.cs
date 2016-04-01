@@ -269,7 +269,7 @@ namespace Evaluation.Controller
         /// <param name="typeId">Selected schedule's type id</param>
         /// <param name="stageId">Selected schedule's stage id</param>
         /// <returns>Maximum date range for this schedule</returns>
-        DateRange GetScheduleDateRange(int scheduleId, int cohortId, int typeId, int stageId);
+        DateRange GetScheduleDateRange(int cohortId, int typeId, int stageId);
 
         /// <summary>
         /// Update the dates for a cohort schedule

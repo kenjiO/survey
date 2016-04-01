@@ -24,12 +24,26 @@ namespace Evaluation.Controller
             return _dal.AddEvaluationSchedule(cohortId, typeId, stageId, startDate, endDate);
         }
 
-        public DateRange GetScheduleDateRange(int scheduleId, int cohortId, int typeId, int stageId)
+        public DateRange GetScheduleDateRange(int cohortId, int typeId, int stageId)
         {
             DateRange result = new DateRange(DateTime.Parse("1/1/2000"), DateTime.Parse("12/31/2100"));
             List<EvaluationSchedule> list = _dal.GetEvaluationScheduleList(cohortId, typeId, null);
-            // TODO: Get list of schedules for given cohort and type
-            // scan list for previous end and next start
+            foreach (EvaluationSchedule sched in list)
+            {
+                if (sched.StageId == stageId)
+                {
+                    continue;
+                }
+                // if less than selected schedule, update start of range to end of this schedule + 1 day
+                if (sched.StageId == stageId)
+                {
+                    result.StartDate = sched.EndDate.AddDays(1);
+                    continue;
+                }
+                // if higher than selected schedule, set range end to start date - 1 day and exit
+                result.EndDate = sched.StartDate.AddDays(-1);
+                break;
+            }
             return result;
         }
 

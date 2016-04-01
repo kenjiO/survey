@@ -290,7 +290,7 @@ namespace Test
             throw new ArgumentException("Invalid configuration (test)");
         }
 
-        public DateRange GetScheduleDateRange(int scheduleId, int cohortId, int typeId, int stageId)
+        public DateRange GetScheduleDateRange(int cohortId, int typeId, int stageId)
         {
             return new DateRange(DateTime.Parse("1/1/2000"), DateTime.Parse("12/31/2100"));
         }

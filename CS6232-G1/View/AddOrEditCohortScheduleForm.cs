@@ -113,7 +113,7 @@ namespace CS6232_G1.View
                 _types = _controller.GetTypeList();
                 if (Editing)
                 {
-                    _range = _controller.GetScheduleDateRange(_schedule.ScheduleId, _schedule.CohortId, _schedule.TypeId, _schedule.StageId);
+                    _range = _controller.GetScheduleDateRange(_schedule.CohortId, _schedule.TypeId, _schedule.StageId);
                 }
             }
             catch (SqlException ex)
