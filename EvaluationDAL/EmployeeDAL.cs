@@ -92,6 +92,35 @@ namespace Evaluation.DAL
         }
 
         /// <summary>
+        /// Check if the given employee has selected a supervisor
+        /// </summary>
+        /// <param name="employeeId">the employee id</param>
+        /// <returns>True if a supervisor has been selected, else false</returns>
+        public bool IsSupervisorSelected(int employeeId)
+        {
+            string selectStatement = "SELECT supervisorId " +
+                                     "FROM employee " +
+                                     "WHERE employeeId = @employeeId ";
+
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@employeeId", employeeId);
+
+                    Object result = selectCommand.ExecuteScalar();
+                    if (result == DBNull.Value)
+                    {
+                        return false;
+                    } 
+                    return true;
+                }
+            }
+        }
+
+        /// <summary>
         /// Set a supervisor for an employee
         /// Precondition: employeeId != supervisorId
         /// </summary>

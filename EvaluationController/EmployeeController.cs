@@ -44,6 +44,16 @@ namespace Evaluation.Controller
         }
 
         /// <summary>
+        /// Check if the given employee has selected a supervisor
+        /// </summary>
+        /// <param name="employeeId">the employee id</param>
+        /// <returns>True if a supervisor has been selected, else false</returns>
+        public bool IsSupervisorSelected(int employeeId)
+        {
+            return _dal.IsSupervisorSelected(employeeId);
+        }
+
+        /// <summary>
         /// Set a supervisor for the logged in employee
         /// Precondition: isSupervisorSelectedForCurrentUser() is false
         /// Precondition: supervisor is not the same as currentUser
@@ -54,7 +64,7 @@ namespace Evaluation.Controller
             if (supervisorId == _currentUser.EmployeeId) {
                 throw new ArgumentException("supervisorId cannot be the same as the current user");
             }
-            if (this.IsSupervisorSelectedForCurrentUser())
+            if (this.IsSupervisorSelected(_currentUser.EmployeeId))
             {
                 throw new InvalidOperationException("Supervisor is already set");
             }

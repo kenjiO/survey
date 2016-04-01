@@ -16,14 +16,14 @@ namespace CS6232_G1.View
     public partial class SelectSupervisorForm : Form
     {
         IEvaluationController _controller;
-        private int _scheduleId;
         private EmployeeName _selectedSupervisor;
 
-        public SelectSupervisorForm(IEvaluationController controller, int scheduleId)
+        public EmployeeName SelectedSupervisor { get { return _selectedSupervisor; } }
+
+        public SelectSupervisorForm(IEvaluationController controller)
         {
             InitializeComponent();
             _controller = controller;
-            _scheduleId = scheduleId;
             _selectedSupervisor = null;
         }
 
@@ -32,13 +32,6 @@ namespace CS6232_G1.View
             if (_controller == null)
             {
                 MessageBox.Show("Invalid controller to Select Supervisor Form.");
-                this.DialogResult = DialogResult.Cancel;
-                Close();
-                return;
-            }
-            if (_scheduleId < 1)
-            {
-                MessageBox.Show("Invalid schedule selected.");
                 this.DialogResult = DialogResult.Cancel;
                 Close();
                 return;
@@ -64,7 +57,7 @@ namespace CS6232_G1.View
             }
             if (EmployeeListExceptSelf == null || EmployeeListExceptSelf.Count < 1)
             {
-                MessageBox.Show("There are no employees in the DB. Please add employees before supervisor can be selected.");
+                MessageBox.Show("There are no other employees in the DB. Please add employees before supervisor can be selected.");
                 this.DialogResult = DialogResult.Cancel;
                 Close();
             }
@@ -88,12 +81,25 @@ namespace CS6232_G1.View
                 MessageBox.Show("Please select a supervisor first");
                 return;
             }
+            this.DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void cboSupervisors_SelectedIndexChanged(object sender, EventArgs e)
         {
             _selectedSupervisor = (EmployeeName)cboSupervisors.SelectedItem;
             btnSelectSupervisor.Enabled = (_selectedSupervisor != null);
+        }
+
+        public static int Run(IEvaluationController controller)
+        {
+            SelectSupervisorForm form = new SelectSupervisorForm(controller);
+            DialogResult result = form.ShowDialog(Program.mainForm);
+            if (result == DialogResult.OK && form.SelectedSupervisor != null)
+            {
+                return form.SelectedSupervisor.EmployeeId;
+            }
+            return -1;
         }
     }
 }

@@ -128,6 +128,13 @@ namespace Evaluation.DAL
         List<EmployeeName> GetListOfNonAdminEmployees();
 
         /// <summary>
+        /// Check if the given employee has selected a supervisor
+        /// </summary>
+        /// <param name="employeeId">the employee id</param>
+        /// <returns>True if a supervisor has been selected, else false</returns>
+        bool IsSupervisorSelected(int employeeId);
+
+        /// <summary>
         /// Set a supervisor for an employee
         /// Precondition: employeeId != supervisorId
         /// </summary>

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using CS6232_G1.View;
 
 namespace CS6232_G1.View
 {
@@ -91,11 +92,22 @@ namespace CS6232_G1.View
                 e.RowIndex >= 0)
             {
                 int scheduleId = (int)senderGrid.Rows[e.RowIndex].Cells["ScheduleId"].Value;
-                if (!_controller.IsSupervisorSelectedForCurrentUser())
+                if (!_controller.IsSupervisorSelected(_currentUser.EmployeeId))
                 {
-                    //show supervisor select form
-                    SelectSupervisorForm frmSupervisor = new SelectSupervisorForm(_controller, scheduleId);
-                    frmSupervisor.Show();
+                    int supervisorId = SelectSupervisorForm.Run(_controller);
+                    if (supervisorId <= 0)
+                    {
+                        return;
+                    }
+                    try
+                    {
+                        _controller.SetSupervisor(supervisorId);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Supervisor cannot be updated. \n\n" +
+                                        "Details: " + ex.Message, "Notice");
+                    }
                 }
             }
         }

@@ -139,6 +139,11 @@ namespace Test
             throw new NotSupportedException();
         }
 
+        public bool IsSupervisorSelected(int employeeId)
+        {
+            return false;
+        }
+
         #endregion
 
         #region Schedules
