@@ -154,7 +154,6 @@
     <EmbeddedResource Include="View\ViewEvaluationsForm.resx">
       <DependentUpon>ViewEvaluationsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Properties\DataSources\Evaluation.Model.Evaluations.datasource" />
     <None Include="Properties\DataSources\Evaluation.Model.EvaluationSchedule.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
