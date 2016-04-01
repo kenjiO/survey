@@ -82,6 +82,23 @@ namespace CS6232_G1.View
                 MessageBox.Show("There are no peer evaluations at this time.");
             } 
         }
+
+        private void dgvSelfEvaluations_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                int scheduleId = (int)senderGrid.Rows[e.RowIndex].Cells["ScheduleId"].Value;
+                if (!_controller.IsSupervisorSelectedForCurrentUser())
+                {
+                    //show supervisor select form
+                    SelectSupervisorForm frmSupervisor = new SelectSupervisorForm(_controller, scheduleId);
+                    frmSupervisor.Show();
+                }
+            }
+        }
                     
     }
 }
