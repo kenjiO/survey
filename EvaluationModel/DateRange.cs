@@ -8,13 +8,13 @@ namespace Evaluation.Model
 {
     public class DateRange
     {
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         public DateRange(DateTime start, DateTime end)
         {
-            startDate = start;
-            endDate = end;
+            StartDate = start;
+            EndDate = end;
         }
     }
 }

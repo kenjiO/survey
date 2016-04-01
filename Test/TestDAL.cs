@@ -52,7 +52,7 @@ namespace Test
             throw new NotSupportedException();
         }
 
-        public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId)
+        public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId, int? typeId, int? stageId)
         {
             throw new NotSupportedException();
         }
@@ -147,6 +147,10 @@ namespace Test
             return true;
         }
 
+        public void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate)
+        {
+            // TODO: Finish Update Schedule
+        }
         #endregion
 
         #region Evaluations

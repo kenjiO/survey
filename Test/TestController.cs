@@ -155,24 +155,6 @@ namespace Test
             return null;
         }
 
-        public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId)
-        {
-            List<EvaluationSchedule> results = new List<EvaluationSchedule>();
-            switch (cohortId)
-            {
-                case 1:
-                    results.Add(new EvaluationSchedule(1, 1, 1, 1, DateTime.Now, DateTime.Parse("2016-06-10")));
-                    results.Add(new EvaluationSchedule(2, 1, 2, 1, DateTime.Now, DateTime.Parse("2016-06-10")));
-                    break;
-                case 2:
-                    results.Add(new EvaluationSchedule(3, 2, 1, 1, DateTime.Now, DateTime.Parse("2016-06-10")));
-                    break;
-                default:
-                    throw new KeyNotFoundException("Invalid cohort id, " + cohortId);
-            }
-            return results;
-        }
-
         public List<Employee> GetMembersOfCohort(int cohortId)
         {
             List<Employee> results = new List<Employee>();
@@ -220,15 +202,6 @@ namespace Test
                 list.Add(new CohortScheduleData(2, "Type 2", DateTime.Parse("5/25/2016"), null)); // type 2 all 5 stages scheduled for this cohort
             }
             return list;
-        }
-
-        public int AddEvaluationSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
-        {
-            if (cohortId == 1)
-            {
-                return 5;
-            }
-            throw new ArgumentException("Invalid configuration (test)");
         }
 
         public bool DeleteCohort(int _cohortId)
@@ -287,6 +260,44 @@ namespace Test
             return "Employee Name";
         }
 
+        #endregion
+
+        #region Schedules
+        public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId)
+        {
+            List<EvaluationSchedule> results = new List<EvaluationSchedule>();
+            switch (cohortId)
+            {
+                case 1:
+                    results.Add(new EvaluationSchedule(1, 1, 1, 1, DateTime.Now, DateTime.Parse("2016-06-10")));
+                    results.Add(new EvaluationSchedule(2, 1, 2, 1, DateTime.Now, DateTime.Parse("2016-06-10")));
+                    break;
+                case 2:
+                    results.Add(new EvaluationSchedule(3, 2, 1, 1, DateTime.Now, DateTime.Parse("2016-06-10")));
+                    break;
+                default:
+                    throw new KeyNotFoundException("Invalid cohort id, " + cohortId);
+            }
+            return results;
+        }
+
+        public int AddEvaluationSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
+        {
+            if (cohortId == 1)
+            {
+                return 5;
+            }
+            throw new ArgumentException("Invalid configuration (test)");
+        }
+
+        public DateRange GetScheduleDateRange(int scheduleId, int cohortId, int typeId, int stageId)
+        {
+            return new DateRange(DateTime.Parse("1/1/2000"), DateTime.Parse("12/31/2100"));
+        }
+
+        public void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate)
+        {
+        }
         #endregion
 
         #region Login

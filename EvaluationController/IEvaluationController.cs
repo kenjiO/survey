@@ -255,12 +255,29 @@ namespace Evaluation.Controller
         /// <param name="cohortId">Cohort to add schedule for</param>
         /// <param name="typeId">Evaluation type</param>
         /// <param name="stageId">Evaluation Stage</param>
-        /// <param name="startDate">Start date</param>
-        /// <param name="endDate">End date</param>
+        /// <param name="StartDate">Start date</param>
+        /// <param name="EndDate">End date</param>
         /// <returns>scheduleId for schedule item added</returns>
         /// <exception cref="ArgumentException">Parameters given were invalid</exception>
         int AddEvaluationSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate);
 
+        /// <summary>
+        /// Get the allowed date range for an existing evaluation schedule
+        /// </summary>
+        /// <param name="scheduleId">Schedule to get date range for</param>
+        /// <param name="cohortId">Selected schedule's cohort id</param>
+        /// <param name="typeId">Selected schedule's type id</param>
+        /// <param name="stageId">Selected schedule's stage id</param>
+        /// <returns>Maximum date range for this schedule</returns>
+        DateRange GetScheduleDateRange(int scheduleId, int cohortId, int typeId, int stageId);
+
+        /// <summary>
+        /// Update the dates for a cohort schedule
+        /// </summary>
+        /// <param name="scheduleId">Schedule to update</param>
+        /// <param name="startDate">New start date</param>
+        /// <param name="endDate">New end date</param>
+        void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate);
 
         #endregion
 
@@ -304,6 +321,7 @@ namespace Evaluation.Controller
         List<OpenEvaluation> GetOpenPeerEvaluations(int employeeId);
 
         #endregion
-               
+
+
     }
 }

@@ -18,13 +18,16 @@ namespace CS6232_G1.View
     {
         private IEvaluationController _controller;
         private int _cohortId;
-        private bool _editExisting;
+        private bool _editing;
         private String _cohortName;
         private List<Stage> _stages;
         private List<EvalType> _types;
         private List<CohortScheduleData> _scheduleDataList;
         private EvaluationSchedule _schedule;
         private IRefreshable _parent;
+        private DateRange _range;
+
+        private bool Editing { get { return _editing; } }
 
         /// <summary>
         /// Create form for Add Cohort Schedule dialog
@@ -57,7 +60,7 @@ namespace CS6232_G1.View
             _cohortId = cohortId;
             _cohortName = null;
             _schedule = null;
-            _editExisting = false;
+            _editing = false;
         }
 
         private AddOrEditCohortScheduleForm(IEvaluationController controller, int cohortId, EvaluationSchedule originalSchedule, IRefreshable parent)
@@ -68,18 +71,27 @@ namespace CS6232_G1.View
             _cohortId = cohortId;
             _cohortName = null;
             _schedule = originalSchedule;
-            _editExisting = true;
+            _editing = true;
         }
 
         private void AddCohortScheduleForm_Load(object sender, EventArgs e)
         {
-            if (_editExisting)
+            if (Editing)
             {
                 lblAction.Text = "Edit";
+                btnAdd.Text = "Save";
+                if (_schedule == null)
+                {
+                    MessageBox.Show("Invalid schedule selected");
+                    this.DialogResult = DialogResult.Cancel;
+                    Close();
+                    return;
+                }
             }
             else
             {
                 lblAction.Text = "Add";
+                btnAdd.Text = "Add";
             }
             if (_controller == null)
             {
@@ -99,6 +111,10 @@ namespace CS6232_G1.View
             {
                 _stages = _controller.GetStageList();
                 _types = _controller.GetTypeList();
+                if (Editing)
+                {
+                    _range = _controller.GetScheduleDateRange(_schedule.ScheduleId, _schedule.CohortId, _schedule.TypeId, _schedule.StageId);
+                }
             }
             catch (SqlException ex)
             {
@@ -126,7 +142,7 @@ namespace CS6232_G1.View
             cboStage.SelectedIndex = -1;
             cboStage.Enabled = false;
 
-            if (_editExisting)
+            if (Editing)
             {
                 // initialize type list to list all types
                 cboType.DataSource = _types;
@@ -135,20 +151,14 @@ namespace CS6232_G1.View
                 cboType.SelectedIndex = -1;
                 cboType.Enabled = false;
 
-                if (_schedule == null)
-                {
-                    MessageBox.Show("Invalid schedule selected");
-                    this.DialogResult = DialogResult.Cancel;
-                    Close();
-                    return;
-                }
                 cboType.SelectedValue = _schedule.TypeId;
                 cboStage.SelectedValue = _schedule.StageId;
-                // TODO: Need min and max dates - prev stage end + 1 and next stage start - 1
-                //dateStart.MinDate = minStartDate;
-                //dateStart.Value = minStartDate;
-                //dateEnd.MinDate = minStartDate;
-                //dateEnd.Value = minStartDate;
+                dateStart.MinDate = _range.StartDate;
+                dateStart.MaxDate = _range.EndDate;
+                dateStart.Value = _schedule.StartDate;
+                dateEnd.MinDate = _range.StartDate;
+                dateEnd.MaxDate = _range.EndDate;
+                dateEnd.Value = _schedule.EndDate;
             }
             else
             {
@@ -184,7 +194,7 @@ namespace CS6232_G1.View
 
         private void cboType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_editExisting || cboType.SelectedIndex < 0)
+            if (_editing || cboType.SelectedIndex < 0)
             {
                 return;
             }
@@ -254,7 +264,14 @@ namespace CS6232_G1.View
 
             try
             {
-                _controller.AddEvaluationSchedule(_cohortId, typeId, stageId, startDate, endDate);
+                if (Editing)
+                {
+                    _controller.UpdateEvaluationSchedule(_schedule.ScheduleId, startDate, endDate);
+                }
+                else
+                {
+                    _controller.AddEvaluationSchedule(_cohortId, typeId, stageId, startDate, endDate);
+                }
                 this.DialogResult = DialogResult.OK;
                 if (_parent != null)
                 {

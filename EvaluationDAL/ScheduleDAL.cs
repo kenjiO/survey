@@ -45,12 +45,7 @@ namespace Evaluation.DAL
             }            
         }
 
-        /// <summary>
-        /// Get a list of evaluation schedules for a given cohort
-        /// </summary>
-        /// /// <param name="cohortId">the cohortId</param>
-        /// <returns>Evaluation Schedule list</returns>
-        public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId)
+        public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId, int? typeId, int? stageId)
         {
             List<EvaluationSchedule> results = new List<EvaluationSchedule>();
 
@@ -58,8 +53,17 @@ namespace Evaluation.DAL
                 "SELECT  scheduleid, typeid, stageId, " +
                 "startDate, endDate " +
                 "FROM evaluation_schedule " +
-                "WHERE cohortId = @cohortId";
+                "WHERE cohortId = @cohortId ";
 
+            if (typeId != null)
+            {
+                selectStatement += "  AND typeId = @typeId ";
+            }
+            if (stageId != null)
+            {
+                selectStatement += "  AND stageId = @stageId ";
+            }
+            selectStatement += ";";
             using (SqlConnection connection = EvaluationDB.GetConnection())
             {
                 connection.Open();
@@ -67,7 +71,15 @@ namespace Evaluation.DAL
                 using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
                 {
                     selectCommand.Parameters.AddWithValue("@cohortId", cohortId);
-
+                    if (typeId != null)
+                    {
+                        selectCommand.Parameters.AddWithValue("@typeId", typeId);
+                    }
+                    if (stageId != null)
+                    {
+                        selectCommand.Parameters.AddWithValue("@stageId", stageId);
+                    }
+ 
                     using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
                         int scheduleIDOrd = reader.GetOrdinal("scheduleId");
@@ -79,11 +91,11 @@ namespace Evaluation.DAL
                         while (reader.Read())
                         {
                             int scheduleId = reader.GetInt32(scheduleIDOrd);
-                            int typeId = reader.GetInt32(typeIDOrd);
-                            int stageId = reader.GetInt32(stageIDOrd);
+                            int _typeId = reader.GetInt32(typeIDOrd);
+                            int _stageId = reader.GetInt32(stageIDOrd);
                             DateTime startDate = reader.GetDateTime(startDateOrd);
                             DateTime endDate = reader.GetDateTime(endDateOrd);
-                            EvaluationSchedule schedule = new EvaluationSchedule(scheduleId, cohortId, typeId, stageId, startDate, endDate);
+                            EvaluationSchedule schedule = new EvaluationSchedule(scheduleId, cohortId, _typeId, _stageId, startDate, endDate);
                             results.Add(schedule);
                         }
                     }
@@ -121,5 +133,9 @@ namespace Evaluation.DAL
             }
         }
 
+        public void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate)
+        {
+            // TODO: Finish Update Schedule
+        }
     }
 }

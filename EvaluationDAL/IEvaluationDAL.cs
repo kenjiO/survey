@@ -159,8 +159,10 @@ namespace Evaluation.DAL
         /// Get a list of evaluation schedules for a given cohort
         /// </summary>
         /// <param name="cohortId">cohort id of the specific cohort</param>
+        /// <param name="typeId">Optional type id to filter list by</param>
+        /// <param name="stageId">Optional stage id to filter list by</param>
         /// <returns>Evaluation schedule list</returns>
-        List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId);
+        List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId, int? typeId, int? stageId);
 
         /// <summary>
         /// Attempt to add a new cohort evaluation schedule
@@ -168,8 +170,8 @@ namespace Evaluation.DAL
         /// <param name="cohortId">Cohort to add schedule for</param>
         /// <param name="typeId">Evaluation type</param>
         /// <param name="stageId">Evaluation Stage</param>
-        /// <param name="startDate">Start date</param>
-        /// <param name="endDate">End date</param>
+        /// <param name="StartDate">Start date</param>
+        /// <param name="EndDate">End date</param>
         /// <returns>scheduleId for schedule item added</returns>
         /// <exception cref="ArgumentException">Parameters given were invalid</exception>
         int AddEvaluationSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate);
@@ -206,6 +208,8 @@ namespace Evaluation.DAL
         void CreateEvaluations(int empId, int typeId, int stageId, int coworkerId);
 
         #endregion
+
+        void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate);
     }
 
 }

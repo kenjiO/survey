@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Cohort.cs" />
     <Compile Include="CohortScheduleData.cs" />
+    <Compile Include="DateRange.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeName.cs" />
     <Compile Include="EvalType.cs" />
