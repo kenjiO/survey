@@ -158,11 +158,6 @@ namespace Test
         #endregion
 
         #region Evaluations
-        public bool IsSelfEvaluationStarted(int empId, int typeId, int stageId)
-        {
-            throw new NotSupportedException();
-        }
-
         public bool SetSupervisor(int employeeId, int supervisorId)
         {
             throw new NotSupportedException();
@@ -178,11 +173,15 @@ namespace Test
             return _controller.GetOpenPeerEvaluations(employeeId);
         }
 
-        public void CreateEvaluations(int empId, int typeId, int stageId, int coworkerId)
+        public int IsSelfEvaluationStarted(int employeeId, int scheduleId)
         {
-            return;
+            return 0;
         }
 
+        public int InitializeSelfEvaluation(int employeeId, int scheduleId, int coworkerId)
+        {
+            return 1;
+        }
         #endregion
 
     }

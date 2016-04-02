@@ -386,16 +386,6 @@ namespace Test
 
         #region Evaluation
 
-        public bool IsSelfEvaluationStarted(int empId, int typeId, int stageId)
-        {
-            return false;
-        }
-
-        public void InitializeSelfEvaluation(int typeId, int stageId, int coworkerId)
-        {
-            return;
-        }
-
         public List<OpenEvaluation> GetOpenSelfEvaluations(int employeeId)
         {
             List<OpenEvaluation> results = new List<OpenEvaluation>();
@@ -415,6 +405,16 @@ namespace Test
             results.Add(new OpenEvaluation(3, 1, "Groot, Iam (0)", 3, "Supervisor", "Type 1", "Stage 1", DateTime.Parse("3/5/2016"), DateTime.Parse("6/5/2016")));
 
             return results;
+        }
+
+        public int IsSelfEvaluationStarted(int scheduleId)
+        {
+            return 0;
+        }
+
+        public int InitializeSelfEvaluation(int scheduleId, int coworkerId)
+        {
+            return 1;
         }
 
         #endregion

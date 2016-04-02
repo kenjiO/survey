@@ -300,29 +300,6 @@ namespace Evaluation.Controller
         #region Evaluation
 
         /// <summary>
-        /// Check to see if the employee has started an evaluation for type and stage
-        /// </summary>
-        /// <param name="empId">The employee</param>
-        /// <param name="typeId">The typeID for the evaluation</param>
-        /// <param name="stageId">The stageId for the evaluation</param>
-        /// <returns>Whether or not a self-evaluation for this type and stage exists yet</returns>
-        bool IsSelfEvaluationStarted(int empId, int typeId, int stageId);
-
-        /// <summary>
-        /// Creates a self-evaluation, supervisor evaluation and co-worker evaluation 
-        /// for currentUser for stage and type
-        /// THROWS custom exception 'CreateEvaluationsException' for errors when preconditions not met
-        /// Precondition: SupervisorId is set for currentEmployee
-        /// Precondition: coworkerId is in the DB and not the supervisor or admin
-        /// Precondition: Evaluations for currentEmployee at given type and stage does not exist
-        /// Precondition: TypeId and StageId exist in the DB
-        /// </summary>
-        /// <param name="typeId">Evaluation type to create</param>
-        /// <param name="stageId">Evaluation stage to create</param>
-        /// <param name="coworkerId">Co-worker selected to evaluate this employee</param>
-        void InitializeSelfEvaluation(int typeId, int stageId, int coworkerId);
-
-        /// <summary>
         /// Returns list of all open self evaluations for given employee id
         /// </summary>
         /// <param name="employeeId">id of the given employee</param>
@@ -335,6 +312,27 @@ namespace Evaluation.Controller
         /// <param name="employeeId">id of the given employee</param>
         /// <returns>List of Open Evaluations that are not Self Evaluations</returns>
         List<OpenEvaluation> GetOpenPeerEvaluations(int employeeId);
+
+        /// <summary>
+        /// Check to see if the current employee has started an evaluation for a given schedule
+        /// </summary>
+        /// <param name="scheduleId">The scheduleID for the evaluation</param>
+        /// <returns>EvaluationId of self evaluation, or 0 if not started</returns>
+        int IsSelfEvaluationStarted(int scheduleId);
+
+        /// <summary>
+        /// Creates a self-evaluation, supervisor evaluation and co-worker evaluation 
+        /// for currentUser for a given schedule
+        /// THROWS custom exception 'CreateEvaluationsException' for errors when preconditions not met
+        /// Precondition: SupervisorId is set for currentEmployee
+        /// Precondition: coworkerId is in the DB and not the supervisor or admin
+        /// Precondition: Evaluations for currentEmployee for given schedule does not exist
+        /// Precondition: Schedule exist in the DB
+        /// </summary>
+        /// <param name="scheduleId">The scheduleID for the evaluation</param>
+        /// <param name="coworkerId">Co-worker selected to evaluate this employee</param>
+        /// <returns>Evaluation id of self evaluation created</returns>
+        int InitializeSelfEvaluation(int scheduleId, int coworkerId);
 
         #endregion
 

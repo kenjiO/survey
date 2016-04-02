@@ -109,6 +109,12 @@ namespace CS6232_G1.View
                                         "Details: " + ex.Message, "Notice");
                     }
                 }
+                // TODO: If evaluation not started (evaluationId = IsSelfEvaluationStarted(employeeId, scheduleId))
+                //      - ask for coworker - cannot be supervisor
+                //      - call function to create self, supervisor, and coworker evaluations (how does this scale if she adds a second 
+                //          coworker?)
+                //      - function returns self eval evaluationId
+                // TODO: Open self evaluation
             }
         }
                     
