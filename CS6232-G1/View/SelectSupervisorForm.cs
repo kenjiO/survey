@@ -15,7 +15,7 @@ namespace CS6232_G1.View
 {
     public partial class SelectSupervisorForm : Form
     {
-        IEvaluationController _controller;
+        private IEvaluationController _controller;
         private EmployeeName _selectedSupervisor;
 
         public EmployeeName SelectedSupervisor { get { return _selectedSupervisor; } }

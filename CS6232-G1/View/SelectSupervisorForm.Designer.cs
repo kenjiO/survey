@@ -89,7 +89,7 @@
             this.Controls.Add(this.btnSelectSupervisor);
             this.Controls.Add(this.label2);
             this.Name = "SelectSupervisorForm";
-            this.Text = "SelectSupervisorForm";
+            this.Text = "Select Supervisor";
             this.Load += new System.EventHandler(this.SelectSupervisorForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -29,14 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvSelfEvaluations = new System.Windows.Forms.DataGridView();
-            this.scheduleId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StageName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OpenButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.evaluationsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.lblSelfEvaluations = new System.Windows.Forms.Label();
@@ -50,6 +45,13 @@
             this.stageName1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.endDate1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OpenButton1 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.scheduleId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.evaluationId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CoworkerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StageName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OpenButton = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelfEvaluations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.evaluationsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeerEvaluations)).BeginInit();
@@ -65,6 +67,8 @@
             this.dgvSelfEvaluations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSelfEvaluations.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.scheduleId,
+            this.evaluationId,
+            this.CoworkerId,
             this.TypeName,
             this.StageName,
             this.EndDate,
@@ -78,45 +82,6 @@
             this.dgvSelfEvaluations.Size = new System.Drawing.Size(930, 277);
             this.dgvSelfEvaluations.TabIndex = 10;
             this.dgvSelfEvaluations.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSelfEvaluations_CellContentClick);
-            // 
-            // scheduleId
-            // 
-            this.scheduleId.DataPropertyName = "scheduleId";
-            this.scheduleId.HeaderText = "scheduleId";
-            this.scheduleId.Name = "scheduleId";
-            this.scheduleId.ReadOnly = true;
-            this.scheduleId.Visible = false;
-            // 
-            // TypeName
-            // 
-            this.TypeName.DataPropertyName = "typeName";
-            this.TypeName.HeaderText = "Type";
-            this.TypeName.Name = "TypeName";
-            this.TypeName.ReadOnly = true;
-            // 
-            // StageName
-            // 
-            this.StageName.DataPropertyName = "stageName";
-            this.StageName.HeaderText = "Stage";
-            this.StageName.Name = "StageName";
-            this.StageName.ReadOnly = true;
-            // 
-            // EndDate
-            // 
-            this.EndDate.DataPropertyName = "endDate";
-            dataGridViewCellStyle1.Format = "MM/dd/yyyy";
-            this.EndDate.DefaultCellStyle = dataGridViewCellStyle1;
-            this.EndDate.HeaderText = "Close Date";
-            this.EndDate.Name = "EndDate";
-            this.EndDate.ReadOnly = true;
-            // 
-            // OpenButton
-            // 
-            this.OpenButton.HeaderText = "";
-            this.OpenButton.Name = "OpenButton";
-            this.OpenButton.ReadOnly = true;
-            this.OpenButton.Text = "Open";
-            this.OpenButton.UseColumnTextForButtonValue = true;
             // 
             // evaluationsBindingSource
             // 
@@ -238,6 +203,60 @@
             this.OpenButton1.Text = "Open";
             this.OpenButton1.UseColumnTextForButtonValue = true;
             // 
+            // scheduleId
+            // 
+            this.scheduleId.DataPropertyName = "scheduleId";
+            this.scheduleId.HeaderText = "scheduleId";
+            this.scheduleId.Name = "scheduleId";
+            this.scheduleId.ReadOnly = true;
+            this.scheduleId.Visible = false;
+            // 
+            // evaluationId
+            // 
+            this.evaluationId.DataPropertyName = "evaluationId";
+            this.evaluationId.HeaderText = "evaluation Id";
+            this.evaluationId.Name = "evaluationId";
+            this.evaluationId.ReadOnly = true;
+            this.evaluationId.Visible = false;
+            // 
+            // CoworkerId
+            // 
+            this.CoworkerId.HeaderText = "coworker id";
+            this.CoworkerId.Name = "CoworkerId";
+            this.CoworkerId.ReadOnly = true;
+            this.CoworkerId.Visible = false;
+            // 
+            // TypeName
+            // 
+            this.TypeName.DataPropertyName = "typeName";
+            this.TypeName.HeaderText = "Type";
+            this.TypeName.Name = "TypeName";
+            this.TypeName.ReadOnly = true;
+            // 
+            // StageName
+            // 
+            this.StageName.DataPropertyName = "stageName";
+            this.StageName.HeaderText = "Stage";
+            this.StageName.Name = "StageName";
+            this.StageName.ReadOnly = true;
+            // 
+            // EndDate
+            // 
+            this.EndDate.DataPropertyName = "endDate";
+            dataGridViewCellStyle1.Format = "MM/dd/yyyy";
+            this.EndDate.DefaultCellStyle = dataGridViewCellStyle1;
+            this.EndDate.HeaderText = "Close Date";
+            this.EndDate.Name = "EndDate";
+            this.EndDate.ReadOnly = true;
+            // 
+            // OpenButton
+            // 
+            this.OpenButton.HeaderText = "";
+            this.OpenButton.Name = "OpenButton";
+            this.OpenButton.ReadOnly = true;
+            this.OpenButton.Text = "Open";
+            this.OpenButton.UseColumnTextForButtonValue = true;
+            // 
             // ViewEvaluationsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -251,9 +270,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvSelfEvaluations);
             this.Name = "ViewEvaluationsForm";
-            this.Text = "ViewEvaluationDetailsForm";
+            this.Text = "View Evaluations";
             this.Load += new System.EventHandler(this.ViewEvaluationDetailsForm_Load);
-            this.Shown += new System.EventHandler(this.ViewEvaluationsForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelfEvaluations)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.evaluationsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeerEvaluations)).EndInit();
@@ -279,6 +297,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn endDate1;
         private System.Windows.Forms.DataGridViewButtonColumn OpenButton1;
         private System.Windows.Forms.DataGridViewTextBoxColumn scheduleId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn evaluationId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CoworkerId;
         private System.Windows.Forms.DataGridViewTextBoxColumn TypeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn StageName;
         private System.Windows.Forms.DataGridViewTextBoxColumn EndDate;

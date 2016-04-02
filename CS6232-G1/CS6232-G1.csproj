@@ -88,6 +88,12 @@
     <Compile Include="View\SelectCohortForm.Designer.cs">
       <DependentUpon>SelectCohortForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\SelectCoworkerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SelectCoworkerForm.Designer.cs">
+      <DependentUpon>SelectCoworkerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\SelectSupervisorForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\SelectCohortForm.resx">
       <DependentUpon>SelectCohortForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SelectCoworkerForm.resx">
+      <DependentUpon>SelectCoworkerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\SelectSupervisorForm.resx">
       <DependentUpon>SelectSupervisorForm.cs</DependentUpon>
