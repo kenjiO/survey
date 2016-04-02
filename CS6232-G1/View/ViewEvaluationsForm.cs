@@ -77,6 +77,7 @@ namespace CS6232_G1.View
             {
                 int scheduleId = (int)senderGrid.Rows[e.RowIndex].Cells["ScheduleId"].Value; 
                 int evaluationId = _controller.IsSelfEvaluationStarted(scheduleId);
+                
                 // if self evaluation not started
                 if (evaluationId == 0)
                 {
@@ -85,13 +86,14 @@ namespace CS6232_G1.View
 
                     if (_currentUser.SupervisorId != null && coworkerId > 0) 
                     {
-                        evaluationId = _controller.InitializeSelfEvaluation(scheduleId, coworkerId);
-                        MessageBox.Show("Self evaluationId: " + evaluationId);                                               
+                        evaluationId = _controller.InitializeSelfEvaluation(scheduleId, coworkerId);                                                                       
                     }
                 } // end if self evaluation not started
-
-                // TODO: Open self evaluation
-                MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);                
+                
+                if (evaluationId > 0) { 
+                    // TODO: Open self evaluation
+                    MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
+                }
             }
         }
 
@@ -131,6 +133,21 @@ namespace CS6232_G1.View
                     }
                 }         
             }             
+        }
+
+        private void dgvPeerEvaluations_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                int evaluationId = (int)senderGrid.Rows[e.RowIndex].Cells["evaluationId1"].Value;
+                
+                // TODO: Open self evaluation
+                MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
+                
+            }
         }
                     
     }

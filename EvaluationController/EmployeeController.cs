@@ -35,15 +35,6 @@ namespace Evaluation.Controller
         }
 
         /// <summary>
-        /// Check if the currentUser has selected a supervisor
-        /// </summary>
-        /// <returns>Whether or not a supervisor has been selected</returns>
-        public bool IsSupervisorSelectedForCurrentUser()
-        {
-            return (_currentUser.SupervisorId != null);
-        }
-
-        /// <summary>
         /// Check if the given employee has selected a supervisor
         /// </summary>
         /// <param name="employeeId">the employee id</param>

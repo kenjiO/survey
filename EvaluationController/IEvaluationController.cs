@@ -190,12 +190,6 @@ namespace Evaluation.Controller
         List<EmployeeName> GetListOfNonAdminEmployees(int[] exclude);
 
         /// <summary>
-        /// Check if the currentUser has selected a supervisor
-        /// </summary>
-        /// <returns>Whether or not a supervisor has been selected</returns>
-        bool IsSupervisorSelectedForCurrentUser();
-
-        /// <summary>
         /// Check if the given employee has selected a supervisor
         /// </summary>
         /// <param name="employeeId">the employee id</param>
