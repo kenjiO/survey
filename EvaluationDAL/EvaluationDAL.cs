@@ -132,7 +132,7 @@ namespace Evaluation.DAL
                     selectCommand.Parameters.AddWithValue("@employeeId", employeeId);
                     selectCommand.Parameters.AddWithValue("@scheduleId", scheduleId);
                     Object result = selectCommand.ExecuteScalar();
-                    if (result == DBNull.Value)
+                    if (result == null)
                     {
                         return 0;
                     }
@@ -289,6 +289,7 @@ namespace Evaluation.DAL
 
                             // Reset paramaters to run again for supervisor evaluation
                             command.Parameters.Clear();
+                            command.CommandText = insertStatement;
                             command.Parameters.AddWithValue("@employeeId", employeeId);
                             command.Parameters.AddWithValue("@typeId", typeId);
                             command.Parameters.AddWithValue("@stageId", stageId);

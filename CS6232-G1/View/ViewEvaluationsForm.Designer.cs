@@ -46,8 +46,6 @@
             this.endDate1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OpenButton1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.scheduleId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.evaluationId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CoworkerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StageName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,8 +65,6 @@
             this.dgvSelfEvaluations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSelfEvaluations.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.scheduleId,
-            this.evaluationId,
-            this.CoworkerId,
             this.TypeName,
             this.StageName,
             this.EndDate,
@@ -211,21 +207,6 @@
             this.scheduleId.ReadOnly = true;
             this.scheduleId.Visible = false;
             // 
-            // evaluationId
-            // 
-            this.evaluationId.DataPropertyName = "evaluationId";
-            this.evaluationId.HeaderText = "evaluation Id";
-            this.evaluationId.Name = "evaluationId";
-            this.evaluationId.ReadOnly = true;
-            this.evaluationId.Visible = false;
-            // 
-            // CoworkerId
-            // 
-            this.CoworkerId.HeaderText = "coworker id";
-            this.CoworkerId.Name = "CoworkerId";
-            this.CoworkerId.ReadOnly = true;
-            this.CoworkerId.Visible = false;
-            // 
             // TypeName
             // 
             this.TypeName.DataPropertyName = "typeName";
@@ -297,8 +278,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn endDate1;
         private System.Windows.Forms.DataGridViewButtonColumn OpenButton1;
         private System.Windows.Forms.DataGridViewTextBoxColumn scheduleId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn evaluationId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CoworkerId;
         private System.Windows.Forms.DataGridViewTextBoxColumn TypeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn StageName;
         private System.Windows.Forms.DataGridViewTextBoxColumn EndDate;

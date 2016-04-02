@@ -75,43 +75,34 @@ namespace CS6232_G1.View
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
+                int scheduleId = (int)senderGrid.Rows[e.RowIndex].Cells["ScheduleId"].Value; 
+                int evaluationId = _controller.IsSelfEvaluationStarted(scheduleId);
                 // if self evaluation not started
+                if (evaluationId == 0)
+                {
                     ShowSupervisorForm();
-                    // show coworker form only after supervisor is selected
-                    if (_currentUser.SupervisorId != null)
-                    {
-                        ShowCoworkerForm(e.RowIndex);
-                    }
-                    // get coworkerid from grid
+                    int coworkerId = ShowCoworkerForm();                    
 
-                    if (_currentUser.SupervisorId != null) // && coworkerid > 0
+                    if (_currentUser.SupervisorId != null && coworkerId > 0) 
                     {
-                        int scheduleId = (int)senderGrid.Rows[e.RowIndex].Cells["ScheduleId"].Value;                    
-
-                        //int evaluationId = _controller.InitializeSelfEvaluation(scheduleId, _coworkerId);
-                        // set the evaluationId in the grid column.
+                        evaluationId = _controller.InitializeSelfEvaluation(scheduleId, coworkerId);
+                        MessageBox.Show("Self evaluationId: " + evaluationId);                                               
                     }
-                // end if self evaluation not started
-                // else get the evaluationId from grid column
-                //open the evaluation record
+                } // end if self evaluation not started
+
+                // TODO: Open self evaluation
+                MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);                
             }
         }
 
-       private void ShowCoworkerForm(int rowIndex)
+       private int ShowCoworkerForm()
         {
-            if (_controller.IsSupervisorSelected(_currentUser.EmployeeId))
-            {
-                int coworkerId = SelectCoworkerForm.Run(_controller);
-                if (coworkerId <= 0)
-                {
-                    return;
-                }
+            int coworkerId = 0;
+            if (_currentUser.SupervisorId != null) { 
                 try
                 {
-                    // set coworker id in grid
-                    dgvSelfEvaluations.Rows[rowIndex].Cells["evaluationId"].Value = coworkerId;
-                    //_coworkerId = coworkerId;            
-                    
+                    coworkerId = SelectCoworkerForm.Run(_controller);
+                                       
                 }
                 catch (Exception ex)
                 {
@@ -119,6 +110,7 @@ namespace CS6232_G1.View
                                     "Details: " + ex.Message, "Notice");
                 }
             }
+            return coworkerId;
         }
 
         private void ShowSupervisorForm()
@@ -126,26 +118,19 @@ namespace CS6232_G1.View
             if (!_controller.IsSupervisorSelected(_currentUser.EmployeeId))
             {
                 int supervisorId = SelectSupervisorForm.Run(_controller);
-                if (supervisorId <= 0)
-                {
-                    return;
-                }
-                try
-                {
-                    _controller.SetSupervisor(supervisorId);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Supervisor cannot be updated. \n\n" +
-                                    "Details: " + ex.Message, "Notice");
-                }
-                // TODO: If evaluation not started (evaluationId = IsSelfEvaluationStarted(employeeId, scheduleId))
-                //      - ask for coworker - cannot be supervisor
-                //      - call function to create self, supervisor, and coworker evaluations (how does this scale if she adds a second 
-                //          coworker?)
-                //      - function returns self eval evaluationId
-                // TODO: Open self evaluation
-            }
+                if (supervisorId > 0)
+                {              
+                    try
+                    {
+                        _controller.SetSupervisor(supervisorId);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Supervisor cannot be updated. \n\n" +
+                                        "Details: " + ex.Message, "Notice");
+                    }
+                }         
+            }             
         }
                     
     }
