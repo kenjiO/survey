@@ -80,6 +80,7 @@ namespace CS6232_G1.View
             {
                 lblAction.Text = "Edit";
                 btnAdd.Text = "Save";
+                btnAdd.Enabled = true;
                 if (_schedule == null)
                 {
                     MessageBox.Show("Invalid schedule selected");
@@ -92,6 +93,7 @@ namespace CS6232_G1.View
             {
                 lblAction.Text = "Add";
                 btnAdd.Text = "Add";
+                btnAdd.Enabled = false;
             }
             if (_controller == null)
             {

@@ -30,14 +30,15 @@ namespace Evaluation.Controller
             List<EvaluationSchedule> list = _dal.GetEvaluationScheduleList(cohortId, typeId, null);
             foreach (EvaluationSchedule sched in list)
             {
-                if (sched.StageId == stageId)
-                {
-                    continue;
-                }
                 // if less than selected schedule, update start of range to end of this schedule + 1 day
-                if (sched.StageId == stageId)
+                if (sched.StageId < stageId)
                 {
                     result.StartDate = sched.EndDate.AddDays(1);
+                    continue;
+                }
+                // the selected schedule does not affect allowed range
+                if (sched.StageId == stageId)
+                {
                     continue;
                 }
                 // if higher than selected schedule, set range end to start date - 1 day and exit
