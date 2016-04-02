@@ -135,7 +135,26 @@ namespace Evaluation.DAL
 
         public void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate)
         {
-            // TODO: Finish Update Schedule
+            string updateStatement = "UPDATE evaluation_schedule " +
+                                     "   SET startDate = @startDate, " +
+                                     "       endDate = @endDate " +
+                                     "WHERE scheduleId = @scheduleId";
+
+            if (startDate > endDate)
+            {
+                throw new ArgumentException("End date must be on or after start date");
+            }
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(updateStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@scheduleId", scheduleId);
+                    command.Parameters.AddWithValue("@startDate", startDate);
+                    command.Parameters.AddWithValue("@endDate", endDate);
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
