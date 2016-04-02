@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using CS6232_G1.View;
 
 namespace CS6232_G1.View
 {
@@ -81,6 +82,34 @@ namespace CS6232_G1.View
             {
                 MessageBox.Show("There are no peer evaluations at this time.");
             } 
+        }
+
+        private void dgvSelfEvaluations_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                int scheduleId = (int)senderGrid.Rows[e.RowIndex].Cells["ScheduleId"].Value;
+                if (!_controller.IsSupervisorSelected(_currentUser.EmployeeId))
+                {
+                    int supervisorId = SelectSupervisorForm.Run(_controller);
+                    if (supervisorId <= 0)
+                    {
+                        return;
+                    }
+                    try
+                    {
+                        _controller.SetSupervisor(supervisorId);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Supervisor cannot be updated. \n\n" +
+                                        "Details: " + ex.Message, "Notice");
+                    }
+                }
+            }
         }
                     
     }

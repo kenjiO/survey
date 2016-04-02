@@ -237,6 +237,11 @@ namespace Test
             return results;
         }
 
+        public bool IsSupervisorSelected(int employeeId)
+        {
+            return false;
+        }
+
         public List<EmployeeName> GetListOfNonAdminEmployees(int[] exclude)
         {
             List<EmployeeName> names = new List<EmployeeName>();

@@ -88,6 +88,12 @@
     <Compile Include="View\SelectCohortForm.Designer.cs">
       <DependentUpon>SelectCohortForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\SelectSupervisorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SelectSupervisorForm.Designer.cs">
+      <DependentUpon>SelectSupervisorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\UserReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     <EmbeddedResource Include="View\SelectCohortForm.resx">
       <DependentUpon>SelectCohortForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\SelectSupervisorForm.resx">
+      <DependentUpon>SelectSupervisorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\UserReportForm.resx">
       <DependentUpon>UserReportForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -145,7 +154,6 @@
     <EmbeddedResource Include="View\ViewEvaluationsForm.resx">
       <DependentUpon>ViewEvaluationsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Properties\DataSources\Evaluation.Model.Evaluations.datasource" />
     <None Include="Properties\DataSources\Evaluation.Model.EvaluationSchedule.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

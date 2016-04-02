@@ -196,6 +196,13 @@ namespace Evaluation.Controller
         bool IsSupervisorSelectedForCurrentUser();
 
         /// <summary>
+        /// Check if the given employee has selected a supervisor
+        /// </summary>
+        /// <param name="employeeId">the employee id</param>
+        /// <returns>True if a supervisor has been selected, else false</returns>
+        bool IsSupervisorSelected(int employeeId);
+
+        /// <summary>
         /// Set a supervisor for the logged in employee
         /// Precondition: isSupervisorSelectedForCurrentUser() is false
         /// Precondition: supervisor is not the same as currentUser

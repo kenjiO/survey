@@ -289,14 +289,11 @@ namespace Evaluation.DAL
                         if (transaction != null)
                             transaction.Rollback();
 
-                        if (ex.Errors[0].Number == 547) // Assume the interesting stuff is in the first error
+                        //Error 547 is a foreign key violation. Since emp, supervisor and co-worker
+                        //have been checked they are not causing it. So it must be stage or type.
+                        if (ex.Errors[0].Number == 547)
                         {
-                            //Error 547 is a foreign key violation. Since emp, supervisor and co-worker
-                            //have been checked they are not causing it. So it must be stage or type.
-                            if (ex.Errors[0].Number == 547)
-                            {
-                                throw new CreateEvaluationException("Invalid type or stage");
-                            }
+                            throw new CreateEvaluationException("Invalid type or stage");
                         }
                         else
                         {
