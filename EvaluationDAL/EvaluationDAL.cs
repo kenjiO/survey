@@ -17,35 +17,6 @@ namespace Evaluation.DAL
         const int SUPERVISOR_ROLE_ID = 2;
         const int COWORKER_ROLE_ID = 3;
 
-        /// <summary>
-        /// Check if a self-evaluation for an employee, type and stage has been started
-        /// </summary>
-        /// <param name="employeeId">employeeId for the self-evaluation</param>
-        /// <param name="typeId">The evaluation typeId</param>
-        /// <param name="stageId">The evaluation stageId</param>
-        public bool IsSelfEvaluationStarted(int employeeId, int typeId, int stageId)
-        {
-            string selectStatement =
-                "SELECT evaluationId " +
-                "FROM evaluations " +
-                "WHERE typeId = @typeId " +
-                "  AND stageId = @stageId " +
-                "  AND employeeId = @employeeId " +
-                "  AND evaluator = @employeeId";
-
-            using (SqlConnection connection = EvaluationDB.GetConnection())
-            {
-                connection.Open();
-                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
-                {
-                    selectCommand.Parameters.AddWithValue("@employeeId", employeeId);
-                    selectCommand.Parameters.AddWithValue("@typeId", typeId);
-                    selectCommand.Parameters.AddWithValue("@stageId", stageId);
-                    return (selectCommand.ExecuteScalar() != null);
-                }
-            }
-        }
-
         public List<OpenEvaluation> GetOpenSelfEvaluations(int employeeId)
         {
             List<OpenEvaluation> results = new List<OpenEvaluation>();
@@ -138,26 +109,84 @@ namespace Evaluation.DAL
         }
 
         /// <summary>
-        /// Create the self, supervisor and co-worker evaluations in the database
-        /// Precondition: Supervisor is set for employee
-        /// Precondition: Co-worker is not the supervisor
-        /// Precondition: Co-worker is different then employee
-        /// Precondition: Evaluations for type and stage are not created yet for this employee
-        /// Precondition: Type and Stage are valid 
+        /// Check to see if the current employee has started an evaluation for a given schedule
         /// </summary>
-        /// <param name="empId">Employee who the evaluations are for</param>
-        /// <param name="typeId">Type Id of evaluation to create</param>
-        /// <param name="stageId">StageId of evaluation to create</param>
-        /// <param name="coworkerId">Co-worker's employeeId</param>
-        public void CreateEvaluations(int empId, int typeId, int stageId, int coworkerId)
+        /// <param name="employeeId">Employee to initialize evaluation for</param>
+        /// <param name="scheduleId">The scheduleID for the evaluation</param>
+        /// <returns>EvaluationId of self evaluation, or 0 if not started</returns>
+        public int IsSelfEvaluationStarted(int employeeId, int scheduleId)
         {
-            int supervisorId;
-            if (empId == coworkerId)
-                throw new ArgumentException("Co-worker must be different than employee");
+            string selectStatement =
+                "SELECT ev.evaluationId " +
+                "FROM evaluation_schedule es " +
+                " JOIN evaluations ev ON (ev.typeId = es.typeId AND ev.stageId = es.stageId) " +
+                "WHERE es.scheduleId = @scheduleId " +
+                "  AND ev.employeeId = @employeeId " +
+                "  AND ev.evaluator = @employeeId";
 
             using (SqlConnection connection = EvaluationDB.GetConnection())
             {
                 connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@employeeId", employeeId);
+                    selectCommand.Parameters.AddWithValue("@scheduleId", scheduleId);
+                    Object result = selectCommand.ExecuteScalar();
+                    if (result == DBNull.Value)
+                    {
+                        return 0;
+                    }
+                    return (int)result; 
+                }
+            }
+        }
+
+        /// <summary>
+        /// Creates a self-evaluation, supervisor evaluation and co-worker evaluation 
+        ///  for a given employee and schedule
+        /// THROWS custom exception 'CreateEvaluationsException' for errors when preconditions not met
+        /// Precondition: SupervisorId is set for currentEmployee
+        /// Precondition: coworkerId is in the DB and not the supervisor or admin
+        /// Precondition: Evaluations for currentEmployee for given schedule does not exist
+        /// Precondition: Schedule exist in the DB
+        /// </summary>
+        /// <param name="employeeId">Employee to initialize evaluation for</param>
+        /// <param name="scheduleId">The scheduleID for the evaluation</param>
+        /// <param name="coworkerId">Co-worker selected to evaluate this employee</param>
+        /// <returns>Evaluation id of self evaluation created</returns>
+        public int InitializeSelfEvaluation(int employeeId, int scheduleId, int coworkerId)
+        {
+            int supervisorId;
+            int typeId;
+            int stageId;
+            int evaluationId;
+
+            if (employeeId == coworkerId)
+            {
+                throw new ArgumentException("Co-worker must be different than employee");
+            }
+
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+                //
+                // Get typeId and stageId for these evaluations
+                //
+                String selectTypeAndStageCommand = "SELECT typeId, stageId FROM evaluation_schedule WHERE scheduleId = @scheduleId";
+                using (SqlCommand command = new SqlCommand(selectTypeAndStageCommand, connection))
+                {
+                    command.Parameters.AddWithValue("@scheduleId", scheduleId);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (!reader.Read())
+                        {
+                            throw new CreateEvaluationException("Evaluation schedule, " + scheduleId + ", not found");
+                        }
+                        typeId = (int)reader["typeId"];
+                        stageId = (int)reader["stageId"];
+                    }
+                }
+
 
                 // Check employee is in DB and has a supervisor
                 string selectStatement =
@@ -166,7 +195,7 @@ namespace Evaluation.DAL
                     "WHERE EmployeeId = @employeeId";
                 using (SqlCommand command = new SqlCommand(selectStatement, connection))
                 {
-                    command.Parameters.AddWithValue("@EmployeeId", empId);
+                    command.Parameters.AddWithValue("@EmployeeId", employeeId);
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
@@ -218,7 +247,7 @@ namespace Evaluation.DAL
                     "WHERE EmployeeId = @employeeId AND typeId = @typeId AND stageId = @stageId";
                 using (SqlCommand command = new SqlCommand(selectStatement, connection))
                 {
-                    command.Parameters.AddWithValue("@EmployeeId", empId);
+                    command.Parameters.AddWithValue("@EmployeeId", employeeId);
                     command.Parameters.AddWithValue("@typeId", typeId);
                     command.Parameters.AddWithValue("@stageId", stageId);
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -241,10 +270,10 @@ namespace Evaluation.DAL
                             "VALUES (@employeeId, @stageId, @typeId, @evaluator, @roleId)";
                         using (SqlCommand command = new SqlCommand(insertStatement, connection, transaction))
                         {
-                            command.Parameters.AddWithValue("@employeeId", empId);
+                            command.Parameters.AddWithValue("@employeeId", employeeId);
                             command.Parameters.AddWithValue("@typeId", typeId);
                             command.Parameters.AddWithValue("@stageId", stageId);
-                            command.Parameters.AddWithValue("@evaluator", empId);
+                            command.Parameters.AddWithValue("@evaluator", employeeId);
                             command.Parameters.AddWithValue("@roleId", SELF_EVALUATION_ROLE_ID);
                             int result1 = command.ExecuteNonQuery();
                             if (result1 < 1)
@@ -253,9 +282,14 @@ namespace Evaluation.DAL
                                 throw new CreateEvaluationException("Problem creating self evaluation. No evaluations created");
                             }
 
+                            // get ident and set evaluationid
+                            command.Parameters.Clear();
+                            command.CommandText = "SELECT IDENT_CURRENT('evaluations');";
+                            evaluationId = Convert.ToInt32(command.ExecuteScalar());
+
                             // Reset paramaters to run again for supervisor evaluation
                             command.Parameters.Clear();
-                            command.Parameters.AddWithValue("@employeeId", empId);
+                            command.Parameters.AddWithValue("@employeeId", employeeId);
                             command.Parameters.AddWithValue("@typeId", typeId);
                             command.Parameters.AddWithValue("@stageId", stageId);
                             command.Parameters.AddWithValue("@evaluator", supervisorId);
@@ -269,7 +303,7 @@ namespace Evaluation.DAL
 
                             // Reset paramaters to run again for co-worker evaluation
                             command.Parameters.Clear();
-                            command.Parameters.AddWithValue("@employeeId", empId);
+                            command.Parameters.AddWithValue("@employeeId", employeeId);
                             command.Parameters.AddWithValue("@typeId", typeId);
                             command.Parameters.AddWithValue("@stageId", stageId);
                             command.Parameters.AddWithValue("@evaluator", coworkerId);
@@ -302,6 +336,7 @@ namespace Evaluation.DAL
                     }
                 } // end using transaction
             } //end using connection
+            return evaluationId;
         }
  
     }

@@ -143,14 +143,6 @@ namespace Evaluation.DAL
         /// <returns>True if successful, false if supervisor is already set to another supervisor</returns>
         bool SetSupervisor(int employeeId, int supervisorId);
 
-        /// <summary>
-        /// Check if a self-evaluation for an employee, type and stage has been started
-        /// </summary>
-        /// <param name="employeeId">employeeId for the self-evaluation</param>
-        /// <param name="typeId">The evaluation typeId</param>
-        /// <param name="stageId">The evaluation stageId</param>
-        bool IsSelfEvaluationStarted(int employeeId, int typeId, int stageId);
-
         #endregion
 
         #region Schedules
@@ -183,6 +175,14 @@ namespace Evaluation.DAL
         /// <exception cref="ArgumentException">Parameters given were invalid</exception>
         int AddEvaluationSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate);
 
+        /// <summary>
+        /// Update the dates for a cohort schedule
+        /// </summary>
+        /// <param name="scheduleId">Schedule to update</param>
+        /// <param name="startDate">New start date</param>
+        /// <param name="endDate">New end date</param>
+        void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate);
+
         #endregion
 
         #region Evaluations
@@ -202,21 +202,30 @@ namespace Evaluation.DAL
         List<OpenEvaluation> GetOpenPeerEvaluations(int employeeId);
 
         /// <summary>
-        /// Create the self, supervisor and co-worker evaluations in the database
-        /// Precondition: Supervisor is set for employee
-        /// Precondition: Co-worker is not the supervisor
-        /// Precondition: Co-worker is different then employee
-        /// Precondition: Evaluations for type and stage are not created yet for this employee
+        /// Check to see if the current employee has started an evaluation for a given schedule
         /// </summary>
-        /// <param name="empId">Employee who the evaluations are for</param>
-        /// <param name="typeId">Type Id of evaluation to create</param>
-        /// <param name="stageId">StageId of evaluation to create</param>
-        /// <param name="coworkerId">Co-worker's employeeId</param>
-        void CreateEvaluations(int empId, int typeId, int stageId, int coworkerId);
+        /// <param name="employeeId">Employee to initialize evaluation for</param>
+        /// <param name="scheduleId">The scheduleID for the evaluation</param>
+        /// <returns>EvaluationId of self evaluation, or 0 if not started</returns>
+        int IsSelfEvaluationStarted(int employeeId, int scheduleId);
+
+        /// <summary>
+        /// Creates a self-evaluation, supervisor evaluation and co-worker evaluation 
+        ///  for a given employee and schedule
+        /// THROWS custom exception 'CreateEvaluationsException' for errors when preconditions not met
+        /// Precondition: SupervisorId is set for currentEmployee
+        /// Precondition: coworkerId is in the DB and not the supervisor or admin
+        /// Precondition: Evaluations for currentEmployee for given schedule does not exist
+        /// Precondition: Schedule exist in the DB
+        /// </summary>
+        /// <param name="employeeId">Employee to initialize evaluation for</param>
+        /// <param name="scheduleId">The scheduleID for the evaluation</param>
+        /// <param name="coworkerId">Co-worker selected to evaluate this employee</param>
+        /// <returns>Evaluation id of self evaluation created</returns>
+        int InitializeSelfEvaluation(int employeeId, int scheduleId, int coworkerId);
 
         #endregion
 
-        void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate);
     }
 
 }

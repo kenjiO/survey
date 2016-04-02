@@ -31,22 +31,6 @@ namespace Evaluation.Controller
         #endregion
 
 
-        public bool IsSelfEvaluationStarted(int empId, int typeId, int stageId)
-        {
-            return _dal.IsSelfEvaluationStarted(empId, typeId, stageId);
-        }
-
-        public void InitializeSelfEvaluation(int typeId, int stageId, int coworkerId)
-        {
-            if (_currentUser.SupervisorId == null)
-                throw new CreateEvaluationException("Supervisor must be selected");
-            if (_currentUser.SupervisorId == coworkerId)
-                throw new CreateEvaluationException("Co-worker must not be the supervisor");
-            if (_currentUser.EmployeeId == coworkerId)
-                throw new CreateEvaluationException("Co-worker must be different than self");
-            _dal.CreateEvaluations(_currentUser.EmployeeId, typeId, stageId, coworkerId);
-        }
-
         public List<OpenEvaluation> GetOpenSelfEvaluations(int employeeId)
         {
             return _dal.GetOpenSelfEvaluations(employeeId);
@@ -55,6 +39,28 @@ namespace Evaluation.Controller
         public List<OpenEvaluation> GetOpenPeerEvaluations(int employeeId)
         {
             return _dal.GetOpenPeerEvaluations(employeeId);
+        }
+
+        public int IsSelfEvaluationStarted(int scheduleId)
+        {
+            return _dal.IsSelfEvaluationStarted(_currentUser.EmployeeId, scheduleId);
+        }
+
+        public int InitializeSelfEvaluation(int scheduleId, int coworkerId)
+        {
+            if (_currentUser.SupervisorId == null)
+            {
+                throw new CreateEvaluationException("Supervisor must be selected");
+            }
+            if (_currentUser.SupervisorId == coworkerId)
+            {
+                throw new CreateEvaluationException("Co-worker must not be the supervisor");
+            }
+            if (_currentUser.EmployeeId == coworkerId)
+            {
+                throw new CreateEvaluationException("Co-worker must be different than self");
+            }
+            return _dal.InitializeSelfEvaluation(_currentUser.EmployeeId, scheduleId, coworkerId);
         }
 
     }
