@@ -54,6 +54,7 @@
     <Compile Include="StageControllerTest.cs" />
     <Compile Include="TypeControllerTest.cs" />
     <Compile Include="CohortControllerTest.cs" />
+    <Compile Include="ScheduleControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EvaluationController\EvaluationController.csproj">

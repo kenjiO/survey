@@ -19,6 +19,11 @@ namespace Evaluation.Controller
             return _dal.GetEvaluationScheduleList(cohortId, null, null);
         }
 
+        public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId, int? typeId, int? stageId)
+        {
+            return _dal.GetEvaluationScheduleList(cohortId, typeId, stageId);
+        }
+
         public int AddEvaluationSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
         {
             return _dal.AddEvaluationSchedule(cohortId, typeId, stageId, startDate, endDate);

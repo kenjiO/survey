@@ -52,11 +52,6 @@ namespace Test
             throw new NotSupportedException();
         }
 
-        public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId, int? typeId, int? stageId)
-        {
-            throw new NotSupportedException();
-        }
-
         public List<Employee> GetMembersOfCohort(int cohortId)
         {
             throw new NotSupportedException();
@@ -98,11 +93,6 @@ namespace Test
         private DataTable createCohortAddScheduleInfoDataTable()
         {
             throw new NotImplementedException();
-        }
-
-        public int AddEvaluationSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
-        {
-            return 5;
         }
 
         public bool DeleteCohort(int cohortId)
@@ -152,9 +142,18 @@ namespace Test
             return true;
         }
 
-        public void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate)
+        public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId, int? typeId, int? stageId)
         {
-            // TODO: Finish Update Schedule
+            return _controller.GetEvaluationScheduleList(cohortId, typeId, stageId);
+        }
+
+        public int AddEvaluationSchedule(int cohortId, int typeId, int stageId, DateTime startDate, DateTime endDate)
+        {
+            return 5;
+        }
+
+        public void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate)
+        {            
         }
         #endregion
 

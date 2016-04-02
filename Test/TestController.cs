@@ -270,15 +270,46 @@ namespace Test
         #region Schedules
         public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId)
         {
+            return GetEvaluationScheduleList(cohortId, null, null);
+        }
+
+        public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId, int? typeId, int? stageId)
+        {
             List<EvaluationSchedule> results = new List<EvaluationSchedule>();
             switch (cohortId)
             {
                 case 1:
-                    results.Add(new EvaluationSchedule(1, 1, 1, 1, DateTime.Now, DateTime.Parse("2016-06-10")));
-                    results.Add(new EvaluationSchedule(2, 1, 2, 1, DateTime.Now, DateTime.Parse("2016-06-10")));
+                    if (typeId == null || typeId == 1)
+                    {
+                        if (stageId == null || stageId == 1)
+                        {
+                            results.Add(new EvaluationSchedule(1, 1, 1, 1, DateTime.Parse("2016-01-01"), DateTime.Parse("2016-01-20")));
+                        }
+                        if (stageId == null || stageId == 2)
+                        {
+                            results.Add(new EvaluationSchedule(2, 1, 1, 2, DateTime.Parse("2016-03-01"), DateTime.Parse("2016-03-10")));
+                        }
+                        if (stageId == null || stageId == 3)
+                        {
+                            results.Add(new EvaluationSchedule(3, 1, 1, 3, DateTime.Parse("2016-06-01"), DateTime.Parse("2016-06-10")));
+                        }
+                    }
+                    if (typeId == null || typeId == 2)
+                    {
+                        if (stageId == null || stageId == 1)
+                        {
+                            results.Add(new EvaluationSchedule(4, 1, 2, 1, DateTime.Parse("2016-06-01"), DateTime.Parse("2016-06-10")));
+                        }
+                    }
                     break;
                 case 2:
-                    results.Add(new EvaluationSchedule(3, 2, 1, 1, DateTime.Now, DateTime.Parse("2016-06-10")));
+                    if (typeId == null || typeId == 1)
+                    {
+                        if (stageId == null || stageId == 1)
+                        {
+                            results.Add(new EvaluationSchedule(5, 2, 1, 1, DateTime.Parse("2016-06-10"), DateTime.Parse("2016-06-10")));
+                        }
+                    }
                     break;
                 default:
                     throw new KeyNotFoundException("Invalid cohort id, " + cohortId);

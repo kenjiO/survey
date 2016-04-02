@@ -257,6 +257,15 @@ namespace Evaluation.Controller
         List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId);
 
         /// <summary>
+        /// Get a list of evaluation schedules for a given cohort
+        /// </summary>
+        /// <param name="cohortId">cohort id of the specific cohort</param>
+        /// <param name="typeId">Optional type id to filter list by</param>
+        /// <param name="stageId">Optional stage id to filter list by</param>
+        /// <returns>Evaluation schedule list</returns>
+        List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId, int? typeId, int? stageId);
+
+        /// <summary>
         /// Attempt to add a new cohort evaluation schedule
         /// </summary>
         /// <param name="cohortId">Cohort to add schedule for</param>
