@@ -92,7 +92,8 @@ namespace CS6232_G1.View
                 
                 if (evaluationId > 0) { 
                     // TODO: Open self evaluation
-                    MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
+                    //MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
+                    MessageBox.Show("TODO: Open Evaluation.");
                 }
             }
         }
@@ -145,7 +146,8 @@ namespace CS6232_G1.View
                 int evaluationId = (int)senderGrid.Rows[e.RowIndex].Cells["evaluationId1"].Value;
                 
                 // TODO: Open self evaluation
-                MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
+                //MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
+                MessageBox.Show("TODO: Open Evaluation.");
                 
             }
         }
