@@ -17,9 +17,9 @@ namespace Evaluation.DAL
             string deleteStatement =
                 "DELETE FROM evaluation_schedule " +
                 "WHERE scheduleId = @scheduleId " +
-                "AND NOT EXISTS(SELECT * FROM evaluations " +
-                "WHERE employeeId IN (SELECT employeeId FROM employee WHERE cohortId = @cohortId) " +
-                "AND typeId = @typeId AND stageId = @stageId)";
+                "AND NOT EXISTS(SELECT * FROM evaluations ev " +
+                "JOIN employee e ON ev.employeeId = e.employeeId " +
+                "WHERE ev.typeId = @typeId AND ev.stageId = @stageId and e.cohortId = @cohortId)";
 
             using (SqlConnection connection = EvaluationDB.GetConnection())
             {
