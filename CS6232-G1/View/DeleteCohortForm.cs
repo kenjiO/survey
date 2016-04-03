@@ -91,14 +91,14 @@ namespace CS6232_G1.View
                         MessageBox.Show("The cohort was updated by another process and can no longer be deleted");
                     }
                     else {
-                        MessageBox.Show("A Database error occured deleting the cohort\n" + ex.Message);
+                        MessageBox.Show("A Database error occured deleting the cohort\n\nDetails: " + ex.Message);
                     }
                 }
                 LoadComboBoxItems();
                 return;
             }
 
-            if (result) 
+            if (result)
             {
                 MessageBox.Show(selectedCohort.CohortName + " deleted");
                 this.DialogResult = DialogResult.OK;

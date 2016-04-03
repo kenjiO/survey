@@ -65,16 +65,5 @@ namespace Evaluation.Controller
             }
         }
 
-        /// <summary>
-        /// Get employee name from id
-        /// </summary>
-        /// <param name="employeeId">employee id</param>
-        /// <returns>Employee name</returns>
-        public String GetEmployeeName(int employeeId)
-        {
-            // TODO Get employee name for employee id - needed? 
-            throw new NotSupportedException("EvaluationController.getEmployeeName not implemented");
-        }
-
     }
 }

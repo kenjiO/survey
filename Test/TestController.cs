@@ -260,11 +260,6 @@ namespace Test
             _currentUser.SupervisorId = supervisorId;
         }
 
-        public String GetEmployeeName(int employeeId)
-        {
-            return "Employee Name";
-        }
-
         #endregion
 
         #region Schedules

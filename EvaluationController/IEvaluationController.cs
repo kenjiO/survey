@@ -206,13 +206,6 @@ namespace Evaluation.Controller
         /// <returns>True if supervisor was set successfully. False if the supervisor was already set</returns>
         void SetSupervisor(int supervisorId);
 
-        /// <summary>
-        /// Get employee name from id
-        /// </summary>
-        /// <param name="employeeId">employee id</param>
-        /// <returns>Employee name</returns>
-        String GetEmployeeName(int employeeId);
-
         #endregion
 
         #region Login

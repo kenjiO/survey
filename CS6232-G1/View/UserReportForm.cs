@@ -142,6 +142,11 @@ namespace CS6232_G1.View
                 DataTable reportTable = _controller.GetUserReport(stage, evalType);
                 SetupUserReport(reportTable);
             }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("An error occurred acquiring data from the database.  Please check your SQL configuration.\n\n" +
+                                "Details: " + ex.Message, "Notice");
+            }
             finally
             {
                 Application.UseWaitCursor = false;

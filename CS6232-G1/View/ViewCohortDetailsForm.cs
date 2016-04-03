@@ -3,6 +3,7 @@ using Evaluation.Model;
 using EvaluationModel;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -54,7 +55,7 @@ namespace CS6232_G1.View
                 LoadEvaluationScheduleGridView();
 
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 MessageBox.Show("An error occurred acquiring cohort details.  Please check your SQL configuration.\n\n" +
                                 "Details: " + ex.Message, "Notice");
@@ -81,10 +82,20 @@ namespace CS6232_G1.View
         private void LoadEvaluationScheduleGridView()
         {
             //Get list of evaluation schedule objects and bind the datagrid to the list
-            List<EvaluationSchedule> scheduleList = _controller.GetEvaluationScheduleList(_cohortId);
-            dgvEvaluationSchedule.DataSource = scheduleList;
-            dgvEvaluationSchedule.AutoResizeColumns();
-            dgvEvaluationSchedule.ClearSelection();
+            try
+            {
+                List<EvaluationSchedule> scheduleList = _controller.GetEvaluationScheduleList(_cohortId);
+                dgvEvaluationSchedule.DataSource = scheduleList;
+                dgvEvaluationSchedule.AutoResizeColumns();
+                dgvEvaluationSchedule.ClearSelection();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("An error occurred acquiring data from the database.  Please check your SQL configuration.\n\n" +
+                                "Details: " + ex.Message, "Notice");
+                this.DialogResult = DialogResult.Cancel;
+                Close();
+            }
         }
 
         // Loads the Listbox with the members in the given cohort
@@ -107,6 +118,11 @@ namespace CS6232_G1.View
                     }
                 }
             }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("An error occurred acquiring data from the database.  Please check your SQL configuration.\n\n" +
+                                "Details: " + ex.Message, "Notice");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
@@ -114,7 +130,7 @@ namespace CS6232_G1.View
         }
 
         /// <summary>
-        /// Calculates the width of listView columns dynamically by getting fillWeight from Tag property of columns. 
+        /// Calculates the width of listView columns dynamically by getting fillWeight from Tag property of columns.
         /// To use this method, set fillWeight in the Tag property of each column.
         /// </summary>
         /// <param name="listView">the listview whose columns are to be sized</param>
@@ -126,8 +142,8 @@ namespace CS6232_G1.View
             for (int i = 0; i < listView.Columns.Count; i++)
                 totalColumnWidth += Convert.ToInt32(listView.Columns[i].Tag);
 
-            // Calculate the percentage of space each column should 
-            // occupy in reference to the other columns and then set the 
+            // Calculate the percentage of space each column should
+            // occupy in reference to the other columns and then set the
             // width of the column to that percentage of the visible space.
             for (int i = 0; i < listView.Columns.Count; i++)
             {
@@ -151,7 +167,7 @@ namespace CS6232_G1.View
         public void RefreshViews()
         {
             LoadMemberListView();
-            if (lvMembers.Items.Count != 0) { 
+            if (lvMembers.Items.Count != 0) {
                 lvMembers.Items[lvMembers.Items.Count - 1].EnsureVisible();
             }
             LoadEvaluationScheduleGridView();
@@ -178,17 +194,25 @@ namespace CS6232_G1.View
             {
                 // Delete the selected schedule
                 selectedSchedule = this.PutDataInScheduleObject(senderGrid);
-                if (!_controller.DeleteSchedule(selectedSchedule))
+                try
                 {
-                    MessageBox.Show("Operation unsuccessful! Schedule has evaluations, or another user has deleted the schedule.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (!_controller.DeleteSchedule(selectedSchedule))
+                    {
+                        MessageBox.Show("Operation unsuccessful! Schedule has evaluations, or another user has deleted the schedule.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Schedule has been deleted!", "Operation Successful");
+                    }
                 }
-                else 
+                catch (SqlException ex)
                 {
-                    MessageBox.Show("Schedule has been deleted!", "Operation Successful");
+                    MessageBox.Show("An error occurred acquiring data from the database.  Please check your SQL configuration.\n\n" +
+                                    "Details: " + ex.Message, "Notice");
                 }
                 this.RefreshViews();
             }
-            
+
         }
 
         private EvaluationSchedule PutDataInScheduleObject(DataGridView senderGrid)
@@ -209,7 +233,7 @@ namespace CS6232_G1.View
             {
                 result = _controller.DeleteCohort(_cohortId);
             }
-            catch (System.Data.SqlClient.SqlException ex)
+            catch (SqlException ex)
             {
                 //Error 547 is a foreign key violation caused by existing members or schedules
                 if (ex.Errors[0].Number == 547)
@@ -223,7 +247,7 @@ namespace CS6232_G1.View
                 }
                 return;
             }
- 
+
             if (result)
             {
                 MessageBox.Show("Cohort deleted");

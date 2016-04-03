@@ -4,6 +4,7 @@ using EvaluationModel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace CS6232_G1.View
@@ -46,7 +47,7 @@ namespace CS6232_G1.View
             try
             {
                 _cohortName = _controller.GetCohortName(_cohortId);
-                                
+
                 lblAddMember.Text = "Add Members to " + _cohortName;
 
                 LoadEmployeeListView();
@@ -85,6 +86,11 @@ namespace CS6232_G1.View
                     MessageBox.Show("All members have been assigned to a cohort.");
                 }
             }
+            catch(SqlException ex)
+            {
+                MessageBox.Show("An error occurred updating the database.  Please check your SQL configuration.\n\n" +
+                                "Details: " + ex.Message, "Notice");
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
@@ -92,7 +98,7 @@ namespace CS6232_G1.View
         }
 
         /// <summary>
-        /// Calculates the width of listView columns dynamically by getting fillWeight from Tag property of columns. 
+        /// Calculates the width of listView columns dynamically by getting fillWeight from Tag property of columns.
         /// To use this method, set fillWeight in the Tag property of each column.
         /// </summary>
         /// <param name="listView">the listview whose columns are to be sized</param>
@@ -104,8 +110,8 @@ namespace CS6232_G1.View
             for (int i = 0; i < listView.Columns.Count; i++)
                 totalColumnWidth += Convert.ToInt32(listView.Columns[i].Tag);
 
-            // Calculate the percentage of space each column should 
-            // occupy in reference to the other columns and then set the 
+            // Calculate the percentage of space each column should
+            // occupy in reference to the other columns and then set the
             // width of the column to that percentage of the visible space.
             for (int i = 0; i < listView.Columns.Count; i++)
             {
@@ -133,8 +139,8 @@ namespace CS6232_G1.View
                 foreach (ListViewItem item in lvEmployeeList.CheckedItems)
                 {
                     empIdList.Add(int.Parse(item.SubItems[0].Text));
-                }                     
-            
+                }
+
                 // update cohortid of selected employees
                 List<int> notUpdated = _controller.AddMembersToCohort(_cohortId, empIdList);
                 if (notUpdated.Count > 0)
@@ -156,11 +162,11 @@ namespace CS6232_G1.View
                 //loadEmployeeListView();
                 Close();
             }
-            catch (Exception ex)
+            catch(SqlException ex)
             {
                 MessageBox.Show("An error occurred updating data in database. \n\n" +
                                 "Details: " + ex.Message, "Notice");
-            }            
+            }
         }
 
         private void AddMembersToCohortForm_FormClosing(object sender, FormClosingEventArgs e)

@@ -53,7 +53,8 @@ namespace CS6232_G1.View
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Database error\n" + ex.Message);
+                MessageBox.Show("An error occurred updating the database.  Please check your SQL configuration.\n\n" +
+                                "Details: " + ex.Message, "Notice");
                 return;
             }
         }
