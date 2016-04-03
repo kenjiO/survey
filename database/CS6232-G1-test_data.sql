@@ -139,9 +139,9 @@ INSERT [dbo].[evaluation_schedule] ([scheduleId], [cohortId], [typeId], [stageId
 SET IDENTITY_INSERT [dbo].[evaluation_schedule] OFF
 SET IDENTITY_INSERT [dbo].[role] ON 
 
-INSERT [dbo].[role] ([roleId], [roleName]) VALUES (1, N'1:Self')
-INSERT [dbo].[role] ([roleId], [roleName]) VALUES (2, N'2:Supervisor')
-INSERT [dbo].[role] ([roleId], [roleName]) VALUES (3, N'3:Co-Worker')
+INSERT [dbo].[role] ([roleId], [roleName]) VALUES (1, N'Self')
+INSERT [dbo].[role] ([roleId], [roleName]) VALUES (2, N'Supervisor')
+INSERT [dbo].[role] ([roleId], [roleName]) VALUES (3, N'Co-Worker')
 SET IDENTITY_INSERT [dbo].[role] OFF
 SET IDENTITY_INSERT [dbo].[evaluations] ON 
 

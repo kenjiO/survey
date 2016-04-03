@@ -38,24 +38,24 @@ namespace CS6232_G1.View
             try
             {
                 LoadSelfEvaluations();
-                LoadPeerEvaluations();
+                LoadPeerEvaluations();               
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("An error occurred acquiring data from database.  Please check your SQL configuration.\n\n" +
                                 "Details: " + ex.Message, "Notice");
             }
-        }
+        }        
 
         private void LoadSelfEvaluations()
         {
             try
             {
-               //Get list of evaluation schedule objects and bind the datagrid to the list
-               List<OpenEvaluation> evaluationList = _controller.GetOpenSelfEvaluations(_currentUser.EmployeeId);
-               dgvSelfEvaluations.DataSource = evaluationList;
-               dgvSelfEvaluations.ClearSelection();
-            }
+            //Get list of evaluation schedule objects and bind the datagrid to the list
+            List<OpenEvaluation> evaluationList = _controller.GetOpenSelfEvaluations(_currentUser.EmployeeId);
+            dgvSelfEvaluations.DataSource = evaluationList;            
+            dgvSelfEvaluations.ClearSelection();
+        }
             catch (SqlException ex)
             {
                 MessageBox.Show("An error occurred acquiring data from the database.  Please check your SQL configuration.\n\n" +
@@ -67,11 +67,11 @@ namespace CS6232_G1.View
         {
             try
             {
-                //Get list of evaluation schedule objects and bind the datagrid to the list
-                List<OpenEvaluation> evaluationList = _controller.GetOpenPeerEvaluations(_currentUser.EmployeeId);
-                dgvPeerEvaluations.DataSource = evaluationList;
-                dgvPeerEvaluations.ClearSelection();
-            }
+            //Get list of evaluation schedule objects and bind the datagrid to the list
+            List<OpenEvaluation> evaluationList = _controller.GetOpenPeerEvaluations(_currentUser.EmployeeId);
+            dgvPeerEvaluations.DataSource = evaluationList;            
+            dgvPeerEvaluations.ClearSelection();
+        }
             catch (SqlException ex)
             {
                 MessageBox.Show("An error occurred acquiring data from the database.  Please check your SQL configuration.\n\n" +
@@ -94,26 +94,27 @@ namespace CS6232_G1.View
             {
                 try
                 {
-                    int scheduleId = (int)senderGrid.Rows[e.RowIndex].Cells["ScheduleId"].Value;
-                    int evaluationId = _controller.IsSelfEvaluationStarted(scheduleId);
+                int scheduleId = (int)senderGrid.Rows[e.RowIndex].Cells["ScheduleId"].Value; 
+                int evaluationId = _controller.IsSelfEvaluationStarted(scheduleId);
+                
+                // if self evaluation not started
+                if (evaluationId == 0)
+                {
+                    ShowSupervisorForm();
+                    int coworkerId = ShowCoworkerForm();                    
 
-                    // if self evaluation not started
-                    if (evaluationId == 0)
+                    if (_currentUser.SupervisorId != null && coworkerId > 0) 
                     {
-                        ShowSupervisorForm();
-                        int coworkerId = ShowCoworkerForm();
-
-                        if (_currentUser.SupervisorId != null && coworkerId > 0)
-                        {
-                            evaluationId = _controller.InitializeSelfEvaluation(scheduleId, coworkerId);
-                        }
-                    } // end if self evaluation not started
-
-                    if (evaluationId > 0) {
-                        // TODO: Open self evaluation
-                        MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
+                        evaluationId = _controller.InitializeSelfEvaluation(scheduleId, coworkerId);                                                                       
                     }
+                } // end if self evaluation not started
+                
+                if (evaluationId > 0) { 
+                    // TODO: Open self evaluation
+                    //MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
+                    MessageBox.Show("TODO: Open Evaluation.");
                 }
+            }
                 catch (SqlException ex)
                 {
                     MessageBox.Show("An error occurred acquiring data from the database.  Please check your SQL configuration.\n\n" +
@@ -125,11 +126,11 @@ namespace CS6232_G1.View
        private int ShowCoworkerForm()
         {
             int coworkerId = 0;
-            if (_currentUser.SupervisorId != null) {
+            if (_currentUser.SupervisorId != null) { 
                 try
                 {
                     coworkerId = SelectCoworkerForm.Run(_controller);
-
+                                       
                 }
                 catch (Exception ex)
                 {
@@ -144,23 +145,23 @@ namespace CS6232_G1.View
         {
             try
             {
-               if (!_controller.IsSupervisorSelected(_currentUser.EmployeeId))
-               {
-                   int supervisorId = SelectSupervisorForm.Run(_controller);
-                   if (supervisorId > 0)
-                   {
-                       try
-                       {
-                           _controller.SetSupervisor(supervisorId);
-                       }
-                       catch (Exception ex)
-                       {
-                           MessageBox.Show("Supervisor cannot be updated. \n\n" +
-                                           "Details: " + ex.Message, "Notice");
-                       }
-                   }
-               }
-            }
+            if (!_controller.IsSupervisorSelected(_currentUser.EmployeeId))
+            {
+                int supervisorId = SelectSupervisorForm.Run(_controller);
+                if (supervisorId > 0)
+                {              
+                    try
+                    {
+                        _controller.SetSupervisor(supervisorId);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Supervisor cannot be updated. \n\n" +
+                                        "Details: " + ex.Message, "Notice");
+                    }
+                }         
+            }             
+        }
             catch (SqlException ex)
             {
                 MessageBox.Show("An error occurred accessing the database.  Please check your SQL configuration.\n\n" +
@@ -176,12 +177,13 @@ namespace CS6232_G1.View
                 e.RowIndex >= 0)
             {
                 int evaluationId = (int)senderGrid.Rows[e.RowIndex].Cells["evaluationId1"].Value;
-
+                
                 // TODO: Open self evaluation
-                MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
-
+                //MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
+                MessageBox.Show("TODO: Open Evaluation.");
+                
             }
         }
-
+                    
     }
 }
