@@ -120,7 +120,7 @@ namespace CS6232_G1.View
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("A database error occurred looking up the cohort name.  Please" +
+                MessageBox.Show("A database error occurred acquiring data from the database.  Please" +
                       " check your SQL configuration.\n\n" +
                      "Details: " + ex.Message, "Notice");
                 this.DialogResult = DialogResult.Cancel;
@@ -170,9 +170,9 @@ namespace CS6232_G1.View
                 }
                 catch (SqlException ex)
                 {
-                    MessageBox.Show("A database error occurred looking up the cohort name.  Please" +
-                          " check your SQL configuration.\n\n" +
-                         "Details: " + ex.Message, "Notice");
+                MessageBox.Show("A database error occurred acquiring data from the database.  Please" +
+                      " check your SQL configuration.\n\n" +
+                     "Details: " + ex.Message, "Notice");
                     this.DialogResult = DialogResult.Cancel;
                     Close();
                     return;

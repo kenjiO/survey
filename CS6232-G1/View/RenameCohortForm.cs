@@ -45,7 +45,7 @@ namespace CS6232_G1.View
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("A Database error occured fetching cohorts\n\n" + 
+                MessageBox.Show("A Database error occured fetching cohorts\n\n" +
                     "Details: " + ex.Message, "Notice");
                 this.DialogResult = DialogResult.Cancel;
                 Close();
@@ -84,7 +84,7 @@ namespace CS6232_G1.View
                 MessageBox.Show("New name must not be blank");
                 return;
             }
-            
+
             bool result = false;
             try
             {
@@ -92,7 +92,7 @@ namespace CS6232_G1.View
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("A Database error occured deleting the cohort\n\n" + 
+                MessageBox.Show("A Database error occured renaming the cohort\n\n" +
                      "Details: " + ex.Message);
                 LoadComboBoxItems();
                 return;

@@ -53,7 +53,7 @@ namespace CS6232_G1.View
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("An error occurred acquiring cohort details.  Please check your SQL configuration.\n\n" +
+                MessageBox.Show("An error occurred acquiring data from the database.  Please check your SQL configuration.\n\n" +
                                 "Details: " + ex.Message, "Notice");
             }
         }
@@ -265,6 +265,6 @@ namespace CS6232_G1.View
                 MessageBox.Show("Unable to delete cohort");
             }
         }
-        
+
     }
 }
