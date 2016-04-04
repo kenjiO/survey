@@ -268,7 +268,7 @@ namespace CS6232_G1.View
             {
                 if (Editing)
                 {
-                    _controller.UpdateEvaluationSchedule(_schedule.ScheduleId, startDate, endDate);
+                    _controller.UpdateEvaluationSchedule(_schedule.ScheduleId, startDate, endDate, _schedule.StartDate, _schedule.EndDate);
                 }
                 else
                 {

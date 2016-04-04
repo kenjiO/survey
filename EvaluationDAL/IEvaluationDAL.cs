@@ -181,7 +181,9 @@ namespace Evaluation.DAL
         /// <param name="scheduleId">Schedule to update</param>
         /// <param name="startDate">New start date</param>
         /// <param name="endDate">New end date</param>
-        void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate);
+        /// <param name="originalStartDate">Original start date</param>
+        /// <param name="originalEndDate">Original end date</param>
+        void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate, DateTime originalStartDate, DateTime originalEndDate);
 
         #endregion
 

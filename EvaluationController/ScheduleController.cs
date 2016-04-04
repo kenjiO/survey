@@ -53,9 +53,9 @@ namespace Evaluation.Controller
             return result;
         }
 
-        public void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate)
+        public void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate, DateTime originalStartDate, DateTime originalEndDate)
         {
-            _dal.UpdateEvaluationSchedule(scheduleId, startDate, endDate);
+            _dal.UpdateEvaluationSchedule(scheduleId, startDate, endDate, originalStartDate, originalEndDate);
         }
 
     }

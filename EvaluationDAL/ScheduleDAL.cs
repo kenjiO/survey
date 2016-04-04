@@ -168,12 +168,14 @@ namespace Evaluation.DAL
             }
         }
 
-        public void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate)
+        public void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate, DateTime originalStartDate, DateTime originalEndDate)
         {
             string updateStatement = "UPDATE evaluation_schedule " +
                                      "   SET startDate = @startDate, " +
                                      "       endDate = @endDate " +
-                                     "WHERE scheduleId = @scheduleId";
+                                     "WHERE scheduleId = @scheduleId " +
+                                     "  AND startDate = @originalStartDate " +
+                                     "  AND endDate = @originalEndDate";
 
             if (startDate > endDate)
             {
@@ -183,29 +185,37 @@ namespace Evaluation.DAL
             {
                 connection.Open();
 
-                // check if schedule exists
-                string selectStatement =
-                    "SELECT * from evaluation_schedule " +
-                    "WHERE scheduleId = @scheduleId ";
-
-                using (SqlCommand command = new SqlCommand(selectStatement, connection))
-                {
-                    command.Parameters.AddWithValue("@scheduleId", scheduleId);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (!reader.Read())
-                        {
-                            throw new InvalidOperationException("Another user has deleted this schedule.");
-                        }
-                    }
-                }
-
+                int count;
                 using (SqlCommand command = new SqlCommand(updateStatement, connection))
                 {
                     command.Parameters.AddWithValue("@scheduleId", scheduleId);
                     command.Parameters.AddWithValue("@startDate", startDate);
                     command.Parameters.AddWithValue("@endDate", endDate);
-                    command.ExecuteNonQuery();
+                    command.Parameters.AddWithValue("@originalStartDate", originalStartDate);
+                    command.Parameters.AddWithValue("@originalEndDate", originalEndDate);
+                    count = command.ExecuteNonQuery();
+                }
+                if (count < 1)
+                {
+                    string selectStatement =
+                        "SELECT * from evaluation_schedule " +
+                        "WHERE scheduleId = @scheduleId ";
+
+                    using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                    {
+                        command.Parameters.AddWithValue("@scheduleId", scheduleId);
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (!reader.Read())
+                            {
+                                throw new InvalidOperationException("Another user has deleted this schedule");
+                            }
+                            else
+                            {
+                                throw new InvalidOperationException("Another user has modified the schedule");
+                            }
+                        }
+                    }                    
                 }
             }
         }

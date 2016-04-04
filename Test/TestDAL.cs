@@ -152,7 +152,7 @@ namespace Test
             return 5;
         }
 
-        public void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate)
+        public void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate, DateTime originalStartDate, DateTime originalEndDate)
         {            
         }
         #endregion

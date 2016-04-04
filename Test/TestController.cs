@@ -314,7 +314,7 @@ namespace Test
             return new DateRange(DateTime.Parse("1/1/2000"), DateTime.Parse("12/31/2100"));
         }
 
-        public void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate)
+        public void UpdateEvaluationSchedule(int scheduleId, DateTime startDate, DateTime endDate, DateTime originalStartDate, DateTime originalEndDate)
         {
         }
         #endregion
