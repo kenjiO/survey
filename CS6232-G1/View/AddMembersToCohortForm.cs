@@ -83,7 +83,7 @@ namespace CS6232_G1.View
                 }
                 else
                 {
-                    MessageBox.Show("All members have been assigned to a cohort.");
+                    MessageBox.Show("All employees have been assigned to a cohort.");
                 }
             }
             catch(SqlException ex)

@@ -11,22 +11,56 @@ namespace Evaluation.DAL
         /// Deletes a schedule if it has no evaluations
         /// </summary>
         /// <param name="selectedSchedule"></param>
-        /// <returns>true if delete is successful, else false</returns>
+        /// <returns>true if delete is successful, else throws exception</returns>
         public bool DeleteSchedule(EvaluationSchedule selectedSchedule)
         {
-            string deleteStatement =
+            // check if schedule exists
+            string selectStatement = 
+                "SELECT * from evaluation_schedule " +
+                "WHERE scheduleId = @scheduleId ";
+
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@scheduleId", selectedSchedule.ScheduleId);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (!reader.Read())
+                        {
+                            throw new InvalidOperationException("Another user has deleted this schedule.");
+                        }
+                    }
+                }
+
+                //check if a schedule with higher stage exists
+                string higherStageExistsForType =
+                "SELECT es2.stageid " +
+                "FROM evaluation_schedule es1, evaluation_schedule es2 " +
+                "WHERE es2.stageid > es1.stageid " +
+                "AND es2.typeid = es1.typeid AND es1.cohortid = es2.cohortid AND es1.scheduleid = @scheduleId ";
+                using (SqlCommand command = new SqlCommand(higherStageExistsForType, connection))
+                {
+                    command.Parameters.AddWithValue("@scheduleId", selectedSchedule.ScheduleId);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            throw new InvalidOperationException("Schedule with higher stage exists.");
+                        }
+                    }
+                }
+
+                string deleteStatement =
                 "DELETE FROM evaluation_schedule " +
                 "WHERE scheduleId = @scheduleId " +
                 "AND NOT EXISTS(SELECT * FROM evaluations ev " +
                 "JOIN employee e ON ev.employeeId = e.employeeId " +
                 "WHERE ev.typeId = @typeId AND ev.stageId = @stageId and e.cohortId = @cohortId)";
 
-            using (SqlConnection connection = EvaluationDB.GetConnection())
-            {
-                connection.Open();
-
-                using (SqlCommand deleteCommand = new SqlCommand(deleteStatement, connection))
-                {
+                using (SqlCommand deleteCommand = new SqlCommand(deleteStatement, connection)) 
+                { 
                     deleteCommand.Parameters.AddWithValue("@scheduleId", selectedSchedule.ScheduleId);
                     deleteCommand.Parameters.AddWithValue("@cohortId", selectedSchedule.CohortId);
                     deleteCommand.Parameters.AddWithValue("@typeId", selectedSchedule.TypeId);
@@ -35,7 +69,7 @@ namespace Evaluation.DAL
                     int count = deleteCommand.ExecuteNonQuery();
                     if (count < 1)
                     {
-                        return false;
+                        throw new InvalidOperationException("Evaluations exist for schedule.");
                     }
                     else
                     {

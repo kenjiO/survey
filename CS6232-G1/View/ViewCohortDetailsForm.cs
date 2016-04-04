@@ -196,19 +196,20 @@ namespace CS6232_G1.View
                 selectedSchedule = this.PutDataInScheduleObject(senderGrid);
                 try
                 {
-                    if (!_controller.DeleteSchedule(selectedSchedule))
-                    {
-                        MessageBox.Show("Operation unsuccessful! Schedule has evaluations, or another user has deleted the schedule.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
+                    if (_controller.DeleteSchedule(selectedSchedule))
                     {
                         MessageBox.Show("Schedule has been deleted!", "Operation Successful");
                     }
                 }
-                catch (SqlException ex)
+                catch (InvalidOperationException ex)
                 {
-                    MessageBox.Show("An error occurred acquiring data from the database.  Please check your SQL configuration.\n\n" +
+                    MessageBox.Show("Cannot delete the schedule.\n\n" +
                                     "Details: " + ex.Message, "Notice");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("A Database error occured.\n\n" +
+                            "Details: " + ex.Message);
                 }
                 this.RefreshViews();
             }
