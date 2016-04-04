@@ -51,6 +51,8 @@
             this.LoginButton = new System.Windows.Forms.Button();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
+            this.userReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cohortReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripAdmin.SuspendLayout();
             this.menuStripEmployee.SuspendLayout();
             this.menuStripDefault.SuspendLayout();
@@ -64,10 +66,9 @@
             this.fileToolStripMenuItem,
             this.cohortsToolStripMenuItem,
             this.reportsToolStripMenuItem});
-            this.menuStripAdmin.Location = new System.Drawing.Point(0, 70);
+            this.menuStripAdmin.Location = new System.Drawing.Point(0, 48);
             this.menuStripAdmin.Name = "menuStripAdmin";
-            this.menuStripAdmin.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
-            this.menuStripAdmin.Size = new System.Drawing.Size(1410, 35);
+            this.menuStripAdmin.Size = new System.Drawing.Size(940, 24);
             this.menuStripAdmin.TabIndex = 1;
             this.menuStripAdmin.Text = "menuStripAdmin";
             // 
@@ -76,13 +77,13 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(50, 29);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(124, 30);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -94,41 +95,44 @@
             this.deleteACohortToolStripMenuItem,
             this.modifyACohortToolStripMenuItem});
             this.cohortsToolStripMenuItem.Name = "cohortsToolStripMenuItem";
-            this.cohortsToolStripMenuItem.Size = new System.Drawing.Size(87, 29);
+            this.cohortsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.cohortsToolStripMenuItem.Text = "Cohorts";
             // 
             // createNewCohortToolStripMenuItem
             // 
             this.createNewCohortToolStripMenuItem.Name = "createNewCohortToolStripMenuItem";
-            this.createNewCohortToolStripMenuItem.Size = new System.Drawing.Size(370, 30);
+            this.createNewCohortToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.createNewCohortToolStripMenuItem.Text = "Create New Cohort";
             this.createNewCohortToolStripMenuItem.Click += new System.EventHandler(this.createNewCohortToolStripMenuItem_Click);
             // 
             // renameACohortToolStripMenuItem
             // 
             this.renameACohortToolStripMenuItem.Name = "renameACohortToolStripMenuItem";
-            this.renameACohortToolStripMenuItem.Size = new System.Drawing.Size(370, 30);
+            this.renameACohortToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.renameACohortToolStripMenuItem.Text = "Rename a Cohort";
             this.renameACohortToolStripMenuItem.Click += new System.EventHandler(this.renameACohortToolStripMenuItem_Click);
             // 
             // deleteACohortToolStripMenuItem
             // 
             this.deleteACohortToolStripMenuItem.Name = "deleteACohortToolStripMenuItem";
-            this.deleteACohortToolStripMenuItem.Size = new System.Drawing.Size(370, 30);
+            this.deleteACohortToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.deleteACohortToolStripMenuItem.Text = "Delete a Cohort";
             this.deleteACohortToolStripMenuItem.Click += new System.EventHandler(this.deleteACohortToolStripMenuItem_Click);
             // 
             // modifyACohortToolStripMenuItem
             // 
             this.modifyACohortToolStripMenuItem.Name = "modifyACohortToolStripMenuItem";
-            this.modifyACohortToolStripMenuItem.Size = new System.Drawing.Size(370, 30);
+            this.modifyACohortToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.modifyACohortToolStripMenuItem.Text = "Manage Members and Evaluations";
             this.modifyACohortToolStripMenuItem.Click += new System.EventHandler(this.modifyACohortToolStripMenuItem_Click);
             // 
             // reportsToolStripMenuItem
             // 
+            this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.userReportToolStripMenuItem,
+            this.cohortReportToolStripMenuItem});
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(85, 29);
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportsToolStripMenuItem.Text = "Reports";
             // 
             // menuStripEmployee
@@ -137,10 +141,9 @@
             this.menuStripEmployee.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem1,
             this.testEmployeeMenuToolStripMenuItem});
-            this.menuStripEmployee.Location = new System.Drawing.Point(0, 35);
+            this.menuStripEmployee.Location = new System.Drawing.Point(0, 24);
             this.menuStripEmployee.Name = "menuStripEmployee";
-            this.menuStripEmployee.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
-            this.menuStripEmployee.Size = new System.Drawing.Size(1410, 35);
+            this.menuStripEmployee.Size = new System.Drawing.Size(940, 24);
             this.menuStripEmployee.TabIndex = 2;
             this.menuStripEmployee.Text = "menuStripEmployee";
             // 
@@ -149,20 +152,20 @@
             this.fileToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem1});
             this.fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
-            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(50, 29);
+            this.fileToolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem1.Text = "File";
             // 
             // exitToolStripMenuItem1
             // 
             this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(124, 30);
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem1.Text = "Exit";
             this.exitToolStripMenuItem1.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // testEmployeeMenuToolStripMenuItem
             // 
             this.testEmployeeMenuToolStripMenuItem.Name = "testEmployeeMenuToolStripMenuItem";
-            this.testEmployeeMenuToolStripMenuItem.Size = new System.Drawing.Size(113, 29);
+            this.testEmployeeMenuToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.testEmployeeMenuToolStripMenuItem.Text = "Evaluations";
             this.testEmployeeMenuToolStripMenuItem.Click += new System.EventHandler(this.employeeMenuEvaluationsToolStripMenuItem_Click);
             // 
@@ -173,8 +176,7 @@
             this.fileToolStripMenuItem2});
             this.menuStripDefault.Location = new System.Drawing.Point(0, 0);
             this.menuStripDefault.Name = "menuStripDefault";
-            this.menuStripDefault.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
-            this.menuStripDefault.Size = new System.Drawing.Size(1410, 35);
+            this.menuStripDefault.Size = new System.Drawing.Size(940, 24);
             this.menuStripDefault.TabIndex = 3;
             this.menuStripDefault.Text = "menuStrip1";
             // 
@@ -183,13 +185,13 @@
             this.fileToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem2});
             this.fileToolStripMenuItem2.Name = "fileToolStripMenuItem2";
-            this.fileToolStripMenuItem2.Size = new System.Drawing.Size(50, 29);
+            this.fileToolStripMenuItem2.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem2.Text = "File";
             // 
             // exitToolStripMenuItem2
             // 
             this.exitToolStripMenuItem2.Name = "exitToolStripMenuItem2";
-            this.exitToolStripMenuItem2.Size = new System.Drawing.Size(124, 30);
+            this.exitToolStripMenuItem2.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem2.Text = "Exit";
             this.exitToolStripMenuItem2.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -202,19 +204,17 @@
             this.LoginPanel.Controls.Add(this.LoginButton);
             this.LoginPanel.Controls.Add(this.PasswordTextBox);
             this.LoginPanel.Controls.Add(this.UsernameTextBox);
-            this.LoginPanel.Location = new System.Drawing.Point(222, 154);
-            this.LoginPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.LoginPanel.Location = new System.Drawing.Point(148, 100);
             this.LoginPanel.Name = "LoginPanel";
-            this.LoginPanel.Size = new System.Drawing.Size(509, 310);
+            this.LoginPanel.Size = new System.Drawing.Size(340, 202);
             this.LoginPanel.TabIndex = 5;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(42, 145);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(28, 94);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 20);
+            this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Password";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -222,10 +222,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(42, 85);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(28, 55);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 20);
+            this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Username";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -233,19 +232,17 @@
             // ErrorMsgLabel
             // 
             this.ErrorMsgLabel.ForeColor = System.Drawing.Color.Red;
-            this.ErrorMsgLabel.Location = new System.Drawing.Point(18, 37);
-            this.ErrorMsgLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ErrorMsgLabel.Location = new System.Drawing.Point(12, 24);
             this.ErrorMsgLabel.Name = "ErrorMsgLabel";
-            this.ErrorMsgLabel.Size = new System.Drawing.Size(465, 20);
+            this.ErrorMsgLabel.Size = new System.Drawing.Size(310, 13);
             this.ErrorMsgLabel.TabIndex = 3;
             this.ErrorMsgLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LoginButton
             // 
-            this.LoginButton.Location = new System.Drawing.Point(196, 209);
-            this.LoginButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.LoginButton.Location = new System.Drawing.Point(131, 136);
             this.LoginButton.Name = "LoginButton";
-            this.LoginButton.Size = new System.Drawing.Size(112, 35);
+            this.LoginButton.Size = new System.Drawing.Size(75, 23);
             this.LoginButton.TabIndex = 2;
             this.LoginButton.Text = "Login";
             this.LoginButton.UseVisualStyleBackColor = true;
@@ -253,10 +250,9 @@
             // 
             // PasswordTextBox
             // 
-            this.PasswordTextBox.Location = new System.Drawing.Point(153, 140);
-            this.PasswordTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PasswordTextBox.Location = new System.Drawing.Point(102, 91);
             this.PasswordTextBox.Name = "PasswordTextBox";
-            this.PasswordTextBox.Size = new System.Drawing.Size(312, 26);
+            this.PasswordTextBox.Size = new System.Drawing.Size(209, 20);
             this.PasswordTextBox.TabIndex = 1;
             this.PasswordTextBox.Text = "admin1";
             this.PasswordTextBox.UseSystemPasswordChar = true;
@@ -264,26 +260,38 @@
             // 
             // UsernameTextBox
             // 
-            this.UsernameTextBox.Location = new System.Drawing.Point(153, 80);
-            this.UsernameTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.UsernameTextBox.Location = new System.Drawing.Point(102, 52);
             this.UsernameTextBox.Name = "UsernameTextBox";
-            this.UsernameTextBox.Size = new System.Drawing.Size(312, 26);
+            this.UsernameTextBox.Size = new System.Drawing.Size(209, 20);
             this.UsernameTextBox.TabIndex = 0;
             this.UsernameTextBox.Text = "admin1@westga.edu";
             this.UsernameTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LoginTextBox_KeyUp);
             // 
+            // userReportToolStripMenuItem
+            // 
+            this.userReportToolStripMenuItem.Name = "userReportToolStripMenuItem";
+            this.userReportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.userReportToolStripMenuItem.Text = "User Report";
+            this.userReportToolStripMenuItem.Click += new System.EventHandler(this.userReportToolStripMenuItem_Click);
+            // 
+            // cohortReportToolStripMenuItem
+            // 
+            this.cohortReportToolStripMenuItem.Name = "cohortReportToolStripMenuItem";
+            this.cohortReportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cohortReportToolStripMenuItem.Text = "Cohort Report";
+            this.cohortReportToolStripMenuItem.Click += new System.EventHandler(this.cohortReportToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1410, 1017);
+            this.ClientSize = new System.Drawing.Size(940, 567);
             this.Controls.Add(this.LoginPanel);
             this.Controls.Add(this.menuStripAdmin);
             this.Controls.Add(this.menuStripEmployee);
             this.Controls.Add(this.menuStripDefault);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStripAdmin;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainForm";
             this.Text = "CS6232-G1 Evaluations";
             this.menuStripAdmin.ResumeLayout(false);
@@ -324,6 +332,8 @@
         private System.Windows.Forms.ToolStripMenuItem modifyACohortToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteACohortToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem renameACohortToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cohortReportToolStripMenuItem;
     }
 }
 

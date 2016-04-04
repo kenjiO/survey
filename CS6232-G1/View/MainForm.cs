@@ -224,5 +224,16 @@ namespace CS6232_G1.View
        
         #endregion
 
+        private void userReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // TODO: Generate User Report
+        }
+
+        private void cohortReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // TODO: Generate cohort report
+        }
+
+
     }
 }
