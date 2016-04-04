@@ -120,6 +120,16 @@ namespace CS6232_G1.View
             }
         }
 
+        private void userReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UserReportForm.Run(_controller);
+        }
+
+        private void cohortReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // TODO: Generate cohort report
+        }
+
         #endregion
 
         #region User Menu Item Handlers
@@ -223,16 +233,6 @@ namespace CS6232_G1.View
         }
        
         #endregion
-
-        private void userReportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // TODO: Generate User Report
-        }
-
-        private void cohortReportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // TODO: Generate cohort report
-        }
 
 
     }

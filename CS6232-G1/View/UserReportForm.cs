@@ -196,5 +196,16 @@ namespace CS6232_G1.View
 
         }
 
+
+        /// <summary>
+        /// Launch UserReport 
+        /// </summary>
+        /// <param name="_controller">Controller to use</param>
+        public static void Run(IEvaluationController _controller)
+        {
+            UserReportForm form = new UserReportForm(_controller);
+            form.MdiParent = Program.mainForm; 
+            form.Show();
+        }
     }
 }
