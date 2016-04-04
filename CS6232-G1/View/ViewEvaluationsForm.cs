@@ -19,22 +19,18 @@ namespace CS6232_G1.View
             InitializeComponent();
             _controller = controller;
             _currentUser = currentUser;
+            if (_controller == null)
+            {
+                throw new ArgumentNullException("controller", "Controller cannot be null");
+            }
+            if (_currentUser == null)
+            {
+                throw new ArgumentNullException("currentUser", "Current user cannot be null");
+            }
         }
 
         private void ViewEvaluationDetailsForm_Load(object sender, EventArgs e)
         {
-            if (_controller == null)
-            {
-                MessageBox.Show("Invalid arguments to view evaluations form");
-                Close();
-                return;
-            }
-            if (_currentUser == null)
-            {
-                MessageBox.Show("Invalid user.");
-                Close();
-                return;
-            }
             try
             {
                 LoadSelfEvaluations();

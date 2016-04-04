@@ -73,12 +73,20 @@ namespace CS6232_G1.View
 
         private void modifyACohortToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int cohortId = SelectCohortForm.Run(_controller);
-            if (cohortId <= 0)
+            try
             {
-                return;
+                int cohortId = SelectCohortForm.Run(_controller);
+                if (cohortId <= 0)
+                {
+                    return;
+                }
+                ViewCohortDetails(cohortId);
             }
-            ViewCohortDetails(cohortId);
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occurred on selecting a cohort. \n\n" +
+                                "Details: " + ex.Message, "Notice");
+            }
         }
 
         // This opens a dialog form that will prompt the user to select a cohort
@@ -99,9 +107,17 @@ namespace CS6232_G1.View
 
         private void ViewCohortDetails(int cohortId)
         {
-            Form form = new ViewCohortDetailsForm(_controller, cohortId);
-            form.MdiParent = this;
-            form.Show();
+            try
+            {
+                Form form = new ViewCohortDetailsForm(_controller, cohortId);
+                form.MdiParent = this;
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occurred on opening cohort details. \n\n" +
+                                "Details: " + ex.Message, "Notice");
+            }
         }
 
         #endregion
@@ -118,13 +134,21 @@ namespace CS6232_G1.View
                 frmViewEvaluations.Close();
             }
             //open ViewEvaluationDetailsForm
-            frmViewEvaluations = new ViewEvaluationsForm(_controller, _controller.CurrentUser);
-            frmViewEvaluations.MdiParent = this;
-            frmViewEvaluations.Show();
-            frmViewEvaluations.FormClosed += viewEvaluationsForm_FormClosed;
-            // The next 2 lines fix position of child form within the parent
-            frmViewEvaluations.StartPosition = FormStartPosition.Manual;
-            frmViewEvaluations.Location = new System.Drawing.Point(15, 15);
+            try
+            {
+                frmViewEvaluations = new ViewEvaluationsForm(_controller, _controller.CurrentUser);
+                frmViewEvaluations.MdiParent = this;
+                frmViewEvaluations.Show();
+                frmViewEvaluations.FormClosed += viewEvaluationsForm_FormClosed;
+                // The next 2 lines fix position of child form within the parent
+                frmViewEvaluations.StartPosition = FormStartPosition.Manual;
+                frmViewEvaluations.Location = new System.Drawing.Point(15, 15);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occurred on opening evaluation list. \n\n" +
+                                "Details: " + ex.Message, "Notice");
+            }
         }
 
 

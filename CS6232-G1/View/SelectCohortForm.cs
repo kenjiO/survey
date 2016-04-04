@@ -23,7 +23,7 @@ namespace CS6232_G1.View
             InitializeComponent();
             if (controller == null)
             {
-                throw new ArgumentNullException("Null controller on Select Cohort Form");
+                throw new ArgumentNullException("controller", "Controller cannot be null");
             }
             _controller = controller;
             _selectedCohort = null;

@@ -26,22 +26,18 @@ namespace CS6232_G1.View
             InitializeComponent();
             _controller = controller;
             _cohortId = cohortId;
+            if (_controller == null)
+            {
+                throw new ArgumentNullException("controller", "Controller cannot be null");
+            }
+            if (_cohortId <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Invalid cohort","Cohort Id must be greater than 0");
+            }
         }
 
         private void ViewCohortDetailsForm_Load(object sender, EventArgs e)
         {
-            if (_controller == null)
-            {
-                MessageBox.Show("Invalid arguments to cohort scheduler");
-                Close();
-                return;
-            }
-            if (_cohortId <= 0)
-            {
-                MessageBox.Show("Invalid cohort selected");
-                Close();
-                return;
-            }
             try
             {
                 _cohortName = _controller.GetCohortName(_cohortId);
