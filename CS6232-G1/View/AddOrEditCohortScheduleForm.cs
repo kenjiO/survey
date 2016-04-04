@@ -286,6 +286,12 @@ namespace CS6232_G1.View
                 MessageBox.Show("An error occurred creating the evaluation schedule\n\n" +
                                 "Details: " + ex.Message, "Notice");
             }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show("An error occurred editing the evaluation schedule\n\n" +
+                                    "Details: " + ex.Message, "Notice");
+                Close();
+            }
             catch (SqlException ex)
             {
                 MessageBox.Show("An error occurred creating the evaluation schedule\n\n" +

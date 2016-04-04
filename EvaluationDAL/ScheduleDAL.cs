@@ -14,14 +14,15 @@ namespace Evaluation.DAL
         /// <returns>true if delete is successful, else throws exception</returns>
         public bool DeleteSchedule(EvaluationSchedule selectedSchedule)
         {
-            // check if schedule exists
-            string selectStatement = 
-                "SELECT * from evaluation_schedule " +
-                "WHERE scheduleId = @scheduleId ";
-
             using (SqlConnection connection = EvaluationDB.GetConnection())
             {
                 connection.Open();
+
+                // check if schedule exists
+                string selectStatement =
+                    "SELECT * from evaluation_schedule " +
+                    "WHERE scheduleId = @scheduleId ";
+
                 using (SqlCommand command = new SqlCommand(selectStatement, connection))
                 {
                     command.Parameters.AddWithValue("@scheduleId", selectedSchedule.ScheduleId);
@@ -181,6 +182,24 @@ namespace Evaluation.DAL
             using (SqlConnection connection = EvaluationDB.GetConnection())
             {
                 connection.Open();
+
+                // check if schedule exists
+                string selectStatement =
+                    "SELECT * from evaluation_schedule " +
+                    "WHERE scheduleId = @scheduleId ";
+
+                using (SqlCommand command = new SqlCommand(selectStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@scheduleId", scheduleId);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (!reader.Read())
+                        {
+                            throw new InvalidOperationException("Another user has deleted this schedule.");
+                        }
+                    }
+                }
+
                 using (SqlCommand command = new SqlCommand(updateStatement, connection))
                 {
                     command.Parameters.AddWithValue("@scheduleId", scheduleId);
