@@ -10,8 +10,8 @@ namespace Evaluation.DAL
         /// <summary>
         /// Deletes a schedule if it has no evaluations
         /// </summary>
-        /// <param name="selectedSchedule"></param>
-        /// <returns>true if delete is successful, else throws exception</returns>
+        /// <param name="selectedSchedule">The schedule object to delete</param>
+        /// <returns>true if delete is successful, else throws InvalidOperationException</returns>
         public bool DeleteSchedule(EvaluationSchedule selectedSchedule)
         {
             using (SqlConnection connection = EvaluationDB.GetConnection())
@@ -48,7 +48,7 @@ namespace Evaluation.DAL
                     {
                         if (reader.Read())
                         {
-                            throw new InvalidOperationException("Schedule with higher stage exists.");
+                            throw new InvalidOperationException("Schedule with higher stage exists for the same type.");
                         }
                     }
                 }
