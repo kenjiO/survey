@@ -156,8 +156,16 @@ namespace CS6232_G1.View
 
         private void btnAddMember_Click(object sender, EventArgs e)
         {
-            AddMembersToCohortForm form = new AddMembersToCohortForm(_controller, _cohortId, this);
-            form.Show();
+            try
+            {
+                AddMembersToCohortForm form = new AddMembersToCohortForm(_controller, _cohortId, this);
+                form.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occurred on opening add member form.\n\n" +
+                                "Details: " + ex.Message, "Notice");
+            }
         }
 
         public void RefreshViews()

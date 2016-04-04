@@ -28,22 +28,18 @@ namespace CS6232_G1.View
             _controller = controller;
             _cohortId = cohortId;
             _parentForm = parentForm;
+            if (_controller == null)
+            {
+                throw new ArgumentNullException("controller", "Controller cannot be null");
+            }
+            if (_cohortId <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Invalid cohort", "Cohort Id must be greater than 0");
+            }
         }
 
         private void AddMembersToCohortForm_Load(object sender, EventArgs e)
         {
-            if (_controller == null)
-            {
-                MessageBox.Show("Invalid controller");
-                Close();
-                return;
-            }
-            if (_cohortId <= 0)
-            {
-                MessageBox.Show("Invalid cohort selected");
-                Close();
-                return;
-            }
             try
             {
                 _cohortName = _controller.GetCohortName(_cohortId);
