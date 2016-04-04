@@ -272,7 +272,6 @@
             this.Name = "ViewCohortDetailsForm";
             this.Text = "Cohort Details";
             this.Load += new System.EventHandler(this.ViewCohortDetailsForm_Load);
-            this.Shown += new System.EventHandler(this.ViewCohortDetailsForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEvaluationSchedule)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.evaluationScheduleBindingSource)).EndInit();
             this.ResumeLayout(false);

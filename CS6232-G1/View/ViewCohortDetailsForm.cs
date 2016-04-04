@@ -261,13 +261,6 @@ namespace CS6232_G1.View
                 MessageBox.Show("Unable to delete cohort");
             }
         }
-
-        private void ViewCohortDetailsForm_Shown(object sender, EventArgs e)
-        {
-            if (lvMembers.Items.Count == 0)
-            {
-                MessageBox.Show("No members have been added to this cohort.");
-            }
-        }
+        
     }
 }
