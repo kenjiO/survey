@@ -9,12 +9,6 @@ namespace Evaluation.Controller
 {
     public partial class EvaluationController : IEvaluationController
     {
-        public List<EmployeeName> GetEmployeeNameList()
-        {
-            // TODO: get employee name list from database (all names?  We have non-admin below.  Is this function needed?)
-            throw new NotSupportedException();
-        }
-
         /// <summary>
         /// Get a list of non-admin employees with possible exclusions
         /// </summary>

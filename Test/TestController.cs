@@ -225,18 +225,6 @@ namespace Test
         #endregion
 
         #region Employees
-        public List<EmployeeName> GetEmployeeNameList()
-        {
-            List<EmployeeName> results = new List<EmployeeName>();
-
-            results.Add(new EmployeeName( 54, "Steve", "Anderson"));
-            results.Add(new EmployeeName(  3, "John", "Doe"));
-            results.Add(new EmployeeName(105, "Zoe", "Doe"));
-            results.Add(new EmployeeName( 22, "Bob", "Jones"));
-            results.Add(new EmployeeName(141, "Ann", "Smith"));
-            return results;
-        }
-
         public bool IsSupervisorSelected(int employeeId)
         {
             return false;

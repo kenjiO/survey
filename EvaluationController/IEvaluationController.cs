@@ -177,12 +177,6 @@ namespace Evaluation.Controller
 
         #region Employees
         /// <summary>
-        /// Get a list of employee names and ids
-        /// </summary>
-        /// <returns>Employee name list</returns>
-        List<EmployeeName> GetEmployeeNameList();
-
-        /// <summary>
         /// Get a list of non-admin employees with possible exclusions
         /// </summary>
         /// <param name="exclude">List of employee Id's to exclude</param>
