@@ -79,6 +79,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\QuestionnaireForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\QuestionnaireForm.Designer.cs">
+      <DependentUpon>QuestionnaireForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\RenameCohortForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\QuestionnaireForm.resx">
+      <DependentUpon>QuestionnaireForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\RenameCohortForm.resx">
       <DependentUpon>RenameCohortForm.cs</DependentUpon>
