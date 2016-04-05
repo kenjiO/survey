@@ -105,7 +105,7 @@ namespace CS6232_G1.View
 
         private Panel createPanel(int rowNumber)
         {
-            Panel panel = new Panel();
+            NonFlickerPanel panel = new NonFlickerPanel();
             panel.Name = "panel" + rowNumber;
             panel.Dock = DockStyle.Fill;
             return panel;
