@@ -70,7 +70,7 @@ namespace Evaluation.DAL
                 "SELECT  employeeID, firstName, lastName " +
                 "FROM employee " +
                 "WHERE isAdmin = 0 " +
-                "ORDER BY firstName, lastName;";
+                "ORDER BY lastName, firstName;";
 
             using (SqlConnection connection = EvaluationDB.GetConnection())
             {
