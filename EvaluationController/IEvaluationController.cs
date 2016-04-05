@@ -237,6 +237,13 @@ namespace Evaluation.Controller
         /// <param name="stageId">Evaluation stage</param>
         /// <returns>Report details list</returns>
         List<UserReport> GetUserReport(int employeeId, int typeId, int stageId);
+
+        /// Return Cohort Report data for a given type and cohort
+        /// </summary>
+        /// <param name="typeId">Evaluation type</param>
+        ///<param name="cohortId">Cohort</param>
+        /// <returns>List of cohort report items</returns>
+        List<CohortReport> GetCohortReport(int typeId, int cohortId);
         #endregion
 
         #region Schedule
