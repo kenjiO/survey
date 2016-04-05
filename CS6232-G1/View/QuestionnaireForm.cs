@@ -27,18 +27,22 @@ namespace CS6232_G1.View
         private void QuestionnaireForm_Load(object sender, EventArgs e)
         {
             //String evaluatedEmployeeName = _currentUser.FirstName + " " + _currentUser.LastName;
-            String evaluatedEmployeeName = "John Doe";
-            lblGeneral.Text += evaluatedEmployeeName + ".";
+            //String evaluatedEmployeeName = "John Doe";
+            //lblGeneral.Text += evaluatedEmployeeName + ".";
+
+            // get answer range from DB
+            int answerRange = 10;
+
+            lblEmployeeName.Text += "John Doe";
             
-            lblInstructions.Text = "Please answer the questions thoroughly and truthfully. " +
+            lblInstructions.Text = "Using a scale of 1 to " + answerRange + " (with 1 being the lowest and " +
+            answerRange + " being the highest), rate this employee's performance. Please answer the questions thoroughly and truthfully. " +
                 "Your responses will be compiled along with those provided by other employees. Thank you for your participation.";
 
-            //get category
-            //label1.Text = "Category 1";
-            //label2.Text = "This is a really really really really long question. This is a really really really really looooooooooooong question";
+            this.SuspendLayout();
 
             DBLayoutPanel tlpQuestionnaire = new DBLayoutPanel();
-            tlpQuestionnaire.Location = new Point(12, 223);
+            tlpQuestionnaire.Location = new Point(12, 230);
             tlpQuestionnaire.Size = new Size(839, 110);
             tlpQuestionnaire.AutoSize = true;
             tlpQuestionnaire.Margin = new System.Windows.Forms.Padding(3, 3, 40, 30);
@@ -52,17 +56,11 @@ namespace CS6232_G1.View
             tlpQuestionnaire.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             tlpQuestionnaire.RowCount = 0;
             tlpQuestionnaire.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            tlpQuestionnaire.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddRows;
-            this.Controls.Add(tlpQuestionnaire);            
+            tlpQuestionnaire.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddRows;                  
             
             tlpQuestionnaire.Left = 30;
 
-            // get answer range from DB
-            int answerRange = 10;
-            
-            //createRadioButtonPanel(panel1, answerRange);            
-
-            // For Add New Row (Loop this code for add multiple rows)
+            // Add rows to the table layout panel
             tlpQuestionnaire.GrowStyle = TableLayoutPanelGrowStyle.AddRows;
             int questionsPerCategory = 5;
             tlpQuestionnaire.RowCount = tlpQuestionnaire.RowCount + 1;
@@ -70,12 +68,11 @@ namespace CS6232_G1.View
             {
                 
                 Label label = createCategoryLabel(tlpQuestionnaire.RowCount);
-                label.Text = "Category " + categoryCount;
+                label.Text = "Category " + categoryCount;                
                 tlpQuestionnaire.Controls.Add(label, 0, tlpQuestionnaire.RowCount - 1);
                 tlpQuestionnaire.SetRowSpan(label, questionsPerCategory);
                 for (int questionCount = 0; questionCount < questionsPerCategory; questionCount++)
                 {
-
                     label = createQuestionLabel(tlpQuestionnaire.RowCount);
                     label.Text = "Question " + (tlpQuestionnaire.RowCount);
                     tlpQuestionnaire.Controls.Add(label, 1, tlpQuestionnaire.RowCount - 1);
@@ -83,19 +80,26 @@ namespace CS6232_G1.View
                     createRadioButtonPanel(panel, answerRange);
                     tlpQuestionnaire.Controls.Add(panel, 2, tlpQuestionnaire.RowCount - 1);
                     tlpQuestionnaire.RowCount = tlpQuestionnaire.RowCount + 1;
-
                 }
-            }
+            }          
 
-            //tableLayoutPanel1.AutoSize = true;
+            this.ResumeLayout();
 
-            
+            this.Controls.Add(tlpQuestionnaire); 
+
+            int tableWidth = tlpQuestionnaire.Width;
+
+            lblTitle.Left = 30;
+            lblTitle.Width = tableWidth;
 
             lblGeneral.Left = 30;
-            lblGeneral.Width = tlpQuestionnaire.Width;
+            lblGeneral.Width = tableWidth;
+
+            lblEmployeeName.Left = 30;
+            lblEmployeeName.Width = tableWidth;
 
             lblInstructions.Left = 30;
-            lblInstructions.Width = tlpQuestionnaire.Width;
+            lblInstructions.Width = tableWidth;            
 
         }
 
@@ -110,6 +114,7 @@ namespace CS6232_G1.View
         private Label createCategoryLabel(int rowNumber) {
             Label label = new Label();
             label.Name = "lblCategory" + rowNumber;
+            label.Font = new Font("Microsoft Sans Serif", 10);
             label.AutoSize = true;
             label.Margin = new Padding(3);
             label.MaximumSize = new Size(200, 0);
@@ -119,8 +124,9 @@ namespace CS6232_G1.View
         private Label createQuestionLabel(int rowNumber)
         {
             Label label = new Label();
-            //label.Text = "Question 2";
             label.AutoSize = true;
+            label.Name = "lblQuestion" + rowNumber;
+            label.Font = new Font("Microsoft Sans Serif", 10);
             label.Margin = new Padding(3);
             label.MaximumSize = new Size(400, 0);
             return label;
@@ -159,19 +165,16 @@ namespace CS6232_G1.View
     {
         public DBLayoutPanel()
         {
-            //InitializeComponent();
-            SetStyle(ControlStyles.AllPaintingInWmPaint |
-              ControlStyles.OptimizedDoubleBuffer |
-              ControlStyles.UserPaint, true);
-        }
-
-        public DBLayoutPanel(IContainer container)
-        {
-            container.Add(this);
-            //InitializeComponent();
-            SetStyle(ControlStyles.AllPaintingInWmPaint |
-              ControlStyles.OptimizedDoubleBuffer |
-              ControlStyles.UserPaint, true);
+            this.DoubleBuffered = true;
         }
     }
+
+    public partial class NonFlickerPanel : Panel
+    {
+        public NonFlickerPanel()
+            : base()
+       {
+           this.DoubleBuffered = true;
+       }
+    } 
 }
