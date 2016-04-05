@@ -390,6 +390,23 @@ namespace Test
             return results;
         }
 
+        public List<CohortReport> GetCohortReport(int typeId, int cohortId)
+        {
+            List<CohortReport> results = new List<CohortReport>();
+            results.Add(new CohortReport("Stag 1", "Cat1", 5));
+            results.Add(new CohortReport("Stag 1", "Cat2", 15));
+            results.Add(new CohortReport("Stag 1", "Cat3", 20));
+            results.Add(new CohortReport("Stag 2", "Cat1", 55));
+            results.Add(new CohortReport("Stag 2", "Cat2", 65));
+            results.Add(new CohortReport("Stag 2", "Cat3", 75));
+            results.Add(new CohortReport("Stag 3", "Cat1", 95));
+            results.Add(new CohortReport("Stag 3", "Cat2", 90));
+            results.Add(new CohortReport("Stag 3", "Cat3", 80));
+
+            return results;
+        }
+
+
         public List<UserReport2> GetUserReport2(int employeeId, int typeId, int stageId)
         {
             List<UserReport2> results = new List<UserReport2>();

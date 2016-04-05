@@ -17,5 +17,12 @@ namespace Evaluation.Controller
             return _dal.GetUserReport(employeeId, typeId, stageId);
         }
 
+        public List<CohortReport> GetCohortReport(int typeId, int cohortId)
+        {
+            return null;
+        }
+
     }
+
+
 }
