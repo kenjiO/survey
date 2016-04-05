@@ -50,16 +50,58 @@ namespace CS6232_G1.View
 
         private void QuestionnaireForm_Load(object sender, EventArgs e)
         {
-            EvaluationDetails evalDetails = _controller.getEvaluationDetails(_evaluationId);
-            _answerRange = evalDetails.AnswerRange;            
-            SetUpLabels(evalDetails);
+            try
+            {
+                EvaluationDetails evalDetails = _controller.getEvaluationDetails(_evaluationId);
+                _answerRange = evalDetails.AnswerRange;
+                SetUpLabels(evalDetails);
 
-            _categoryCount = evalDetails.CategoryCount;
-            _questionsPerCategoryCount = evalDetails.QuestionCount;            
+                _categoryCount = evalDetails.CategoryCount;
+                _questionsPerCategoryCount = evalDetails.QuestionCount;
+                                   
             
-            this.SuspendLayout();
+                this.SuspendLayout();
 
-            DBLayoutPanel tlpQuestionnaire = new DBLayoutPanel();
+                DBLayoutPanel tlpQuestionnaire = new DBLayoutPanel();
+                setUpTableLayoutPanel(tlpQuestionnaire);      
+      
+                // add rows to the table layout panel
+                tlpQuestionnaire.RowCount = tlpQuestionnaire.RowCount + 1;
+                for (int categoryCount = 1; categoryCount <= _categoryCount; categoryCount++)
+                {
+                
+                    Label label = createCategoryLabel(tlpQuestionnaire.RowCount);
+                    label.Text = "Category " + categoryCount;                
+                    tlpQuestionnaire.Controls.Add(label, 0, tlpQuestionnaire.RowCount - 1);
+                    tlpQuestionnaire.SetRowSpan(label, _questionsPerCategoryCount);
+                    for (int questionCount = 0; questionCount < _questionsPerCategoryCount; questionCount++)
+                    {
+                        label = createQuestionLabel(tlpQuestionnaire.RowCount);
+                        label.Text = "Question " + (tlpQuestionnaire.RowCount);
+                        tlpQuestionnaire.Controls.Add(label, 1, tlpQuestionnaire.RowCount - 1);
+                        Panel panel = createPanel(tlpQuestionnaire.RowCount);
+                        createRadioButtonPanel(panel, _answerRange);
+                        tlpQuestionnaire.Controls.Add(panel, 2, tlpQuestionnaire.RowCount - 1);
+                        tlpQuestionnaire.RowCount = tlpQuestionnaire.RowCount + 1;
+                    }
+                }          
+
+                this.ResumeLayout();
+
+                this.Controls.Add(tlpQuestionnaire);
+
+                SetLabelWidths(tlpQuestionnaire);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred retrieving evaluation details.\n\n" +
+                                "Details: " + ex.Message, "Notice");
+            } 
+
+        }
+
+        private void setUpTableLayoutPanel(DBLayoutPanel tlpQuestionnaire)
+        {            
             tlpQuestionnaire.Location = new Point(12, 230);
             tlpQuestionnaire.Size = new Size(839, 110);
             tlpQuestionnaire.AutoSize = true;
@@ -74,39 +116,9 @@ namespace CS6232_G1.View
             tlpQuestionnaire.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             tlpQuestionnaire.RowCount = 0;
             tlpQuestionnaire.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            tlpQuestionnaire.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddRows;                  
-            
+            tlpQuestionnaire.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddRows;
+
             tlpQuestionnaire.Left = 30;
-
-            // Add rows to the table layout panel
-            tlpQuestionnaire.GrowStyle = TableLayoutPanelGrowStyle.AddRows;
-            
-            tlpQuestionnaire.RowCount = tlpQuestionnaire.RowCount + 1;
-            for (int categoryCount = 1; categoryCount <= _categoryCount; categoryCount++)
-            {
-                
-                Label label = createCategoryLabel(tlpQuestionnaire.RowCount);
-                label.Text = "Category " + categoryCount;                
-                tlpQuestionnaire.Controls.Add(label, 0, tlpQuestionnaire.RowCount - 1);
-                tlpQuestionnaire.SetRowSpan(label, _questionsPerCategoryCount);
-                for (int questionCount = 0; questionCount < _questionsPerCategoryCount; questionCount++)
-                {
-                    label = createQuestionLabel(tlpQuestionnaire.RowCount);
-                    label.Text = "Question " + (tlpQuestionnaire.RowCount);
-                    tlpQuestionnaire.Controls.Add(label, 1, tlpQuestionnaire.RowCount - 1);
-                    Panel panel = createPanel(tlpQuestionnaire.RowCount);
-                    createRadioButtonPanel(panel, _answerRange);
-                    tlpQuestionnaire.Controls.Add(panel, 2, tlpQuestionnaire.RowCount - 1);
-                    tlpQuestionnaire.RowCount = tlpQuestionnaire.RowCount + 1;
-                }
-            }          
-
-            this.ResumeLayout();
-
-            this.Controls.Add(tlpQuestionnaire);
-
-            SetLabelWidths(tlpQuestionnaire);            
-
         }
 
         private void SetLabelWidths(DBLayoutPanel tlpQuestionnaire)
@@ -144,8 +156,17 @@ namespace CS6232_G1.View
             }
             else
             {
+                
                 lblGeneral.Text += "peer review for another employee.";
-                evaluatedEmployeeName = _controller.GetEmployeeName(evalDetails.EmployeeId).FullName;
+                try
+                {
+                    evaluatedEmployeeName = _controller.GetEmployeeNameFL(evalDetails.EmployeeId);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred retrieving employee name from the database.\n\n" +
+                                    "Details: " + ex.Message, "Notice");
+                }
             }
 
             lblEmployeeName.Text += evaluatedEmployeeName;
