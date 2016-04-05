@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Evaluation.Model
 {
-    public class UserReport
+    public class UserReport2
     {
+        public string Name { get; private set; }
+        public string TypeName { get; private set; }
+        public string StageName { get; private set; }
+
         public string Category { get; private set; }
         public int QuestionNumber { get; private set; }
         public int SelfEvaluation { get; private set; }
@@ -17,8 +19,11 @@ namespace Evaluation.Model
         public int CoworkerEvaluation { get; private set; }
         public double AverageEvaluation { get; private set; }
 
-        public UserReport(string _category, int _question, int _self, int _supervisor, int _coworker)
+        public UserReport2(string _name, string _type, string _stage, string _category, int _question, int _self, int _supervisor, int _coworker)
         {
+            Name = _name;
+            TypeName = _type;
+            StageName = _stage;
             Category = _category;
             QuestionNumber = _question;
             SelfEvaluation = _self;
@@ -27,7 +32,7 @@ namespace Evaluation.Model
             AverageEvaluation = GetEvaluationAverage();
         }
 
-        public double GetEvaluationAverage() 
+        public double GetEvaluationAverage()
         {
             return (double)(SelfEvaluation + SupervisorEvaluation + CoworkerEvaluation) / 3;
         }

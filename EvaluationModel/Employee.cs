@@ -11,7 +11,7 @@ namespace Evaluation.Model
         public int EmployeeId { get { return _id; } }
         public string FirstName { get { return _firstName; } }
         public string LastName { get { return _lastName; } }
-        public string FullName { get { return EmployeeName.FullNameString(_id, _firstName, _lastName); } }
+        public string FullName { get { return new EmployeeName(_id, _firstName, _lastName).FullName; } }
         public string Email { get { return _email; } }
         public Boolean IsAdmin { get { return _isAdmin; } }
         public int? CohortId { get; set; }

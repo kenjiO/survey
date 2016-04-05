@@ -8,46 +8,53 @@ namespace Evaluation.Model
 {
     public class EmployeeName
     {
-        public int EmployeeId { get { return _id; } }
-        public string Name { get { return _name; } }
-        public string FullName { get { return _name; } }
+        public int EmployeeId { get; private set; }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
+
+        public string FullName { get { return FullNameString(); } }
+        public string FullNameFL { get { return FullNameFLString(); } }
 
         public EmployeeName(int id, string firstName, string lastName)
         {
-            _id = id;
-            _name = FullNameString(id, firstName, lastName);
+            EmployeeId = id;
+            FirstName = firstName ?? "";
+            LastName = lastName ?? "";
         }
 
         /// <summary>
-        /// Convert first and last name and employee id to full name string (e.g. "last, first (###)")
+        /// Convert first and last name and employee id to full name string
         /// </summary>
-        /// <param name="id">Employee id</param>
-        /// <param name="first">First name</param>
-        /// <param name="last">Last name</param>
-        /// <returns>Full name string</returns>
-        public static string FullNameString(int id, string first, string last)
+        /// <returns>Full name string in "last, first (####)" format</returns>
+        public string FullNameString()
         {
             string result;
 
-            if (first == null)
-            {
-                first = "";
-            }
-            if (last == null)
-            {
-                last = "";
-            }
-            result = last;
-            if (result.Length > 0 && first.Length > 0)
+            result = LastName;
+            if (result.Length > 0 && FirstName.Length > 0)
             {
                 result += ", ";
             }
-            result += first + " (" + id + ")";
+            result += FirstName + " (" + EmployeeId + ")";
             return result;
         }
 
-        private int _id;
-        private string _name;
+        /// <summary>
+        /// Convert first and last name and employee id to full name string
+        /// </summary>
+        /// <returns>Full name string in "first last (####)" format</returns>
+        public string FullNameFLString()
+        {
+            string result;
+
+            result = FirstName;
+            if (result.Length > 0 && LastName.Length > 0)
+            {
+                result += " ";
+            }
+            result += LastName + " (" + EmployeeId + ")";
+            return result;
+        }
 
     }
 }

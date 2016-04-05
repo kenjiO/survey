@@ -9,6 +9,16 @@ namespace Evaluation.Controller
 {
     public partial class EvaluationController : IEvaluationController
     {
+        /// <summary>
+        /// Look up employee name
+        /// </summary>
+        /// <param name="employeeId">Employee to look up</param>
+        /// <returns>EmployeeName record</returns>
+        public EmployeeName GetEmployeeName(int employeeId)
+        {
+            return _dal.GetEmployeeName(employeeId);
+
+        }
 
         /// <summary>
         /// Look up employee name
@@ -16,9 +26,16 @@ namespace Evaluation.Controller
         /// <param name="employeeId">Employee to look up</param>
         /// <returns>EmployeeName record</returns>
         /// <throws>ArgumentException if employeeId not found</throws>
-        public EmployeeName GetEmployeeName(int employeeId)
+        public String GetEmployeeNameFL(int employeeId)
         {
-            return _dal.GetEmployeeName(employeeId);
+            try
+            {
+                return _dal.GetEmployeeName(employeeId).FullNameFL;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
         }
 
         /// <summary>

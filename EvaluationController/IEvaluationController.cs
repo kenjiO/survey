@@ -186,6 +186,13 @@ namespace Evaluation.Controller
         EmployeeName GetEmployeeName(int employeeId);
 
         /// <summary>
+        /// Look up an employee's name (does not throw if not found)
+        /// </summary>
+        /// <param name="employeeId">Employee id of employee to look up</param>
+        /// <returns>Name in "First Last (#####)" format or empty string if not found</returns>
+        String GetEmployeeNameFL(int employeeId);
+
+        /// <summary>
         /// Get a list of non-admin employees with possible exclusions
         /// </summary>
         /// <param name="exclude">List of employee Id's to exclude</param>
@@ -223,12 +230,13 @@ namespace Evaluation.Controller
 
         #region Admin Reports
         /// <summary>
-        /// Return User Report data for a given stage and evaluation type
+        /// Return User Report data for a given employee, evaluation type, and stage
         /// </summary>
-        /// <param name="stageId"></param>
-        /// <param name="typeId"></param>
-        /// <returns>Report details as a DataTable</returns>
-        DataTable GetUserReport(int stageId, int typeId);
+        /// <param name="employeeId">Employee to generate report for</param>
+        /// <param name="typeId">Evaluation type</param>
+        /// <param name="stageId">Evaluation stage</param>
+        /// <returns>Report details list</returns>
+        List<UserReport> GetUserReport(int employeeId, int typeId, int stageId);
         #endregion
 
         #region Schedule
