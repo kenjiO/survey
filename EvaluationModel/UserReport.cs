@@ -10,51 +10,26 @@ namespace Evaluation.Model
 {
     public class UserReport
     {
-        /*
-         * TODO: User Report Details 
-         * 
-         * Note: Use Table Report and Object Model to do this report
-         * 
-          by employeeid
-          should show
-               employee name
-               stage
-               type
-               for each category,
-                    for each question, show
-                         self evaluation result
-                         coworker's evaluation result
-                         direct supervisor's evaluation result
-                         average of all three
-        */
+        public string Category { get; private set; }
+        public int QuestionNumber { get; private set; }
+        public int SelfEvaluation { get; private set; }
+        public int SupervisorEvaluation { get; private set; }
+        public int CoworkerEvaluation { get; private set; }
+        public double AverageEvaluation { get; private set; }
 
-
-        /// <summary>
-        /// User Report Columns
-        /// </summary>
-        public enum Columns { EmployeeId, Stage, Type, Category, Question, Self, Coworker, Supervisor, Average };
-
-        /// <summary>
-        /// Create User Report Data Table
-        /// </summary>
-        /// <returns>Data Table with User Report columns defined</returns>
-        public static DataTable createDataTable()
+        public UserReport(string _category, int _question, int _self, int _supervisor, int _coworker)
         {
-            DataTable table = new DataTable();
-
-            table.Locale = CultureInfo.InvariantCulture;
-            table.Columns.Add(Columns.EmployeeId.ToString(), typeof(int));
-            table.Columns.Add(Columns.Stage.ToString(), typeof(string));
-            table.Columns.Add(Columns.Type.ToString(), typeof(string));
-            table.Columns.Add(Columns.Category.ToString(), typeof(string));
-            table.Columns.Add(Columns.Question.ToString(), typeof(int));
-            table.Columns.Add(Columns.Self.ToString(), typeof(int));
-            table.Columns.Add(Columns.Coworker.ToString(), typeof(int));
-            table.Columns.Add(Columns.Supervisor.ToString(), typeof(int));
-            table.Columns.Add(Columns.Average.ToString(), typeof(int));
-            return table;
+            Category = _category;
+            QuestionNumber = _question;
+            SelfEvaluation = _self;
+            SupervisorEvaluation = _supervisor;
+            CoworkerEvaluation = _coworker;
+            AverageEvaluation = GetEvaluationAverage();
         }
 
-
+        public double GetEvaluationAverage() 
+        {
+            return (double)(SelfEvaluation + SupervisorEvaluation + CoworkerEvaluation) / 3;
+        }
     }
 }

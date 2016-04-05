@@ -251,6 +251,11 @@ namespace Test
         #endregion
 
         #region Schedules
+        public bool DeleteSchedule(EvaluationSchedule selectedSchedule)
+        {
+            return true;
+        }
+
         public List<EvaluationSchedule> GetEvaluationScheduleList(int cohortId)
         {
             return GetEvaluationScheduleList(cohortId, null, null);
@@ -343,28 +348,9 @@ namespace Test
         #region Admin Reports
         public DataTable GetUserReport(int stage, int evalType)
         {
-            DataTable table = UserReport.createDataTable();
-            // EmployeeId, Stage, Type, Category, Question, Self, Coworker, Supervisor, Average
-            Object[] row1 = {    1, "Stage 1", "Type 1", null, null, null, null, null, null };
-            Object[] row2 = { null, null, null, "Category 1", 1, 3, 4, 5, 4 };
-            Object[] row3 = { null, null, null, "Category 1", 2, 3, 2, 3, 3 };
-            Object[] row4 = {    2, "Stage 1", "Type 1", null, null, null, null, null, null };
-            Object[] row5 = { null, null, null, "Category 1", 1, 3, 4, 5, 4 };
-            Object[] row6 = { null, null, null, "Category 1", 2, 3, 2, 3, 3 };
-             
-            table.Rows.Add(row1);
-            table.Rows.Add(row2);
-            table.Rows.Add(row3);
-            table.Rows.Add(row4);
-            table.Rows.Add(row5);
-            table.Rows.Add(row6);
-            return table;
+            return null;
         }
 
-        public bool DeleteSchedule(EvaluationSchedule selectedSchedule)
-        {
-            return true;
-        }
         #endregion
 
         #region Evaluation

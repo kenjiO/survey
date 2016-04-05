@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserReportForm));
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.statusLabel = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.employeeTextBox = new System.Windows.Forms.ToolStripTextBox();
@@ -40,18 +41,20 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.typeComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.generateButton = new System.Windows.Forms.ToolStripButton();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.UserReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.statusLabel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UserReportBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // statusLabel
             // 
             this.statusLabel.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusLabel.Location = new System.Drawing.Point(0, 317);
+            this.statusLabel.Location = new System.Drawing.Point(0, 341);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(582, 22);
+            this.statusLabel.Size = new System.Drawing.Size(653, 22);
             this.statusLabel.TabIndex = 5;
             this.statusLabel.Text = "statusStrip1";
             // 
@@ -59,21 +62,6 @@
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
-            // dataGridView
-            // 
-            this.dataGridView.AllowUserToAddRows = false;
-            this.dataGridView.AllowUserToDeleteRows = false;
-            this.dataGridView.AllowUserToOrderColumns = true;
-            this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(0, 29);
-            this.dataGridView.Margin = new System.Windows.Forms.Padding(3, 30, 3, 3);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.ReadOnly = true;
-            this.dataGridView.Size = new System.Drawing.Size(582, 288);
-            this.dataGridView.TabIndex = 6;
             // 
             // toolStrip1
             // 
@@ -87,7 +75,7 @@
             this.generateButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(582, 28);
+            this.toolStrip1.Size = new System.Drawing.Size(653, 28);
             this.toolStrip1.TabIndex = 7;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -103,33 +91,33 @@
             // 
             this.employeeTextBox.MaxLength = 15;
             this.employeeTextBox.Name = "employeeTextBox";
-            this.employeeTextBox.Size = new System.Drawing.Size(50, 25);
+            this.employeeTextBox.Size = new System.Drawing.Size(50, 28);
             // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
             this.toolStripLabel2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripLabel2.Size = new System.Drawing.Size(49, 22);
+            this.toolStripLabel2.Size = new System.Drawing.Size(49, 25);
             this.toolStripLabel2.Text = "Stage:";
             // 
             // stageComboBox
             // 
             this.stageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stageComboBox.Name = "stageComboBox";
-            this.stageComboBox.Size = new System.Drawing.Size(100, 25);
+            this.stageComboBox.Size = new System.Drawing.Size(100, 28);
             // 
             // toolStripLabel3
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
             this.toolStripLabel3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripLabel3.Size = new System.Drawing.Size(45, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(45, 25);
             this.toolStripLabel3.Text = "Type:";
             // 
             // typeComboBox
             // 
             this.typeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typeComboBox.Name = "typeComboBox";
-            this.typeComboBox.Size = new System.Drawing.Size(100, 25);
+            this.typeComboBox.Size = new System.Drawing.Size(100, 28);
             // 
             // generateButton
             // 
@@ -144,13 +132,29 @@
             this.generateButton.Text = "Generate";
             this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
             // 
+            // reportViewer1
+            // 
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportDataSource1.Name = "UserReportDataSet";
+            reportDataSource1.Value = this.UserReportBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "CS6232_G1.View.UserReport.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(0, 28);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.Size = new System.Drawing.Size(653, 313);
+            this.reportViewer1.TabIndex = 8;
+            // 
+            // UserReportBindingSource
+            // 
+            this.UserReportBindingSource.DataSource = typeof(Evaluation.Model.UserReport);
+            // 
             // UserReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 339);
+            this.ClientSize = new System.Drawing.Size(653, 363);
+            this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.statusLabel);
             this.Name = "UserReportForm";
             this.Text = "User Report";
@@ -158,9 +162,9 @@
             this.Resize += new System.EventHandler(this.UserReportForm_Resize);
             this.statusLabel.ResumeLayout(false);
             this.statusLabel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UserReportBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,7 +174,6 @@
 
         private System.Windows.Forms.StatusStrip statusLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripTextBox employeeTextBox;
@@ -179,5 +182,7 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripComboBox typeComboBox;
         private System.Windows.Forms.ToolStripButton generateButton;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private System.Windows.Forms.BindingSource UserReportBindingSource;
     }
 }

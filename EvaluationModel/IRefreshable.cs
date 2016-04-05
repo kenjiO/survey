@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EvaluationModel
+namespace Evaluation.Model
 {
     /// <summary>
     /// Interface that can be implemented by refreshable parent views
