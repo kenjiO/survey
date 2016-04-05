@@ -43,9 +43,7 @@
             this.lblGeneral.Name = "lblGeneral";
             this.lblGeneral.Size = new System.Drawing.Size(851, 70);
             this.lblGeneral.TabIndex = 3;
-            this.lblGeneral.Text = "As you know, Company XXX utilizes a 360-degree performance appraisal methodology." +
-    " Peer review is a critical part of this process. You have been selected to provi" +
-    "de a peer review for another employee.";
+            this.lblGeneral.Text = "Text";
             this.lblGeneral.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblInstructions

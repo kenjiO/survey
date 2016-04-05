@@ -26,7 +26,6 @@ namespace CS6232_G1
             Application.Run(mainForm=new MainForm(new EvaluationController(new EvaluationDAL())));
             // TODO: After testing, use actual controller and DAL
             //Application.Run(mainForm=new MainForm(new TestController()));
-            //Application.Run(new QuestionnaireForm(new TestController()));
         }
     }
 }

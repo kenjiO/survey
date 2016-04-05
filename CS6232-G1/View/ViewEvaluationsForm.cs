@@ -13,7 +13,9 @@ namespace CS6232_G1.View
     {
         private IEvaluationController _controller;
         private Employee _currentUser;
-
+        private const int SELF_EVALUATION = 0;
+        private const int PEER_EVALUATION = 1;
+        
         public ViewEvaluationsForm(IEvaluationController controller, Employee currentUser)
         {
             InitializeComponent();
@@ -176,12 +178,23 @@ namespace CS6232_G1.View
             {
                 int evaluationId = (int)senderGrid.Rows[e.RowIndex].Cells["evaluationId1"].Value;
 
-                // TODO: Open self evaluation
+                // TODO: Open peer evaluation
                 //MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
-                MessageBox.Show("TODO: Open Evaluation.");
+                //MessageBox.Show("TODO: Open Evaluation.");
+                try
+                {
+                    QuestionnaireForm form = new QuestionnaireForm(_controller, PEER_EVALUATION, evaluationId);
+                    form.Show();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An unexpected error occurred on opening evaluation form.\n\n" +
+                                    "Details: " + ex.Message, "Notice");
+                }
 
             }
         }
 
     }
+    
 }

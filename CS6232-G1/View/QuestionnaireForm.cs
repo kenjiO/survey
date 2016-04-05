@@ -16,24 +16,58 @@ namespace CS6232_G1.View
     {
         private IEvaluationController _controller;
         private Employee _currentUser;
+        private int _evaluationKind;
+        private int _evaluationId;
 
-        public QuestionnaireForm(IEvaluationController controller)
+        public QuestionnaireForm(IEvaluationController controller, int evaluationKind, int evaluationId)
         {
             InitializeComponent();
             _controller = controller;
             _currentUser = _controller.CurrentUser;
+            _evaluationKind = evaluationKind;
+            _evaluationId = evaluationId;
+
+            if (_controller == null)
+            {
+                throw new ArgumentNullException("controller", "Controller cannot be null");
+            }
+            if (_currentUser == null)
+            {
+                throw new ArgumentNullException("currentUser", "Current User cannot be null");
+            }
+            if (evaluationKind < 0 || evaluationKind > 1)
+            {
+                throw new ArgumentOutOfRangeException("Invalid evaluationKind", "Evaluation Kind has to be 0 or 1");
+            }
+            if (evaluationId < 1)
+            {
+                throw new ArgumentOutOfRangeException("Invalid evaluationId", "Evaluation Id must be greater than 0");
+            }
         }
 
         private void QuestionnaireForm_Load(object sender, EventArgs e)
         {
-            //String evaluatedEmployeeName = _currentUser.FirstName + " " + _currentUser.LastName;
+            String evaluatedEmployeeName = "";
             //String evaluatedEmployeeName = "John Doe";
-            //lblGeneral.Text += evaluatedEmployeeName + ".";
+            lblGeneral.Text = 
+                "As you know, Company XXX utilizes a 360-degree performance appraisal methodology. " +
+                "Peer review is a critical part of this process. You have been selected to " +
+                "provide a ";
+            if (_evaluationKind == 0)
+            {
+                lblGeneral.Text += "self evaluation.";
+                evaluatedEmployeeName = _currentUser.FirstName + " " + _currentUser.LastName;
+            }
+            else
+            {
+                lblGeneral.Text += "peer review for another employee.";
+                evaluatedEmployeeName = "Someone";
+            }
 
             // get answer range from DB
             int answerRange = 10;
 
-            lblEmployeeName.Text += "John Doe";
+            lblEmployeeName.Text += evaluatedEmployeeName;
             
             lblInstructions.Text = "Using a scale of 1 to " + answerRange + " (with 1 being the lowest and " +
             answerRange + " being the highest), rate this employee's performance. Please answer the questions thoroughly and truthfully. " +
@@ -153,7 +187,6 @@ namespace CS6232_G1.View
                 rb.Location = new Point(10 + spacer * (i - 1), 6);
                 panel.Controls.Add(rb);
                 panel.AutoSize = true;
-                //MessageBox.Show("panel height: " + panel1.Height);
             }
         }
     }
