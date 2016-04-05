@@ -52,12 +52,10 @@
     <Compile Include="Role.cs" />
     <Compile Include="Stage.cs" />
     <Compile Include="UserReport.cs" />
+    <Compile Include="UserReport2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\Evaluation.Model.UserReport.datasource" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="UserReport.rdlc" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

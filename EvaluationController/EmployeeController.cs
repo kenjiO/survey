@@ -9,6 +9,18 @@ namespace Evaluation.Controller
 {
     public partial class EvaluationController : IEvaluationController
     {
+        public String GetEmployeeNameFL(int employeeId)
+        {
+            try
+            {
+                return _dal.GetEmployeeName(employeeId).FullNameFL;
+            }
+            catch(Exception) 
+            {
+                return "";
+            }
+        }
+
         /// <summary>
         /// Get a list of non-admin employees with possible exclusions
         /// </summary>

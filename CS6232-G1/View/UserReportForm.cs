@@ -18,6 +18,7 @@ namespace CS6232_G1.View
         IEvaluationController _controller;
         private List<Stage> _stages;
         private List<EvalType> _types;
+        private List<UserReport> reportData;
 
         public UserReportForm(IEvaluationController controller)
         {
@@ -45,21 +46,15 @@ namespace CS6232_G1.View
 
         private void UserReportForm_Load(object sender, EventArgs e)
         {
-            this.reportViewer1.RefreshReport();
-        }
-
-        private void UserReportForm_Resize(object sender, EventArgs e)
-        {
+            reportViewer.RefreshReport();
         }
 
         private void generateButton_Click(object sender, EventArgs e)
         {
-            int employeeId=1;
-
-            // TODO: Parse employee number
-            if (stageComboBox.SelectedIndex == -1)
+            int employeeId = ParseEmployeeId(employeeTextBox.Text);
+            if (employeeId < 1)
             {
-                MessageBox.Show("Please select evaluation stage and type", "Notice");
+                MessageBox.Show("Please enter a valid numeric employee id", "Notice");
                 return;
             }
             if (typeComboBox.SelectedIndex == -1)
@@ -67,9 +62,19 @@ namespace CS6232_G1.View
                 MessageBox.Show("Please select an evaluation type", "Notice");
                 return;
             }
-            int stage = (int)stageComboBox.ComboBox.SelectedValue;
+            if (stageComboBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select evaluation stage and type", "Notice");
+                return;
+            }
             int evaltype = (int)typeComboBox.ComboBox.SelectedValue;
-            GenerateUserReport(employeeId, stage, evaltype);
+            int stage = (int)stageComboBox.ComboBox.SelectedValue;
+            GenerateUserReport(employeeId, evaltype, stage);
+            if (reportData.Count == 0)
+            {
+                string text = "No report found for employee " + employeeId + " for " + typeComboBox.Text + " and " + stageComboBox.Text;
+                MessageBox.Show(text, "Notice");
+            }
         }
 
         /// <summary>
@@ -78,34 +83,41 @@ namespace CS6232_G1.View
         /// <param name="employeeId">Employee to generate report for</param>
         /// <param name="stage">Stage selected</param>
         /// <param name="evalType">Evaluation Type selected</param>
-        private void GenerateUserReport(int employeeId, int stage, int evalType)
+        private void GenerateUserReport(int employeeId, int evalType, int stage)
         {
             try
             {
-                //statusLabel.Text = "Generating Report...";
-                //Application.UseWaitCursor = true;
-                //Application.DoEvents();
-                // TODO: Get UserReport list and set report binding
-                //DataTable reportTable = _controller.GetUserReport(employeeId, stage, evalType);
-                // this.reportViewer1.Controls.
-                // set header label to:
-                //  String text = "Employee " + nameFirstLastId + " Evaluation Report (Evaluation " + typeName + " at " + stageName + 
+                
+                // TODO: set header label to:
+                // string text = "Employee " + nameFirstLastId + " Evaluation Report (Evaluation " + typeName + " at " + stageName + 
                 //                  ") (generated " + DateTime.Now.AsDD/MM/YYYY + ")"
-                //SetupUserReport(reportTable);
+                reportData = _controller.GetUserReport(employeeId, evalType, stage);
+                UserReportBindingSource.DataSource = reportData;
+                reportViewer.RefreshReport();
             }
             catch (SqlException ex)
             {
                 MessageBox.Show("An error occurred acquiring data from the database.  Please check your SQL configuration.\n\n" +
                                 "Details: " + ex.Message, "Notice");
             }
-            finally
-            {
-                //Application.UseWaitCursor = false;
-                //statusLabel.Text = "";
-            }
         }
 
 
+        // 
+        // Utility functions
+        // 
+        private int ParseEmployeeId(string text)
+        {
+            try
+            {
+                int empId = Int32.Parse(text);
+                return empId;
+            }
+            catch(FormatException)
+            {
+                return -1;
+            }
+        }
 
         private List<Stage> GetStageList()
         {

@@ -23,9 +23,9 @@ namespace CS6232_G1
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // for standard operation, provide normal EvaluationController initialzed with a normal EvaluationDAL
-            //Application.Run(mainForm=new MainForm(new EvaluationController(new EvaluationDAL())));
+            Application.Run(mainForm=new MainForm(new EvaluationController(new EvaluationDAL())));
             // TODO: After testing, use actual controller and DAL
-            Application.Run(mainForm=new MainForm(new TestController()));
+            //Application.Run(mainForm=new MainForm(new TestController()));
         }
     }
 }

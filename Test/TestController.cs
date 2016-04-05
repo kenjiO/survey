@@ -13,7 +13,7 @@ namespace Test
 
         public Employee CurrentUser { get { return _currentUser; } }
         public bool IsAdminSession { get { return _isAdminSession; } }
-        
+
         #region Stages
         public List<Stage> GetStageList()
         {
@@ -178,7 +178,7 @@ namespace Test
             List<Employee> results = new List<Employee>();
             results.Add(new Employee(4, "John", "Smith", "john_smith@gmail.com", false));
             results.Add(new Employee(5, "Sam", "Black", "sam_black@gmail.com", false));
-            
+
             return results;
         }
 
@@ -225,6 +225,11 @@ namespace Test
         #endregion
 
         #region Employees
+        public String GetEmployeeNameFL(int employeeId)
+        {
+            return "Cindy Who (" + employeeId + ")";
+        }
+
         public bool IsSupervisorSelected(int employeeId)
         {
             return false;
@@ -332,8 +337,8 @@ namespace Test
             {
                 return null;
             }
-            if (email.IndexOf("admin") >= 0) 
-            { 
+            if (email.IndexOf("admin") >= 0)
+            {
                 _currentUser = new Employee(1, "Jane", "Admin", email, true);
                 _isAdminSession = true;
             }
@@ -346,9 +351,73 @@ namespace Test
         #endregion
 
         #region Admin Reports
-        public DataTable GetUserReport(int stage, int evalType)
+        public List<UserReport> GetUserReport(int employeeId, int typeId, int stageId)
         {
-            return null;
+            List<UserReport> results = new List<UserReport>();
+
+            results.Add(new UserReport("Category 1",  1, 3, 4, 5));
+            results.Add(new UserReport("Category 1",  2, 5, 4, 5));
+            results.Add(new UserReport("Category 1",  3, 3, 4, 3));
+            results.Add(new UserReport("Category 1",  4, 4, 4, 5));
+            results.Add(new UserReport("Category 1",  5, 3, 2, 2));
+            results.Add(new UserReport("Category 2",  6, 3, 3, 3));
+            results.Add(new UserReport("Category 2",  7, 3, 3, 5));
+            results.Add(new UserReport("Category 2",  8, 3, 4, 4));
+            results.Add(new UserReport("Category 2",  9, 1, 4, 1));
+            results.Add(new UserReport("Category 2", 10, 2, 2, 5));
+            results.Add(new UserReport("Category 3", 11, 3, 4, 5));
+            results.Add(new UserReport("Category 3", 12, 5, 4, 5));
+            results.Add(new UserReport("Category 3", 13, 3, 4, 3));
+            results.Add(new UserReport("Category 3", 14, 4, 4, 5));
+            results.Add(new UserReport("Category 3", 15, 3, 2, 2));
+            results.Add(new UserReport("Category 4", 16, 3, 3, 3));
+            results.Add(new UserReport("Category 4", 17, 3, 3, 5));
+            results.Add(new UserReport("Category 4", 18, 3, 4, 4));
+            results.Add(new UserReport("Category 4", 19, 1, 4, 1));
+            results.Add(new UserReport("Category 4", 10, 2, 2, 5));
+            results.Add(new UserReport("Category 5", 11, 3, 4, 5));
+            results.Add(new UserReport("Category 5", 12, 5, 4, 5));
+            results.Add(new UserReport("Category 5", 13, 3, 4, 3));
+            results.Add(new UserReport("Category 5", 14, 4, 4, 5));
+            results.Add(new UserReport("Category 5", 15, 3, 2, 2));
+
+            return results;
+        }
+
+        public List<UserReport2> GetUserReport2(int employeeId, int typeId, int stageId)
+        {
+            List<UserReport2> results = new List<UserReport2>();
+            string _name = GetEmployeeNameFL(employeeId);
+            string _type = GetTypeName(typeId);
+            string _stage = GetStageName(stageId);
+
+            results.Add(new UserReport2(_name, _type, _stage, "Category 1", 1, 3, 4, 5));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 1", 2, 5, 4, 5));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 1", 3, 3, 4, 3));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 1", 4, 4, 4, 5));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 1", 5, 3, 2, 2));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 2", 6, 3, 3, 3));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 2", 7, 3, 3, 5));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 2", 8, 3, 4, 4));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 2", 9, 1, 4, 1));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 2", 10, 2, 2, 5));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 3", 11, 3, 4, 5));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 3", 12, 5, 4, 5));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 3", 13, 3, 4, 3));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 3", 14, 4, 4, 5));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 3", 15, 3, 2, 2));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 4", 16, 3, 3, 3));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 4", 17, 3, 3, 5));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 4", 18, 3, 4, 4));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 4", 19, 1, 4, 1));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 4", 10, 2, 2, 5));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 5", 11, 3, 4, 5));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 5", 12, 5, 4, 5));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 5", 13, 3, 4, 3));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 5", 14, 4, 4, 5));
+            results.Add(new UserReport2(_name, _type, _stage, "Category 5", 15, 3, 2, 2));
+
+            return results;
         }
 
         #endregion

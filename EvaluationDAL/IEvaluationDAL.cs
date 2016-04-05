@@ -145,6 +145,17 @@ namespace Evaluation.DAL
 
         #endregion
 
+        #region Admin Reports
+        /// <summary>
+        /// Return User Report data for a given employee, evaluation type, and stage
+        /// </summary>
+        /// <param name="employeeId">Employee to generate report for</param>
+        /// <param name="typeId">Evaluation type</param>
+        /// <param name="stageId">Evaluation stage</param>
+        /// <returns>Report details list</returns>
+        List<UserReport> GetUserReport(int employeeId, int typeId, int stageId);
+        #endregion
+
         #region Schedules
 
         /// <summary>

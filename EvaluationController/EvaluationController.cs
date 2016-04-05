@@ -13,7 +13,7 @@ namespace Evaluation.Controller
     {
         IEvaluationDAL _dal;
 
-        public EvaluationController(IEvaluationDAL dal) 
+        public EvaluationController(IEvaluationDAL dal)
         {
             _dal = dal;
             if (_dal == null)
@@ -21,15 +21,6 @@ namespace Evaluation.Controller
                 throw new ArgumentNullException("DAL is null");
             }
         }
-
-        #region Admin Reports
-        public DataTable GetUserReport(int stage, int evalType)
-        {
-            // TODO: Use DAL to acquire report details
-            throw new NotSupportedException();
-        }
-        #endregion
-
 
         public List<OpenEvaluation> GetOpenSelfEvaluations(int employeeId)
         {

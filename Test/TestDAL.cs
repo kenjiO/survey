@@ -157,6 +157,14 @@ namespace Test
         }
         #endregion
 
+        #region Admin Reports
+        public List<UserReport> GetUserReport(int employeeId, int typeId, int stageId)
+        {
+            return _controller.GetUserReport(employeeId, typeId, stageId);
+        }
+
+        #endregion
+
         #region Evaluations
         public bool SetSupervisor(int employeeId, int supervisorId)
         {
