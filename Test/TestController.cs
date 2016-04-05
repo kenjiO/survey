@@ -483,7 +483,7 @@ namespace Test
             return new EvaluationDetails(1, 1, "Type-1", 5, 5, 3);
         }
 
-        public List<QAndA> getQuestionsAndAnswers(int evaluationId)
+        public List<QAndA> GetQuestionsAndAnswers(int evaluationId)
         {
             List<QAndA> results = new List<QAndA>();
 
@@ -492,6 +492,16 @@ namespace Test
             results.Add(new QAndA(1, 3, "T1:Category-1", "This is question 3 description.", 4, 3));
 
             return results;
+        }
+
+        public int CreateNewAnswerRecord(int evaluationId, int questionId, int answer)
+        {
+            throw new NotSupportedException();
+        }
+
+        public void SaveAnswer(int answerId, int newAnswer)
+        {
+            throw new NotSupportedException();
         }
 
         #endregion

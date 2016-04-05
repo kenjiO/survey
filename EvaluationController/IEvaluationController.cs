@@ -353,9 +353,25 @@ namespace Evaluation.Controller
         /// </summary>
         /// <param name="evaluationId">id of the evaluation</param>
         /// <returns>list of QAndA objects</returns>
-        List<QAndA> getQuestionsAndAnswers(int evaluationId);
+        List<QAndA> GetQuestionsAndAnswers(int evaluationId);
 
-        #endregion      
-    
+        /// <summary>
+        /// Creates a new answer record in the database
+        /// </summary>
+        /// <param name="_evaluationId">id of the evaluation</param>
+        /// <param name="questionId">id of the question</param>
+        /// <param name="answer">id of the answer</param>
+        /// <returns>answerId of the newly created row, else 0</returns>
+        int CreateNewAnswerRecord(int evaluationId, int questionId, int answer);
+
+        /// <summary>
+        /// Saves an answer in the database
+        /// </summary>
+        /// <param name="answerId">id of record to update</param>
+        /// <param name="newAnswer">the new answer</param>        
+        void SaveAnswer(int answerId, int newAnswer);
+
+        #endregion               
+        
     }
 }

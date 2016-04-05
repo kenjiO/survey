@@ -12,10 +12,10 @@ namespace Evaluation.Model
         public int QuestionId {get; private set;}
         public string CategoryName {get; private set;}
         public string Question {get; private set;}
-        public int? AnswerID {get; private set;}
-        public int? Answer {get; private set;}
+        public int AnswerID {get; private set;}
+        public int Answer {get; private set;}
 
-        public QAndA(int evaluationId, int questionId, string categroryName, string question, int? answerId, int? answer)
+        public QAndA(int evaluationId, int questionId, string categroryName, string question, int answerId, int answer)
         {
             EvaluationId = evaluationId;
             QuestionId = questionId;

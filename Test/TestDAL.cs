@@ -196,9 +196,19 @@ namespace Test
             return 1;
         }
 
-        public List<QAndA> getQuestionsAndAnswers(int evaluationId)
+        public List<QAndA> GetQuestionsAndAnswers(int evaluationId)
         {
-            return _controller.getQuestionsAndAnswers(evaluationId);
+            return _controller.GetQuestionsAndAnswers(evaluationId);
+        }
+
+        public int CreateNewAnswerRecord(int evaluationId, int questionId, int answer)
+        {
+            throw new NotSupportedException();
+        }
+
+        public void SaveAnswer(int answerId, int newAnswer)
+        {
+            throw new NotSupportedException();
         }
 
         #endregion

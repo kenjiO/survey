@@ -429,7 +429,7 @@ namespace Evaluation.DAL
         /// </summary>
         /// <param name="evaluationId">id of the evaluation</param>
         /// <returns>list of QAndA objects</returns>
-        public List<QAndA> getQuestionsAndAnswers(int evaluationId)
+        public List<QAndA> GetQuestionsAndAnswers(int evaluationId)
         {
             List<QAndA> list = new List<QAndA>();
             int typeId = 0;            
@@ -495,6 +495,78 @@ namespace Evaluation.DAL
             }
 
             return list;
+        }
+
+        /// <summary>
+        /// Creates a new answer record in the database
+        /// </summary>
+        /// <param name="_evaluationId">id of the evaluation</param>
+        /// <param name="questionId">id of the question</param>
+        /// <param name="answer">id of the answer</param>
+        /// <returns>answerId of the newly created row, else 0</returns>
+        public int CreateNewAnswerRecord(int evaluationId, int questionId, int answer)
+        {
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+
+                string insertStatement =
+                            "INSERT INTO answer " +
+                            "(evaluationId, questionId, answer) " +
+                            "VALUES (@evaluationId, @questionId, @answer)";
+
+                using (SqlCommand command = new SqlCommand(insertStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@evaluationId", evaluationId);
+                    command.Parameters.AddWithValue("@questionId", questionId);
+                    command.Parameters.AddWithValue("@answer", answer);
+                    int count = command.ExecuteNonQuery();
+                    if (count < 1)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        // get ident and set answerId
+                        command.Parameters.Clear();
+                        command.CommandText = "SELECT IDENT_CURRENT('answer');";
+                        int answerId = Convert.ToInt32(command.ExecuteScalar());
+                        return answerId;
+                    }
+                    
+                }
+                
+            }
+
+        }
+
+        /// <summary>
+        /// Saves an answer in the database
+        /// </summary>
+        /// <param name="answerId">id of record to update</param>
+        /// <param name="newAnswer">the new answer</param>
+        public void SaveAnswer(int answerId, int newAnswer)
+        {
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+
+                string updateStatement =
+                            "UPDATE answer " +
+                            "SET answer = @newAnswer " +
+                            "WHERE answerId = @answerId";
+
+                using (SqlCommand command = new SqlCommand(updateStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@answerId", answerId);
+                    command.Parameters.AddWithValue("@newAnswer", newAnswer);
+                    int count = command.ExecuteNonQuery();
+                    if (count < 1)
+                    {
+                        throw new InvalidOperationException("The answer could not be updated.");
+                    }
+                }
+            }
         }
  
     }
