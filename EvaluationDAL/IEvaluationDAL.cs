@@ -226,8 +226,17 @@ namespace Evaluation.DAL
         /// <returns>Evaluation id of self evaluation created</returns>
         int InitializeSelfEvaluation(int employeeId, int scheduleId, int coworkerId);
 
+        /// <summary>
+        /// Get Details required to show an evaluation form
+        /// </summary>
+        /// <param name="_evaluationId">the id of the evaluation</param>
+        /// <returns>EvaluationDetails object</returns>
+        EvaluationDetails getEvaluationDetails(int evaluationId);
+
         #endregion
 
+
+        
     }
 
 }

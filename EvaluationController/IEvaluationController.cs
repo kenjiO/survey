@@ -176,6 +176,15 @@ namespace Evaluation.Controller
         #endregion
 
         #region Employees
+
+        /// <summary>
+        /// Look up employee name
+        /// </summary>
+        /// <param name="employeeId">Employee to look up</param>
+        /// <returns>EmployeeName record</returns>
+        /// <throws>ArgumentException if employeeId not found</throws>
+        EmployeeName GetEmployeeName(int employeeId);
+
         /// <summary>
         /// Get a list of non-admin employees with possible exclusions
         /// </summary>
@@ -317,8 +326,13 @@ namespace Evaluation.Controller
         /// <returns>Evaluation id of self evaluation created</returns>
         int InitializeSelfEvaluation(int scheduleId, int coworkerId);
 
-        #endregion
+        /// <summary>
+        /// Get Details required to show an evaluation form
+        /// </summary>
+        /// <param name="_evaluationId">the id of the evaluation</param>
+        /// <returns>EvaluationDetails object</returns>
+        EvaluationDetails getEvaluationDetails(int evaluationId);
 
-
+        #endregion      
     }
 }

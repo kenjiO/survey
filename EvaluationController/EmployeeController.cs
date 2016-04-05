@@ -9,6 +9,18 @@ namespace Evaluation.Controller
 {
     public partial class EvaluationController : IEvaluationController
     {
+
+        /// <summary>
+        /// Look up employee name
+        /// </summary>
+        /// <param name="employeeId">Employee to look up</param>
+        /// <returns>EmployeeName record</returns>
+        /// <throws>ArgumentException if employeeId not found</throws>
+        public EmployeeName GetEmployeeName(int employeeId)
+        {
+            return _dal.GetEmployeeName(employeeId);
+        }
+
         /// <summary>
         /// Get a list of non-admin employees with possible exclusions
         /// </summary>

@@ -225,6 +225,12 @@ namespace Test
         #endregion
 
         #region Employees
+
+        public EmployeeName GetEmployeeName(int employeeId)
+        {
+            return new EmployeeName(1, "Tom", "Ryser");
+        }
+
         public bool IsSupervisorSelected(int employeeId)
         {
             return false;
@@ -398,6 +404,11 @@ namespace Test
         public int InitializeSelfEvaluation(int scheduleId, int coworkerId)
         {
             return 1;
+        }
+
+        public EvaluationDetails getEvaluationDetails(int evaluationId)
+        {
+            return new EvaluationDetails(1, 1, "Type-1", 5, 5, 3);
         }
 
         #endregion

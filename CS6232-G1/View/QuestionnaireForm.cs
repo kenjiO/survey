@@ -18,6 +18,9 @@ namespace CS6232_G1.View
         private Employee _currentUser;
         private int _evaluationKind;
         private int _evaluationId;
+        private int _answerRange;
+        private int _categoryCount;
+        private int _questionsPerCategoryCount;
 
         public QuestionnaireForm(IEvaluationController controller, int evaluationKind, int evaluationId)
         {
@@ -35,11 +38,11 @@ namespace CS6232_G1.View
             {
                 throw new ArgumentNullException("currentUser", "Current User cannot be null");
             }
-            if (evaluationKind < 0 || evaluationKind > 1)
+            if (_evaluationKind < 0 || _evaluationKind > 1)
             {
                 throw new ArgumentOutOfRangeException("Invalid evaluationKind", "Evaluation Kind has to be 0 or 1");
             }
-            if (evaluationId < 1)
+            if (_evaluationId < 1)
             {
                 throw new ArgumentOutOfRangeException("Invalid evaluationId", "Evaluation Id must be greater than 0");
             }
@@ -47,32 +50,13 @@ namespace CS6232_G1.View
 
         private void QuestionnaireForm_Load(object sender, EventArgs e)
         {
-            String evaluatedEmployeeName = "";
-            //String evaluatedEmployeeName = "John Doe";
-            lblGeneral.Text = 
-                "As you know, Company XXX utilizes a 360-degree performance appraisal methodology. " +
-                "Peer review is a critical part of this process. You have been selected to " +
-                "provide a ";
-            if (_evaluationKind == 0)
-            {
-                lblGeneral.Text += "self evaluation.";
-                evaluatedEmployeeName = _currentUser.FirstName + " " + _currentUser.LastName;
-            }
-            else
-            {
-                lblGeneral.Text += "peer review for another employee.";
-                evaluatedEmployeeName = "Someone";
-            }
+            EvaluationDetails evalDetails = _controller.getEvaluationDetails(_evaluationId);
+            _answerRange = evalDetails.AnswerRange;            
+            SetUpLabels(evalDetails);
 
-            // get answer range from DB
-            int answerRange = 10;
-
-            lblEmployeeName.Text += evaluatedEmployeeName;
+            _categoryCount = evalDetails.CategoryCount;
+            _questionsPerCategoryCount = evalDetails.QuestionCount;            
             
-            lblInstructions.Text = "Using a scale of 1 to " + answerRange + " (with 1 being the lowest and " +
-            answerRange + " being the highest), rate this employee's performance. Please answer the questions thoroughly and truthfully. " +
-                "Your responses will be compiled along with those provided by other employees. Thank you for your participation.";
-
             this.SuspendLayout();
 
             DBLayoutPanel tlpQuestionnaire = new DBLayoutPanel();
@@ -96,22 +80,22 @@ namespace CS6232_G1.View
 
             // Add rows to the table layout panel
             tlpQuestionnaire.GrowStyle = TableLayoutPanelGrowStyle.AddRows;
-            int questionsPerCategory = 5;
+            
             tlpQuestionnaire.RowCount = tlpQuestionnaire.RowCount + 1;
-            for (int categoryCount = 1; categoryCount <= 7; categoryCount++)
+            for (int categoryCount = 1; categoryCount <= _categoryCount; categoryCount++)
             {
                 
                 Label label = createCategoryLabel(tlpQuestionnaire.RowCount);
                 label.Text = "Category " + categoryCount;                
                 tlpQuestionnaire.Controls.Add(label, 0, tlpQuestionnaire.RowCount - 1);
-                tlpQuestionnaire.SetRowSpan(label, questionsPerCategory);
-                for (int questionCount = 0; questionCount < questionsPerCategory; questionCount++)
+                tlpQuestionnaire.SetRowSpan(label, _questionsPerCategoryCount);
+                for (int questionCount = 0; questionCount < _questionsPerCategoryCount; questionCount++)
                 {
                     label = createQuestionLabel(tlpQuestionnaire.RowCount);
                     label.Text = "Question " + (tlpQuestionnaire.RowCount);
                     tlpQuestionnaire.Controls.Add(label, 1, tlpQuestionnaire.RowCount - 1);
                     Panel panel = createPanel(tlpQuestionnaire.RowCount);
-                    createRadioButtonPanel(panel, answerRange);
+                    createRadioButtonPanel(panel, _answerRange);
                     tlpQuestionnaire.Controls.Add(panel, 2, tlpQuestionnaire.RowCount - 1);
                     tlpQuestionnaire.RowCount = tlpQuestionnaire.RowCount + 1;
                 }
@@ -119,8 +103,14 @@ namespace CS6232_G1.View
 
             this.ResumeLayout();
 
-            this.Controls.Add(tlpQuestionnaire); 
+            this.Controls.Add(tlpQuestionnaire);
 
+            SetLabelWidths(tlpQuestionnaire);            
+
+        }
+
+        private void SetLabelWidths(DBLayoutPanel tlpQuestionnaire)
+        {
             int tableWidth = tlpQuestionnaire.Width;
 
             lblTitle.Left = 30;
@@ -133,7 +123,38 @@ namespace CS6232_G1.View
             lblEmployeeName.Width = tableWidth;
 
             lblInstructions.Left = 30;
-            lblInstructions.Width = tableWidth;            
+            lblInstructions.Width = tableWidth;
+        }
+
+        private void SetUpLabels(EvaluationDetails evalDetails)
+        {
+            String evaluatedEmployeeName = "";
+
+            lblTitle.Text = evalDetails.TypeName + " " + lblTitle.Text;
+
+            lblGeneral.Text =
+                "As you know, Company XXX utilizes a 360-degree performance appraisal methodology. " +
+                "Peer review is a critical part of this process. You have been selected to " +
+                "provide a ";
+            if (_evaluationKind == 0)
+            {
+                lblGeneral.Text += "self evaluation.";
+                lblEmployeeName.Text = "Evaluated Employee: ";
+                evaluatedEmployeeName = _currentUser.FullName;
+            }
+            else
+            {
+                lblGeneral.Text += "peer review for another employee.";
+                evaluatedEmployeeName = _controller.GetEmployeeName(evalDetails.EmployeeId).FullName;
+            }
+
+            lblEmployeeName.Text += evaluatedEmployeeName;
+
+            lblInstructions.Text = 
+                "Using a scale of 1 to " + _answerRange + 
+                " (with 1 being the lowest and " + _answerRange + " being the highest), " +
+                "rate this employee's performance. Please answer the questions thoroughly and truthfully. " +
+                "Your responses will be compiled along with those provided by other employees. Thank you for your participation.";
 
         }
 

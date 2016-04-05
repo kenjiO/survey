@@ -63,5 +63,14 @@ namespace Evaluation.Controller
             return _dal.InitializeSelfEvaluation(_currentUser.EmployeeId, scheduleId, coworkerId);
         }
 
+        /// <summary>
+        /// Get Details required to show an evaluation form
+        /// </summary>
+        /// <param name="_evaluationId">the id of the evaluation</param>
+        /// <returns>EvaluationDetails object</returns>
+        public EvaluationDetails getEvaluationDetails(int evaluationId)
+        {
+            return _dal.getEvaluationDetails(evaluationId);
+        }
     }
 }

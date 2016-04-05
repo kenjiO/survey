@@ -339,6 +339,91 @@ namespace Evaluation.DAL
             } //end using connection
             return evaluationId;
         }
+
+        /// <summary>
+        /// Get Details required to show an evaluation form
+        /// </summary>
+        /// <param name="_evaluationId">the id of the evaluation</param>
+        /// <returns>EvaluationDetails object</returns>
+        public EvaluationDetails getEvaluationDetails(int evaluationId)
+        {
+            EvaluationDetails evaluationDetails;
+            int employeeId = 0;
+            int typeId = 0;
+            string typeName = null;
+            int categoryCount = 0;
+            int questionCount = 0;
+            int answerRange = 0;
+            
+            string selectStatement = "SELECT e.employeeId, ev.typeId, t.typeName, t.answerRange " +
+                                     "FROM evaluations ev " +
+                                     "JOIN employee e ON e.employeeId = ev.employeeId " +
+                                     "JOIN type t ON t.typeId = ev.typeId " +
+                                     "WHERE evaluationId = @evaluationId ";
+
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@evaluationId", evaluationId);
+
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        if (!reader.Read())
+                        {
+                            throw new InvalidOperationException("This evaluation does not exist.");
+                        }
+                        else
+                        {
+                            employeeId = (int)reader["employeeId"];
+                            typeId = (int)reader["typeId"];
+                            typeName = (string)reader["typeName"];
+                            answerRange = (int)reader["answerRange"];                            
+                        }
+                    }
+                }
+
+                string getCategoryCountStatement = "SELECT count(c.categoryId) as categoriesPerType " +
+                                     "FROM category c " +
+                                     "WHERE c.typeId = @typeId ";
+
+                using (SqlCommand selectCommand = new SqlCommand(getCategoryCountStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@typeId", typeId);
+
+                    Object result = selectCommand.ExecuteScalar();
+                    if (result == null)
+                    {
+                        throw new InvalidOperationException("There are no categories for this type.");
+                    }
+                    categoryCount = (int)result;
+                }
+
+                string getQuestionCountStatement = "SELECT TOP 1 count(distinct(questionId)) as questionsPerCategory " +
+                                     "FROM question " +
+                                     "WHERE typeId = @typeId " +
+                                     "GROUP BY categoryId";
+
+                using (SqlCommand selectCommand = new SqlCommand(getQuestionCountStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@typeId", typeId);
+
+                    Object result = selectCommand.ExecuteScalar();
+                    if (result == null)
+                    {
+                        throw new InvalidOperationException("There are no questions for this type.");
+                    }
+                    questionCount = (int)result;
+                }
+
+                evaluationDetails = new EvaluationDetails(employeeId, typeId, typeName, answerRange, categoryCount, questionCount);
+
+
+            }
+            return evaluationDetails;
+        }
  
     }
 

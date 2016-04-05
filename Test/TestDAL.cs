@@ -163,6 +163,11 @@ namespace Test
             throw new NotSupportedException();
         }
 
+        public EvaluationDetails getEvaluationDetails(int evaluationId)
+        {
+            return _controller.getEvaluationDetails(evaluationId);
+        }
+
         public List<OpenEvaluation> GetOpenSelfEvaluations(int employeeId)
         {
             return _controller.GetOpenSelfEvaluations(employeeId);
