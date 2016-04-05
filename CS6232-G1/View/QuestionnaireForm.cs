@@ -58,7 +58,9 @@ namespace CS6232_G1.View
 
                 _categoryCount = evalDetails.CategoryCount;
                 _questionsPerCategoryCount = evalDetails.QuestionCount;
-                                   
+
+                // retrieve categories and questions from DB
+                List<QAndA> list = _controller.getQuestionsAndAnswers(_evaluationId);                                   
             
                 this.SuspendLayout();
 
@@ -67,24 +69,52 @@ namespace CS6232_G1.View
       
                 // add rows to the table layout panel
                 tlpQuestionnaire.RowCount = tlpQuestionnaire.RowCount + 1;
-                for (int categoryCount = 1; categoryCount <= _categoryCount; categoryCount++)
+
+
+                for (int rowNumber = 0; rowNumber < list.Count; rowNumber++)
                 {
-                
+
                     Label label = createCategoryLabel(tlpQuestionnaire.RowCount);
-                    label.Text = "Category " + categoryCount;                
+                    label.Text = list[rowNumber].CategoryName;
                     tlpQuestionnaire.Controls.Add(label, 0, tlpQuestionnaire.RowCount - 1);
                     tlpQuestionnaire.SetRowSpan(label, _questionsPerCategoryCount);
+
                     for (int questionCount = 0; questionCount < _questionsPerCategoryCount; questionCount++)
                     {
-                        label = createQuestionLabel(tlpQuestionnaire.RowCount);
-                        label.Text = "Question " + (tlpQuestionnaire.RowCount);
+                        label = createQuestionLabel(list[rowNumber].QuestionId);
+                        label.Text = list[rowNumber].Question;
                         tlpQuestionnaire.Controls.Add(label, 1, tlpQuestionnaire.RowCount - 1);
-                        Panel panel = createPanel(tlpQuestionnaire.RowCount);
+
+                        Panel panel = createPanel(list[rowNumber].EvaluationId);
                         createRadioButtonPanel(panel, _answerRange);
                         tlpQuestionnaire.Controls.Add(panel, 2, tlpQuestionnaire.RowCount - 1);
+
                         tlpQuestionnaire.RowCount = tlpQuestionnaire.RowCount + 1;
+                        if (questionCount < _questionsPerCategoryCount - 1)
+                        {
+                            rowNumber++;
+                        }
                     }
                 }          
+
+                //for (int categoryCount = 1; categoryCount <= _categoryCount; categoryCount++)
+                //{
+
+                //    Label label = createCategoryLabel(tlpQuestionnaire.RowCount);
+                //    label.Text = "Category " + categoryCount;
+                //    tlpQuestionnaire.Controls.Add(label, 0, tlpQuestionnaire.RowCount - 1);
+                //    tlpQuestionnaire.SetRowSpan(label, _questionsPerCategoryCount);
+                //    for (int questionCount = 0; questionCount < _questionsPerCategoryCount; questionCount++)
+                //    {
+                //        label = createQuestionLabel(tlpQuestionnaire.RowCount);
+                //        label.Text = "Question " + (tlpQuestionnaire.RowCount);
+                //        tlpQuestionnaire.Controls.Add(label, 1, tlpQuestionnaire.RowCount - 1);
+                //        Panel panel = createPanel(tlpQuestionnaire.RowCount);
+                //        createRadioButtonPanel(panel, _answerRange);
+                //        tlpQuestionnaire.Controls.Add(panel, 2, tlpQuestionnaire.RowCount - 1);
+                //        tlpQuestionnaire.RowCount = tlpQuestionnaire.RowCount + 1;
+                //    }
+                //}          
 
                 this.ResumeLayout();
 
@@ -110,7 +140,7 @@ namespace CS6232_G1.View
             tlpQuestionnaire.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             tlpQuestionnaire.CellBorderStyle = TableLayoutPanelCellBorderStyle.Inset;
             tlpQuestionnaire.ColumnCount = 3;
-            tlpQuestionnaire.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            tlpQuestionnaire.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             tlpQuestionnaire.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 319F));
             tlpQuestionnaire.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             tlpQuestionnaire.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -179,10 +209,10 @@ namespace CS6232_G1.View
 
         }
 
-        private Panel createPanel(int rowNumber)
+        private Panel createPanel(int evaluationId)
         {
             NonFlickerPanel panel = new NonFlickerPanel();
-            panel.Name = "panel" + rowNumber;
+            panel.Name = evaluationId.ToString();
             panel.Dock = DockStyle.Fill;
             return panel;
         }
@@ -197,11 +227,11 @@ namespace CS6232_G1.View
             return label;
         }
 
-        private Label createQuestionLabel(int rowNumber)
+        private Label createQuestionLabel(int questionId)
         {
             Label label = new Label();
             label.AutoSize = true;
-            label.Name = "lblQuestion" + rowNumber;
+            label.Name = "lblQuestion" + questionId;
             label.Font = new Font("Microsoft Sans Serif", 10);
             label.Margin = new Padding(3);
             label.MaximumSize = new Size(400, 0);

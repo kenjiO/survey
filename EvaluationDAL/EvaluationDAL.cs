@@ -373,7 +373,7 @@ namespace Evaluation.DAL
                     {
                         if (!reader.Read())
                         {
-                            throw new InvalidOperationException("This evaluation does not exist.");
+                            throw new CreateEvaluationException("This evaluation does not exist.");
                         }
                         else
                         {
@@ -396,7 +396,7 @@ namespace Evaluation.DAL
                     Object result = selectCommand.ExecuteScalar();
                     if (result == null)
                     {
-                        throw new InvalidOperationException("There are no categories for this type.");
+                        throw new CreateEvaluationException("There are no categories for this type.");
                     }
                     categoryCount = (int)result;
                 }
@@ -413,16 +413,88 @@ namespace Evaluation.DAL
                     Object result = selectCommand.ExecuteScalar();
                     if (result == null)
                     {
-                        throw new InvalidOperationException("There are no questions for this type.");
+                        throw new CreateEvaluationException("There are no questions for this type.");
                     }
                     questionCount = (int)result;
                 }
 
                 evaluationDetails = new EvaluationDetails(employeeId, typeId, typeName, answerRange, categoryCount, questionCount);
 
-
             }
             return evaluationDetails;
+        }
+
+        /// <summary>
+        /// Gets a list of questions and answers for an evaluation record
+        /// </summary>
+        /// <param name="evaluationId">id of the evaluation</param>
+        /// <returns>list of QAndA objects</returns>
+        public List<QAndA> getQuestionsAndAnswers(int evaluationId)
+        {
+            List<QAndA> list = new List<QAndA>();
+            int typeId = 0;            
+
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+
+                string getTypeIdStatement = "SELECT typeId " +
+                                     "FROM evaluations " +
+                                     "WHERE evaluationId = @evaluationId ";
+
+                using (SqlCommand selectCommand = new SqlCommand(getTypeIdStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@evaluationId", evaluationId);
+
+                    Object result = selectCommand.ExecuteScalar();
+                    if (result == null)
+                    {
+                        throw new CreateEvaluationException("This evaluation does not exist.");
+                    }
+                    typeId = (int)result;
+                }
+
+                String selectStatement =
+                    "SELECT q.questionId, c.categoryName,  q.question, a.answerId, a.answer " +
+                    "  FROM question q " +
+                    "  JOIN category c on q.categoryId = c.categoryId " +
+                    "  LEFT JOIN answer a on a.questionId = q.questionId and a.evaluationId = @evaluationId " +
+                    "  WHERE q.typeid =  @typeId";
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@evaluationId", evaluationId);
+                    selectCommand.Parameters.AddWithValue("@typeId", typeId);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int answerId;
+                            int answer;
+                            if (reader["answerId"] == DBNull.Value) 
+                            { 
+                                answerId = 0; 
+                            }
+                            else
+                            {
+                                answerId = (int)reader["answerId"];
+                            }
+                            if (reader["answer"] == DBNull.Value)
+                            {
+                                answer = 0;
+                            }
+                            else
+                            {
+                                answer = (int)reader["answer"];                               
+                            }
+                            
+                            list.Add(new QAndA(evaluationId, (int)reader["questionId"], (string)reader["categoryName"], (string)reader["Question"], answerId, answer));
+                        }
+                    }
+                }
+            }
+
+            return list;
         }
  
     }

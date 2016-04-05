@@ -341,6 +341,14 @@ namespace Evaluation.Controller
         /// <returns>EvaluationDetails object</returns>
         EvaluationDetails getEvaluationDetails(int evaluationId);
 
+        /// <summary>
+        /// Gets a list of questions and answers for an evaluation record
+        /// </summary>
+        /// <param name="evaluationId">id of the evaluation</param>
+        /// <returns>list of QAndA objects</returns>
+        List<QAndA> getQuestionsAndAnswers(int evaluationId);
+
         #endregion      
+    
     }
 }

@@ -195,6 +195,12 @@ namespace Test
         {
             return 1;
         }
+
+        public List<QAndA> getQuestionsAndAnswers(int evaluationId)
+        {
+            return _controller.getQuestionsAndAnswers(evaluationId);
+        }
+
         #endregion
 
     }

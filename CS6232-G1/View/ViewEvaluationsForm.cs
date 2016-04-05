@@ -179,8 +179,8 @@ namespace CS6232_G1.View
                 int evaluationId = (int)senderGrid.Rows[e.RowIndex].Cells["evaluationId1"].Value;
 
                 // TODO: Open peer evaluation
-                //MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
-                //MessageBox.Show("TODO: Open Evaluation.");
+                MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
+                
                 try
                 {
                     QuestionnaireForm form = new QuestionnaireForm(_controller, PEER_EVALUATION, evaluationId);

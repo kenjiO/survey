@@ -63,5 +63,15 @@ namespace Evaluation.Controller
         {
             return _dal.getEvaluationDetails(evaluationId);
         }
+
+        /// <summary>
+        /// Gets a list of questions and answers for an evaluation record
+        /// </summary>
+        /// <param name="evaluationId">id of the evaluation</param>
+        /// <returns>list of QAndA objects</returns>
+        public List<QAndA> getQuestionsAndAnswers(int evaluationId)
+        {
+            return _dal.getQuestionsAndAnswers(evaluationId);
+        }
     }
 }

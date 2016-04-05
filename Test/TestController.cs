@@ -466,6 +466,17 @@ namespace Test
             return new EvaluationDetails(1, 1, "Type-1", 5, 5, 3);
         }
 
+        public List<QAndA> getQuestionsAndAnswers(int evaluationId)
+        {
+            List<QAndA> results = new List<QAndA>();
+
+            results.Add(new QAndA(1, 1, "T1:Category-1", "This is question 1 description.", 2, 2));
+            results.Add(new QAndA(1, 2, "T1:Category-1", "This is question 2 description.", 3, 5));
+            results.Add(new QAndA(1, 3, "T1:Category-1", "This is question 3 description.", 4, 3));
+
+            return results;
+        }
+
         #endregion
     }
 }
