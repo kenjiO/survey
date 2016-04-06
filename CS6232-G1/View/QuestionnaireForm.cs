@@ -18,18 +18,20 @@ namespace CS6232_G1.View
         private Employee _currentUser;
         private int _evaluationKind;
         private int _evaluationId;
+        private IRefreshable _parentForm;
         private int _answerRange;
         private int _categoryCount;
         private int _questionsPerCategoryCount;
         private DBLayoutPanel _tlpQuestionnaire;
 
-        public QuestionnaireForm(IEvaluationController controller, int evaluationKind, int evaluationId)
+        public QuestionnaireForm(IEvaluationController controller, int evaluationKind, int evaluationId, IRefreshable parent)
         {
             InitializeComponent();
             _controller = controller;
             _currentUser = _controller.CurrentUser;
             _evaluationKind = evaluationKind;
             _evaluationId = evaluationId;
+            _parentForm = parent;
 
             if (_controller == null)
             {
@@ -301,6 +303,49 @@ namespace CS6232_G1.View
                 panel.Controls.Add(rb);
                 panel.AutoSize = true;
             }
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+
+            // Get the tablelayoutpanel
+            TableLayoutPanel tblPanel = this.FindForm().Controls.OfType<DBLayoutPanel>().FirstOrDefault();
+
+            foreach (Control radioButtonPanel in tblPanel.Controls)
+            {                       
+                foreach (Control control in radioButtonPanel.Controls)
+                {
+                    if (((RadioButton)control).Checked)
+                    {
+                        count++;
+                        break;
+                    }
+                }
+            }
+
+            if (count != _categoryCount * _questionsPerCategoryCount)
+            {
+                MessageBox.Show("All questions are mandatory. Please answer all questions and try again.");
+                return;
+            }
+            // submit the evaluation
+            // set completionDate in evaluations table and refresh the evaluation list on parent form.
+
+            try
+            {
+                _controller.CloseEvaluation(_evaluationId);
+                if (_parentForm != null)
+                {
+                    _parentForm.RefreshViews();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred on submitting the evaluation. Please try again later.\n\n" +
+                                "Details: " + ex.Message, "Notice");
+            }
+            
         }
         
     }

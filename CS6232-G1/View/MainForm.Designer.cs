@@ -305,6 +305,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainForm";
             this.Text = "CS6232-G1 Evaluations";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStripAdmin.ResumeLayout(false);
             this.menuStripAdmin.PerformLayout();
             this.menuStripEmployee.ResumeLayout(false);

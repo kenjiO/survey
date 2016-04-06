@@ -267,6 +267,13 @@ namespace Evaluation.DAL
         /// <param name="newAnswer">the new answer</param>
         void SaveAnswer(int answerId, int newAnswer);
 
+        /// <summary>
+        /// Updates completionDate of an evaluation in the database.
+        /// </summary>
+        /// <throws>Exception if not successful</throws>
+        /// <param name="_evaluationId">evaluationId of the evaluation to close</param>
+        void CloseEvaluation(int evaluationId);
+
         #endregion
     }
 

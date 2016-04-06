@@ -568,6 +568,34 @@ namespace Evaluation.DAL
                 }
             }
         }
+
+        /// <summary>
+        /// Updates completionDate of an evaluation in the database.
+        /// </summary>
+        /// <throws>Exception if not successful</throws>
+        /// <param name="_evaluationId">evaluationId of the evaluation to close</param>
+        public void CloseEvaluation(int evaluationId)
+        {
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+
+                string updateStatement =
+                            "UPDATE evaluations " +
+                            "SET completionDate = GETDATE() " +
+                            "WHERE evaluationId = @evaluationId";
+
+                using (SqlCommand command = new SqlCommand(updateStatement, connection))
+                {
+                    command.Parameters.AddWithValue("@evaluationId", evaluationId);
+                    int count = command.ExecuteNonQuery();
+                    if (count < 1)
+                    {
+                        throw new Exception("The completion date/time could not be updated.");
+                    }
+                }
+            }
+        }
  
     }
 

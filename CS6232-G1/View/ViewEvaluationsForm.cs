@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace CS6232_G1.View
 {
-    public partial class ViewEvaluationsForm : Form
+    public partial class ViewEvaluationsForm : Form, IRefreshable
     {
         private IEvaluationController _controller;
         private Employee _currentUser;
@@ -112,7 +112,7 @@ namespace CS6232_G1.View
                     MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
                     try
                     {
-                        QuestionnaireForm form = new QuestionnaireForm(_controller, SELF_EVALUATION, evaluationId);
+                        QuestionnaireForm form = new QuestionnaireForm(_controller, SELF_EVALUATION, evaluationId, this);
                         form.Show();
                     }
                     catch (Exception ex)
@@ -192,7 +192,7 @@ namespace CS6232_G1.View
                 
                 try
                 {
-                    QuestionnaireForm form = new QuestionnaireForm(_controller, PEER_EVALUATION, evaluationId);                    
+                    QuestionnaireForm form = new QuestionnaireForm(_controller, PEER_EVALUATION, evaluationId, this);                    
                     form.Show();
                 }
                 catch (Exception ex)

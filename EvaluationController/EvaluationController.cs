@@ -94,5 +94,15 @@ namespace Evaluation.Controller
         {
             _dal.SaveAnswer(answerId, newAnswer);
         }
+
+        /// <summary>
+        /// Updates completionDate of an evaluation in the database.
+        /// </summary>
+        /// <throws>Exception if not successful</throws>
+        /// <param name="_evaluationId">evaluationId of the evaluation to close</param>
+        public void CloseEvaluation(int evaluationId)
+        {
+            _dal.CloseEvaluation(evaluationId);
+        }
     }
 }

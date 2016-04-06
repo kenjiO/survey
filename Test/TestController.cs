@@ -504,6 +504,11 @@ namespace Test
             throw new NotSupportedException();
         }
 
+        public void CloseEvaluation(int _evaluationId)
+        {
+            throw new NotSupportedException();
+        }
+
         #endregion
     }
 }

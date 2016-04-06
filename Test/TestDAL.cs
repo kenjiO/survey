@@ -211,6 +211,10 @@ namespace Test
             throw new NotSupportedException();
         }
 
+        public void CloseEvaluation(int evaluationId)
+        {
+            throw new NotSupportedException();
+        }
         #endregion
 
     }
