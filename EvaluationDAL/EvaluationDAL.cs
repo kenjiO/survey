@@ -373,7 +373,7 @@ namespace Evaluation.DAL
                     {
                         if (!reader.Read())
                         {
-                            throw new CreateEvaluationException("This evaluation does not exist.");
+                            throw new NoRecordsFoundException("This evaluation does not exist.");
                         }
                         else
                         {
@@ -396,7 +396,7 @@ namespace Evaluation.DAL
                     Object result = selectCommand.ExecuteScalar();
                     if (result == null)
                     {
-                        throw new CreateEvaluationException("There are no categories for this type.");
+                        throw new NoRecordsFoundException("There are no categories for this type.");
                     }
                     categoryCount = (int)result;
                 }
@@ -413,7 +413,7 @@ namespace Evaluation.DAL
                     Object result = selectCommand.ExecuteScalar();
                     if (result == null)
                     {
-                        throw new CreateEvaluationException("There are no questions for this type.");
+                        throw new NoRecordsFoundException("There are no questions for this type.");
                     }
                     questionCount = (int)result;
                 }
@@ -449,7 +449,7 @@ namespace Evaluation.DAL
                     Object result = selectCommand.ExecuteScalar();
                     if (result == null)
                     {
-                        throw new CreateEvaluationException("This evaluation does not exist.");
+                        throw new NoRecordsFoundException("This evaluation does not exist.");
                     }
                     typeId = (int)result;
                 }
@@ -523,7 +523,7 @@ namespace Evaluation.DAL
                     int count = command.ExecuteNonQuery();
                     if (count < 1)
                     {
-                        throw new CreateEvaluationException("Answer could not be saved to the database.");
+                        throw new InsertException("Answer could not be saved to the database.");
                     }
                     else
                     {
@@ -563,7 +563,7 @@ namespace Evaluation.DAL
                     int count = command.ExecuteNonQuery();
                     if (count < 1)
                     {
-                        throw new CreateEvaluationException("The answer could not be updated.");
+                        throw new NoRecordsFoundException("The answer could not be updated.");
                     }
                 }
             }
@@ -591,7 +591,7 @@ namespace Evaluation.DAL
                     int count = command.ExecuteNonQuery();
                     if (count < 1)
                     {
-                        throw new Exception("The completion date/time could not be updated.");
+                        throw new NoRecordsFoundException("The completion date/time could not be updated.");
                     }
                 }
             }
@@ -607,5 +607,25 @@ namespace Evaluation.DAL
     {
         public CreateEvaluationException() { }
         public CreateEvaluationException(string message) : base(message) { }
+    }
+
+    /// <summary>
+    /// Exception used for when errors occur in inserting db records
+    /// </summary>
+    [Serializable]
+    public class InsertException : Exception
+    {
+        public InsertException() { }
+        public InsertException(string message) : base(message) { }
+    }
+
+    /// <summary>
+    /// Exception used for when errors occur in accessing db records
+    /// </summary>
+    [Serializable]
+    public class NoRecordsFoundException : Exception
+    {
+        public NoRecordsFoundException() { }
+        public NoRecordsFoundException(string message) : base(message) { }
     }
 }

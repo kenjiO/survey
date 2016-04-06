@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvSelfEvaluations = new System.Windows.Forms.DataGridView();
             this.scheduleId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -105,8 +105,8 @@
             // EndDate
             // 
             this.EndDate.DataPropertyName = "endDate";
-            dataGridViewCellStyle5.Format = "MM/dd/yyyy";
-            this.EndDate.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Format = "MM/dd/yyyy";
+            this.EndDate.DefaultCellStyle = dataGridViewCellStyle3;
             this.EndDate.HeaderText = "Close Date";
             this.EndDate.Name = "EndDate";
             this.EndDate.ReadOnly = true;
@@ -235,8 +235,8 @@
             // endDate1
             // 
             this.endDate1.DataPropertyName = "endDate";
-            dataGridViewCellStyle6.Format = "MM/dd/yyyy";
-            this.endDate1.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Format = "MM/dd/yyyy";
+            this.endDate1.DefaultCellStyle = dataGridViewCellStyle4;
             this.endDate1.HeaderText = "Close Date";
             this.endDate1.Name = "endDate1";
             this.endDate1.ReadOnly = true;
