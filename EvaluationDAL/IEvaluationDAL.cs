@@ -257,7 +257,7 @@ namespace Evaluation.DAL
         /// <param name="_evaluationId">id of the evaluation</param>
         /// <param name="questionId">id of the question</param>
         /// <param name="answer">id of the answer</param>
-        /// <returns>answerId of the newly created row, else 0</returns>
+        /// <returns>answerId of the newly created row, else throws exception</returns>
         int CreateNewAnswerRecord(int evaluationId, int questionId, int answer);
 
         /// <summary>

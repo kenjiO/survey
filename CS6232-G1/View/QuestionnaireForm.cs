@@ -64,13 +64,14 @@ namespace CS6232_G1.View
 
                 createTableLayoutPanel();              
 
-                loadTableLayoutPanel();                     
+                loadTableLayoutPanel();                
 
                 this.ResumeLayout();
 
                 this.Controls.Add(_tlpQuestionnaire);
 
-                SetLabelWidths();
+                PositionControlsOnForm();                
+
             }
             catch (Exception ex)
             {
@@ -79,6 +80,26 @@ namespace CS6232_G1.View
             } 
 
         }
+
+        private Button AddSubmitButton()
+        {
+            Button btnSubmit = new Button();
+            btnSubmit.Text = "Submit";
+
+            // Anchor the button to the bottom right corner of the form
+            //btnSubmit.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
+            
+            btnSubmit.AutoSize = true;
+
+            // Set the button's TabIndex and TabStop properties.
+            btnSubmit.TabIndex = 1;
+            btnSubmit.TabStop = true;
+
+            // Add a delegate to handle the Click event.
+            //btnSubmit.Click += btnSubmit_Click;
+
+            return btnSubmit;
+        }        
 
         private void loadTableLayoutPanel()
         {            
@@ -139,7 +160,7 @@ namespace CS6232_G1.View
             _tlpQuestionnaire.Left = 30;
         }
 
-        private void SetLabelWidths()
+        private void PositionControlsOnForm()
         {
             int tableWidth = _tlpQuestionnaire.Width;
 
@@ -154,6 +175,9 @@ namespace CS6232_G1.View
 
             lblInstructions.Left = 30;
             lblInstructions.Width = tableWidth;
+
+            submitPanel.Location = new Point(30, _tlpQuestionnaire.Height + 250);
+            submitPanel.Width = _tlpQuestionnaire.Width;
         }
 
         private void SetUpLabels(EvaluationDetails evalDetails)
@@ -195,6 +219,9 @@ namespace CS6232_G1.View
                 "rate this employee's performance. Please answer the questions thoroughly and truthfully. " +
                 "Your responses will be compiled along with those provided by other employees. Thank you for your participation.";
 
+            lblSubmitNotice.Text = "Your answers are automatically saved. You may change your answers " +
+                "as many times as you wish. However, once you click submit, this evaluation will be closed " +
+                "and CANNOT be reopened.";
         }
 
         private Panel createPanel(int rowNumber)
@@ -275,7 +302,7 @@ namespace CS6232_G1.View
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("An error occured on this form.\n\n" +
+                        MessageBox.Show("An error occured on this form. Please try again later.\n\n" +
                                         "Details: " + ex.Message, "Notice");
                     }
                 };

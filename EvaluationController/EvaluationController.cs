@@ -80,7 +80,7 @@ namespace Evaluation.Controller
         /// <param name="_evaluationId">id of the evaluation</param>
         /// <param name="questionId">id of the question</param>
         /// <param name="answer">id of the answer</param>
-        /// <returns>answerId of the newly created row, else 0</returns>
+        /// <returns>answerId of the newly created row, else throws exception</returns>
         public int CreateNewAnswerRecord(int evaluationId, int questionId, int answer)
         {
             return _dal.CreateNewAnswerRecord(evaluationId, questionId, answer);

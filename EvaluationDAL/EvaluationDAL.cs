@@ -503,7 +503,7 @@ namespace Evaluation.DAL
         /// <param name="_evaluationId">id of the evaluation</param>
         /// <param name="questionId">id of the question</param>
         /// <param name="answer">id of the answer</param>
-        /// <returns>answerId of the newly created row, else 0</returns>
+        /// <returns>answerId of the newly created row, else throws exception</returns>
         public int CreateNewAnswerRecord(int evaluationId, int questionId, int answer)
         {
             using (SqlConnection connection = EvaluationDB.GetConnection())
@@ -523,7 +523,7 @@ namespace Evaluation.DAL
                     int count = command.ExecuteNonQuery();
                     if (count < 1)
                     {
-                        return 0;
+                        throw new CreateEvaluationException("Answer could not be saved to the database.");
                     }
                     else
                     {
@@ -563,7 +563,7 @@ namespace Evaluation.DAL
                     int count = command.ExecuteNonQuery();
                     if (count < 1)
                     {
-                        throw new InvalidOperationException("The answer could not be updated.");
+                        throw new CreateEvaluationException("The answer could not be updated.");
                     }
                 }
             }

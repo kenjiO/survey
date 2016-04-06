@@ -183,7 +183,7 @@ namespace CS6232_G1.View
                 
                 try
                 {
-                    QuestionnaireForm form = new QuestionnaireForm(_controller, PEER_EVALUATION, evaluationId);
+                    QuestionnaireForm form = new QuestionnaireForm(_controller, PEER_EVALUATION, evaluationId);                    
                     form.Show();
                 }
                 catch (Exception ex)

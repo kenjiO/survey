@@ -32,6 +32,10 @@
             this.lblInstructions = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblEmployeeName = new System.Windows.Forms.Label();
+            this.submitPanel = new CS6232_G1.View.NonFlickerPanel();
+            this.lblSubmitNotice = new System.Windows.Forms.Label();
+            this.btnSubmit = new System.Windows.Forms.Button();
+            this.submitPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblGeneral
@@ -51,7 +55,7 @@
             this.lblInstructions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInstructions.Location = new System.Drawing.Point(381, 189);
             this.lblInstructions.Name = "lblInstructions";
-            this.lblInstructions.Size = new System.Drawing.Size(100, 72);
+            this.lblInstructions.Size = new System.Drawing.Size(100, 110);
             this.lblInstructions.TabIndex = 4;
             this.lblInstructions.Text = "Instructions";
             // 
@@ -69,7 +73,7 @@
             // 
             this.lblEmployeeName.AutoSize = true;
             this.lblEmployeeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeName.Location = new System.Drawing.Point(39, 287);
+            this.lblEmployeeName.Location = new System.Drawing.Point(39, 303);
             this.lblEmployeeName.Margin = new System.Windows.Forms.Padding(30, 0, 3, 0);
             this.lblEmployeeName.Name = "lblEmployeeName";
             this.lblEmployeeName.Size = new System.Drawing.Size(223, 29);
@@ -77,13 +81,50 @@
             this.lblEmployeeName.Text = "Peer Review For: ";
             this.lblEmployeeName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // submitPanel
+            // 
+            this.submitPanel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.submitPanel.Controls.Add(this.lblSubmitNotice);
+            this.submitPanel.Controls.Add(this.btnSubmit);
+            this.submitPanel.Location = new System.Drawing.Point(57, 443);
+            this.submitPanel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
+            this.submitPanel.Name = "submitPanel";
+            this.submitPanel.Size = new System.Drawing.Size(839, 122);
+            this.submitPanel.TabIndex = 7;
+            // 
+            // lblSubmitNotice
+            // 
+            this.lblSubmitNotice.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblSubmitNotice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubmitNotice.Location = new System.Drawing.Point(0, 0);
+            this.lblSubmitNotice.Margin = new System.Windows.Forms.Padding(3);
+            this.lblSubmitNotice.Name = "lblSubmitNotice";
+            this.lblSubmitNotice.Size = new System.Drawing.Size(839, 79);
+            this.lblSubmitNotice.TabIndex = 1;
+            this.lblSubmitNotice.Text = "Your answers are automatically saved. You may close your form and come back to it" +
+    " as many times as you wish. However, once you click submit, this evaluation will" +
+    " be closed and CANNOT be reopened.";
+            this.lblSubmitNotice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnSubmit
+            // 
+            this.btnSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubmit.Location = new System.Drawing.Point(689, 85);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(129, 34);
+            this.btnSubmit.TabIndex = 0;
+            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.UseVisualStyleBackColor = true;
+            // 
             // QuestionnaireForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(0, 30);
-            this.ClientSize = new System.Drawing.Size(914, 424);
+            this.ClientSize = new System.Drawing.Size(914, 644);
+            this.Controls.Add(this.submitPanel);
             this.Controls.Add(this.lblEmployeeName);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblInstructions);
@@ -92,6 +133,7 @@
             this.Text = "Evaluation Questionnaire";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.QuestionnaireForm_Load);
+            this.submitPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -103,5 +145,8 @@
         private System.Windows.Forms.Label lblInstructions;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblEmployeeName;
+        private NonFlickerPanel submitPanel;
+        private System.Windows.Forms.Button btnSubmit;
+        private System.Windows.Forms.Label lblSubmitNotice;
     }
 }
