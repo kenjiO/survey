@@ -260,11 +260,12 @@ namespace CS6232_G1.View
                             if (Convert.ToInt32(radioButton.Tag) <= 0)
                             {
                                 answerId = _controller.CreateNewAnswerRecord(_evaluationId, questionId, newAnswer);
-                                // get answerId from new record and set to radiobutton tag
-                                radioButton.Tag = answerId.ToString();
-
-                                //TODO: set tag of all radiobuttons in this group
-                                //MessageBox.Show(radioButton.Parent.Name);                                
+                                // get answerId from new record 
+                                // and set to radiobutton tag of all radiobuttons in this group
+                                foreach (RadioButton rbInGroup in radioButton.Parent.Controls)
+                                {
+                                    rbInGroup.Tag = answerId.ToString();
+                                }
                             }
                             else
                             {
