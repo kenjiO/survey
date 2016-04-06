@@ -337,6 +337,8 @@ namespace CS6232_G1.View
             try
             {
                 _controller.CloseEvaluation(_evaluationId);
+                MessageBox.Show("Evaluation has been submitted and closed.");
+                Close();
                 if (_parentForm != null)
                 {
                     _parentForm.RefreshViews();
