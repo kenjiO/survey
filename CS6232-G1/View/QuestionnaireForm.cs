@@ -73,7 +73,9 @@ namespace CS6232_G1.View
 
                 this.Controls.Add(_tlpQuestionnaire);
 
-                PositionControlsOnForm();                
+                PositionControlsOnForm();
+
+                lblTitle.Focus(); // To show top of page
 
             }
             catch (Exception ex)
