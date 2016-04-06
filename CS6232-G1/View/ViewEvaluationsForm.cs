@@ -108,9 +108,18 @@ namespace CS6232_G1.View
                 } // end if self evaluation not started
 
                 if (evaluationId > 0) {
-                    // TODO: Open self evaluation
-                    //MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
-                    MessageBox.Show("TODO: Open Evaluation.");
+                    // Open self evaluation
+                    MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
+                    try
+                    {
+                        QuestionnaireForm form = new QuestionnaireForm(_controller, SELF_EVALUATION, evaluationId);
+                        form.Show();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An unexpected error occurred on opening evaluation form.\n\n" +
+                                        "Details: " + ex.Message, "Notice");
+                    }
                 }
             }
                 catch (SqlException ex)
@@ -178,7 +187,7 @@ namespace CS6232_G1.View
             {
                 int evaluationId = (int)senderGrid.Rows[e.RowIndex].Cells["evaluationId1"].Value;
 
-                // TODO: Open peer evaluation
+                // Open peer evaluation
                 MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
                 
                 try

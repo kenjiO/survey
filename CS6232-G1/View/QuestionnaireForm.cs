@@ -51,6 +51,7 @@ namespace CS6232_G1.View
 
         private void QuestionnaireForm_Load(object sender, EventArgs e)
         {
+            lblGeneral.Visible = false;
             try
             {
                 EvaluationDetails evalDetails = _controller.getEvaluationDetails(_evaluationId);
@@ -169,6 +170,7 @@ namespace CS6232_G1.View
 
             lblGeneral.Left = 30;
             lblGeneral.Width = tableWidth;
+            lblGeneral.Visible = true;
 
             lblEmployeeName.Left = 30;
             lblEmployeeName.Width = tableWidth;
@@ -187,19 +189,19 @@ namespace CS6232_G1.View
             lblTitle.Text = evalDetails.TypeName + " " + lblTitle.Text;
 
             lblGeneral.Text =
-                "As you know, Company XXX utilizes a 360-degree performance appraisal methodology. " +
-                "Peer review is a critical part of this process. You have been selected to " +
-                "provide a ";
+                "As you know, Company XXX utilizes a 360-degree performance appraisal methodology. " ;
             if (_evaluationKind == 0)
             {
-                lblGeneral.Text += "self evaluation.";
+                lblGeneral.Text += 
+                "Self review is a critical part of this process. You have been selected to " +
+                "provide a self evaluation.";
                 lblEmployeeName.Text = "Evaluated Employee: ";
                 evaluatedEmployeeName = _currentUser.FullName;
             }
             else
             {
-                
-                lblGeneral.Text += "peer review for another employee.";
+                lblGeneral.Text += "Peer review is a critical part of this process. You have been selected to " +
+                "provide a peer review for another employee.";
                 try
                 {
                     evaluatedEmployeeName = _controller.GetEmployeeNameFL(evalDetails.EmployeeId);
@@ -218,10 +220,6 @@ namespace CS6232_G1.View
                 " (with 1 being the lowest and " + _answerRange + " being the highest), " +
                 "rate this employee's performance. Please answer the questions thoroughly and truthfully. " +
                 "Your responses will be compiled along with those provided by other employees. Thank you for your participation.";
-
-            lblSubmitNotice.Text = "Your answers are automatically saved. You may change your answers " +
-                "as many times as you wish. However, once you click submit, this evaluation will be closed " +
-                "and CANNOT be reopened.";
         }
 
         private Panel createPanel(int rowNumber)
@@ -255,15 +253,8 @@ namespace CS6232_G1.View
 
         private void createRadioButtonPanel(Panel panel, int questionId, int answerId, int answer)
         {
-            int spacer = 0;
-            if (_evaluationKind == 0)
-            {
-                spacer = 80;
-            }
-            else
-            {
-                spacer = 60;
-            }
+            const int SPACER = 60;
+                        
             for (int i = 1; i <= _answerRange; i++)
             {
                 RadioButton rb = new RadioButton();
@@ -306,7 +297,7 @@ namespace CS6232_G1.View
                                         "Details: " + ex.Message, "Notice");
                     }
                 };
-                rb.Location = new Point(10 + spacer * (i - 1), 6);
+                rb.Location = new Point(10 + SPACER * (i - 1), 6);
                 panel.Controls.Add(rb);
                 panel.AutoSize = true;
             }
