@@ -103,7 +103,7 @@ namespace CS6232_G1.View
                     label.Text = list[rowNumber].Question;
                     _tlpQuestionnaire.Controls.Add(label, 1, _tlpQuestionnaire.RowCount - 1);
 
-                    Panel panel = createPanel(list[rowNumber].EvaluationId);
+                    Panel panel = createPanel(_tlpQuestionnaire.RowCount);
                     createRadioButtonPanel(panel, list[rowNumber].QuestionId, list[rowNumber].AnswerID, list[rowNumber].Answer);
                     _tlpQuestionnaire.Controls.Add(panel, 2, _tlpQuestionnaire.RowCount - 1);
 
@@ -197,10 +197,10 @@ namespace CS6232_G1.View
 
         }
 
-        private Panel createPanel(int evaluationId)
+        private Panel createPanel(int rowNumber)
         {
             NonFlickerPanel panel = new NonFlickerPanel();
-            panel.Name = evaluationId.ToString();
+            panel.Name = "panel" + rowNumber;
             panel.Dock = DockStyle.Fill;
             return panel;
         }
@@ -242,25 +242,40 @@ namespace CS6232_G1.View
                 RadioButton rb = new RadioButton();
                 rb.AutoSize = true;
                 rb.Text = "" + i;      // this is the answer
-                rb.Name = "rb" + i;    // save questionId here
-                rb.Tag = answerId.ToString();     //save answerId here
+                rb.Name = "rb" + i;
+                if (answer == i)
+                {
+                    rb.Checked = true;
+                }
+                rb.Tag = answerId.ToString();  //save answerId here
+
                 rb.CheckedChanged += (sender, eventArgs) =>
                 {
-                    RadioButton radioButton = (RadioButton)sender;
-                    if (radioButton.Checked == true)
+                    try
                     {
-                        int newAnswer = Convert.ToInt32(radioButton.Text);
-                        if (Convert.ToInt32(radioButton.Tag) <= 0)
+                        RadioButton radioButton = (RadioButton)sender;
+                        if (radioButton.Checked == true)
                         {
-                            answerId = _controller.CreateNewAnswerRecord(_evaluationId, questionId, newAnswer);
-                            MessageBox.Show("answerid: " + answerId + " evaluationId: " + _evaluationId + " QuestionId: " + questionId + " Answer: " + newAnswer);
-                            // get answerId from new record and set to radiobutton tag
-                            radioButton.Tag = answerId.ToString();
+                            int newAnswer = Convert.ToInt32(radioButton.Text);
+                            if (Convert.ToInt32(radioButton.Tag) <= 0)
+                            {
+                                answerId = _controller.CreateNewAnswerRecord(_evaluationId, questionId, newAnswer);
+                                // get answerId from new record and set to radiobutton tag
+                                radioButton.Tag = answerId.ToString();
+
+                                //TODO: set tag of all radiobuttons in this group
+                                //MessageBox.Show(radioButton.Parent.Name);                                
+                            }
+                            else
+                            {
+                                _controller.SaveAnswer(answerId, newAnswer);                                
+                            }
                         }
-                        else
-                        {
-                            _controller.SaveAnswer(answerId, newAnswer);                            
-                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occured on this form.\n\n" +
+                                        "Details: " + ex.Message, "Notice");
                     }
                 };
                 rb.Location = new Point(10 + spacer * (i - 1), 6);
