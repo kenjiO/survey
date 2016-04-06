@@ -48,7 +48,8 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(82, 199);
+            this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cancelBtn.Location = new System.Drawing.Point(187, 197);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 2;
@@ -58,7 +59,7 @@
             // 
             // renameBtn
             // 
-            this.renameBtn.Location = new System.Drawing.Point(187, 199);
+            this.renameBtn.Location = new System.Drawing.Point(82, 197);
             this.renameBtn.Name = "renameBtn";
             this.renameBtn.Size = new System.Drawing.Size(75, 23);
             this.renameBtn.TabIndex = 3;
