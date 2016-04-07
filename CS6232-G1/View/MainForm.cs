@@ -127,7 +127,7 @@ namespace CS6232_G1.View
 
         private void cohortReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO: Generate cohort report
+            CohortReportForm.Run(_controller);
         }
 
         #endregion

@@ -163,6 +163,16 @@ namespace Test
             return _controller.GetUserReport(employeeId, typeId, stageId);
         }
 
+        public List<CohortReport> GetCohortReport(int cohortId, int typeId)
+        {
+            List<CohortReport> reportDataPoints = new List<CohortReport>();
+            reportDataPoints.Add(new CohortReport("stage1", "category1", 50.0m));
+            reportDataPoints.Add(new CohortReport("stage1", "category2", 60.0m));
+            reportDataPoints.Add(new CohortReport("stage2", "category1", 70.0m));
+            reportDataPoints.Add(new CohortReport("stage2", "category2", 80.0m));
+            return reportDataPoints;
+        }
+
         #endregion
 
         #region Evaluations

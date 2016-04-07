@@ -19,7 +19,7 @@ namespace Evaluation.Controller
 
         public List<CohortReport> GetCohortReport(int typeId, int cohortId)
         {
-            return null;
+            return _dal.GetCohortReport(cohortId, typeId);
         }
 
     }

@@ -154,6 +154,14 @@ namespace Evaluation.DAL
         /// <param name="stageId">Evaluation stage</param>
         /// <returns>Report details list</returns>
         List<UserReport> GetUserReport(int employeeId, int typeId, int stageId);
+
+        /// <summary>
+        /// Return a list of proficiency for a cohort and type broken down by stage and category 
+        /// </summary>
+        /// <param name="cohortId">The cohort the report is for</param>
+        /// <param name="typeId">The type the report is for</param>
+        /// <returns>A list for the proficiency rating for each stage and category</returns>
+        List<CohortReport> GetCohortReport(int cohortId, int typeId);
         #endregion
 
         #region Schedules

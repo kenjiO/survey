@@ -41,7 +41,7 @@ namespace CS6232_G1.View
             typeComboBox.ComboBox.DisplayMember = "name";
             typeComboBox.ComboBox.ValueMember = "id";
             typeComboBox.ComboBox.SelectedIndex = -1;
-            GenerateUserReport(1, 1);
+            GenerateReport(1, 1);
         }
 
         private void generateButton_Click(object sender, EventArgs e)
@@ -59,31 +59,29 @@ namespace CS6232_G1.View
 
             int type = (int)typeComboBox.ComboBox.SelectedValue;
             int cohort = (int)cohortComboBox.ComboBox.SelectedValue;
-            GenerateUserReport(type, cohort);
-            if (reportData.Count == 0)
-            {
-                string text = "No report found for selected cohort and type";
-                MessageBox.Show(text, "Notice");
-            }
+            GenerateReport(type, cohort);
         }
 
-        /// <summary>
-        /// Generate a User Report
-        /// </summary>
-        /// <param name="employeeId">Employee to generate report for</param>
-        /// <param name="stage">Stage selected</param>
-        /// <param name="evalType">Evaluation Type selected</param>
-        private void GenerateUserReport(int typeId, int cohortId)
+
+        private void GenerateReport(int typeId, int cohortId)
         {
             try
             {
-                
                 // TODO: set header label to:
                 // string text = "Employee " + nameFirstLastId + " Evaluation Report (Evaluation " + typeName + " at " + stageName + 
                 //                  ") (generated " + DateTime.Now.AsDD/MM/YYYY + ")"
                 reportData = _controller.GetCohortReport(typeId, cohortId);
-                CohortReportBindingSource.DataSource = reportData;
-                reportViewer.RefreshReport();
+                if (reportData != null)
+                {
+                    CohortReportBindingSource.DataSource = reportData;
+                    reportViewer.RefreshReport();
+                }
+                else
+                {
+                    reportViewer.Reset();
+                    string text = "Could not get a report for selected cohort and type";
+                    MessageBox.Show(text, "Notice");
+                }
             }
             catch (SqlException ex)
             {

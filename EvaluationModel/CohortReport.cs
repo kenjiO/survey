@@ -10,9 +10,9 @@ namespace Evaluation.Model
     {
         public string Stage { get; private set; }
         public string Category { get; private set; }
-        public int PercentProficient { get; private set; }
+        public decimal PercentProficient { get; private set; }
 
-        public CohortReport(string _stage, string _category, int _percentProficient)
+        public CohortReport(string _stage, string _category, decimal _percentProficient)
         {
             Stage = _stage;
             Category = _category;
