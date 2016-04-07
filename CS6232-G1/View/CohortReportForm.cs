@@ -148,5 +148,10 @@ namespace CS6232_G1.View
             form.MdiParent = Program.mainForm; 
             form.Show();
         }
+
+        private void CohortReportForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

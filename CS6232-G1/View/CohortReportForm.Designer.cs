@@ -63,7 +63,7 @@
             this.generateButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(687, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(823, 25);
             this.toolStrip1.TabIndex = 7;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -84,7 +84,7 @@
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
             this.toolStripLabel3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripLabel3.Size = new System.Drawing.Size(46, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(45, 22);
             this.toolStripLabel3.Text = "Type:";
             // 
             // typeComboBox
@@ -110,14 +110,14 @@
             // reportViewer
             // 
             this.reportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "CohortReportDataSet";
+            reportDataSource1.Name = "CohortReportData";
             reportDataSource1.Value = this.CohortReportBindingSource;
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer.LocalReport.ReportEmbeddedResource = "CS6232_G1.View.CohortReport.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(0, 25);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.ShowToolBar = false;
-            this.reportViewer.Size = new System.Drawing.Size(687, 338);
+            this.reportViewer.Size = new System.Drawing.Size(823, 529);
             this.reportViewer.TabIndex = 8;
             this.reportViewer.WaitControlDisplayAfter = 100;
             // 
@@ -125,11 +125,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(687, 363);
+            this.ClientSize = new System.Drawing.Size(823, 554);
             this.Controls.Add(this.reportViewer);
             this.Controls.Add(this.toolStrip1);
             this.Name = "CohortReportForm";
             this.Text = "Cohort Report";
+            this.Load += new System.EventHandler(this.CohortReportForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CohortReportBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserReportBindingSource)).EndInit();
             this.toolStrip1.ResumeLayout(false);

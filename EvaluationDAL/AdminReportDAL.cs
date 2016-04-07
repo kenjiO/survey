@@ -18,6 +18,10 @@ namespace Evaluation.DAL
 
         public List<CohortReport> GetCohortReport(int cohortId, int typeId)
         {
+            //TODO get the cohort name and type name for their id's
+            string cohort = cohortId.ToString();
+            string type = typeId.ToString();
+
             List<CohortReport> reportDataPoints = new List<CohortReport>();
 
             string selectStatement =
@@ -60,7 +64,7 @@ namespace Evaluation.DAL
                             int proficientAnswers = (int) reader["proficientAnswers"];
                             int totalAnswers = (int) reader["totalAnswers"];
                             decimal percentProficient = (decimal) reader["percentProficient"];
-                            CohortReport report = new CohortReport(stage, category, percentProficient);
+                            CohortReport report = new CohortReport(cohort, type, stage, category, percentProficient);
                             reportDataPoints.Add(report);
                         }
                     }
