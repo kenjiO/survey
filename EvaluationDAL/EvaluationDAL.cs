@@ -352,7 +352,6 @@ namespace Evaluation.DAL
             int typeId = 0;
             string typeName = null;
             int categoryCount = 0;
-            int questionCount = 0;
             int answerRange = 0;
             
             string selectStatement = "SELECT e.employeeId, ev.typeId, t.typeName, t.answerRange " +
@@ -401,24 +400,7 @@ namespace Evaluation.DAL
                     categoryCount = (int)result;
                 }
 
-                string getQuestionCountStatement = "SELECT TOP 1 count(distinct(questionId)) as questionsPerCategory " +
-                                     "FROM question " +
-                                     "WHERE typeId = @typeId " +
-                                     "GROUP BY categoryId";
-
-                using (SqlCommand selectCommand = new SqlCommand(getQuestionCountStatement, connection))
-                {
-                    selectCommand.Parameters.AddWithValue("@typeId", typeId);
-
-                    Object result = selectCommand.ExecuteScalar();
-                    if (result == null)
-                    {
-                        throw new NoRecordsFoundException("There are no questions for this type.");
-                    }
-                    questionCount = (int)result;
-                }
-
-                evaluationDetails = new EvaluationDetails(employeeId, typeId, typeName, answerRange, categoryCount, questionCount);
+                evaluationDetails = new EvaluationDetails(employeeId, typeId, typeName, answerRange, categoryCount);
 
             }
             return evaluationDetails;

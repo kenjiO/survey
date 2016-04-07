@@ -480,7 +480,7 @@ namespace Test
 
         public EvaluationDetails getEvaluationDetails(int evaluationId)
         {
-            return new EvaluationDetails(1, 1, "Type-1", 5, 5, 3);
+            return new EvaluationDetails(1, 1, "Type-1", 5, 5);
         }
 
         public List<QAndA> GetQuestionsAndAnswers(int evaluationId)
