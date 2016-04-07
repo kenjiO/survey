@@ -187,6 +187,7 @@ INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUE
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (13, 1, 13, 5)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (14, 1, 14, 2)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (15, 1, 15, 4)
+
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (16, 2, 1, 5)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (17, 2, 2, 3)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (18, 2, 3, 4)
@@ -202,6 +203,7 @@ INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUE
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (28, 2, 13, 1)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (29, 2, 14, 2)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (30, 2, 15, 3)
+
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (31, 3, 1, 4)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (32, 3, 2, 5)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (33, 3, 3, 4)
@@ -217,6 +219,7 @@ INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUE
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (43, 3, 13, 5)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (44, 3, 14, 1)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (45, 3, 15, 3)
+
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (46, 4, 1, 4)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (47, 4, 2, 1)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (48, 4, 3, 2)
@@ -232,6 +235,7 @@ INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUE
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (58, 4, 13, 2)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (59, 4, 14, 1)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (60, 4, 15, 1)
+
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (61, 5, 1, 1)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (62, 5, 2, 3)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (63, 5, 3, 4)
@@ -247,6 +251,7 @@ INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUE
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (73, 5, 13, 2)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (74, 5, 14, 2)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (75, 5, 15, 5)
+
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (76, 6, 1, 2)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (77, 6, 2, 3)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (78, 6, 3, 3)
@@ -262,6 +267,7 @@ INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUE
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (88, 6, 13, 2)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (89, 6, 14, 4)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (90, 6, 15, 2)
+
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (91, 10, 1, 4)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (92, 10, 2, 1)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (93, 10, 3, 2)
@@ -278,6 +284,7 @@ INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUE
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (103, 10, 13, 5)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (104, 10, 14, 3)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (105, 10, 15, 4)
+
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (106, 11, 1, 3)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (107, 11, 2, 5)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (108, 11, 3, 3)
@@ -293,6 +300,7 @@ INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUE
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (118, 11, 13, 3)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (119, 11, 14, 5)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (120, 11, 15, 3)
+
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (121, 12, 1, 4)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (122, 12, 2, 4)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (123, 12, 3, 2)
@@ -308,6 +316,7 @@ INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUE
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (133, 12, 13, 2)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (134, 12, 14, 3)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (135, 12, 15, 1)
+
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (136, 13, 1, 5)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (137, 13, 2, 5)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (138, 13, 3, 5)
@@ -323,6 +332,7 @@ INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUE
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (148, 13, 13, 5)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (149, 13, 14, 3)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (150, 13, 15, 1)
+
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (151, 14, 1, 4)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (152, 14, 2, 4)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (153, 14, 3, 1)
@@ -338,6 +348,7 @@ INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUE
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (163, 14, 13, 3)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (164, 14, 14, 2)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (165, 14, 15, 2)
+
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (166, 15, 1, 1)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (167, 15, 2, 4)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (168, 15, 3, 1)
@@ -353,14 +364,15 @@ INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUE
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (178, 15, 13, 5)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (179, 15, 14, 4)
 INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (180, 15, 15, 5)
-INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (181, 16, 16, 9)
-INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (182, 16, 17, 7)
-INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (183, 16, 18, 1)
-INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (184, 16, 19, 4)
-INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (185, 16, 20, 10)
-INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (186, 16, 21, 3)
-INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (187, 16, 22, 9)
-INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (188, 16, 23, 8)
-INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (189, 16, 24, 10)
-INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (190, 16, 25, 8)
+
+INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (181, 19, 16, 8)
+INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (182, 19, 17, 10)
+INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (183, 19, 18, 1)
+INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (184, 19, 19, 4)
+INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (185, 19, 20, 2)
+INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (186, 19, 21, 3)
+INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (187, 19, 22, 7)
+INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (188, 19, 23, 5)
+INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (189, 19, 24, 6)
+INSERT [dbo].[answer] ([answerId], [evaluationId], [questionId], [answer]) VALUES (190, 19, 25, 4)
 SET IDENTITY_INSERT [dbo].[answer] OFF
