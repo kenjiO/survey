@@ -32,6 +32,7 @@
             this.lblInstructions = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblEmployeeName = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
             this.submitPanel = new CS6232_G1.View.NonFlickerPanel();
             this.lblSubmitNotice = new System.Windows.Forms.Label();
             this.btnSubmit = new System.Windows.Forms.Button();
@@ -81,6 +82,18 @@
             this.lblEmployeeName.Text = "Peer Review For: ";
             this.lblEmployeeName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.Location = new System.Drawing.Point(809, 303);
+            this.lblDate.Margin = new System.Windows.Forms.Padding(30, 0, 3, 0);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(81, 29);
+            this.lblDate.TabIndex = 8;
+            this.lblDate.Text = "Date: ";
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // submitPanel
             // 
             this.submitPanel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -102,8 +115,8 @@
             this.lblSubmitNotice.Size = new System.Drawing.Size(839, 79);
             this.lblSubmitNotice.TabIndex = 1;
             this.lblSubmitNotice.Text = "Your answers are automatically saved. You may close your form and come back to it" +
-    " as many times as you wish. However, once you click submit, this evaluation will" +
-    " be closed and CANNOT be reopened.";
+    " as many times as you wish. However, once you submit, this evaluation will be cl" +
+    "osed and CANNOT be reopened.";
             this.lblSubmitNotice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnSubmit
@@ -125,6 +138,7 @@
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(0, 30);
             this.ClientSize = new System.Drawing.Size(914, 644);
+            this.Controls.Add(this.lblDate);
             this.Controls.Add(this.submitPanel);
             this.Controls.Add(this.lblEmployeeName);
             this.Controls.Add(this.lblTitle);
@@ -149,5 +163,6 @@
         private NonFlickerPanel submitPanel;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Label lblSubmitNotice;
+        private System.Windows.Forms.Label lblDate;
     }
 }

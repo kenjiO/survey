@@ -21,8 +21,8 @@ namespace CS6232_G1.View
         private IRefreshable _parentForm;
         private int _answerRange;
         private int _categoryCount;
-        private int _questionsPerCategoryCount;
-        private DBLayoutPanel _tlpQuestionnaire;
+        private int _questionCount;
+        private NonFlickerTableLayoutPanel _tlpQuestionnaire;        
 
         public QuestionnaireForm(IEvaluationController controller, int evaluationKind, int evaluationId, IRefreshable parent)
         {
@@ -61,8 +61,7 @@ namespace CS6232_G1.View
                 SetUpLabels(evalDetails);
 
                 _categoryCount = evalDetails.CategoryCount;
-                _questionsPerCategoryCount = evalDetails.QuestionCount;                                                  
-            
+                            
                 this.SuspendLayout();
 
                 createTableLayoutPanel();              
@@ -110,41 +109,34 @@ namespace CS6232_G1.View
         {            
             // retrieve categories and questions from DB
             List<QAndA> list = _controller.GetQuestionsAndAnswers(_evaluationId);
+            _questionCount = list.Count;
 
             // add rows to the table layout panel
-            _tlpQuestionnaire.RowCount = _tlpQuestionnaire.RowCount + 1;
-
-
+            String currentCategory = null;
+            String previousCategory = null;
             for (int rowNumber = 0; rowNumber < list.Count; rowNumber++)
-            {
-
+            {                
+                _tlpQuestionnaire.RowCount = _tlpQuestionnaire.RowCount + 1;
                 Label label = createCategoryLabel(_tlpQuestionnaire.RowCount);
-                label.Text = list[rowNumber].CategoryName;
+                currentCategory = list[rowNumber].CategoryName;
+                label.Text = currentCategory;
+                if (currentCategory != null && currentCategory != previousCategory)
                 _tlpQuestionnaire.Controls.Add(label, 0, _tlpQuestionnaire.RowCount - 1);
-                _tlpQuestionnaire.SetRowSpan(label, _questionsPerCategoryCount);
+                previousCategory = currentCategory;
+                
+                label = createQuestionLabel(list[rowNumber].QuestionId);
+                label.Text = list[rowNumber].Question;
+                _tlpQuestionnaire.Controls.Add(label, 1, _tlpQuestionnaire.RowCount - 1);
 
-                for (int questionCount = 0; questionCount < _questionsPerCategoryCount; questionCount++)
-                {
-                    label = createQuestionLabel(list[rowNumber].QuestionId);
-                    label.Text = list[rowNumber].Question;
-                    _tlpQuestionnaire.Controls.Add(label, 1, _tlpQuestionnaire.RowCount - 1);
-
-                    Panel panel = createPanel(_tlpQuestionnaire.RowCount);
-                    createRadioButtonPanel(panel, list[rowNumber].QuestionId, list[rowNumber].AnswerID, list[rowNumber].Answer);
-                    _tlpQuestionnaire.Controls.Add(panel, 2, _tlpQuestionnaire.RowCount - 1);
-
-                    _tlpQuestionnaire.RowCount = _tlpQuestionnaire.RowCount + 1;
-                    if (questionCount < _questionsPerCategoryCount - 1)
-                    {
-                        rowNumber++;
-                    }
-                }
+                Panel panel = createPanel(_tlpQuestionnaire.RowCount);
+                createRadioButtonPanel(panel, list[rowNumber].QuestionId, list[rowNumber].AnswerID, list[rowNumber].Answer);
+                _tlpQuestionnaire.Controls.Add(panel, 2, _tlpQuestionnaire.RowCount - 1);                    
             }                
         }
 
         private void createTableLayoutPanel()
         {
-            _tlpQuestionnaire = new DBLayoutPanel();
+            _tlpQuestionnaire = new NonFlickerTableLayoutPanel();
             
             _tlpQuestionnaire.Location = new Point(12, 230);
             _tlpQuestionnaire.Size = new Size(839, 110);
@@ -184,6 +176,8 @@ namespace CS6232_G1.View
 
             submitPanel.Location = new Point(30, _tlpQuestionnaire.Height + 250);
             submitPanel.Width = _tlpQuestionnaire.Width;
+
+            lblDate.Location = new Point (30 + tableWidth - lblDate.Width, lblEmployeeName.Location.Y);
         }
 
         private void SetUpLabels(EvaluationDetails evalDetails)
@@ -218,6 +212,8 @@ namespace CS6232_G1.View
             }
 
             lblEmployeeName.Text += evaluatedEmployeeName;
+
+            lblDate.Text += String.Format("{0:MMM d, yyyy}", DateTime.Now);
 
             lblInstructions.Text = 
                 "Using a scale of 1 to " + _answerRange + 
@@ -312,7 +308,7 @@ namespace CS6232_G1.View
             int count = 0;
 
             // Get the tablelayoutpanel
-            TableLayoutPanel tblPanel = this.FindForm().Controls.OfType<DBLayoutPanel>().FirstOrDefault();
+            TableLayoutPanel tblPanel = this.FindForm().Controls.OfType<NonFlickerTableLayoutPanel>().FirstOrDefault();
 
             foreach (Control radioButtonPanel in tblPanel.Controls)
             {                       
@@ -326,7 +322,7 @@ namespace CS6232_G1.View
                 }
             }
 
-            if (count != _categoryCount * _questionsPerCategoryCount)
+            if (count != _questionCount)
             {
                 MessageBox.Show("All questions are mandatory. Please answer all questions and try again.");
                 return;
@@ -357,9 +353,9 @@ namespace CS6232_G1.View
     /// <summary>
     /// Double Buffered layout panel - removes flicker during resize operations.
     /// </summary>
-    public partial class DBLayoutPanel : TableLayoutPanel
+    public partial class NonFlickerTableLayoutPanel : TableLayoutPanel
     {
-        public DBLayoutPanel()
+        public NonFlickerTableLayoutPanel()
         {
             this.DoubleBuffered = true;
         }
