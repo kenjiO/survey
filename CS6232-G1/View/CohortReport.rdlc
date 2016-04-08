@@ -247,17 +247,6 @@
             <ColumnSeparatorColor>Black</ColumnSeparatorColor>
           </ChartLegend>
         </ChartLegends>
-        <ChartTitles>
-          <ChartTitle Name="Default">
-            <Caption>Cohort # Performance</Caption>
-            <Style>
-              <BackgroundGradientType>None</BackgroundGradientType>
-              <FontWeight>Bold</FontWeight>
-              <TextAlign>General</TextAlign>
-              <VerticalAlign>Top</VerticalAlign>
-            </Style>
-          </ChartTitle>
-        </ChartTitles>
         <Palette>BrightPastel</Palette>
         <ChartBorderSkin>
           <Style>
@@ -274,7 +263,6 @@
             <VerticalAlign>Top</VerticalAlign>
           </Style>
         </ChartNoDataMessage>
-        <DataSetName>CohortReportDataSet</DataSetName>
         <Height>3.12375in</Height>
         <Width>6.49875in</Width>
         <Style>
@@ -292,6 +280,50 @@
   </Body>
   <Width>6.5in</Width>
   <Page>
+    <PageHeader>
+      <Height>1in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Type">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!Cohort.Value, "CohortReportData") + " " + First(Fields!Type.Value, "CohortReportData") + " Data"</Value>
+                  <Style>
+                    <FontSize>16pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Type</rd:DefaultName>
+          <Top>0.41542in</Top>
+          <Height>0.25in</Height>
+          <Width>6.49875in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>
     <TopMargin>1in</TopMargin>
@@ -307,11 +339,18 @@
       </ConnectionProperties>
       <rd:DataSourceID>22bb8f95-14ac-4871-bb24-d53d43ca9fbc</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="EvaluationModel1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>4d4ffccd-7b95-4c1a-8549-6c39f664aa07</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="CohortReportDataSet">
+    <DataSet Name="CohortReportData">
       <Query>
-        <DataSourceName>EvaluationModel</DataSourceName>
+        <DataSourceName>EvaluationModel1</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -319,12 +358,20 @@
           <DataField>Category</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Cohort">
+          <DataField>Cohort</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="PercentProficient">
           <DataField>PercentProficient</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="Stage">
           <DataField>Stage</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Type">
+          <DataField>Type</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

@@ -10,6 +10,23 @@ namespace Evaluation.DAL
 {
     public partial class EvaluationDAL
     {
+
+        public string GetTypeName(int typeId)
+        {
+            string selectStatement = "SELECT typeName " +
+                                     "FROM type " +
+                                     "WHERE typeId = @typeId";
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@typeId", typeId);
+                    return selectCommand.ExecuteScalar().ToString();
+                }
+            }
+        }
+
         public List<EvalType> GetTypeList()
         {
             List<EvalType> results = new List<EvalType>();

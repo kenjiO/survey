@@ -79,6 +79,27 @@ namespace Evaluation.DAL
         }
 
         /// <summary>
+        /// Get the name of a cohort
+        /// </summary>
+        /// <param name="cohortId">The id of the cohort</param>
+        /// <returns>The cohort name</returns>
+        public string GetCohortName(int cohortId)
+        {
+            string selectStatement = "SELECT cohortName " +
+                                     "FROM cohort " +
+                                     "WHERE cohortId = @cohortId";
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@cohortId", cohortId);
+                    return selectCommand.ExecuteScalar().ToString();
+                }
+            }
+        }
+
+        /// <summary>
         /// Add a new cohort
         /// Precondition: name != null and a cohort with that name does not exist alreay
         /// </summary>
