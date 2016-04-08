@@ -89,6 +89,16 @@ namespace CS6232_G1.View
             }
         }
 
+        private void createStageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddStageForm.Run(_controller);
+        }
+
+        private void renameStageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RenameStageForm.Run(_controller);
+        }
+
         // This opens a dialog form that will prompt the user to select a cohort
         // It will return the cohort selected or null if cancelled or an error occurs
         private Cohort SelectCohort()

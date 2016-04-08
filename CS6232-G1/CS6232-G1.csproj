@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="View\AddStageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddStageForm.Designer.cs">
+      <DependentUpon>AddStageForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\AddCohortForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,12 @@
     </Compile>
     <Compile Include="View\QuestionnaireForm.Designer.cs">
       <DependentUpon>QuestionnaireForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RenameStageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RenameStageForm.Designer.cs">
+      <DependentUpon>RenameStageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\RenameCohortForm.cs">
       <SubType>Form</SubType>
@@ -142,6 +154,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\AddStageForm.resx">
+      <DependentUpon>AddStageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\AddCohortForm.resx">
       <DependentUpon>AddCohortForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\QuestionnaireForm.resx">
       <DependentUpon>QuestionnaireForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RenameStageForm.resx">
+      <DependentUpon>RenameStageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\RenameCohortForm.resx">
       <DependentUpon>RenameCohortForm.cs</DependentUpon>

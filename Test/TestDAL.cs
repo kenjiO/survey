@@ -32,6 +32,17 @@ namespace Test
         {
             return _controller.GetStageList();
         }
+
+        public int AddNewStage(String name)
+        {
+            return 1;
+        }
+
+        public bool RenameStage(int stageId, string oldName, string newName)
+        {
+            return true;
+        }
+
         #endregion
 
         #region Roles

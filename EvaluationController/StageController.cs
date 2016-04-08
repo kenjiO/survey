@@ -82,13 +82,12 @@ namespace Evaluation.Controller
 
         public int AddStage(string name)
         {
-            // TODO: add stage, return identity column
-            //  - name should be non-null, non-empty string
-            //  - name should not already exist (can you have a WHERE statement in an INSERT command?)
-            //  - second query to get identity value
-            //  - set _stages = null;
-            //  - return ident
-            throw new NotSupportedException();
+            return _dal.AddNewStage(name);
+        }
+
+        public bool RenameStage(int stageId, string oldName, string newName)
+        {
+            return _dal.RenameStage(stageId, oldName, newName);
         }
 
     }

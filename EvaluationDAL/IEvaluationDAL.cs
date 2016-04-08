@@ -31,6 +31,22 @@ namespace Evaluation.DAL
         /// </summary>
         /// <returns>Stage list</returns>
         List<Stage> GetStageList();
+
+        /// <summary>
+        /// Create a new stage with the given name
+        /// </summary>
+        /// <param name="name">The name of the new stage</param>
+        /// <returns>The id of the new stage created or -1 if could not create the stage</returns>
+        int AddNewStage(String name);
+
+        /// <summary>
+        /// Rename a stage if stageId with oldName is in the database
+        /// </summary>
+        /// <param name="stageId">stageId to rename</param>
+        /// <param name="oldName">the old name of the stage</param>
+        /// <param name="newName">the new name of the stage</param>
+        /// <returns>True if rename successful. False otherwise</returns>
+        bool RenameStage(int stageId, string oldName, string newName);
         #endregion
 
         #region Roles

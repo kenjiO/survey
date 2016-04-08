@@ -63,6 +63,11 @@ namespace Test
             return 5;
         }
 
+        public bool RenameStage(int stageId, string oldName, string newName)
+        {
+            return true;
+        }
+
         #endregion
 
         #region Types

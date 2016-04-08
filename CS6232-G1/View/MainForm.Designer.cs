@@ -53,6 +53,9 @@
             this.LoginButton = new System.Windows.Forms.Button();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
+            this.stagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.renameStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripAdmin.SuspendLayout();
             this.menuStripEmployee.SuspendLayout();
             this.menuStripDefault.SuspendLayout();
@@ -65,7 +68,8 @@
             this.menuStripAdmin.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.cohortsToolStripMenuItem,
-            this.reportsToolStripMenuItem});
+            this.reportsToolStripMenuItem,
+            this.stagesToolStripMenuItem});
             this.menuStripAdmin.Location = new System.Drawing.Point(0, 48);
             this.menuStripAdmin.Name = "menuStripAdmin";
             this.menuStripAdmin.Size = new System.Drawing.Size(940, 24);
@@ -138,14 +142,14 @@
             // userReportToolStripMenuItem
             // 
             this.userReportToolStripMenuItem.Name = "userReportToolStripMenuItem";
-            this.userReportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.userReportToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.userReportToolStripMenuItem.Text = "User Report";
             this.userReportToolStripMenuItem.Click += new System.EventHandler(this.userReportToolStripMenuItem_Click);
             // 
             // cohortReportToolStripMenuItem
             // 
             this.cohortReportToolStripMenuItem.Name = "cohortReportToolStripMenuItem";
-            this.cohortReportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cohortReportToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.cohortReportToolStripMenuItem.Text = "Cohort Report";
             this.cohortReportToolStripMenuItem.Click += new System.EventHandler(this.cohortReportToolStripMenuItem_Click);
             // 
@@ -281,6 +285,29 @@
             this.UsernameTextBox.Text = "admin1@westga.edu";
             this.UsernameTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LoginTextBox_KeyUp);
             // 
+            // stagesToolStripMenuItem
+            // 
+            this.stagesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createStageToolStripMenuItem,
+            this.renameStageToolStripMenuItem});
+            this.stagesToolStripMenuItem.Name = "stagesToolStripMenuItem";
+            this.stagesToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.stagesToolStripMenuItem.Text = "Stages";
+            // 
+            // createStageToolStripMenuItem
+            // 
+            this.createStageToolStripMenuItem.Name = "createStageToolStripMenuItem";
+            this.createStageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createStageToolStripMenuItem.Text = "Create Stage";
+            this.createStageToolStripMenuItem.Click += new System.EventHandler(this.createStageToolStripMenuItem_Click);
+            // 
+            // renameStageToolStripMenuItem
+            // 
+            this.renameStageToolStripMenuItem.Name = "renameStageToolStripMenuItem";
+            this.renameStageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.renameStageToolStripMenuItem.Text = "Rename Stage";
+            this.renameStageToolStripMenuItem.Click += new System.EventHandler(this.renameStageToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -335,6 +362,9 @@
         private System.Windows.Forms.ToolStripMenuItem renameACohortToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cohortReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stagesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createStageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem renameStageToolStripMenuItem;
     }
 }
 

@@ -49,6 +49,15 @@ namespace Evaluation.Controller
         /// <returns>Stage id of new stage</returns>
         int AddStage(string name);
 
+        /// <summary>
+        /// Rename a stage if stageId with oldName is in the database
+        /// </summary>
+        /// <param name="stageId">stageId to rename</param>
+        /// <param name="oldName">the old name of the cohort</param>
+        /// <param name="newName">the new name of the cohort</param>
+        /// <returns>True if rename successful. False otherwise</returns>
+        bool RenameStage(int stageId, string oldName, string newName);
+
         #endregion 
 
         #region Types
