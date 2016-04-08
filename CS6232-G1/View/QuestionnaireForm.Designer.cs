@@ -33,6 +33,8 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblEmployeeName = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
+            this.lblEvaluator = new System.Windows.Forms.Label();
+            this.lblRole = new System.Windows.Forms.Label();
             this.submitPanel = new CS6232_G1.View.NonFlickerPanel();
             this.lblSubmitNotice = new System.Windows.Forms.Label();
             this.btnSubmit = new System.Windows.Forms.Button();
@@ -94,6 +96,30 @@
             this.lblDate.Text = "Date: ";
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // lblEvaluator
+            // 
+            this.lblEvaluator.AutoSize = true;
+            this.lblEvaluator.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEvaluator.Location = new System.Drawing.Point(39, 353);
+            this.lblEvaluator.Margin = new System.Windows.Forms.Padding(30, 0, 3, 0);
+            this.lblEvaluator.Name = "lblEvaluator";
+            this.lblEvaluator.Size = new System.Drawing.Size(136, 29);
+            this.lblEvaluator.TabIndex = 9;
+            this.lblEvaluator.Text = "Evaluator: ";
+            this.lblEvaluator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblRole
+            // 
+            this.lblRole.AutoSize = true;
+            this.lblRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRole.Location = new System.Drawing.Point(692, 353);
+            this.lblRole.Margin = new System.Windows.Forms.Padding(30, 0, 3, 0);
+            this.lblRole.Name = "lblRole";
+            this.lblRole.Size = new System.Drawing.Size(198, 29);
+            this.lblRole.TabIndex = 10;
+            this.lblRole.Text = "Evaluator Role: ";
+            this.lblRole.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // submitPanel
             // 
             this.submitPanel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -102,7 +128,7 @@
             this.submitPanel.Location = new System.Drawing.Point(57, 443);
             this.submitPanel.Margin = new System.Windows.Forms.Padding(3, 3, 3, 30);
             this.submitPanel.Name = "submitPanel";
-            this.submitPanel.Size = new System.Drawing.Size(839, 122);
+            this.submitPanel.Size = new System.Drawing.Size(839, 135);
             this.submitPanel.TabIndex = 7;
             // 
             // lblSubmitNotice
@@ -122,10 +148,10 @@
             // btnSubmit
             // 
             this.btnSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmit.Location = new System.Drawing.Point(689, 85);
+            this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubmit.Location = new System.Drawing.Point(695, 85);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(129, 34);
+            this.btnSubmit.Size = new System.Drawing.Size(131, 47);
             this.btnSubmit.TabIndex = 0;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
@@ -138,6 +164,8 @@
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(0, 30);
             this.ClientSize = new System.Drawing.Size(914, 644);
+            this.Controls.Add(this.lblRole);
+            this.Controls.Add(this.lblEvaluator);
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.submitPanel);
             this.Controls.Add(this.lblEmployeeName);
@@ -164,5 +192,7 @@
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Label lblSubmitNotice;
         private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.Label lblEvaluator;
+        private System.Windows.Forms.Label lblRole;
     }
 }

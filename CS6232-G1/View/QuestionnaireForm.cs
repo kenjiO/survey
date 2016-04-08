@@ -138,7 +138,7 @@ namespace CS6232_G1.View
         {
             _tlpQuestionnaire = new NonFlickerTableLayoutPanel();
             
-            _tlpQuestionnaire.Location = new Point(12, 230);
+            _tlpQuestionnaire.Location = new Point(12, 270);
             _tlpQuestionnaire.Size = new Size(839, 110);
             _tlpQuestionnaire.AutoSize = true;
             _tlpQuestionnaire.Margin = new System.Windows.Forms.Padding(3, 3, 40, 30);
@@ -160,24 +160,34 @@ namespace CS6232_G1.View
         private void PositionControlsOnForm()
         {
             int tableWidth = _tlpQuestionnaire.Width;
+            const int LEFT_MARGIN = 30;
 
-            lblTitle.Left = 30;
+            lblTitle.Left = LEFT_MARGIN;
             lblTitle.Width = tableWidth;
 
-            lblGeneral.Left = 30;
+            lblGeneral.Left = LEFT_MARGIN;
             lblGeneral.Width = tableWidth;
             lblGeneral.Visible = true;
 
-            lblEmployeeName.Left = 30;
-            lblEmployeeName.Width = tableWidth;
+            lblEmployeeName.Left = LEFT_MARGIN;
+            lblEvaluator.Left = LEFT_MARGIN;
 
-            lblInstructions.Left = 30;
+            lblInstructions.Left = LEFT_MARGIN;
             lblInstructions.Width = tableWidth;
 
-            submitPanel.Location = new Point(30, _tlpQuestionnaire.Height + 250);
+            submitPanel.Location = new Point(LEFT_MARGIN, _tlpQuestionnaire.Height + 280);
             submitPanel.Width = _tlpQuestionnaire.Width;
 
-            lblDate.Location = new Point (30 + tableWidth - lblDate.Width, lblEmployeeName.Location.Y);
+            lblDate.Location = new Point(LEFT_MARGIN + tableWidth - lblDate.Width, lblEmployeeName.Location.Y);
+            if (_evaluationKind == 0)
+            {
+                this.Controls.Remove(lblEvaluator);
+                lblRole.Left = LEFT_MARGIN;
+            }
+            else
+            {
+                lblRole.Location = new Point(LEFT_MARGIN + tableWidth - lblRole.Width, lblEvaluator.Location.Y);
+            }
         }
 
         private void SetUpLabels(EvaluationDetails evalDetails)
@@ -194,7 +204,8 @@ namespace CS6232_G1.View
                 "Self review is a critical part of this process. You have been selected to " +
                 "provide a self evaluation.";
                 lblEmployeeName.Text = "Evaluated Employee: ";
-                evaluatedEmployeeName = _currentUser.FullName;
+                evaluatedEmployeeName = _currentUser.FullName;                
+                lblRole.Text += "Self";
             }
             else
             {
@@ -209,6 +220,9 @@ namespace CS6232_G1.View
                     MessageBox.Show("An error occurred retrieving employee name from the database.\n\n" +
                                     "Details: " + ex.Message, "Notice");
                 }
+
+                lblEvaluator.Text += _currentUser.FullName;
+                lblRole.Text += evalDetails.RoleName;
             }
 
             lblEmployeeName.Text += evaluatedEmployeeName;

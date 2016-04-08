@@ -13,15 +13,17 @@ namespace Evaluation.Model
         public string TypeName { get; private set; }
         public int AnswerRange { get; private set; }
         public int CategoryCount { get; private set; }
+        public string RoleName { get; private set; }
         
 
-        public EvaluationDetails(int employeeId, int typeId, string typeName, int answerRange, int categoryCount) 
+        public EvaluationDetails(int employeeId, int typeId, string typeName, int answerRange, int categoryCount, string roleName) 
         {
             EmployeeId = employeeId;
             TypeId = typeId;
             TypeName = typeName;
             AnswerRange = answerRange;
-            CategoryCount = categoryCount;            
+            CategoryCount = categoryCount;    
+            RoleName = roleName;
         }
     }
 }

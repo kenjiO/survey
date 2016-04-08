@@ -353,11 +353,13 @@ namespace Evaluation.DAL
             string typeName = null;
             int categoryCount = 0;
             int answerRange = 0;
-            
-            string selectStatement = "SELECT e.employeeId, ev.typeId, t.typeName, t.answerRange " +
+            string roleName = "";
+
+            string selectStatement = "SELECT e.employeeId, ev.typeId, t.typeName, t.answerRange, r.roleName " +
                                      "FROM evaluations ev " +
                                      "JOIN employee e ON e.employeeId = ev.employeeId " +
                                      "JOIN type t ON t.typeId = ev.typeId " +
+                                     "JOIN role r ON r.roleId = ev.roleId " +
                                      "WHERE evaluationId = @evaluationId ";
 
             using (SqlConnection connection = EvaluationDB.GetConnection())
@@ -379,7 +381,8 @@ namespace Evaluation.DAL
                             employeeId = (int)reader["employeeId"];
                             typeId = (int)reader["typeId"];
                             typeName = (string)reader["typeName"];
-                            answerRange = (int)reader["answerRange"];                            
+                            answerRange = (int)reader["answerRange"];
+                            roleName = (string)reader["roleName"];
                         }
                     }
                 }
@@ -400,7 +403,7 @@ namespace Evaluation.DAL
                     categoryCount = (int)result;
                 }
 
-                evaluationDetails = new EvaluationDetails(employeeId, typeId, typeName, answerRange, categoryCount);
+                evaluationDetails = new EvaluationDetails(employeeId, typeId, typeName, answerRange, categoryCount, roleName);
 
             }
             return evaluationDetails;
