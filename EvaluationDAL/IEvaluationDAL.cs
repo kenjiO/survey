@@ -16,6 +16,13 @@ namespace Evaluation.DAL
         /// </summary>
         /// <returns>Type list</returns>
         List<EvalType> GetTypeList();
+
+        /// <summary>
+        /// Get the type name of an evaluation type
+        /// </summary>
+        /// <param name="typeId">The id of the type</param>
+        /// <returns>The type name</returns>
+        string GetTypeName(int typeId);
         #endregion
 
         #region Stages
@@ -40,6 +47,13 @@ namespace Evaluation.DAL
         /// </summary>
         /// <returns>A list of Cohort objects corresponding to the cohorts in the DB</returns>
         List<Cohort> GetCohorts();
+
+        /// <summary>
+        /// Get the name of a cohort
+        /// </summary>
+        /// <param name="cohortId">The id of the cohort</param>
+        /// <returns>The cohort name</returns>
+        string GetCohortName(int cohortId);
 
         /// <summary>
         /// Create a new cohort with the given name

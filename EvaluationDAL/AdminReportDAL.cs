@@ -18,9 +18,8 @@ namespace Evaluation.DAL
 
         public List<CohortReport> GetCohortReport(int cohortId, int typeId)
         {
-            //TODO get the cohort name and type name for their id's
-            string cohort = cohortId.ToString();
-            string type = typeId.ToString();
+            string cohort = this.GetCohortName(cohortId);
+            string type = this.GetTypeName(typeId);
 
             List<CohortReport> reportDataPoints = new List<CohortReport>();
 

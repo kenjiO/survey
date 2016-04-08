@@ -20,6 +20,11 @@ namespace Test
             return _controller.GetTypeList();
         }
 
+        public string GetTypeName(int typeId)
+        {
+            return "TestDAL type";
+        }
+
         #endregion
 
         #region Stages
@@ -45,6 +50,11 @@ namespace Test
         public List<Cohort> GetCohortsWithNoMembersOrEvals()
         {
             throw new NotSupportedException();
+        }
+
+        public string GetCohortName(int cohortId)
+        {
+            return "TestDAL Cohort";
         }
 
         public Cohort AddNewCohort(String name)
