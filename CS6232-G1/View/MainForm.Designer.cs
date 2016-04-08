@@ -39,6 +39,9 @@
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cohortReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.renameStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripEmployee = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,9 +56,6 @@
             this.LoginButton = new System.Windows.Forms.Button();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
-            this.stagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.renameStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripAdmin.SuspendLayout();
             this.menuStripEmployee.SuspendLayout();
             this.menuStripDefault.SuspendLayout();
@@ -152,6 +152,29 @@
             this.cohortReportToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.cohortReportToolStripMenuItem.Text = "Cohort Report";
             this.cohortReportToolStripMenuItem.Click += new System.EventHandler(this.cohortReportToolStripMenuItem_Click);
+            // 
+            // stagesToolStripMenuItem
+            // 
+            this.stagesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createStageToolStripMenuItem,
+            this.renameStageToolStripMenuItem});
+            this.stagesToolStripMenuItem.Name = "stagesToolStripMenuItem";
+            this.stagesToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.stagesToolStripMenuItem.Text = "Stages";
+            // 
+            // createStageToolStripMenuItem
+            // 
+            this.createStageToolStripMenuItem.Name = "createStageToolStripMenuItem";
+            this.createStageToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.createStageToolStripMenuItem.Text = "Create Stage";
+            this.createStageToolStripMenuItem.Click += new System.EventHandler(this.createStageToolStripMenuItem_Click);
+            // 
+            // renameStageToolStripMenuItem
+            // 
+            this.renameStageToolStripMenuItem.Name = "renameStageToolStripMenuItem";
+            this.renameStageToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.renameStageToolStripMenuItem.Text = "Rename Stage";
+            this.renameStageToolStripMenuItem.Click += new System.EventHandler(this.renameStageToolStripMenuItem_Click);
             // 
             // menuStripEmployee
             // 
@@ -272,7 +295,7 @@
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.Size = new System.Drawing.Size(209, 20);
             this.PasswordTextBox.TabIndex = 1;
-            this.PasswordTextBox.Text = "admin1";
+            this.PasswordTextBox.Text = "admin";
             this.PasswordTextBox.UseSystemPasswordChar = true;
             this.PasswordTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LoginTextBox_KeyUp);
             // 
@@ -284,29 +307,6 @@
             this.UsernameTextBox.TabIndex = 0;
             this.UsernameTextBox.Text = "admin1@westga.edu";
             this.UsernameTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LoginTextBox_KeyUp);
-            // 
-            // stagesToolStripMenuItem
-            // 
-            this.stagesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createStageToolStripMenuItem,
-            this.renameStageToolStripMenuItem});
-            this.stagesToolStripMenuItem.Name = "stagesToolStripMenuItem";
-            this.stagesToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.stagesToolStripMenuItem.Text = "Stages";
-            // 
-            // createStageToolStripMenuItem
-            // 
-            this.createStageToolStripMenuItem.Name = "createStageToolStripMenuItem";
-            this.createStageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.createStageToolStripMenuItem.Text = "Create Stage";
-            this.createStageToolStripMenuItem.Click += new System.EventHandler(this.createStageToolStripMenuItem_Click);
-            // 
-            // renameStageToolStripMenuItem
-            // 
-            this.renameStageToolStripMenuItem.Name = "renameStageToolStripMenuItem";
-            this.renameStageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.renameStageToolStripMenuItem.Text = "Rename Stage";
-            this.renameStageToolStripMenuItem.Click += new System.EventHandler(this.renameStageToolStripMenuItem_Click);
             // 
             // MainForm
             // 

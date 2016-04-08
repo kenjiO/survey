@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace CS6232_G1.View
 {
@@ -189,10 +190,9 @@ namespace CS6232_G1.View
             {
                 return;
             }
-
             try
             {
-                if (_controller.Login(username, password) == null)
+                if (_controller.Login(username, hashPassword(password)) == null)
                 {
                     ErrorMsgLabel.Text = "Invalid username/password";
                     return;
@@ -213,6 +213,18 @@ namespace CS6232_G1.View
                 // Open this on login for user sessions
                 employeeMenuEvaluationsToolStripMenuItem_Click(null, null);
             }
+        }
+
+        private string hashPassword(string password)
+        {
+            SHA1Managed sha1 = new SHA1Managed();
+            byte[] hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(password));
+            String hashedPassword = "";
+            foreach (byte b in hash)
+            {
+                hashedPassword = hashedPassword + b.ToString("X2");
+            }
+            return hashedPassword;
         }
 
         private Boolean Validate(String username, String password)
