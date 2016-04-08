@@ -35,15 +35,14 @@ namespace Evaluation.DAL
                 "             COUNT(a.answerId)                                                " +
                 "           )                                                                  " +
                 "           , 0                                                                " +
-                "    ) as percentProficient                                                     " +
+                "    ) as percentProficient                                                    " +
                 "FROM answer a                                                                 " +
                 "JOIN evaluations ev ON a.evaluationId = ev.evaluationId                       " +
                 "JOIN employee em ON em.employeeId = ev.employeeId                             " +
                 "JOIN question q ON q.questionId = a.questionId                                " +
                 "JOIN category c ON c.categoryId = q.categoryId                                " + 
                 "JOIN stage s On s.stageId = ev.stageId                                        " +
-                "WHERE ev.employeeId = ev.evaluator                                            " +
-                "    AND em.cohortId = @cohortId AND ev.typeId = @typeId                       " +
+                "WHERE em.cohortId = @cohortId AND q.typeId = @typeId                         " +
                 "GROUP BY s.stageName, c.categoryName                                          ";
 
             using (SqlConnection connection = EvaluationDB.GetConnection())
