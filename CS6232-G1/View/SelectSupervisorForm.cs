@@ -62,7 +62,7 @@ namespace CS6232_G1.View
                 Close();
             }
             cboSupervisors.DataSource = EmployeeListExceptSelf;
-            cboSupervisors.DisplayMember = "Name";
+            cboSupervisors.DisplayMember = "FullName";
             cboSupervisors.ValueMember = "EmployeeId";
             cboSupervisors.SelectedIndex = -1;
         }

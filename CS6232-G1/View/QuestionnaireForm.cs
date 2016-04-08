@@ -213,7 +213,7 @@ namespace CS6232_G1.View
                 "provide a peer review for another employee.";
                 try
                 {
-                    evaluatedEmployeeName = _controller.GetEmployeeNameFL(evalDetails.EmployeeId);
+                    evaluatedEmployeeName = _controller.GetEmployeeName(evalDetails.EmployeeId).FullName;
                 }
                 catch (Exception ex)
                 {
