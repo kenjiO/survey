@@ -155,10 +155,9 @@ namespace CS6232_G1.View
                 {
                     MessageBox.Show("All selected employees have been added to the cohort!", "Operation Successful");
                 }
-                //loadEmployeeListView();
                 Close();
             }
-            catch(SqlException ex)
+            catch(Exception ex)
             {
                 MessageBox.Show("An error occurred updating data in database. \n\n" +
                                 "Details: " + ex.Message, "Notice");

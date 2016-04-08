@@ -306,7 +306,10 @@ namespace Evaluation.DAL
                             }  
                         }
                     }
-                    catch {}
+                    catch (Exception)
+                    {
+                        failedIds.Add(id);
+                    }
                 }
             }
             return failedIds;
