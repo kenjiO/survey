@@ -48,6 +48,7 @@ namespace CS6232_G1.View
         private void UserReportForm_Load(object sender, EventArgs e)
         {
             reportViewer.RefreshReport();
+            this.reportViewer.RefreshReport();
         }
 
         private void generateButton_Click(object sender, EventArgs e)
@@ -90,8 +91,7 @@ namespace CS6232_G1.View
         {
             try
             {
-                // TODO: set header label to: titleData
-
+                UserReportTitleDataBindingSource.DataSource = titleData;
                 reportData = _controller.GetUserReport(employeeId, evalType, stage);
                 UserReportBindingSource.DataSource = reportData;
                 reportViewer.RefreshReport();
