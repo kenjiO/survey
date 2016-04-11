@@ -19,6 +19,7 @@ namespace CS6232_G1.View
         private List<Stage> _stages;
         private List<EvalType> _types;
         private List<UserReport> reportData;
+        private List<UserReportTitleData> titleData = new List<UserReportTitleData>();
 
         public UserReportForm(IEvaluationController controller)
         {
@@ -67,6 +68,8 @@ namespace CS6232_G1.View
                 MessageBox.Show("Please select evaluation stage and type", "Notice");
                 return;
             }
+            titleData.Clear();
+            titleData.Add(new UserReportTitleData(_controller.GetEmployeeNameFL(employeeId), typeComboBox.Text, stageComboBox.Text));
             int evaltype = (int)typeComboBox.ComboBox.SelectedValue;
             int stage = (int)stageComboBox.ComboBox.SelectedValue;
             GenerateUserReport(employeeId, evaltype, stage);
@@ -87,10 +90,8 @@ namespace CS6232_G1.View
         {
             try
             {
-                
-                // TODO: set header label to:
-                // string text = "Employee " + nameFirstLastId + " Evaluation Report (Evaluation " + typeName + " at " + stageName + 
-                //                  ") (generated " + DateTime.Now.AsDD/MM/YYYY + ")"
+                // TODO: set header label to: titleData
+
                 reportData = _controller.GetUserReport(employeeId, evalType, stage);
                 UserReportBindingSource.DataSource = reportData;
                 reportViewer.RefreshReport();
