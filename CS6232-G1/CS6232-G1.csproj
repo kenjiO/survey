@@ -206,6 +206,8 @@
     </EmbeddedResource>
     <None Include="Properties\DataSources\Evaluation.Model.CohortReport.datasource" />
     <None Include="Properties\DataSources\Evaluation.Model.EvaluationSchedule.datasource" />
+    <None Include="Properties\DataSources\Evaluation.Model.UserReport.datasource" />
+    <None Include="Properties\DataSources\Evaluation.Model.UserReportTitleData.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
