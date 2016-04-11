@@ -11,12 +11,14 @@ namespace Evaluation.Model
         public string Name { get; private set; }
         public string TypeName { get; private set; }
         public string StageName { get; private set; }
+        public DateTime DateGenerated { get; private set; }
 
         public UserReportTitleData(string _name, string _type, string _stage)
         {
             Name = _name;
             TypeName = _type;
             StageName = _stage;
+            DateGenerated = DateTime.Now.Date;
         }
     }
 }

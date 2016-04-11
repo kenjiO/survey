@@ -55,7 +55,6 @@
     <Compile Include="Role.cs" />
     <Compile Include="Stage.cs" />
     <Compile Include="UserReport.cs" />
-    <Compile Include="UserReport2.cs" />
     <Compile Include="UserReportTitleData.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -545,7 +545,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=First(Fields!Name.Value, "UserReportTitleDataSet") + " Evaluation Report (Evaluation " + First(Fields!TypeName.Value, "UserReportTitleDataSet") + " at " + First(Fields!StageName.Value, "UserReportTitleDataSet") + ") (generated Globals!ExecutionTime)"</Value>
+                <Value>=First(Fields!Name.Value, "UserReportTitleDataSet") + " Evaluation Report (Evaluation " + First(Fields!TypeName.Value, "UserReportTitleDataSet") + " at " + First(Fields!StageName.Value, "UserReportTitleDataSet") + ") (generated " + First(Fields!DateGenerated.Value, "UserReportTitleDataSet") + ")"</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -645,6 +645,10 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
+        <Field Name="DateGenerated">
+          <DataField>DateGenerated</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="Name">
           <DataField>Name</DataField>
           <rd:TypeName>System.String</rd:TypeName>

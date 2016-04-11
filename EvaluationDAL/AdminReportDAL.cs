@@ -12,8 +12,58 @@ namespace Evaluation.DAL
     {
         public List<UserReport> GetUserReport(int employeeId, int typeId, int stageId)
         {
-            // TODO: Query user report data from SQL
-            return null;
+            List<UserReport> reportData = new List<UserReport>();
+
+            string selectStatement =
+                "SELECT s.stageName, c.categoryName,                                           " +
+                "    COUNT(CASE WHEN a.answer >= 3 THEN 1 ELSE NULL END) as proficientAnswers, " +
+                "    COUNT(a.answerId) as totalAnswers,                                        " +
+                "    ROUND(                                                                    " +
+                "           (                                                                  " +
+                "             COUNT(CASE WHEN a.answer >= 3 THEN 1 ELSE NULL END)              " +
+                "             * 100.0                                                          " +
+                "             /                                                                " +
+                "             COUNT(a.answerId)                                                " +
+                "           )                                                                  " +
+                "           , 0                                                                " +
+                "    ) as percentProficient                                                    " +
+                "FROM answer a                                                                 " +
+                "JOIN evaluations ev ON a.evaluationId = ev.evaluationId                       " +
+                "JOIN employee em ON em.employeeId = ev.employeeId                             " +
+                "JOIN question q ON q.questionId = a.questionId                                " +
+                "JOIN category c ON c.categoryId = q.categoryId                                " + 
+                "JOIN stage s On s.stageId = ev.stageId                                        " +
+                "WHERE em.cohortId = @cohortId AND q.typeId = @typeId                         " +
+                "GROUP BY s.stageName, c.categoryName                                          ";
+
+            // TODO: Finish
+            /*
+            using (SqlConnection connection = EvaluationDB.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.AddWithValue("@employeeId", employeeId);
+                    selectCommand.Parameters.AddWithValue("@typeId", typeId);
+                    selectCommand.Parameters.AddWithValue("@stageId", typeId);
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            // TODO: Fill in correct field names
+                            string category = reader["categoryName"].ToString();
+                            int question = (int)reader["x"];
+                            int self = (int)reader["x"];
+                            int supervisor = (int)reader["x"];
+                            int coworker = (int)reader["x"];
+                            reportData.Add(new UserReport(category, question, self, supervisor, coworker));
+                        }
+                    }
+                }
+            }
+            */ 
+            return reportData;
         }
 
         public List<CohortReport> GetCohortReport(int cohortId, int typeId)

@@ -74,7 +74,7 @@ namespace CS6232_G1.View
             int evaltype = (int)typeComboBox.ComboBox.SelectedValue;
             int stage = (int)stageComboBox.ComboBox.SelectedValue;
             GenerateUserReport(employeeId, evaltype, stage);
-            if (reportData == null)
+            if (reportData == null || reportData.Count == 0)
             {
                 string text = "No report found for employee " + employeeId + " for " + typeComboBox.Text + " and " + stageComboBox.Text;
                 MessageBox.Show(text, "Notice");
