@@ -174,7 +174,6 @@
             this.Controls.Add(this.lblGeneral);
             this.Name = "QuestionnaireForm";
             this.Text = "Evaluation Questionnaire";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.QuestionnaireForm_Load);
             this.submitPanel.ResumeLayout(false);
             this.ResumeLayout(false);

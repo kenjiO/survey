@@ -109,7 +109,6 @@ namespace CS6232_G1.View
 
                 if (evaluationId > 0) {
                     // Open self evaluation
-                    // MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
                     try
                     {
                         QuestionnaireForm form = new QuestionnaireForm(_controller, SELF_EVALUATION, evaluationId, this);
@@ -188,8 +187,6 @@ namespace CS6232_G1.View
                 int evaluationId = (int)senderGrid.Rows[e.RowIndex].Cells["evaluationId1"].Value;
 
                 // Open peer evaluation
-                // MessageBox.Show("TODO: Open Evaluation. evaluationId: " + evaluationId);
-                
                 try
                 {
                     QuestionnaireForm form = new QuestionnaireForm(_controller, PEER_EVALUATION, evaluationId, this);                    

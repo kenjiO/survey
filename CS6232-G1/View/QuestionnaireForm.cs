@@ -31,7 +31,7 @@ namespace CS6232_G1.View
             _currentUser = _controller.CurrentUser;
             _evaluationKind = evaluationKind;
             _evaluationId = evaluationId;
-            _parentForm = parent;
+            _parentForm = parent;            
 
             if (_controller == null)
             {
@@ -74,8 +74,7 @@ namespace CS6232_G1.View
 
                 PositionControlsOnForm();
 
-                lblTitle.Focus(); // To show top of page
-
+                lblTitle.Focus(); // To show top of page                 
             }
             catch (Exception ex)
             {
@@ -162,6 +161,8 @@ namespace CS6232_G1.View
             int tableWidth = _tlpQuestionnaire.Width;
             const int LEFT_MARGIN = 30;
 
+            this.Width = tableWidth + LEFT_MARGIN * 3;
+
             lblTitle.Left = LEFT_MARGIN;
             lblTitle.Width = tableWidth;
 
@@ -186,7 +187,7 @@ namespace CS6232_G1.View
             }
             else
             {
-                lblRole.Location = new Point(LEFT_MARGIN + tableWidth - lblRole.Width, lblEvaluator.Location.Y);
+                lblRole.Location = new Point(LEFT_MARGIN + tableWidth - lblRole.Width, lblEvaluator.Location.Y);                
             }
         }
 
