@@ -314,23 +314,16 @@ namespace Evaluation.DAL
                 connection.Open();
                 foreach (int id in empIdList)
                 {
-                    try
+                    using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
                     {
-                        using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
+                        updateCommand.Parameters.AddWithValue("@cohortId", cohortId);
+                        updateCommand.Parameters.AddWithValue("@employeeId", id);
+                        int count = updateCommand.ExecuteNonQuery();
+                        if (count < 1)
                         {
-                            updateCommand.Parameters.AddWithValue("@cohortId", cohortId);
-                            updateCommand.Parameters.AddWithValue("@employeeId", id);
-                            int count = updateCommand.ExecuteNonQuery();
-                            if (count < 1)
-                            {
-                                failedIds.Add(id);
-                            }  
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        failedIds.Add(id);
-                    }
+                            failedIds.Add(id);
+                        }  
+                    }                    
                 }
             }
             return failedIds;
