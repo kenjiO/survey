@@ -545,7 +545,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Employee Joe Doe (12345) Evaluation Report (Evaluation Type 1 at Stage 1) (generated 2/29/2016)</Value>
+                <Value>=First(Fields!Name.Value, "UserReportTitleDataSet") + " Evaluation Report (Evaluation " + First(Fields!TypeName.Value, "UserReportTitleDataSet") + " at " + First(Fields!StageName.Value, "UserReportTitleDataSet") + ") (generated " + First(Fields!DateGenerated.Value, "UserReportTitleDataSet") + ")"</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -593,6 +593,13 @@
       </ConnectionProperties>
       <rd:DataSourceID>187c8d9e-3af7-4788-be60-b3d5b17e2972</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="EvaluationModel1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>bb7da6ae-1331-48d8-be27-bc6e62d19c64</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="UserReportDataSet">
@@ -630,6 +637,35 @@
         <rd:DataSetName>Evaluation.Model</rd:DataSetName>
         <rd:TableName>UserReport</rd:TableName>
         <rd:ObjectDataSourceType>Evaluation.Model.UserReport, EvaluationModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="UserReportTitleDataSet">
+      <Query>
+        <DataSourceName>EvaluationModel1</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="DateGenerated">
+          <DataField>DateGenerated</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="StageName">
+          <DataField>StageName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TypeName">
+          <DataField>TypeName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Evaluation.Model</rd:DataSetName>
+        <rd:TableName>UserReportTitleData</rd:TableName>
+        <rd:ObjectDataSourceType>Evaluation.Model.UserReportTitleData, EvaluationModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

@@ -62,7 +62,8 @@ namespace Evaluation.Controller
 
         public int AddType(string name)
         {
-            // TODO: add type, return identity column
+            // If add type is needed, flesh out this function
+            //  - add type, return identity column
             //  - name should be non-null, non-empty string
             //  - name should not already exist (can you have a WHERE statement in an INSERT command?)
             //  - second query to get identity value

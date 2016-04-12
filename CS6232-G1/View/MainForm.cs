@@ -31,13 +31,13 @@ namespace CS6232_G1.View
             }
             _controller = controller;
             InitializeComponent();
-
-            menuStripAdmin.Visible = false;
-            menuStripEmployee.Visible = false;
             showLoginPanel();
         }
 
         private void showLoginPanel() {
+            menuStripDefault.Visible = true;
+            menuStripAdmin.Visible = false;
+            menuStripEmployee.Visible = false;
             LoginPanel.Visible = true;
             LoginPanel.Location = new Point(
                 this.ClientSize.Width / 2 - LoginPanel.Size.Width / 2,
@@ -182,7 +182,7 @@ namespace CS6232_G1.View
 
         #region Login
 
-        private void login()
+        private void LoginButton_Click(object sender, EventArgs e)
         {
             String username = UsernameTextBox.Text;
             String password = PasswordTextBox.Text;
@@ -207,12 +207,24 @@ namespace CS6232_G1.View
             LoginPanel.Visible = false;
             menuStripDefault.Visible = false;
             menuStripAdmin.Visible = _controller.IsAdminSession;
+            nameTextAdminMenu.Text = _controller.CurrentUser.FullName;
             menuStripEmployee.Visible = !_controller.IsAdminSession;
+            nameTextEmployeeMenu.Text = _controller.CurrentUser.FullName;
             if (!_controller.IsAdminSession)
             {
                 // Open this on login for user sessions
                 employeeMenuEvaluationsToolStripMenuItem_Click(null, null);
             }
+        }
+
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _controller.Logout();
+            foreach (Form form in MdiChildren)
+            {
+                form.Close();
+            }
+            showLoginPanel();
         }
 
         private string hashPassword(string password)
@@ -240,20 +252,6 @@ namespace CS6232_G1.View
             }
         }
 
-        private void LoginButton_Click(object sender, EventArgs e)
-        {
-            login();
-        }
-        
-        //Login using enter key instead of clicking on the button
-        private void LoginTextBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                login();
-            }
-        }
-       
         #endregion
 
 

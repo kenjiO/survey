@@ -67,9 +67,6 @@ namespace CS6232_G1.View
         {
             try
             {
-                // TODO: set header label to:
-                // string text = "Employee " + nameFirstLastId + " Evaluation Report (Evaluation " + typeName + " at " + stageName + 
-                //                  ") (generated " + DateTime.Now.AsDD/MM/YYYY + ")"
                 reportData = _controller.GetCohortReport(typeId, cohortId);
                 if (reportData != null)
                 {

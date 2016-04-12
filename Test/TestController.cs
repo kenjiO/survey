@@ -359,6 +359,12 @@ namespace Test
             }
             return _currentUser;
         }
+
+        public void Logout()
+        {
+            _currentUser = null;
+        }
+
         #endregion
 
         #region Admin Reports
@@ -411,42 +417,6 @@ namespace Test
             return results;
         }
 
-
-        public List<UserReport2> GetUserReport2(int employeeId, int typeId, int stageId)
-        {
-            List<UserReport2> results = new List<UserReport2>();
-            string _name = GetEmployeeNameFL(employeeId);
-            string _type = GetTypeName(typeId);
-            string _stage = GetStageName(stageId);
-
-            results.Add(new UserReport2(_name, _type, _stage, "Category 1", 1, 3, 4, 5));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 1", 2, 5, 4, 5));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 1", 3, 3, 4, 3));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 1", 4, 4, 4, 5));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 1", 5, 3, 2, 2));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 2", 6, 3, 3, 3));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 2", 7, 3, 3, 5));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 2", 8, 3, 4, 4));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 2", 9, 1, 4, 1));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 2", 10, 2, 2, 5));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 3", 11, 3, 4, 5));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 3", 12, 5, 4, 5));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 3", 13, 3, 4, 3));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 3", 14, 4, 4, 5));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 3", 15, 3, 2, 2));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 4", 16, 3, 3, 3));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 4", 17, 3, 3, 5));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 4", 18, 3, 4, 4));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 4", 19, 1, 4, 1));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 4", 10, 2, 2, 5));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 5", 11, 3, 4, 5));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 5", 12, 5, 4, 5));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 5", 13, 3, 4, 3));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 5", 14, 4, 4, 5));
-            results.Add(new UserReport2(_name, _type, _stage, "Category 5", 15, 3, 2, 2));
-
-            return results;
-        }
 
         #endregion
 

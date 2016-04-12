@@ -30,19 +30,22 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserReportForm));
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.UserReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.employeeTextBox = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.stageComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.typeComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.generateButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.stageComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.UserReportTitleDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.UserReportBindingSource)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UserReportTitleDataBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // UserReportBindingSource
@@ -79,19 +82,6 @@
             this.employeeTextBox.Name = "employeeTextBox";
             this.employeeTextBox.Size = new System.Drawing.Size(50, 28);
             // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripLabel2.Size = new System.Drawing.Size(49, 25);
-            this.toolStripLabel2.Text = "Stage:";
-            // 
-            // stageComboBox
-            // 
-            this.stageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.stageComboBox.Name = "stageComboBox";
-            this.stageComboBox.Size = new System.Drawing.Size(100, 28);
-            // 
             // toolStripLabel3
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
@@ -118,18 +108,37 @@
             this.generateButton.Text = "Generate";
             this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
             // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.toolStripLabel2.Size = new System.Drawing.Size(49, 25);
+            this.toolStripLabel2.Text = "Stage:";
+            // 
+            // stageComboBox
+            // 
+            this.stageComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.stageComboBox.Name = "stageComboBox";
+            this.stageComboBox.Size = new System.Drawing.Size(100, 28);
+            // 
             // reportViewer
             // 
             this.reportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource2.Name = "UserReportDataSet";
-            reportDataSource2.Value = this.UserReportBindingSource;
+            reportDataSource1.Name = "UserReportDataSet";
+            reportDataSource1.Value = this.UserReportBindingSource;
+            reportDataSource2.Name = "UserReportTitleDataSet";
+            reportDataSource2.Value = this.UserReportTitleDataBindingSource;
+            this.reportViewer.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer.LocalReport.ReportEmbeddedResource = "CS6232_G1.View.UserReport.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(0, 28);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.Size = new System.Drawing.Size(687, 335);
             this.reportViewer.TabIndex = 8;
-            this.reportViewer.WaitControlDisplayAfter = 100;
+            // 
+            // UserReportTitleDataBindingSource
+            // 
+            this.UserReportTitleDataBindingSource.DataSource = typeof(Evaluation.Model.UserReportTitleData);
             // 
             // UserReportForm
             // 
@@ -144,6 +153,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.UserReportBindingSource)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UserReportTitleDataBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -161,5 +171,6 @@
         private System.Windows.Forms.ToolStripButton generateButton;
         private System.Windows.Forms.BindingSource UserReportBindingSource;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
+        private System.Windows.Forms.BindingSource UserReportTitleDataBindingSource;
     }
 }
