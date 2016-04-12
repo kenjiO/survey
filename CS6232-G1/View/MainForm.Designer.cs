@@ -56,6 +56,8 @@
             this.LoginButton = new System.Windows.Forms.Button();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
+            this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logOutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripAdmin.SuspendLayout();
             this.menuStripEmployee.SuspendLayout();
             this.menuStripDefault.SuspendLayout();
@@ -69,7 +71,8 @@
             this.fileToolStripMenuItem,
             this.cohortsToolStripMenuItem,
             this.reportsToolStripMenuItem,
-            this.stagesToolStripMenuItem});
+            this.stagesToolStripMenuItem,
+            this.logOutToolStripMenuItem1});
             this.menuStripAdmin.Location = new System.Drawing.Point(0, 48);
             this.menuStripAdmin.Name = "menuStripAdmin";
             this.menuStripAdmin.Size = new System.Drawing.Size(940, 24);
@@ -181,7 +184,8 @@
             this.menuStripEmployee.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStripEmployee.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem1,
-            this.testEmployeeMenuToolStripMenuItem});
+            this.testEmployeeMenuToolStripMenuItem,
+            this.logOutToolStripMenuItem});
             this.menuStripEmployee.Location = new System.Drawing.Point(0, 24);
             this.menuStripEmployee.Name = "menuStripEmployee";
             this.menuStripEmployee.Size = new System.Drawing.Size(940, 24);
@@ -297,7 +301,6 @@
             this.PasswordTextBox.TabIndex = 1;
             this.PasswordTextBox.Text = "admin";
             this.PasswordTextBox.UseSystemPasswordChar = true;
-            this.PasswordTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LoginTextBox_KeyUp);
             // 
             // UsernameTextBox
             // 
@@ -306,10 +309,26 @@
             this.UsernameTextBox.Size = new System.Drawing.Size(209, 20);
             this.UsernameTextBox.TabIndex = 0;
             this.UsernameTextBox.Text = "admin1@westga.edu";
-            this.UsernameTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LoginTextBox_KeyUp);
+            // 
+            // logOutToolStripMenuItem
+            // 
+            this.logOutToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.logOutToolStripMenuItem.Text = "Log Out";
+            this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
+            // 
+            // logOutToolStripMenuItem1
+            // 
+            this.logOutToolStripMenuItem1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.logOutToolStripMenuItem1.Name = "logOutToolStripMenuItem1";
+            this.logOutToolStripMenuItem1.Size = new System.Drawing.Size(62, 20);
+            this.logOutToolStripMenuItem1.Text = "Log Out";
+            this.logOutToolStripMenuItem1.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
             // MainForm
             // 
+            this.AcceptButton = this.LoginButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 567);
@@ -321,7 +340,6 @@
             this.MainMenuStrip = this.menuStripAdmin;
             this.Name = "MainForm";
             this.Text = "CS6232-G1 Evaluations";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStripAdmin.ResumeLayout(false);
             this.menuStripAdmin.PerformLayout();
             this.menuStripEmployee.ResumeLayout(false);
@@ -365,6 +383,8 @@
         private System.Windows.Forms.ToolStripMenuItem stagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createStageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem renameStageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem1;
     }
 }
 

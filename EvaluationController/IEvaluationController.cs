@@ -235,6 +235,12 @@ namespace Evaluation.Controller
         /// <param name="password">Password</param>
         /// <returns>Employee if successful login. Null for invalid username/password</returns>
         Employee Login(String username, String password);
+
+        /// <summary>
+        /// Log out of system
+        /// </summary>
+        void Logout();
+
         #endregion
 
         #region Admin Reports
@@ -387,8 +393,7 @@ namespace Evaluation.Controller
         /// <param name="_evaluationId">evaluationId of the evaluation to close</param>
         void CloseEvaluation(int evaluationId);
 
-        #endregion               
-        
+        #endregion                       
     
         
     }

@@ -359,6 +359,12 @@ namespace Test
             }
             return _currentUser;
         }
+
+        public void Logout()
+        {
+            _currentUser = null;
+        }
+
         #endregion
 
         #region Admin Reports

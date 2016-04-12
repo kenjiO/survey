@@ -16,6 +16,7 @@ namespace Evaluation.Controller
     {
         private Employee _currentUser;
         public Employee CurrentUser { get { return _currentUser; } }
+
         public bool IsAdminSession { 
             get 
             {
@@ -31,5 +32,11 @@ namespace Evaluation.Controller
             _currentUser = _dal.GetLogin(email, password);
             return _currentUser;
         }
+
+        public void Logout()
+        {
+            _currentUser = null; 
+        }
+
     }
 }
