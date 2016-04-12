@@ -207,7 +207,9 @@ namespace CS6232_G1.View
             LoginPanel.Visible = false;
             menuStripDefault.Visible = false;
             menuStripAdmin.Visible = _controller.IsAdminSession;
+            nameTextAdminMenu.Text = _controller.CurrentUser.FullName;
             menuStripEmployee.Visible = !_controller.IsAdminSession;
+            nameTextEmployeeMenu.Text = _controller.CurrentUser.FullName;
             if (!_controller.IsAdminSession)
             {
                 // Open this on login for user sessions
