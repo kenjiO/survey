@@ -145,22 +145,26 @@ namespace CS6232_G1.View
 
         #region User Menu Item Handlers
 
-        ViewEvaluationsForm frmViewEvaluations;
-
         private void employeeMenuEvaluationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //prevent duplicates
-            if (frmViewEvaluations != null)
+            Form openEvaluationsForm = Application.OpenForms["ViewEvaluationsForm"];
+            if (Application.OpenForms["ViewEvaluationsForm"] != null)
             {
-                frmViewEvaluations.Close();
+                openEvaluationsForm.Focus();
+                if (openEvaluationsForm.WindowState == FormWindowState.Minimized)
+                {
+                    openEvaluationsForm.WindowState = FormWindowState.Normal;
+                }
+                return;
             }
+
             //open ViewEvaluationDetailsForm
             try
             {
-                frmViewEvaluations = new ViewEvaluationsForm(_controller, _controller.CurrentUser);
+                ViewEvaluationsForm frmViewEvaluations = new ViewEvaluationsForm(_controller, _controller.CurrentUser);
                 frmViewEvaluations.MdiParent = this;
                 frmViewEvaluations.Show();
-                frmViewEvaluations.FormClosed += viewEvaluationsForm_FormClosed;
                 // The next 2 lines fix position of child form within the parent
                 frmViewEvaluations.StartPosition = FormStartPosition.Manual;
                 frmViewEvaluations.Location = new System.Drawing.Point(15, 15);
@@ -170,12 +174,6 @@ namespace CS6232_G1.View
                 MessageBox.Show("An unexpected error occurred on opening evaluation list. \n\n" +
                                 "Details: " + ex.Message, "Notice");
             }
-        }
-
-
-        void viewEvaluationsForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            frmViewEvaluations = null;
         }
 
         #endregion
