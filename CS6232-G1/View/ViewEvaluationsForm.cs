@@ -107,7 +107,7 @@ namespace CS6232_G1.View
                     }
                 } // end if self evaluation not started
 
-                if (evaluationId > 0) {
+                if (evaluationId > 0 && !isAnotherFormOpen()) {
                     // Open self evaluation
                     try
                     {
@@ -132,7 +132,7 @@ namespace CS6232_G1.View
        private int ShowCoworkerForm()
         {
             int coworkerId = 0;
-            if (_currentUser.SupervisorId != null) {
+            if (_currentUser.SupervisorId != null && !isAnotherFormOpen()) {
                 try
                 {
                     coworkerId = SelectCoworkerForm.Run(_controller);
@@ -151,7 +151,7 @@ namespace CS6232_G1.View
         {
             try
             {
-                if (_controller.IsSupervisorSelected(_currentUser.EmployeeId))
+                if (_controller.IsSupervisorSelected(_currentUser.EmployeeId) || isAnotherFormOpen())
                 {
                     return;
                 }
@@ -182,7 +182,7 @@ namespace CS6232_G1.View
             var senderGrid = (DataGridView)sender;
 
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-                e.RowIndex >= 0)
+                e.RowIndex >= 0 && !isAnotherFormOpen())
             {
                 int evaluationId = (int)senderGrid.Rows[e.RowIndex].Cells["evaluationId1"].Value;
 
@@ -198,6 +198,25 @@ namespace CS6232_G1.View
                                     "Details: " + ex.Message, "Notice");
                 }
 
+            }
+        }
+
+        private bool isAnotherFormOpen()
+        {
+            Form openQuestionnaireForm = Application.OpenForms["QuestionnaireForm"];
+            if (openQuestionnaireForm != null)
+            {
+                MessageBox.Show("Another questionnaire is open and must be closed before opening another one.");
+                Application.OpenForms["QuestionnaireForm"].Focus();
+                if (openQuestionnaireForm.WindowState == FormWindowState.Minimized)
+                {
+                    openQuestionnaireForm.WindowState = FormWindowState.Normal;
+                }
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
