@@ -42,10 +42,14 @@
             this.stagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renameStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logOutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.nameTextAdminMenu = new System.Windows.Forms.ToolStripLabel();
             this.menuStripEmployee = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.testEmployeeMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nameTextEmployeeMenu = new System.Windows.Forms.ToolStripLabel();
             this.menuStripDefault = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,10 +60,6 @@
             this.LoginButton = new System.Windows.Forms.Button();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
-            this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logOutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.nameTextEmployeeMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.nameTextAdminMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripAdmin.SuspendLayout();
             this.menuStripEmployee.SuspendLayout();
             this.menuStripDefault.SuspendLayout();
@@ -182,6 +182,22 @@
             this.renameStageToolStripMenuItem.Text = "Rename Stage";
             this.renameStageToolStripMenuItem.Click += new System.EventHandler(this.renameStageToolStripMenuItem_Click);
             // 
+            // logOutToolStripMenuItem1
+            // 
+            this.logOutToolStripMenuItem1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.logOutToolStripMenuItem1.Name = "logOutToolStripMenuItem1";
+            this.logOutToolStripMenuItem1.Size = new System.Drawing.Size(62, 20);
+            this.logOutToolStripMenuItem1.Text = "Log Out";
+            this.logOutToolStripMenuItem1.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
+            // 
+            // nameTextAdminMenu
+            // 
+            this.nameTextAdminMenu.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.nameTextAdminMenu.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.nameTextAdminMenu.Name = "nameTextAdminMenu";
+            this.nameTextAdminMenu.Size = new System.Drawing.Size(54, 17);
+            this.nameTextAdminMenu.Text = "<name>";
+            // 
             // menuStripEmployee
             // 
             this.menuStripEmployee.ImageScalingSize = new System.Drawing.Size(24, 24);
@@ -217,6 +233,23 @@
             this.testEmployeeMenuToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.testEmployeeMenuToolStripMenuItem.Text = "Evaluations";
             this.testEmployeeMenuToolStripMenuItem.Click += new System.EventHandler(this.employeeMenuEvaluationsToolStripMenuItem_Click);
+            // 
+            // logOutToolStripMenuItem
+            // 
+            this.logOutToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.logOutToolStripMenuItem.Text = "Log Out";
+            this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
+            // 
+            // nameTextEmployeeMenu
+            // 
+            this.nameTextEmployeeMenu.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.nameTextEmployeeMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.nameTextEmployeeMenu.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.nameTextEmployeeMenu.Name = "nameTextEmployeeMenu";
+            this.nameTextEmployeeMenu.Size = new System.Drawing.Size(54, 17);
+            this.nameTextEmployeeMenu.Text = "<name>";
             // 
             // menuStripDefault
             // 
@@ -314,37 +347,6 @@
             this.UsernameTextBox.TabIndex = 0;
             this.UsernameTextBox.Text = "admin1@westga.edu";
             // 
-            // logOutToolStripMenuItem
-            // 
-            this.logOutToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
-            this.logOutToolStripMenuItem.Text = "Log Out";
-            this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
-            // 
-            // logOutToolStripMenuItem1
-            // 
-            this.logOutToolStripMenuItem1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.logOutToolStripMenuItem1.Name = "logOutToolStripMenuItem1";
-            this.logOutToolStripMenuItem1.Size = new System.Drawing.Size(62, 20);
-            this.logOutToolStripMenuItem1.Text = "Log Out";
-            this.logOutToolStripMenuItem1.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
-            // 
-            // nameTextEmployeeMenu
-            // 
-            this.nameTextEmployeeMenu.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.nameTextEmployeeMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.nameTextEmployeeMenu.Name = "nameTextEmployeeMenu";
-            this.nameTextEmployeeMenu.Size = new System.Drawing.Size(65, 20);
-            this.nameTextEmployeeMenu.Text = "<name>";
-            // 
-            // nameTextAdminMenu
-            // 
-            this.nameTextAdminMenu.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.nameTextAdminMenu.Name = "nameTextAdminMenu";
-            this.nameTextAdminMenu.Size = new System.Drawing.Size(65, 20);
-            this.nameTextAdminMenu.Text = "<name>";
-            // 
             // MainForm
             // 
             this.AcceptButton = this.LoginButton;
@@ -404,8 +406,8 @@
         private System.Windows.Forms.ToolStripMenuItem renameStageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOutToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem nameTextAdminMenu;
-        private System.Windows.Forms.ToolStripMenuItem nameTextEmployeeMenu;
+        private System.Windows.Forms.ToolStripLabel nameTextAdminMenu;
+        private System.Windows.Forms.ToolStripLabel nameTextEmployeeMenu;
     }
 }
 
