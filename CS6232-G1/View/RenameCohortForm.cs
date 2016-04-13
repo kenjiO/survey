@@ -85,6 +85,14 @@ namespace CS6232_G1.View
                 return;
             }
 
+            List<Cohort> cohorts = _controller.GetCohorts();
+            bool nameExists = cohorts.Exists((Cohort c) => { return c.CohortName == newName; });
+            if (nameExists)
+            {
+                MessageBox.Show("A cohort with that name already exists");
+                return;
+            }
+
             bool result = false;
             try
             {
