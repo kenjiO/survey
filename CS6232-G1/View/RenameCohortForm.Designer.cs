@@ -107,6 +107,7 @@
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.label1);
             this.Name = "RenameCohortForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Rename Cohort";
             this.Load += new System.EventHandler(this.RenameCohortForm_Load);
             this.ResumeLayout(false);

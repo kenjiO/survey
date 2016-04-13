@@ -150,6 +150,7 @@ namespace CS6232_G1.View
         private void btnAddEvaluation_Click(object sender, EventArgs e)
         {
             AddOrEditCohortScheduleForm addCohortScheduleForm = AddOrEditCohortScheduleForm.createAddForm(_controller, _cohortId, this);
+            addCohortScheduleForm.StartPosition = FormStartPosition.CenterScreen;
             addCohortScheduleForm.Show();
         }
 
@@ -158,6 +159,7 @@ namespace CS6232_G1.View
             try
             {
                 AddMembersToCohortForm form = new AddMembersToCohortForm(_controller, _cohortId, this);
+                form.StartPosition = FormStartPosition.CenterScreen;
                 form.Show();
             }
             catch (Exception ex)
@@ -189,6 +191,7 @@ namespace CS6232_G1.View
                 // Edit the selected schedule
                 selectedSchedule = this.PutDataInScheduleObject(senderGrid);
                 AddOrEditCohortScheduleForm editCohortScheduleForm = AddOrEditCohortScheduleForm.CreateEditForm(_controller, _cohortId, selectedSchedule, this);
+                editCohortScheduleForm.StartPosition = FormStartPosition.CenterScreen;
                 editCohortScheduleForm.Show();
                 this.RefreshViews();
             }

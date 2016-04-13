@@ -107,6 +107,7 @@
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.label1);
             this.Name = "RenameStageForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Rename Stage";
             this.Load += new System.EventHandler(this.RenameStageForm_Load);
             this.ResumeLayout(false);
