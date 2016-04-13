@@ -360,6 +360,7 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStripAdmin;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CS6232-G1 Evaluations";
             this.menuStripAdmin.ResumeLayout(false);
             this.menuStripAdmin.PerformLayout();
