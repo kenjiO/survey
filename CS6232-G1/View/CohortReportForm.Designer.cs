@@ -63,7 +63,7 @@
             this.generateButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(823, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(699, 25);
             this.toolStrip1.TabIndex = 7;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -84,7 +84,7 @@
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
             this.toolStripLabel3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripLabel3.Size = new System.Drawing.Size(45, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(46, 22);
             this.toolStripLabel3.Text = "Type:";
             // 
             // typeComboBox
@@ -117,7 +117,7 @@
             this.reportViewer.Location = new System.Drawing.Point(0, 25);
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.ShowToolBar = false;
-            this.reportViewer.Size = new System.Drawing.Size(823, 529);
+            this.reportViewer.Size = new System.Drawing.Size(699, 443);
             this.reportViewer.TabIndex = 8;
             this.reportViewer.WaitControlDisplayAfter = 100;
             // 
@@ -125,7 +125,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(823, 554);
+            this.ClientSize = new System.Drawing.Size(699, 468);
             this.Controls.Add(this.reportViewer);
             this.Controls.Add(this.toolStrip1);
             this.Name = "CohortReportForm";
