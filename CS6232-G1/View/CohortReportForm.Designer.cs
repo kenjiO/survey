@@ -38,9 +38,12 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.typeComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.noDataPanel = new System.Windows.Forms.Panel();
+            this.noDataLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.CohortReportBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserReportBindingSource)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            this.noDataPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // CohortReportBindingSource
@@ -106,11 +109,31 @@
             this.reportViewer.TabIndex = 8;
             this.reportViewer.WaitControlDisplayAfter = 100;
             // 
+            // noDataPanel
+            // 
+            this.noDataPanel.Controls.Add(this.noDataLabel);
+            this.noDataPanel.Location = new System.Drawing.Point(0, 25);
+            this.noDataPanel.Name = "noDataPanel";
+            this.noDataPanel.Size = new System.Drawing.Size(699, 443);
+            this.noDataPanel.TabIndex = 9;
+            this.noDataPanel.Visible = false;
+            // 
+            // noDataLabel
+            // 
+            this.noDataLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noDataLabel.Location = new System.Drawing.Point(0, 44);
+            this.noDataLabel.Name = "noDataLabel";
+            this.noDataLabel.Size = new System.Drawing.Size(699, 43);
+            this.noDataLabel.TabIndex = 0;
+            this.noDataLabel.Text = "label1";
+            this.noDataLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // CohortReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(699, 468);
+            this.Controls.Add(this.noDataPanel);
             this.Controls.Add(this.reportViewer);
             this.Controls.Add(this.toolStrip1);
             this.Name = "CohortReportForm";
@@ -119,6 +142,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.UserReportBindingSource)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.noDataPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -134,5 +158,7 @@
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
         private System.Windows.Forms.BindingSource CohortReportBindingSource;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
+        private System.Windows.Forms.Panel noDataPanel;
+        private System.Windows.Forms.Label noDataLabel;
     }
 }

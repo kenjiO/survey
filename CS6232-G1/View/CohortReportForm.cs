@@ -48,16 +48,25 @@ namespace CS6232_G1.View
             try
             {
                 reportData = _controller.GetCohortReport(typeId, cohortId);
-                if (reportData != null)
+                if (reportData == null)
                 {
+                    reportViewer.Reset();
+                    string text = "Could not get a report for selected cohort and type";
+                    MessageBox.Show(text, "Notice");
+                    return;
+                }
+
+                if (reportData.Count() > 0)
+                {
+                    noDataPanel.Visible = false;
                     CohortReportBindingSource.DataSource = reportData;
                     reportViewer.RefreshReport();
                 }
                 else
                 {
-                    reportViewer.Reset();
-                    string text = "Could not get a report for selected cohort and type";
-                    MessageBox.Show(text, "Notice");
+                    noDataPanel.Visible = true;
+                    noDataLabel.Text = "No " + typeComboBox.Text + " evaluations filled out for "
+                        + cohortComboBox.Text;
                 }
             }
             catch (SqlException ex)
