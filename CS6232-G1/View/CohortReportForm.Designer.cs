@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CohortReportForm));
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.CohortReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.UserReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -38,7 +37,6 @@
             this.cohortComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.typeComboBox = new System.Windows.Forms.ToolStripComboBox();
-            this.generateButton = new System.Windows.Forms.ToolStripButton();
             this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.CohortReportBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserReportBindingSource)).BeginInit();
@@ -59,8 +57,7 @@
             this.toolStripLabel2,
             this.cohortComboBox,
             this.toolStripLabel3,
-            this.typeComboBox,
-            this.generateButton});
+            this.typeComboBox});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(699, 25);
@@ -79,12 +76,13 @@
             this.cohortComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cohortComboBox.Name = "cohortComboBox";
             this.cohortComboBox.Size = new System.Drawing.Size(100, 25);
+            this.cohortComboBox.SelectedIndexChanged += new System.EventHandler(this.SelectBoxChanged);
             // 
             // toolStripLabel3
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
             this.toolStripLabel3.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.toolStripLabel3.Size = new System.Drawing.Size(46, 22);
+            this.toolStripLabel3.Size = new System.Drawing.Size(45, 22);
             this.toolStripLabel3.Text = "Type:";
             // 
             // typeComboBox
@@ -92,20 +90,7 @@
             this.typeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typeComboBox.Name = "typeComboBox";
             this.typeComboBox.Size = new System.Drawing.Size(100, 25);
-            // 
-            // generateButton
-            // 
-            this.generateButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.generateButton.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.generateButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.generateButton.Image = ((System.Drawing.Image)(resources.GetObject("generateButton.Image")));
-            this.generateButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.generateButton.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
-            this.generateButton.Name = "generateButton";
-            this.generateButton.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.generateButton.Size = new System.Drawing.Size(68, 22);
-            this.generateButton.Text = "Generate";
-            this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
+            this.typeComboBox.SelectedIndexChanged += new System.EventHandler(this.SelectBoxChanged);
             // 
             // reportViewer
             // 
@@ -130,7 +115,6 @@
             this.Controls.Add(this.toolStrip1);
             this.Name = "CohortReportForm";
             this.Text = "Cohort Report";
-            this.Load += new System.EventHandler(this.CohortReportForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CohortReportBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserReportBindingSource)).EndInit();
             this.toolStrip1.ResumeLayout(false);
@@ -146,7 +130,6 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripComboBox cohortComboBox;
         private System.Windows.Forms.ToolStripComboBox typeComboBox;
-        private System.Windows.Forms.ToolStripButton generateButton;
         private System.Windows.Forms.BindingSource UserReportBindingSource;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer;
         private System.Windows.Forms.BindingSource CohortReportBindingSource;

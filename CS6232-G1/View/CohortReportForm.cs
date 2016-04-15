@@ -41,27 +41,7 @@ namespace CS6232_G1.View
             typeComboBox.ComboBox.DisplayMember = "name";
             typeComboBox.ComboBox.ValueMember = "id";
             typeComboBox.ComboBox.SelectedIndex = -1;
-            GenerateReport(1, 1);
         }
-
-        private void generateButton_Click(object sender, EventArgs e)
-        {
-            if (cohortComboBox.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select a cohort", "Notice");
-                return;
-            } 
-            if (typeComboBox.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select an evaluation type", "Notice");
-                return;
-            }
-
-            int type = (int)typeComboBox.ComboBox.SelectedValue;
-            int cohort = (int)cohortComboBox.ComboBox.SelectedValue;
-            GenerateReport(type, cohort);
-        }
-
 
         private void GenerateReport(int typeId, int cohortId)
         {
@@ -146,9 +126,16 @@ namespace CS6232_G1.View
             form.Show();
         }
 
-        private void CohortReportForm_Load(object sender, EventArgs e)
+        private void SelectBoxChanged(object sender, EventArgs e)
         {
-
+            if (cohortComboBox.SelectedIndex == -1 || typeComboBox.SelectedIndex == -1)
+            {
+                return;
+            }
+            int type = (int)typeComboBox.ComboBox.SelectedValue;
+            int cohort = (int)cohortComboBox.ComboBox.SelectedValue;
+            GenerateReport(type, cohort);
         }
+    
     }
 }
