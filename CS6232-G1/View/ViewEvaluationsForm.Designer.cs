@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvSelfEvaluations = new System.Windows.Forms.DataGridView();
             this.scheduleId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,12 +71,13 @@
             this.EndDate,
             this.OpenButton});
             this.dgvSelfEvaluations.DataSource = this.evaluationsBindingSource;
-            this.dgvSelfEvaluations.Location = new System.Drawing.Point(75, 139);
+            this.dgvSelfEvaluations.Location = new System.Drawing.Point(50, 90);
+            this.dgvSelfEvaluations.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvSelfEvaluations.Name = "dgvSelfEvaluations";
             this.dgvSelfEvaluations.ReadOnly = true;
             this.dgvSelfEvaluations.RowTemplate.Height = 28;
             this.dgvSelfEvaluations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSelfEvaluations.Size = new System.Drawing.Size(930, 277);
+            this.dgvSelfEvaluations.Size = new System.Drawing.Size(620, 140);
             this.dgvSelfEvaluations.TabIndex = 10;
             this.dgvSelfEvaluations.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSelfEvaluations_CellContentClick);
             // 
@@ -105,8 +106,8 @@
             // EndDate
             // 
             this.EndDate.DataPropertyName = "endDate";
-            dataGridViewCellStyle3.Format = "MM/dd/yyyy";
-            this.EndDate.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Format = "MM/dd/yyyy";
+            this.EndDate.DefaultCellStyle = dataGridViewCellStyle1;
             this.EndDate.HeaderText = "Close Date";
             this.EndDate.Name = "EndDate";
             this.EndDate.ReadOnly = true;
@@ -126,9 +127,10 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(370, 35);
+            this.label1.Location = new System.Drawing.Point(247, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(278, 39);
+            this.label1.Size = new System.Drawing.Size(185, 25);
             this.label1.TabIndex = 11;
             this.label1.Text = "Your Evaluations";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -136,18 +138,20 @@
             // lblSelfEvaluations
             // 
             this.lblSelfEvaluations.AutoSize = true;
-            this.lblSelfEvaluations.Location = new System.Drawing.Point(71, 103);
+            this.lblSelfEvaluations.Location = new System.Drawing.Point(47, 67);
+            this.lblSelfEvaluations.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSelfEvaluations.Name = "lblSelfEvaluations";
-            this.lblSelfEvaluations.Size = new System.Drawing.Size(123, 20);
+            this.lblSelfEvaluations.Size = new System.Drawing.Size(83, 13);
             this.lblSelfEvaluations.TabIndex = 12;
             this.lblSelfEvaluations.Text = "Self Evaluations";
             // 
             // lblPeerEvaluations
             // 
             this.lblPeerEvaluations.AutoSize = true;
-            this.lblPeerEvaluations.Location = new System.Drawing.Point(71, 476);
+            this.lblPeerEvaluations.Location = new System.Drawing.Point(47, 263);
+            this.lblPeerEvaluations.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPeerEvaluations.Name = "lblPeerEvaluations";
-            this.lblPeerEvaluations.Size = new System.Drawing.Size(128, 20);
+            this.lblPeerEvaluations.Size = new System.Drawing.Size(87, 13);
             this.lblPeerEvaluations.TabIndex = 13;
             this.lblPeerEvaluations.Text = "Peer Evaluations";
             // 
@@ -170,12 +174,13 @@
             this.endDate1,
             this.OpenButton1});
             this.dgvPeerEvaluations.DataSource = this.evaluationsBindingSource;
-            this.dgvPeerEvaluations.Location = new System.Drawing.Point(75, 511);
+            this.dgvPeerEvaluations.Location = new System.Drawing.Point(50, 292);
+            this.dgvPeerEvaluations.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvPeerEvaluations.Name = "dgvPeerEvaluations";
             this.dgvPeerEvaluations.ReadOnly = true;
             this.dgvPeerEvaluations.RowTemplate.Height = 28;
             this.dgvPeerEvaluations.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPeerEvaluations.Size = new System.Drawing.Size(930, 277);
+            this.dgvPeerEvaluations.Size = new System.Drawing.Size(620, 140);
             this.dgvPeerEvaluations.TabIndex = 14;
             this.dgvPeerEvaluations.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPeerEvaluations_CellContentClick);
             // 
@@ -235,8 +240,8 @@
             // endDate1
             // 
             this.endDate1.DataPropertyName = "endDate";
-            dataGridViewCellStyle4.Format = "MM/dd/yyyy";
-            this.endDate1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Format = "MM/dd/yyyy";
+            this.endDate1.DefaultCellStyle = dataGridViewCellStyle2;
             this.endDate1.HeaderText = "Close Date";
             this.endDate1.Name = "endDate1";
             this.endDate1.ReadOnly = true;
@@ -251,16 +256,17 @@
             // 
             // ViewEvaluationsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(0, 20);
-            this.ClientSize = new System.Drawing.Size(1082, 840);
+            this.ClientSize = new System.Drawing.Size(721, 471);
             this.Controls.Add(this.dgvPeerEvaluations);
             this.Controls.Add(this.lblPeerEvaluations);
             this.Controls.Add(this.lblSelfEvaluations);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvSelfEvaluations);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ViewEvaluationsForm";
             this.Text = "View Evaluations";
             this.Load += new System.EventHandler(this.ViewEvaluationDetailsForm_Load);
