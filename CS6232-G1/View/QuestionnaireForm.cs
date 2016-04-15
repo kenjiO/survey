@@ -16,7 +16,7 @@ namespace CS6232_G1.View
     {
         private IEvaluationController _controller;
         private Employee _currentUser;
-        private int _evaluationKind;
+        private EvalType.Evaluator _evaluationKind;
         private int _evaluationId;
         private IRefreshable _parentForm;
         private int _answerRange;
@@ -24,7 +24,7 @@ namespace CS6232_G1.View
         private int _questionCount;
         private NonFlickerTableLayoutPanel _tlpQuestionnaire;        
 
-        public QuestionnaireForm(IEvaluationController controller, int evaluationKind, int evaluationId, IRefreshable parent)
+        public QuestionnaireForm(IEvaluationController controller, EvalType.Evaluator evaluationKind, int evaluationId, IRefreshable parent)
         {
             InitializeComponent();
             _controller = controller;
@@ -40,10 +40,6 @@ namespace CS6232_G1.View
             if (_currentUser == null)
             {
                 throw new ArgumentNullException("currentUser", "Current User cannot be null");
-            }
-            if (_evaluationKind < 0 || _evaluationKind > 1)
-            {
-                throw new ArgumentOutOfRangeException("Invalid evaluationKind", "Evaluation Kind has to be 0 or 1");
             }
             if (_evaluationId < 1)
             {
@@ -180,7 +176,7 @@ namespace CS6232_G1.View
             submitPanel.Width = _tlpQuestionnaire.Width;
 
             lblDate.Location = new Point(LEFT_MARGIN + tableWidth - lblDate.Width, lblEmployeeName.Location.Y);
-            if (_evaluationKind == 0)
+            if (_evaluationKind == EvalType.Evaluator.Self)
             {
                 this.Controls.Remove(lblEvaluator);
                 lblRole.Left = LEFT_MARGIN;
@@ -199,7 +195,7 @@ namespace CS6232_G1.View
 
             lblGeneral.Text =
                 "As you know, Company XXX utilizes a 360-degree performance appraisal methodology. " ;
-            if (_evaluationKind == 0)
+            if (_evaluationKind == EvalType.Evaluator.Self)
             {
                 lblGeneral.Text += 
                 "Self review is a critical part of this process. You have been selected to " +

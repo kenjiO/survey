@@ -13,8 +13,6 @@ namespace CS6232_G1.View
     {
         private IEvaluationController _controller;
         private Employee _currentUser;
-        private const int SELF_EVALUATION = 0;
-        private const int PEER_EVALUATION = 1;
         
         public ViewEvaluationsForm(IEvaluationController controller, Employee currentUser)
         {
@@ -111,7 +109,7 @@ namespace CS6232_G1.View
                     // Open self evaluation
                     try
                     {
-                        QuestionnaireForm form = new QuestionnaireForm(_controller, SELF_EVALUATION, evaluationId, this);
+                        QuestionnaireForm form = new QuestionnaireForm(_controller, EvalType.Evaluator.Self, evaluationId, this);
                         form.Show();
                     }
                     catch (Exception ex)
@@ -189,7 +187,7 @@ namespace CS6232_G1.View
                 // Open peer evaluation
                 try
                 {
-                    QuestionnaireForm form = new QuestionnaireForm(_controller, PEER_EVALUATION, evaluationId, this);                    
+                    QuestionnaireForm form = new QuestionnaireForm(_controller, EvalType.Evaluator.Peer, evaluationId, this);                    
                     form.Show();
                 }
                 catch (Exception ex)

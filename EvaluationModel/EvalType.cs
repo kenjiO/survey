@@ -8,6 +8,8 @@ namespace Evaluation.Model
 {
     public class EvalType
     {
+        public enum Evaluator { Self, Peer};
+
         public int Id { get { return _id; } }
         public string Name { get { return _name; } }
         public int AnswerRange { get { return _answerRange; } }
