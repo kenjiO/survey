@@ -338,6 +338,7 @@
             this.PasswordTextBox.TabIndex = 1;
             this.PasswordTextBox.Text = "admin";
             this.PasswordTextBox.UseSystemPasswordChar = true;
+            this.PasswordTextBox.TextChanged += new System.EventHandler(this.clearLoginErrorMessage);
             // 
             // UsernameTextBox
             // 
@@ -346,6 +347,7 @@
             this.UsernameTextBox.Size = new System.Drawing.Size(209, 20);
             this.UsernameTextBox.TabIndex = 0;
             this.UsernameTextBox.Text = "admin1@westga.edu";
+            this.UsernameTextBox.TextChanged += new System.EventHandler(this.clearLoginErrorMessage);
             // 
             // MainForm
             // 

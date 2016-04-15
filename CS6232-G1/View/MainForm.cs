@@ -250,6 +250,11 @@ namespace CS6232_G1.View
             }
         }
 
+        private void clearLoginErrorMessage(object sender, EventArgs e)
+        {
+            ErrorMsgLabel.Text = "";
+        }
+
         #endregion
 
 
