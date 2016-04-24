@@ -495,6 +495,8 @@ namespace Evaluation.DAL
             {
                 connection.Open();
 
+                //throw new InsertException("Answer could not be saved to the database.");
+
                 string insertStatement =
                             "INSERT INTO answer " +
                             "(evaluationId, questionId, answer) " +
@@ -535,6 +537,8 @@ namespace Evaluation.DAL
             using (SqlConnection connection = EvaluationDB.GetConnection())
             {
                 connection.Open();
+
+                throw new NoRecordsFoundException("The answer could not be updated.");
 
                 string updateStatement =
                             "UPDATE answer " +

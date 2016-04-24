@@ -278,12 +278,14 @@ namespace CS6232_G1.View
                 }
                 rb.Tag = answerId.ToString();  //save answerId here
 
-                rb.CheckedChanged += (sender, eventArgs) =>
+                rb.AutoCheck = false;
+                
+                rb.Click += (sender, eventArgs) =>
                 {
                     try
                     {
                         RadioButton radioButton = (RadioButton)sender;
-                        if (radioButton.Checked == true)
+                        if (!radioButton.Checked)
                         {
                             int newAnswer = Convert.ToInt32(radioButton.Text);
                             if (Convert.ToInt32(radioButton.Tag) <= 0)
@@ -294,11 +296,19 @@ namespace CS6232_G1.View
                                 foreach (RadioButton rbInGroup in radioButton.Parent.Controls)
                                 {
                                     rbInGroup.Tag = answerId.ToString();
+                                    rbInGroup.Checked = false;
                                 }
+                                radioButton.Checked = true;
+                                
                             }
                             else
                             {
-                                _controller.SaveAnswer(answerId, newAnswer);                                
+                                _controller.SaveAnswer(answerId, newAnswer);
+                                foreach (RadioButton rbInGroup in radioButton.Parent.Controls)
+                                {
+                                    rbInGroup.Checked = false;
+                                }
+                                radioButton.Checked = true;
                             }
                         }
                     }
@@ -312,7 +322,7 @@ namespace CS6232_G1.View
                 panel.Controls.Add(rb);
                 panel.AutoSize = true;
             }
-        }
+        }        
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
