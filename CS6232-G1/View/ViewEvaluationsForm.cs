@@ -96,10 +96,14 @@ namespace CS6232_G1.View
                 // if self evaluation not started
                 if (evaluationId == 0)
                 {
-                    ShowSupervisorForm();
+                    int supervisorId = ShowSupervisorForm();
+                    if (supervisorId < 1)
+                    {
+                        return;
+                    }
                     int coworkerId = ShowCoworkerForm();
 
-                    if (_currentUser.SupervisorId != null && coworkerId > 0)
+                    if (coworkerId > 0)
                     {
                         evaluationId = _controller.InitializeSelfEvaluation(scheduleId, coworkerId);
                     }
@@ -130,7 +134,7 @@ namespace CS6232_G1.View
        private int ShowCoworkerForm()
         {
             int coworkerId = 0;
-            if (_currentUser.SupervisorId != null && !isAnotherFormOpen()) {
+            if (!isAnotherFormOpen()) {
                 try
                 {
                     coworkerId = SelectCoworkerForm.Run(_controller);
@@ -145,22 +149,20 @@ namespace CS6232_G1.View
             return coworkerId;
         }
 
-        private void ShowSupervisorForm()
+        private int ShowSupervisorForm()
         {
-            try
+            int supervisorId = 0;
+            if (!isAnotherFormOpen())
             {
-                if (_controller.IsSupervisorSelected(_currentUser.EmployeeId) || isAnotherFormOpen())
-                {
-                    return;
-                }
-                int supervisorId = SelectSupervisorForm.Run(_controller);
-                if (supervisorId < 0)
-                {
-                    return;
-                }
                 try
                 {
+                    supervisorId = SelectSupervisorForm.Run(_controller);
                     _controller.SetSupervisor(supervisorId);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("An error occurred accessing the database.  Please check your SQL configuration.\n\n" +
+                                    "Details: " + ex.Message, "Notice");
                 }
                 catch (Exception ex)
                 {
@@ -168,11 +170,7 @@ namespace CS6232_G1.View
                                     "Details: " + ex.Message, "Notice");
                 }
             }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("An error occurred accessing the database.  Please check your SQL configuration.\n\n" +
-                                "Details: " + ex.Message, "Notice");
-            }
+            return supervisorId;
         }
 
         private void dgvPeerEvaluations_CellContentClick(object sender, DataGridViewCellEventArgs e)

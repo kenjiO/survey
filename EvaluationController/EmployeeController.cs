@@ -78,10 +78,6 @@ namespace Evaluation.Controller
             if (supervisorId == _currentUser.EmployeeId) {
                 throw new ArgumentException("supervisorId cannot be the same as the current user");
             }
-            if (this.IsSupervisorSelected(_currentUser.EmployeeId))
-            {
-                throw new InvalidOperationException("Supervisor is already set");
-            }
             if (_dal.SetSupervisor(_currentUser.EmployeeId, supervisorId))
             {
                 _currentUser.SupervisorId = supervisorId;

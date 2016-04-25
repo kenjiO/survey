@@ -64,7 +64,15 @@ namespace CS6232_G1.View
             cboSupervisors.DataSource = EmployeeListExceptSelf;
             cboSupervisors.DisplayMember = "FullName";
             cboSupervisors.ValueMember = "EmployeeId";
-            cboSupervisors.SelectedIndex = -1;
+
+            if (_controller.CurrentUser.SupervisorId != null)
+            {
+                cboSupervisors.SelectedValue = _controller.CurrentUser.SupervisorId;
+            }
+            else
+            {
+                cboSupervisors.SelectedIndex = -1;
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -81,19 +89,8 @@ namespace CS6232_G1.View
                 MessageBox.Show("Please select a supervisor first");
                 return;
             }
-            DialogResult dialogResult = MessageBox.Show("You have selected " + _selectedSupervisor.FullName + " as your supervisor. Once set, the supervisor cannot be changed."
-                            + Environment.NewLine + "Click OK to confirm supervisor selection."
-                            + Environment.NewLine
-                            + "Click Cancel to return to the form to select another supervisor.", "Confirm Supervisor", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-            if (dialogResult == DialogResult.OK)
-            {
-                this.DialogResult = DialogResult.OK;
-                Close();
-            }
-            else if (dialogResult == DialogResult.Cancel)
-            {
-                cboSupervisors.Focus();                
-            }
+            this.DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void cboSupervisors_SelectedIndexChanged(object sender, EventArgs e)
