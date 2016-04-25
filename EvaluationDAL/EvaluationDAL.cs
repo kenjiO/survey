@@ -538,7 +538,7 @@ namespace Evaluation.DAL
             {
                 connection.Open();
 
-                throw new NoRecordsFoundException("The answer could not be updated.");
+                //throw new NoRecordsFoundException("The answer could not be updated.");
 
                 string updateStatement =
                             "UPDATE answer " +
